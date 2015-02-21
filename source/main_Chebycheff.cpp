@@ -8,6 +8,23 @@
 #include <cstdio>
 using namespace std;
 
+bool runFilter(Filter& i_cFilter, SoundInformation& i_cSoundInformation, long i_lBegin, long i_lEnd, short i_shChannel )
+{
+    double a_dCurrentSample;
+    
+    for(long a_lIndex=i_lBegin; a_lIndex<=i_lEnd; a_lIndex++)
+	{
+		// サンプルを取得.
+        a_dCurrentSample = i_cSoundInformation.readSampleFromMemory(a_lIndex,i_shChannel);
+		// フィルタにサンプルを通す.
+        a_dCurrentSample = i_cFilter.passFilter(a_dCurrentSample);
+        // フィルタに通したサンプルを保存.
+        i_cSoundInformation.writeSampleIntoMemory(a_dCurrentSample, a_lIndex, i_shChannel);
+    }
+
+	return true;
+}
+
 int main(int argc, char* argv[])
 {
     WaveFormatOperator waveLow,waveHigh,waveMix;
@@ -39,16 +56,15 @@ int main(int argc, char* argv[])
         cout << "up sampling" << endl;
         waveLow.setSampleRate(waveLow.getSampleRate()*2);
         
-        low.setSoundInformation(&waveLow);
         low.setSampleRate(waveLow.getSampleRate());
         
         low.selectFilterMode(kLowpass);
         
         cout << "make prototype" << endl;
-        low.decisionPrototype(400,-1,800,dBPerOctDown);
+        low.decisionPrototype(400.0, -1.0, 800.0, -dBPerOctDown);
         
         cout << "setting cutoff frequency" << endl;
-        low.setCutoffFreq(400);
+        low.setCutoffFreq(400.0);
         
         cout << "init transfer function" << endl;
         low.initTransferFunction();
@@ -58,8 +74,8 @@ int main(int argc, char* argv[])
 
         for(short chan=0;chan<waveLow.getNumChannels();chan++){
             cout << "disposal channel" << chan << endl;
-            low.runFilter(0,waveLow.getSamplesPerChannel(),chan);
-        }
+			runFilter(low, waveLow, 0, waveLow.getSamplesPerChannel(), chan);
+		}
         
         cout << "down sampling" << endl;
         waveLow.setSampleRate(waveLow.getSampleRate()/2);
@@ -85,16 +101,15 @@ int main(int argc, char* argv[])
         cout << "up sampling" << endl;
         waveHigh.setSampleRate(waveHigh.getSampleRate()*2);
         
-        high.setSoundInformation(&waveHigh);
         high.setSampleRate(waveHigh.getSampleRate());
         
         high.selectFilterMode(kHighpass);
         
         cout << "make prototype" << endl;
-        high.decisionPrototype(400,-1,800,dBPerOctDown);
+        high.decisionPrototype(400.0, -1.0, 800.0, -dBPerOctDown);
         
         cout << "setting cutoff frequency" << endl;
-        high.setCutoffFreq(400);
+        high.setCutoffFreq(2000.0);
         
         cout << "init transfer function" << endl;
         high.initTransferFunction();
@@ -104,8 +119,8 @@ int main(int argc, char* argv[])
 
         for(short chan=0;chan<waveHigh.getNumChannels();chan++){
             cout << "disposal channel" << chan << endl;
-            high.runFilter(0,waveHigh.getSamplesPerChannel(),chan);
-        }
+			runFilter(high, waveHigh, 0, waveHigh.getSamplesPerChannel(), chan);
+		}
         
         cout << "down sampling" << endl;
         waveHigh.setSampleRate(waveHigh.getSampleRate()/2);
