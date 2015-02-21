@@ -30,17 +30,17 @@ SoundInformation::SoundInformation(long  sampleRate,
                                    long  samplesPerChannel)
 {
 	try{
-		mSample = new double [samplesPerChannel*numChannels];
+		this->m_pdSample = new double [samplesPerChannel*numChannels];
 	}
 	catch(bad_alloc err){
 		cerr << "SoundInformation error: SoundInformation::SoundInformation. " << err.what() << endl;
 	}
-	memset(mSample,0,samplesPerChannel*numChannels*sizeof(double));
+	memset(this->m_pdSample, 0, samplesPerChannel*numChannels*sizeof(double));
 	
-	mSampleRate = sampleRate;
-	mBitsPerSample = bitsPerSample;
-	mNumChannels = numChannels;
-	mSamplesPerChannel = samplesPerChannel;
+	this->m_lSampleRate = sampleRate;
+	this->m_shBitsPerSample = bitsPerSample;
+	this->m_shNumChannels = numChannels;
+	this->m_lSamplesPerChannel = samplesPerChannel;
 }
 
 
@@ -51,19 +51,22 @@ SoundInformation::SoundInformation(long  sampleRate,
 SoundInformation::SoundInformation(const SoundInformation &ob)
 {	
 
-	mSampleRate = ob.getSampleRate();
-	mBitsPerSample = ob.mBitsPerSample;
+	this->m_lSampleRate = ob.getSampleRate();
+	this->m_shBitsPerSample = ob.m_shBitsPerSample;
 
 	if(ob.getNumSamples() != getNumSamples()){
-		mSamplesPerChannel = ob.mSamplesPerChannel;
-		mNumChannels = ob.mNumChannels;
-		try{
-			mSample = new double [getNumSamples()];
-		}catch(bad_alloc err){
+		this->m_lSamplesPerChannel = ob.m_lSamplesPerChannel;
+		this->m_shNumChannels = ob.m_shNumChannels;
+		try
+		{
+			this->m_pdSample = new double [this->getNumSamples()];
+		}
+		catch(bad_alloc err)
+		{
 			cerr << "SoundInformation::operator=. " << err.what() << endl;
 		}
 	}
-	memcpy(mSample,ob.mSample,getNumSamples()*sizeof(double));
+	memcpy(this->m_pdSample, ob.m_pdSample, this->getNumSamples()*sizeof(double));
 	
 }
 
@@ -112,7 +115,7 @@ void SoundInformation::setSampleRate(long sampleRate)
 		}
 	}
 
-	mSampleRate = sampleRate;
+	this->m_lSampleRate = sampleRate;
 }
 
 /***************************************************************************
@@ -136,10 +139,8 @@ void SoundInformation::setSampleRate(long sampleRate)
 void SoundInformation::setBitsPerSample(short bitsPerSample)
 {
 	
-	if(bitsPerSample == getBitsPerSample()) return;
-
-	mBitsPerSample = bitsPerSample;
-
+	if(bitsPerSample == this->getBitsPerSample()) return;
+	this->m_shBitsPerSample = bitsPerSample;
 }
 
 
@@ -177,21 +178,24 @@ void SoundInformation::setNumChannels(short numChannels)
 	
 	temp = *this;
 	
-	mNumChannels = numChannels;
-	numSamples = getNumSamples();
+	this->m_shNumChannels = numChannels;
+	numSamples = this->getNumSamples();
 	
-	try{
-		delete [] mSample;
-		mSample = new double [numSamples];
-	}catch(bad_alloc err){
+	try
+	{
+		delete [] this->m_pdSample;
+		this->m_pdSample = new double [numSamples];
+	}
+	catch(bad_alloc err)
+	{
 		cerr << "SoundInformation::setNumChannels. " << err.what() << endl;
 	}
-	memset(mSample,0,numSamples*sizeof(double));
+	memset(this->m_pdSample, 0, numSamples*sizeof(double));
 	
-	if(temp.getNumChannels() < getNumChannels())
+	if(temp.getNumChannels() < this->getNumChannels())
 		lessChannel = temp.getNumChannels();
 	else
-		lessChannel = getNumChannels();
+		lessChannel = this->getNumChannels();
 		
 	for(long index=0;index<getSamplesPerChannel();index++){
 		for(short channel=0;channel<lessChannel;channel++){
@@ -234,23 +238,26 @@ void SoundInformation::setSamplesPerChannel(long samplesPerChannel)
 	
 	temp = *this;
 	
-	oldNumSamples = getNumSamples();
-	mSamplesPerChannel = samplesPerChannel;
-	newNumSamples = getNumSamples();
+	oldNumSamples = this->getNumSamples();
+	this->m_lSamplesPerChannel = samplesPerChannel;
+	newNumSamples = this->getNumSamples();
 	if(oldNumSamples < newNumSamples)
 		lessNumSamples = oldNumSamples;
 	else
 		lessNumSamples = newNumSamples;
 
-	try{
-		delete [] mSample;
-		mSample = new double [newNumSamples];
-	}catch(bad_alloc err){
+	try
+	{
+		delete [] this->m_pdSample;
+		this->m_pdSample = new double [newNumSamples];
+	}
+	catch(bad_alloc err)
+	{
 		cerr << "SoundInformation::setSamplesPerChannel. " << err.what() << endl;
 	}
 
-	memset(mSample,0,newNumSamples*sizeof(double));
-	memcpy(mSample,temp.mSample,lessNumSamples*sizeof(double));
+	memset(this->m_pdSample, 0, newNumSamples*sizeof(double));
+	memcpy(this->m_pdSample, temp.m_pdSample, lessNumSamples*sizeof(double));
 }
 
 
@@ -277,7 +284,7 @@ short SoundInformation::getBytesPerSample() const
 {
 	short bytesPerSample;
 	
-	bytesPerSample = mBitsPerSample/8 + (mBitsPerSample%8 != 0);
+	bytesPerSample = this->m_shBitsPerSample/8 + (this->m_shBitsPerSample%8 != 0);
 	bytesPerSample = (bytesPerSample < sizeof(long))? bytesPerSample:sizeof(long);
 	
 	return bytesPerSample;
@@ -307,11 +314,11 @@ double SoundInformation::readSampleFromMemory(long num,short channel)  const
 	long index;
 	short numChan;
 	
-	numChan = getNumChannels();
+	numChan = this->getNumChannels();
 	index = numChan*num + channel;
 	
 	if(index < getNumSamples())
-		return mSample[index];
+		return this->m_pdSample[index];
 	else
 		return 0.0;
 }
@@ -341,12 +348,12 @@ void SoundInformation::writeSampleIntoMemory(double sample,long num,short channe
 	long index;
 	short numChan;
 	
-	numChan = getNumChannels();
+	numChan = this->getNumChannels();
 	
 	index = numChan*num + channel;
 
 	if(index < getNumSamples())
-		mSample[index] = sample;
+		this->m_pdSample[index] = sample;
 }
 
 
@@ -377,19 +384,22 @@ const SoundInformation &SoundInformation::operator=(const SoundInformation &righ
 	if(this == &right) return *this;
 	
 	if(right.getNumSamples() != getNumSamples()){
-		delete [] mSample;
-		mSamplesPerChannel = right.mSamplesPerChannel;
-		mNumChannels = right.mNumChannels;
-		try{
-			mSample = new double [getNumSamples()];
-		}catch(bad_alloc err){
+		delete [] this->m_pdSample;
+		this->m_lSamplesPerChannel = right.m_lSamplesPerChannel;
+		this->m_shNumChannels = right.m_shNumChannels;
+		try
+		{
+			this->m_pdSample = new double [this->getNumSamples()];
+		}
+		catch(bad_alloc err)
+		{
 			cerr << "SoundInformation::operator=. " << err.what() << endl;
 		}
 	}
-	memcpy(mSample,right.mSample,getNumSamples()*sizeof(double));
+	memcpy(this->m_pdSample, right.m_pdSample, this->getNumSamples()*sizeof(double));
 	
-	mSampleRate = right.mSampleRate;
-	mBitsPerSample = right.mBitsPerSample;
+	this->m_lSampleRate = right.m_lSampleRate;
+	this->m_shBitsPerSample = right.m_shBitsPerSample;
 
 	return *this;
 }

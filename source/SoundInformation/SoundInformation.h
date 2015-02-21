@@ -31,8 +31,8 @@ public:
 	 */
     virtual ~SoundInformation()
 	{
-		delete [] this->mSample;
-		this->mSample=0;
+		delete [] this->m_pdSample;
+		this->m_pdSample=0;
 	}
 
     /**
@@ -68,35 +68,35 @@ public:
 	 * @param	なし.
 	 * @return	サンプリング周波数.
 	 */
-    long    getSampleRate() const { return this->mSampleRate; }
+    long    getSampleRate() const { return this->m_lSampleRate; }
 
 	/**
 	 * @brief	量子化Bitを取得する
 	 * @param	なし.
 	 * @return	量子化Bit.
 	 */
-    short   getBitsPerSample() const { return this->mBitsPerSample; }
+    short   getBitsPerSample() const { return this->m_shBitsPerSample; }
 
 	/**
 	 * @brief	チャンネル数を取得する.
 	 * @param	なし.
 	 * @return	チャンネル数.
 	 */
-    short   getNumChannels() const { return this->mNumChannels; }
+    short   getNumChannels() const { return this->m_shNumChannels; }
 
 	/**
 	 * @brief	1 channelにつき、いくつサンプル数があるかを取得
 	 * @param	なし.
 	 * @return	1チャンネルのサンプル数.
 	 */
-    long    getSamplesPerChannel() const { return this->mSamplesPerChannel; }
+    long    getSamplesPerChannel() const { return this->m_lSamplesPerChannel; }
 
 	/**
 	 * @brief	1つのブロックの区切り(byte)を取得.
 	 * @param	なし.
 	 * @return	1つのブロックの区切り(byte).
 	 */
-    short   getBlockAlign() const { return this->mNumChannels*this->getBytesPerSample(); }
+    short   getBlockAlign() const { return this->m_shNumChannels*this->getBytesPerSample(); }
 
 	/**
 	 * @brief	1サンプルにつき、何バイト使うかを取得
@@ -110,7 +110,7 @@ public:
 	 * @param	なし.
 	 * @return	全サンプル数.
 	 */
-    long    getNumSamples() const { return this->mSamplesPerChannel*this->mNumChannels; }
+    long    getNumSamples() const { return this->m_lSamplesPerChannel*this->m_shNumChannels; }
 
 	/**
 	 * @brief	メモリにサンプル値を書き込む.
@@ -119,7 +119,7 @@ public:
 	 * @param	short channel
 	 * @return	なし.
 	 */
-    void   writeSampleIntoMemory(double sample,long num,short channel=0);
+    void   writeSampleIntoMemory(double sample, long num, short channel=0);
 
 	/**
 	 * @brief	メモリからサンプル値を読みこむ.
@@ -127,7 +127,7 @@ public:
 	 * @param	short channel
 	 * @return	サンプル値.
 	 */
-    double readSampleFromMemory(long num,short channel=0) const;
+    double readSampleFromMemory(long num, short channel=0) const;
     
 	/**
 	 * @brief	=演算子のオーバーロード.
@@ -158,27 +158,27 @@ protected:
 	/**
 	 * @biref	サンプリング周波数.
 	 */
-    long    mSampleRate;
+    long    m_lSampleRate;
 
 	/**
 	 * @brief	量子化ビット.
 	 */
-    short   mBitsPerSample;
+    short   m_shBitsPerSample;
 
 	/**
 	 * @brief	チャンネルの数.
 	 */
-    short   mNumChannels;
+    short   m_shNumChannels;
 
 	/**
 	 * @brief	１チャンネルのサンプルの数.
 	 */
-    long    mSamplesPerChannel;
+    long    m_lSamplesPerChannel;
 
 	/**
 	 * @brief	サンプル値.
 	 */
-    double  *mSample;
+    double  *m_pdSample;
 };
 
 #endif
