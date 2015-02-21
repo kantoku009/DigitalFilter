@@ -1,7 +1,6 @@
 #ifndef __FILTER_H__
 #define __FILTER_H__
 
-#include "./SoundInformation/SoundInformation.h"
 #include "BlockDiagram.h"
 
 typedef enum{kLowpass,kHighpass,kBandpass} FilterMode;
@@ -41,17 +40,12 @@ public:
     
     long getOrderNumber(){ return mOrderNumber; }
     
-    void setSoundInformation(SoundInformation *inInfo){ mInfo = inInfo; }
-    SoundInformation *getSoundInformation(){ return mInfo; }
-    
-    bool runFilter(long inBegin,long inEnd,short inChan);
+    double passFilter(double sample);
     
 protected:
     void setOrderNumber(long inOrder){ mOrderNumber = inOrder; }
 
     BlockDiagram *mSection;
-    
-    SoundInformation *mInfo;
     
 private:
     double transferFunction(double valSample);

@@ -6,7 +6,6 @@ using namespace std;
 Filter::Filter()
 {
     mSection = 0;
-    mInfo = 0;
     
     mKindFilter = kLowpass;
     mOrderNumber = 0;
@@ -223,37 +222,18 @@ double Filter::getHighCutoffFreq()
 
 
 /**********************************************************************
-* runFilter : フィルタを実行する関数
+* passFilter : フィルタを実行する関数
 *
 *引数
-*   begin : 処理を始めるサンプル
-*   end : 処理を終わるサンプル
-*   chan : 処理を実行するチャンネル
-*
-*ローカル変数
-*   currSample : ループ内で、現在処理しているサンプル
-*   currSampleValue : ループ内で、現在処理しているサンプル値
-*   data : currSampleを処理した後のサンプル値
+*   sample: 処理するサンプル
 *
 *返り値
-*   処理が成功したならばtrue，失敗したならばfalse
+*   フィルタを通したサンプル
 *
 ***********************************************************************/
-bool Filter::runFilter(long begin,long end,short chan)
+double Filter::passFilter(double sample)
 {
-    long currSample;
-    double currSampleValue,data;
-    
-    for(currSample=begin;currSample<=end;currSample++){
-        currSampleValue = mInfo->readSampleFromMemory(currSample,chan);
-        
-        data = transferFunction(currSampleValue);
-        
-        //計算した値を保存
-        mInfo->writeSampleIntoMemory(data,currSample,chan);
-    }
-
-    return true;
+	return this->transferFunction(sample);
 }
 
 
