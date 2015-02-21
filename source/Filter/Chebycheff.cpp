@@ -6,54 +6,42 @@
 #include <complex>
 using namespace std;
 
-Chebycheff::Chebycheff()
-{
-    mSampleRate = 0.0;
-    mPrototypeCutFreq = 0.0;
-}
-
-
-Chebycheff::~Chebycheff()
-{
-    delete [] mSection;
-}
-
 
 /***********************************************************
-* decisionPrototype : ƒvƒƒgƒ^ƒCƒvƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ğŒˆ’è
+* decisionPrototype : ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’æ±ºå®š
 *
-*ˆø”
-*   inPassFrquency : ƒpƒXƒoƒ“ƒh‚Ìü”g”[Hz]
-*   inRippleGain : •Î·‚Ì—Ê[dB]
-*   inStopFrequency : ƒXƒgƒbƒvƒoƒ“ƒh‚Ìü”g”[Hz]
-*   inAttenuateGain : Œ¸Š—Ê[dB]
+*å¼•æ•°
+*   inPassFrquency : ãƒ‘ã‚¹ãƒãƒ³ãƒ‰ã®å‘¨æ³¢æ•°[Hz]
+*   inRippleGain : åå·®ã®é‡[dB]
+*   inStopFrequency : ã‚¹ãƒˆãƒƒãƒ—ãƒãƒ³ãƒ‰ã®å‘¨æ³¢æ•°[Hz]
+*   inAttenuateGain : æ¸›è¡°é‡[dB]
 *
-*ƒ[ƒJƒ‹•Ï”
-*   omega_dp : ƒfƒWƒ^ƒ‹ü”g”‚ÌƒpƒXƒoƒ“ƒh[rad/sec]
-*   omega_ds : ƒfƒWƒ^ƒ‹ü”g”‚ÌƒXƒgƒbƒvƒoƒ“ƒh[rad/sec]
-*   omega_ap : ƒAƒiƒƒOü”g”‚ÌƒpƒXƒoƒ“ƒh[rad/sec]
-*   omega_as : ƒAƒiƒƒOü”g”‚ÌƒXƒgƒbƒvƒoƒ“ƒh[rad/sec]
-*   n : ƒvƒƒgƒ^ƒCƒvƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ÌŸ”
-*   fs : ƒTƒ“ƒvƒŠƒ“ƒOü”g”
+*ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
+*   omega_dp : ãƒ‡ã‚¸ã‚¿ãƒ«å‘¨æ³¢æ•°ã®ãƒ‘ã‚¹ãƒãƒ³ãƒ‰[rad/sec]
+*   omega_ds : ãƒ‡ã‚¸ã‚¿ãƒ«å‘¨æ³¢æ•°ã®ã‚¹ãƒˆãƒƒãƒ—ãƒãƒ³ãƒ‰[rad/sec]
+*   omega_ap : ã‚¢ãƒŠãƒ­ã‚°å‘¨æ³¢æ•°ã®ãƒ‘ã‚¹ãƒãƒ³ãƒ‰[rad/sec]
+*   omega_as : ã‚¢ãƒŠãƒ­ã‚°å‘¨æ³¢æ•°ã®ã‚¹ãƒˆãƒƒãƒ—ãƒãƒ³ãƒ‰[rad/sec]
+*   n : ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®æ¬¡æ•°
+*   fs : ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
 *
-*•Ô‚è’l
-*   ‚È‚µ
+*è¿”ã‚Šå€¤
+*   ãªã—
 *
-*ˆ—‚Ì—¬‚ê
+*å‡¦ç†ã®æµã‚Œ
 *
-*”õl
-*   Ÿ”‚ğŒˆ’è‚·‚é®
-\end{verbatim}
+*å‚™è€ƒ
+*   æ¬¡æ•°ã‚’æ±ºå®šã™ã‚‹å¼
+Â¥end{verbatim}
 
-       \[ n = \frac{ \cosh^{-1}(\pm\frac{1}{\varepsilon}\sqrt{10^{\frac{g}{10}} -1})}{\cosh^{-1}(\frac{\omega _{as}}{\omega _{ap}})} \]
+       Â¥[ n = Â¥frac{ Â¥cosh^{-1}(Â¥pmÂ¥frac{1}{Â¥varepsilon}Â¥sqrt{10^{Â¥frac{g}{10}} -1})}{Â¥cosh^{-1}(Â¥frac{Â¥omega _{as}}{Â¥omega _{ap}})} Â¥]
 
-\begin{verbatim}
-*   ƒvƒƒgƒ^ƒCƒv‚ÌƒJƒbƒgƒIƒtü”g”‚ğŒˆ’è‚·‚é®
-\end{verbatim}
+Â¥begin{verbatim}
+*   ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°ã‚’æ±ºå®šã™ã‚‹å¼
+Â¥end{verbatim}
 
-       \[ \omega_{ac} = \omega_{ap} \cosh[\frac{1}{n} \cosh^{-1}(\pm \frac{1}{\varepsilon} \sqrt{10^{\frac{3}{10}} - 1})] \]
+       Â¥[ Â¥omega_{ac} = Â¥omega_{ap} Â¥cosh[Â¥frac{1}{n} Â¥cosh^{-1}(Â¥pm Â¥frac{1}{Â¥varepsilon} Â¥sqrt{10^{Â¥frac{3}{10}} - 1})] Â¥]
 
-\begin{verbatim}
+Â¥begin{verbatim}
 ************************************************************/
 void Chebycheff::decisionPrototype( double inPassFreq,
                                     double inRippleGain,
@@ -68,34 +56,34 @@ void Chebycheff::decisionPrototype( double inPassFreq,
     
     fs = getSampleRate();
 
-    //ƒTƒ“ƒvƒŠƒ“ƒOü”g”‚Å‹KŠi‰»
+    //ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°ã§è¦æ ¼åŒ–
     passFreq = inPassFreq / fs;
     stopFreq = inStopFreq / fs;
     
-    //ü”g”‚©‚çŠpü”g”‚Ö•ÏŠ·
+    //å‘¨æ³¢æ•°ã‹ã‚‰è§’å‘¨æ³¢æ•°ã¸å¤‰æ›
     omega_dp = 2*PI * passFreq;
     omega_ds = 2*PI * stopFreq;
     
-    //ƒfƒWƒ^ƒ‹‚Ìü”g”‚©‚çƒAƒiƒƒO‚Ìü”g”‚Ö•ÏŠ·
+    //ãƒ‡ã‚¸ã‚¿ãƒ«ã®å‘¨æ³¢æ•°ã‹ã‚‰ã‚¢ãƒŠãƒ­ã‚°ã®å‘¨æ³¢æ•°ã¸å¤‰æ›
     omega_ap = digital2analog(omega_dp);
     omega_as = digital2analog(omega_ds);
 
-    //ƒQƒCƒ“‚Ìâ‘Î’l‰»
+    //ã‚²ã‚¤ãƒ³ã®çµ¶å¯¾å€¤åŒ–
     if(inRippleGain < 0.0) inRippleGain = -inRippleGain;
     if(inAttenuateGain < 0.0) inAttenuateGain = -inAttenuateGain;
 
-    //epsilon‚ÌŒˆ’è
+    //epsilonã®æ±ºå®š
     mEpsilon = sqrt(pow(10,inRippleGain/10) - 1);
     
-    //Ÿ”‚ÌŒˆ’è
+    //æ¬¡æ•°ã®æ±ºå®š
     n = acosh((1/mEpsilon)*sqrt(pow(10,inAttenuateGain/10)-1)) 
             / acosh(omega_as/omega_ap);
     setOrderNumber(static_cast<long>(n) + 1);
 
-    //alpha0‚ÌŒˆ’è
+    //alpha0ã®æ±ºå®š
     mAlpha0 = sinh( 1/(static_cast<double>(getOrderNumber())) * asinh(1/mEpsilon) );
 
-    //ƒvƒƒgƒ^ƒCƒv‚ÌƒJƒbƒgƒIƒtü”g”‚ÌŒˆ’è
+    //ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°ã®æ±ºå®š
     mPrototypeCutFreq = omega_ap
             *cosh( (1/(static_cast<double>(getOrderNumber()))) 
             * acosh((1/mEpsilon)*sqrt(pow(10,0.3)-1)) );
@@ -132,32 +120,32 @@ void Chebycheff::initTransferFunction()
 
 
 /******************************************************************************
-* initLowTransferFunction : “`’BŠÖ”‚Ì‰Šú‰»‚ÆŒW”‚ÌŒˆ’è
+* initLowTransferFunction : ä¼é”é–¢æ•°ã®åˆæœŸåŒ–ã¨ä¿‚æ•°ã®æ±ºå®š
 *
-*ˆø”
-*   ‚È‚µ
+*å¼•æ•°
+*   ãªã—
 *
-*ƒ[ƒJƒ‹•Ï”
-*   alpha : ŒW”
-*   beta : ŒW”
-*   a[3] : ‚PŸ‚Ü‚½‚Í‚QŸ‚Ì“`’BŠÖ”‚Ì•ªq‚ÌŒW”
-*   b[3] : ‚PŸ‚Ü‚½‚Í‚QŸ‚Ì“`’BŠÖ”‚Ì•ª•ê‚ÌŒW”
-*   orderNumber : “`’BŠÖ”‚ÌŸ”
-*   m : “`’BŠÖ”‚ğ‚PŸ‚Ü‚½‚Í‚QŸ‚É•ª‚¯‚½‚Æ‚«‚ÌƒZƒNƒVƒ‡ƒ“‚ÌŒÂ”
-*   omega_ap : ƒvƒƒgƒ^ƒCƒvƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ÌƒJƒbƒgƒIƒtü”g”
+*ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
+*   alpha : ä¿‚æ•°
+*   beta : ä¿‚æ•°
+*   a[3] : ï¼‘æ¬¡ã¾ãŸã¯ï¼’æ¬¡ã®ä¼é”é–¢æ•°ã®åˆ†å­ã®ä¿‚æ•°
+*   b[3] : ï¼‘æ¬¡ã¾ãŸã¯ï¼’æ¬¡ã®ä¼é”é–¢æ•°ã®åˆ†æ¯ã®ä¿‚æ•°
+*   orderNumber : ä¼é”é–¢æ•°ã®æ¬¡æ•°
+*   m : ä¼é”é–¢æ•°ã‚’ï¼‘æ¬¡ã¾ãŸã¯ï¼’æ¬¡ã«åˆ†ã‘ãŸã¨ãã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å€‹æ•°
+*   omega_ap : ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
 *
-*•Ô‚è’l
-*   ‚È‚µ
+*è¿”ã‚Šå€¤
+*   ãªã—
 *
-*ˆ—‚Ì—¬‚ê
-*   “`’BŠÖ”‚ğ‚PŸ‚Ü‚½‚Í‚QŸ‚Ì“`’BŠÖ”‚É•ª‚¯‚½ŒÂ”•ª‚ÌƒuƒƒbƒNƒ_ƒCƒAƒOƒ‰ƒ€‚ğŠm•Û
-*   ƒuƒƒbƒNƒ_ƒCƒAƒOƒ‰ƒ€‚ÌŒW”‚ğŒˆ’è
+*å‡¦ç†ã®æµã‚Œ
+*   ä¼é”é–¢æ•°ã‚’ï¼‘æ¬¡ã¾ãŸã¯ï¼’æ¬¡ã®ä¼é”é–¢æ•°ã«åˆ†ã‘ãŸå€‹æ•°åˆ†ã®ãƒ–ãƒ­ãƒƒã‚¯ãƒ€ã‚¤ã‚¢ã‚°ãƒ©ãƒ ã‚’ç¢ºä¿
+*   ãƒ–ãƒ­ãƒƒã‚¯ãƒ€ã‚¤ã‚¢ã‚°ãƒ©ãƒ ã®ä¿‚æ•°ã‚’æ±ºå®š
 *
-*”õl
-*   “`’BŠÖ”‚ÌŸ”‚ª‹ô”‚È‚ç‚Î‚PŸ‚ÌƒuƒƒbƒNƒ_ƒCƒAƒOƒ‰ƒ€‚Íg‚í‚È‚¢
-*   \omega_{ap}‚Íƒvƒƒgƒ^ƒCƒvƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ÌƒpƒXƒoƒ“ƒh
-*   ‚±‚±‚Å‚ÍAü”g”‚Í‘S‚ÄƒTƒ“ƒvƒŠƒ“ƒOü”g”‚Å‹KŠi‰»‚³‚ê‚Ä‚¢‚é‚Ì‚ÅAüŠúT‚Í1
-*   ”®‚ÍTEX‚Å‘‚¢‚Ä‚ ‚é
+*å‚™è€ƒ
+*   ä¼é”é–¢æ•°ã®æ¬¡æ•°ãŒå¶æ•°ãªã‚‰ã°ï¼‘æ¬¡ã®ãƒ–ãƒ­ãƒƒã‚¯ãƒ€ã‚¤ã‚¢ã‚°ãƒ©ãƒ ã¯ä½¿ã‚ãªã„
+*   Â¥omega_{ap}ã¯ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®ãƒ‘ã‚¹ãƒãƒ³ãƒ‰
+*   ã“ã“ã§ã¯ã€å‘¨æ³¢æ•°ã¯å…¨ã¦ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°ã§è¦æ ¼åŒ–ã•ã‚Œã¦ã„ã‚‹ã®ã§ã€å‘¨æœŸTã¯1
+*   æ•°å¼ã¯TEXã§æ›¸ã„ã¦ã‚ã‚‹
 *
 *****************************************************************************/
 BlockDiagram *Chebycheff::initLowTransferFunction(double inCutFreq)
@@ -169,7 +157,7 @@ BlockDiagram *Chebycheff::initLowTransferFunction(double inCutFreq)
     double omega_ap=getPrototypePassFreq();
     BlockDiagram *lowpassSection;
     
-    //Ÿ”‚ğæ“¾
+    //æ¬¡æ•°ã‚’å–å¾—
     orderNumber = getOrderNumber();
     isOrderNumberEven = (orderNumber%2 == 0)? true:false;
 
@@ -187,9 +175,9 @@ BlockDiagram *Chebycheff::initLowTransferFunction(double inCutFreq)
         return 0;
     }
 
-    //ŒW”‚ğŒˆ’è
+    //ä¿‚æ•°ã‚’æ±ºå®š
     gamma = getLowGamma(inCutFreq);
-    //1Ÿ‚Ì“`’BŠÖ”‚Ì‰Šú‰»
+    //1æ¬¡ã®ä¼é”é–¢æ•°ã®åˆæœŸåŒ–
     if(isOrderNumberEven){
         a[0] = 1;
         a[1] = 0;
@@ -209,7 +197,7 @@ BlockDiagram *Chebycheff::initLowTransferFunction(double inCutFreq)
     }
     lowpassSection[0].init(2,a,b);
     
-    //2Ÿ‚Ì“`’BŠÖ”‚Ì‰Šú‰»
+    //2æ¬¡ã®ä¼é”é–¢æ•°ã®åˆæœŸåŒ–
     for(long i=1;i<numSection;i++){
         alpha = getAlpha(i);
         beta = getBeta(i);
@@ -240,36 +228,36 @@ BlockDiagram *Chebycheff::initLowTransferFunction(double inCutFreq)
 
 
 /******************************************************************************
-* initHighTransferFunction : “`’BŠÖ”‚Ì‰Šú‰»‚ÆŒW”‚ÌŒˆ’è
+* initHighTransferFunction : ä¼é”é–¢æ•°ã®åˆæœŸåŒ–ã¨ä¿‚æ•°ã®æ±ºå®š
 *
-*ˆø”
-*   ‚È‚µ
+*å¼•æ•°
+*   ãªã—
 *
-*ƒ[ƒJƒ‹•Ï”
-*   alpha : ŒW”
-*   beta : ŒW”
-*   a[3] : ‚PŸ‚Ü‚½‚Í‚QŸ‚Ì“`’BŠÖ”‚Ì•ªq‚ÌŒW”
-*   b[3] : ‚PŸ‚Ü‚½‚Í‚QŸ‚Ì“`’BŠÖ”‚Ì•ª•ê‚ÌŒW”
-*   orderNumber : “`’BŠÖ”‚ÌŸ”
-*   m : “`’BŠÖ”‚ğ‚PŸ‚Ü‚½‚Í‚QŸ‚É•ª‚¯‚½‚Æ‚«‚ÌƒZƒNƒVƒ‡ƒ“‚ÌŒÂ”
-*   isOrderNumber : “`’BŠÖ”‚ÌŸ”‚ª‹ô”‚©Šï”‚©‚ğ‹L‰¯‚·‚éB‹ô”‚È‚ç‚Îtrue
-*   omega_ac : ƒvƒƒgƒ^ƒCƒvƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ÌƒJƒbƒgƒIƒtü”g”
+*ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
+*   alpha : ä¿‚æ•°
+*   beta : ä¿‚æ•°
+*   a[3] : ï¼‘æ¬¡ã¾ãŸã¯ï¼’æ¬¡ã®ä¼é”é–¢æ•°ã®åˆ†å­ã®ä¿‚æ•°
+*   b[3] : ï¼‘æ¬¡ã¾ãŸã¯ï¼’æ¬¡ã®ä¼é”é–¢æ•°ã®åˆ†æ¯ã®ä¿‚æ•°
+*   orderNumber : ä¼é”é–¢æ•°ã®æ¬¡æ•°
+*   m : ä¼é”é–¢æ•°ã‚’ï¼‘æ¬¡ã¾ãŸã¯ï¼’æ¬¡ã«åˆ†ã‘ãŸã¨ãã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å€‹æ•°
+*   isOrderNumber : ä¼é”é–¢æ•°ã®æ¬¡æ•°ãŒå¶æ•°ã‹å¥‡æ•°ã‹ã‚’è¨˜æ†¶ã™ã‚‹ã€‚å¶æ•°ãªã‚‰ã°true
+*   omega_ac : ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
 *
-*•Ô‚è’l
-*   ‚È‚µ
+*è¿”ã‚Šå€¤
+*   ãªã—
 *
-*ˆ—‚Ì—¬‚ê
-*   “`’BŠÖ”‚ğ‚PŸ‚Ü‚½‚Í‚QŸ‚Ì“`’BŠÖ”‚É•ª‚¯‚½ŒÂ”•ª‚ÌƒuƒƒbƒNƒ_ƒCƒAƒOƒ‰ƒ€‚ğŠm•Û
-*   ƒuƒƒbƒNƒ_ƒCƒAƒOƒ‰ƒ€‚ÌŒW”‚ğŒˆ’è
+*å‡¦ç†ã®æµã‚Œ
+*   ä¼é”é–¢æ•°ã‚’ï¼‘æ¬¡ã¾ãŸã¯ï¼’æ¬¡ã®ä¼é”é–¢æ•°ã«åˆ†ã‘ãŸå€‹æ•°åˆ†ã®ãƒ–ãƒ­ãƒƒã‚¯ãƒ€ã‚¤ã‚¢ã‚°ãƒ©ãƒ ã‚’ç¢ºä¿
+*   ãƒ–ãƒ­ãƒƒã‚¯ãƒ€ã‚¤ã‚¢ã‚°ãƒ©ãƒ ã®ä¿‚æ•°ã‚’æ±ºå®š
 *
-*”õl
-*   “`’BŠÖ”‚ÌŸ”‚ª‹ô”‚È‚ç‚Î‚PŸ‚ÌƒuƒƒbƒNƒ_ƒCƒAƒOƒ‰ƒ€‚Íg‚í‚È‚¢
-*   \omega_{ac}‚Íƒvƒƒgƒ^ƒCƒvƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ÌƒJƒbƒgƒIƒtü”g”
-*   ‚±‚±‚Å‚ÍAü”g”‚Í‘S‚ÄƒTƒ“ƒvƒŠƒ“ƒOü”g”‚Å‹KŠi‰»‚³‚ê‚Ä‚¢‚é‚Ì‚ÅAüŠúT‚Í1
-*   ”®‚ÍTEX‚Å‘‚¢‚Ä‚ ‚é
+*å‚™è€ƒ
+*   ä¼é”é–¢æ•°ã®æ¬¡æ•°ãŒå¶æ•°ãªã‚‰ã°ï¼‘æ¬¡ã®ãƒ–ãƒ­ãƒƒã‚¯ãƒ€ã‚¤ã‚¢ã‚°ãƒ©ãƒ ã¯ä½¿ã‚ãªã„
+*   Â¥omega_{ac}ã¯ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
+*   ã“ã“ã§ã¯ã€å‘¨æ³¢æ•°ã¯å…¨ã¦ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°ã§è¦æ ¼åŒ–ã•ã‚Œã¦ã„ã‚‹ã®ã§ã€å‘¨æœŸTã¯1
+*   æ•°å¼ã¯TEXã§æ›¸ã„ã¦ã‚ã‚‹
 *
-*   “`’BŠÖ”
-*   \[ HHP(z) = HHP_{0}(z) \prod^{m}_{i=1} HHP_{i} \]
+*   ä¼é”é–¢æ•°
+*   Â¥[ HHP(z) = HHP_{0}(z) Â¥prod^{m}_{i=1} HHP_{i} Â¥]
 *
 *****************************************************************************/
 BlockDiagram *Chebycheff::initHighTransferFunction(double inCutFreq)
@@ -281,7 +269,7 @@ BlockDiagram *Chebycheff::initHighTransferFunction(double inCutFreq)
     double omega_ap=getPrototypePassFreq();
     BlockDiagram *highpassSection;
     
-    //Ÿ”‚ğæ“¾
+    //æ¬¡æ•°ã‚’å–å¾—
     orderNumber = getOrderNumber();
     isOrderNumberEven = (orderNumber%2 == 0)? true:false;
     if(isOrderNumberEven)
@@ -298,10 +286,10 @@ BlockDiagram *Chebycheff::initHighTransferFunction(double inCutFreq)
         return 0;
     }
 
-    //ŒW”‚ğŒˆ’è
+    //ä¿‚æ•°ã‚’æ±ºå®š
     gamma = getHighGamma(inCutFreq);
     
-    //1Ÿ‚Ì“`’BŠÖ”‚Ì‰Šú‰»
+    //1æ¬¡ã®ä¼é”é–¢æ•°ã®åˆæœŸåŒ–
     if(isOrderNumberEven){
         a[0] = 1;
         a[1] = 0;
@@ -322,7 +310,7 @@ BlockDiagram *Chebycheff::initHighTransferFunction(double inCutFreq)
     highpassSection[0].init(2,a,b);
     
     for(long i=1;i<numSection;i++){
-        //‚QŸ‚Ì“`’BŠÖ”‚Ì‰Šú‰»
+        //ï¼’æ¬¡ã®ä¼é”é–¢æ•°ã®åˆæœŸåŒ–
         alpha = getAlpha(i);
         beta = getBeta(i);
         a[0] = 1;
@@ -389,26 +377,26 @@ BlockDiagram *Chebycheff::initBandTransferFunction(double inLowCutFreq,
 
 
 /**********************************************************************
-*getAlpha : ŒW”ƒ¿‚Ìæ“¾
+*getAlpha : ä¿‚æ•°Î±ã®å–å¾—
 *
-*ˆø”
-*   i : “`’BŠÖ”‚Ì$\prod_i$
+*å¼•æ•°
+*   i : ä¼é”é–¢æ•°ã®$Â¥prod_i$
 *
-*ƒ[ƒJƒ‹•Ï”
-*   n : “`’BŠÖ”‚ÌŸ”
-*   v : ŒW”
+*ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
+*   n : ä¼é”é–¢æ•°ã®æ¬¡æ•°
+*   v : ä¿‚æ•°
 *
-*•Ô‚è’l
-*   ŒW”ƒ¿‚ğ•Ô‚·
+*è¿”ã‚Šå€¤
+*   ä¿‚æ•°Î±ã‚’è¿”ã™
 *
-*”õl
-\end{verbatim}
+*å‚™è€ƒ
+Â¥end{verbatim}
 
-   \[ \alpha_{i} = 2\cos(\frac{\pi}{n}v) \]
+   Â¥[ Â¥alpha_{i} = 2Â¥cos(Â¥frac{Â¥pi}{n}v) Â¥]
 
-\begin{verbatim}
-*   v = i - (1/2) (n‚ª‹ô”‚Ì‚Æ‚«)
-*   v = i         (n‚ªŠï”‚Ì‚Æ‚«)
+Â¥begin{verbatim}
+*   v = i - (1/2) (nãŒå¶æ•°ã®ã¨ã)
+*   v = i         (nãŒå¥‡æ•°ã®ã¨ã)
 *
 ***********************************************************************/
 double Chebycheff::getAlpha(long i)
@@ -427,26 +415,26 @@ double Chebycheff::getAlpha(long i)
 
 
 /**********************************************************************
-* getBeta : ŒW”ƒÀ‚Ìæ“¾
+* getBeta : ä¿‚æ•°Î²ã®å–å¾—
 *
-*ˆø”
-*   i : “`’BŠÖ”‚Ì$\prod_i$
+*å¼•æ•°
+*   i : ä¼é”é–¢æ•°ã®$Â¥prod_i$
 *
-*ƒ[ƒJƒ‹•Ï”
-*   n : “`’BŠÖ”‚ÌŸ”
-*   v : ŒW”
+*ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
+*   n : ä¼é”é–¢æ•°ã®æ¬¡æ•°
+*   v : ä¿‚æ•°
 *
-*•Ô‚è’l
-*   ŒW”ƒÀ‚ğ•Ô‚·
+*è¿”ã‚Šå€¤
+*   ä¿‚æ•°Î²ã‚’è¿”ã™
 *
-*”õl
-\end{verbatim}
+*å‚™è€ƒ
+Â¥end{verbatim}
 
-   \[ \beta_{i} = \alpha_{0}^{2} + sin(\frac{\pi}{n}v)^2 \]
+   Â¥[ Â¥beta_{i} = Â¥alpha_{0}^{2} + sin(Â¥frac{Â¥pi}{n}v)^2 Â¥]
 
-\begin{verbatim}
-*   v = i - (1/2) (n‚ª‹ô”‚Ì‚Æ‚«)
-*   v = i         (n‚ªŠï”‚Ì‚Æ‚«)
+Â¥begin{verbatim}
+*   v = i - (1/2) (nãŒå¶æ•°ã®ã¨ã)
+*   v = i         (nãŒå¥‡æ•°ã®ã¨ã)
 *
 ***********************************************************************/
 double Chebycheff::getBeta(long i)
@@ -466,34 +454,34 @@ double Chebycheff::getBeta(long i)
 
 
 /*********************************************************************
-* getLowGamma  :  “`’BŠÖ”‚ÌŒW”‚ğæ“¾
+* getLowGamma  :  ä¼é”é–¢æ•°ã®ä¿‚æ•°ã‚’å–å¾—
 *
-*ˆø”
-*   inCutFreq : ƒJƒbƒgƒIƒtü”g”
+*å¼•æ•°
+*   inCutFreq : ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
 *
-*ƒ[ƒJƒ‹•Ï”
-*   fs :  ƒTƒ“ƒvƒŠƒ“ƒOü”g”
-*   omega_dc : ƒfƒWƒ^ƒ‹‚ÌƒJƒbƒgƒIƒtü”g”[rad/sec]
-*   omega_ac :  ƒAƒiƒƒO‚ÌƒJƒbƒgƒIƒtü”g”[rad/sec]
-*   theta : ƒvƒƒgƒ^ƒCƒvƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ÌƒJƒb‚ÆƒIƒtü”g”[rad/sec]
+*ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
+*   fs :  ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
+*   omega_dc : ãƒ‡ã‚¸ã‚¿ãƒ«ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°[rad/sec]
+*   omega_ac :  ã‚¢ãƒŠãƒ­ã‚°ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°[rad/sec]
+*   theta : ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®ã‚«ãƒƒã¨ã‚ªãƒ•å‘¨æ³¢æ•°[rad/sec]
 *
-*•Ô‚è’l
-*   “`’BŠÖ”‚ÌŒW”‚ğ•Ô‚·
+*è¿”ã‚Šå€¤
+*   ä¼é”é–¢æ•°ã®ä¿‚æ•°ã‚’è¿”ã™
 *
 *
-*ˆ—‚Ì—¬‚ê
-*   ƒJƒbƒgƒIƒtü”g”‚ğƒTƒ“ƒvƒŠƒ“ƒOü”g”‚Å‹KŠi‰»‚µAƒfƒWƒ^ƒ‹‚ÌŠpü”g”‚É‚·‚é
-*   ƒfƒWƒ^ƒ‹‚ÌŠpü”g”‚ğƒAƒiƒƒO‚ÌŠpü”g”‚É‚·‚éiƒvƒŠƒEƒH[ƒsƒ“ƒOj
-*   ƒvƒƒgƒ^ƒCƒvƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ÌƒJƒbƒgƒIƒtü”g”‚ğæ“¾
-*   ŒW”‚ÌŒvZ
+*å‡¦ç†ã®æµã‚Œ
+*   ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°ã‚’ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°ã§è¦æ ¼åŒ–ã—ã€ãƒ‡ã‚¸ã‚¿ãƒ«ã®è§’å‘¨æ³¢æ•°ã«ã™ã‚‹
+*   ãƒ‡ã‚¸ã‚¿ãƒ«ã®è§’å‘¨æ³¢æ•°ã‚’ã‚¢ãƒŠãƒ­ã‚°ã®è§’å‘¨æ³¢æ•°ã«ã™ã‚‹ï¼ˆãƒ—ãƒªã‚¦ã‚©ãƒ¼ãƒ”ãƒ³ã‚°ï¼‰
+*   ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°ã‚’å–å¾—
+*   ä¿‚æ•°ã®è¨ˆç®—
 *
-*”õl
-*   ŒW”ƒÁ
-\end{verbatim}
+*å‚™è€ƒ
+*   ä¿‚æ•°Î³
+Â¥end{verbatim}
 
-   \[ \gamma = \frac{\sin(\frac{\omega_{ac}-\omega_{c}}{2})T}{\sin(\frac{\omega_{ac}+\omega_{c}}{2})T} \]
+   Â¥[ Â¥gamma = Â¥frac{Â¥sin(Â¥frac{Â¥omega_{ac}-Â¥omega_{c}}{2})T}{Â¥sin(Â¥frac{Â¥omega_{ac}+Â¥omega_{c}}{2})T} Â¥]
 
-\begin{verbatim}
+Â¥begin{verbatim}
 *
 **********************************************************************/
 double Chebycheff::getLowGamma(double inCutFreq)
@@ -513,34 +501,34 @@ double Chebycheff::getLowGamma(double inCutFreq)
 
 
 /*********************************************************************
-* getHighGamma  :  “`’BŠÖ”‚ÌŒW”‚ğæ“¾
+* getHighGamma  :  ä¼é”é–¢æ•°ã®ä¿‚æ•°ã‚’å–å¾—
 *
-*ˆø”
-*   inCutFreq : ƒJƒbƒgƒIƒtü”g”
+*å¼•æ•°
+*   inCutFreq : ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
 *
-*ƒ[ƒJƒ‹•Ï”
-*   fs :  ƒTƒ“ƒvƒŠƒ“ƒOü”g”
-*   omega_dc : ƒfƒWƒ^ƒ‹‚ÌƒJƒbƒgƒIƒtü”g”[rad/sec]
-*   omega_ac :  ƒAƒiƒƒO‚ÌƒJƒbƒgƒIƒtü”g”[rad/sec]
-*   theta : ƒvƒƒgƒ^ƒCƒvƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ÌƒJƒb‚ÆƒIƒtü”g”[rad/sec]
+*ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
+*   fs :  ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
+*   omega_dc : ãƒ‡ã‚¸ã‚¿ãƒ«ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°[rad/sec]
+*   omega_ac :  ã‚¢ãƒŠãƒ­ã‚°ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°[rad/sec]
+*   theta : ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®ã‚«ãƒƒã¨ã‚ªãƒ•å‘¨æ³¢æ•°[rad/sec]
 *
-*•Ô‚è’l
-*   “`’BŠÖ”‚ÌŒW”‚ğ•Ô‚·
+*è¿”ã‚Šå€¤
+*   ä¼é”é–¢æ•°ã®ä¿‚æ•°ã‚’è¿”ã™
 *
 *
-*ˆ—‚Ì—¬‚ê
-*   ƒJƒbƒgƒIƒtü”g”‚ğƒTƒ“ƒvƒŠƒ“ƒOü”g”‚Å‹KŠi‰»‚µAƒfƒWƒ^ƒ‹‚ÌŠpü”g”‚É‚·‚é
-*   ƒfƒWƒ^ƒ‹‚ÌŠpü”g”‚ğƒAƒiƒƒO‚ÌŠpü”g”‚É‚·‚éiƒvƒŠƒEƒH[ƒsƒ“ƒOj
-*   ƒvƒƒgƒ^ƒCƒvƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ÌƒJƒbƒgƒIƒtü”g”‚ğæ“¾
-*   ŒW”‚ÌŒvZ
+*å‡¦ç†ã®æµã‚Œ
+*   ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°ã‚’ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°ã§è¦æ ¼åŒ–ã—ã€ãƒ‡ã‚¸ã‚¿ãƒ«ã®è§’å‘¨æ³¢æ•°ã«ã™ã‚‹
+*   ãƒ‡ã‚¸ã‚¿ãƒ«ã®è§’å‘¨æ³¢æ•°ã‚’ã‚¢ãƒŠãƒ­ã‚°ã®è§’å‘¨æ³¢æ•°ã«ã™ã‚‹ï¼ˆãƒ—ãƒªã‚¦ã‚©ãƒ¼ãƒ”ãƒ³ã‚°ï¼‰
+*   ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°ã‚’å–å¾—
+*   ä¿‚æ•°ã®è¨ˆç®—
 *
-*”õl
-*   ŒW”ƒÁ
-\end{verbatim}
+*å‚™è€ƒ
+*   ä¿‚æ•°Î³
+Â¥end{verbatim}
 
-   \[ \gamma = -\frac{\cos(\frac{\omega_{ac}+\omega_{c}}{2})T}{\cos(\frac{\omega_{ac}-\omega_{c}}{2})T} \]
+   Â¥[ Â¥gamma = -Â¥frac{Â¥cos(Â¥frac{Â¥omega_{ac}+Â¥omega_{c}}{2})T}{Â¥cos(Â¥frac{Â¥omega_{ac}-Â¥omega_{c}}{2})T} Â¥]
 
-\begin{verbatim}
+Â¥begin{verbatim}
 *
 **********************************************************************/
 double Chebycheff::getHighGamma(double inCutFreq)
@@ -560,31 +548,31 @@ double Chebycheff::getHighGamma(double inCutFreq)
 
 
 /***********************************************************************
-*printCharacteristic : “`’BŠÖ”‚ÌU•“Á«‚ÆˆÊ‘Š“Á«‚ğƒtƒ@ƒCƒ‹‚Éo—Í
+*printCharacteristic : ä¼é”é–¢æ•°ã®æŒ¯å¹…ç‰¹æ€§ã¨ä½ç›¸ç‰¹æ€§ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«å‡ºåŠ›
 *
-*ˆø”
-*   fNameAmp : U•“Á«‚ğo—Í‚·‚éƒtƒ@ƒCƒ‹–¼
-*   fNamePhase : ˆÊ‘Š“Á«‚ğo—Í‚·‚éƒtƒ@ƒCƒ‹–¼
+*å¼•æ•°
+*   fNameAmp : æŒ¯å¹…ç‰¹æ€§ã‚’å‡ºåŠ›ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«å
+*   fNamePhase : ä½ç›¸ç‰¹æ€§ã‚’å‡ºåŠ›ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«å
 *
-*ƒ[ƒJƒ‹•Ï”
-*   fpAmp : U•“Á«‚ğo—Í‚·‚éƒtƒ@ƒCƒ‹‚Ìƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€
-*   fpPhase : ˆÊ‘Š“Á«‚ğo—Í‚·‚éƒtƒ@ƒCƒ‹‚Ìƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€
-*   sectionOrder :  “`’BŠÖ”‚ÌƒZƒNƒVƒ‡ƒ“‚ÌŸ”
-*   n : “`’BŠÖ”‚ÌŸ”
-*   m :  “`’BŠÖ”‚ğ‚PŸ‚Ü‚½‚Í‚QŸ‚É•ª‚¯‚½‚Æ‚«‚ÌƒZƒNƒVƒ‡ƒ“‚ÌŒÂ”
-*   isOrderEven :  “`’BŠÖ”‚ª‹ô”‚©‚Ç‚¤‚©B‹ô”‚È‚ç‚Îtrue
-*   a : “`’BŠÖ”‚Ì1Ÿ‚Ü‚½‚Í‚QŸ‚ÌƒZƒNƒVƒ‡ƒ“‚ÌŒW”
-*   b : “`’BŠÖ”‚Ì1Ÿ‚Ü‚½‚Í‚QŸ‚ÌƒZƒNƒVƒ‡ƒ“‚ÌŒW”
-*   omega : U•“Á«AˆÊ‘Š“Á«‚ÌŠpü”g”[rad/sec]
-*   e1 : â‘Î’l‚ª1‚ÅCˆÊ‘ŠŠp“x-omega‚Ì•¡‘f”
-*   e2 : â‘Î’l‚ª1‚ÅCˆÊ‘ŠŠp“x-2*omega‚Ì•¡‘f”
-*   h : ƒCƒ“ƒpƒ‹ƒX‰“š
-*   amp : U•‚Ì’l
-*   phase : ˆÊ‘Š‚Ì’l
-*   freq : ü”g”[Hz]
+*ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
+*   fpAmp : æŒ¯å¹…ç‰¹æ€§ã‚’å‡ºåŠ›ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ 
+*   fpPhase : ä½ç›¸ç‰¹æ€§ã‚’å‡ºåŠ›ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ 
+*   sectionOrder :  ä¼é”é–¢æ•°ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®æ¬¡æ•°
+*   n : ä¼é”é–¢æ•°ã®æ¬¡æ•°
+*   m :  ä¼é”é–¢æ•°ã‚’ï¼‘æ¬¡ã¾ãŸã¯ï¼’æ¬¡ã«åˆ†ã‘ãŸã¨ãã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å€‹æ•°
+*   isOrderEven :  ä¼é”é–¢æ•°ãŒå¶æ•°ã‹ã©ã†ã‹ã€‚å¶æ•°ãªã‚‰ã°true
+*   a : ä¼é”é–¢æ•°ã®1æ¬¡ã¾ãŸã¯ï¼’æ¬¡ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ä¿‚æ•°
+*   b : ä¼é”é–¢æ•°ã®1æ¬¡ã¾ãŸã¯ï¼’æ¬¡ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ä¿‚æ•°
+*   omega : æŒ¯å¹…ç‰¹æ€§ã€ä½ç›¸ç‰¹æ€§ã®è§’å‘¨æ³¢æ•°[rad/sec]
+*   e1 : çµ¶å¯¾å€¤ãŒ1ã§ï¼Œä½ç›¸è§’åº¦-omegaã®è¤‡ç´ æ•°
+*   e2 : çµ¶å¯¾å€¤ãŒ1ã§ï¼Œä½ç›¸è§’åº¦-2*omegaã®è¤‡ç´ æ•°
+*   h : ã‚¤ãƒ³ãƒ‘ãƒ«ã‚¹å¿œç­”
+*   amp : æŒ¯å¹…ã®å€¤
+*   phase : ä½ç›¸ã®å€¤
+*   freq : å‘¨æ³¢æ•°[Hz]
 *
-*•Ô‚è’l
-*   ‚È‚µ
+*è¿”ã‚Šå€¤
+*   ãªã—
 *
 ***********************************************************************/
 void Chebycheff::printCharacteristic(char *fNameAmp,char *fNamePhase)

@@ -5,76 +5,25 @@
 using namespace std;
 
 
-/*************************************
-* BlockDockDiagram : ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-*
-*ˆø”
-*   ‚È‚µ
-*
-*ƒ[ƒJƒ‹•Ï”
-*   ‚È‚µ
-*
-*•Ô‚è’l
-*   ‚È‚µ
-*
-*ˆ—‚Ì—¬‚ê
-*   ƒƒ“ƒo•Ï”‚ğ‰Šú‰»
-*
-**************************************/
-BlockDiagram::BlockDiagram()
-{
-    setOrder(0);
-    mCoefficientA = NULL;
-    mCoefficientB = NULL;
-}
-
-
-BlockDiagram::BlockDiagram(const BlockDiagram &copy)
-{
-    init(copy.getOrder(),copy.getCoefficientA(),copy.getCoefficientB());
-}
 
 /*************************************
-* ~BlockDockDiagram : ƒfƒXƒgƒ‰ƒNƒ^
+* init : ãƒ€ã‚¤ã‚¢ã‚°ãƒ©ãƒ ã®åˆæœŸåŒ–
 *
-*ˆø”
-*   ‚È‚µ
+*å¼•æ•°
+*   order : ãƒ€ã‚¤ã‚¢ã‚°ãƒ©ãƒ ã®æ¬¡æ•°
+*   a : ãƒ€ã‚¤ã‚¢ã‚°ãƒ©ãƒ ã®ä¿‚æ•°
+*   b : ãƒ€ã‚¤ã‚¢ã‚°ãƒ©ãƒ ã®ä¿‚æ•°
 *
-*ƒ[ƒJƒ‹•Ï”
-*   ‚È‚µ
+*ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
+*   ãªã—
 *
-*•Ô‚è’l
-*   ‚È‚µ
-*
-*ˆ—‚Ì—¬‚ê
-*   ‰½‚à‚µ‚È‚¢
-*
-**************************************/
-BlockDiagram::~BlockDiagram()
-{
-    delete [] mCoefficientA;
-    delete [] mCoefficientB;
-}
-
-
-/*************************************
-* init : ƒ_ƒCƒAƒOƒ‰ƒ€‚Ì‰Šú‰»
-*
-*ˆø”
-*   order : ƒ_ƒCƒAƒOƒ‰ƒ€‚ÌŸ”
-*   a : ƒ_ƒCƒAƒOƒ‰ƒ€‚ÌŒW”
-*   b : ƒ_ƒCƒAƒOƒ‰ƒ€‚ÌŒW”
-*
-*ƒ[ƒJƒ‹•Ï”
-*   ‚È‚µ
-*
-*•Ô‚è’l
-*   ‚È‚µ
+*è¿”ã‚Šå€¤
+*   ãªã—
 *
 **************************************/
 void BlockDiagram::init(int order,const double *a,const double *b)
 {
-    //Ÿ”‚Ìİ’è
+    //æ¬¡æ•°ã®è¨­å®š
     setOrder(order);
     
     try{
@@ -93,34 +42,33 @@ void BlockDiagram::init(int order,const double *a,const double *b)
 }
 
 /*************************************
-* inject : ƒf[ƒ^‚ğƒ_ƒCƒAƒOƒ‰ƒ€‚É’“ü
+* inject : ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ€ã‚¤ã‚¢ã‚°ãƒ©ãƒ ã«æ³¨å…¥
 *
-*ˆø”
-*   sample : ƒTƒ“ƒvƒ‹’l
+* å¼•æ•°
+*   sample : ã‚µãƒ³ãƒ—ãƒ«å€¤
 *
-*ƒ[ƒJƒ‹•Ï”
-*   data1 : ƒf[ƒ^‚Ì’†ŠÔo—Í(FIR•”)
-*   data2 : ƒf[ƒ^‚ÌÅIo—Í(IIR•”)
-*   i : ƒ‹[ƒvƒJƒEƒ“ƒ^
+* ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
+*   data1 : ãƒ‡ãƒ¼ã‚¿ã®ä¸­é–“å‡ºåŠ›(FIRéƒ¨)
+*   data2 : ãƒ‡ãƒ¼ã‚¿ã®æœ€çµ‚å‡ºåŠ›(IIRéƒ¨)
+*   i : ãƒ«ãƒ¼ãƒ—ã‚«ã‚¦ãƒ³ã‚¿
 *
-*•Ô‚è’l
-*   Œ³‚Ìƒf[ƒ^‚ªƒ_ƒCƒAƒOƒ‰ƒ€‚ğ’Ê‚è”²‚¯‚½Œã‚Ìƒf[ƒ^‚ªo—Í‚³‚ê‚é
+* è¿”ã‚Šå€¤
+*   å…ƒã®ãƒ‡ãƒ¼ã‚¿ãŒãƒ€ã‚¤ã‚¢ã‚°ãƒ©ãƒ ã‚’é€šã‚ŠæŠœã‘ãŸå¾Œã®ãƒ‡ãƒ¼ã‚¿ãŒå‡ºåŠ›ã•ã‚Œã‚‹
 *
 **************************************/
 double BlockDiagram::inject(double sample)
 {
     double data1,data2;
-    int i;
     
     data1 = mCoefficientB[0] * sample;
-    for(i=1;i<=mOrder;i++)
-        data1 += mCoefficientB[i] * getPreviousSample(i);
+    for(int i_iIndex=1; i_iIndex<=mOrder; i_iIndex++)
+        data1 += mCoefficientB[i_iIndex] * getPreviousSample(i_iIndex);
 
     data2 = mCoefficientA[0] * data1;
-    for(i=1;i<=mOrder;i++)
-        data2 += mCoefficientA[i] * getPreviousSample(i);
+    for(int i_iIndex=1; i_iIndex<=mOrder; i_iIndex++)
+        data2 += mCoefficientA[i_iIndex] * getPreviousSample(i_iIndex);
     
-    //ƒTƒ“ƒvƒ‹’l‚Ì•Û‘¶
+    //ã‚µãƒ³ãƒ—ãƒ«å€¤ã®ä¿å­˜
     popPreviousSample();
     pushPreviousSample(data1);
 
@@ -128,6 +76,9 @@ double BlockDiagram::inject(double sample)
 }
 
 
+/******************************
+ * =æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰.
+ ******************************/
 const BlockDiagram &BlockDiagram::operator=(const BlockDiagram &right)
 {
     if(this == &right)
@@ -140,34 +91,4 @@ const BlockDiagram &BlockDiagram::operator=(const BlockDiagram &right)
     return *this;
 }
 
-
-//ƒLƒ…[‚ğ‰Šú‰»
-void BlockDiagram::initPreviousSample(int n)
-{
-    int i;
-    
-    for(i=0;i<=n;i++)
-        pushPreviousSample(0.0);
-}
-
-
-//ƒLƒ…[‚É’l‚ğ’Ç‰Á
-void BlockDiagram::pushPreviousSample(double val)
-{
-    mPreviousSample.push_front(val);
-}
-
-
-//ƒLƒ…[‚©‚ç’l‚ğ‰Ÿ‚µo‚·
-void BlockDiagram::popPreviousSample()
-{
-    mPreviousSample.pop_back();
-}
-
-
-//ƒLƒ…[‚©‚ç’l‚ğæ‚èo‚·
-double BlockDiagram::getPreviousSample(int n)
-{
-    return mPreviousSample[n-1];
-}
 

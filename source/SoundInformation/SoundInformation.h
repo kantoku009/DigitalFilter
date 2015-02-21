@@ -1,21 +1,24 @@
 /**
  * @file	SoundInformation.h
- * @brief	‰¹º‚ğˆµ‚¤ƒNƒ‰ƒX.
+ * @brief	éŸ³å£°ã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹.
  */
 
 #ifndef __SOUND_INFORMATION_H__
 #define __SOUND_INFORMATION_H__
 
+/**
+ * @brief	éŸ³å£°ã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹.
+ */
 class SoundInformation
 {
 public:
 	/**
-	 * @brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^.
-	 * @param	long  sampleRate		ƒTƒ“ƒvƒŠƒ“ƒOü”g”. [sample/sec].
-	 * @param	short bitsPerSample		—Êq‰»ƒrƒbƒg. [bit/sample].
-	 * @param	short numChannels		ƒ`ƒƒƒ“ƒlƒ‹”.
-	 * @param	long  numSamples		ƒTƒ“ƒvƒ‹”. [sample/channel].
-	 * @return	‚È‚µ.
+	 * @brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
+	 * @param	long  sampleRate		ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°. [sample/sec].
+	 * @param	short bitsPerSample		é‡å­åŒ–ãƒ“ãƒƒãƒˆ. [bit/sample].
+	 * @param	short numChannels		ãƒãƒ£ãƒ³ãƒãƒ«æ•°.
+	 * @param	long  numSamples		ã‚µãƒ³ãƒ—ãƒ«æ•°. [sample/channel].
+	 * @return	ãªã—.
 	 */
 	SoundInformation(long  sampleRate=44100,
 					short bitsPerSample=8,
@@ -23,166 +26,166 @@ public:
 					long  numSamples=44100);
     
 	/**
-	 * @brief	ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^.
+	 * @brief	ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
 	 * @param	const SoundInformation &ob
-	 * @return	‚È‚µ.
+	 * @return	ãªã—.
 	 */
 	SoundInformation(const SoundInformation &ob);
 
 	/**
-	 * @brief	ƒfƒXƒgƒ‰ƒNƒ^.
-	 * @param	‚È‚µ.
-	 * @return	‚È‚µ.
-	 * @note	ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÅŠm•Û‚µ‚½ƒƒ‚ƒŠ‚ÌŠm•Û.
+	 * @brief	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
+	 * @param	ãªã—.
+	 * @return	ãªã—.
+	 * @note	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ç¢ºä¿.
 	 */
-	virtual ~SoundInformation()
+	virtual â€¾SoundInformation()
 	{
 		delete [] this->m_pdSample;
 		this->m_pdSample=0;
 	}
 
 	/**
-	 * @brief	ƒTƒ“ƒvƒŠƒ“ƒOü”g”‚ğİ’è.
-	 * @param	long sampleRate	ƒTƒ“ƒvƒŠƒ“ƒOü”g”.
-	 * @return	‚È‚µ.
+	 * @brief	ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°ã‚’è¨­å®š.
+	 * @param	long sampleRate	ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°.
+	 * @return	ãªã—.
 	 */
 	void setSampleRate(long sampleRate);
 
 	/**
-	 * @brief	—Êq‰»bit‚ğİ’è.
-	 * @param	short bitsPerSample	—Êq‰»ƒrƒbƒg.
-	 * @return	‚È‚µ.
+	 * @brief	é‡å­åŒ–bitã‚’è¨­å®š.
+	 * @param	short bitsPerSample	é‡å­åŒ–ãƒ“ãƒƒãƒˆ.
+	 * @return	ãªã—.
 	 */
 	void setBitsPerSample(short bitsPerSample);
 
 	/**
-	 * @brief	ƒ`ƒƒƒ“ƒlƒ‹”‚ğİ’è.
-	 * @param	short numChannels	ƒ`ƒƒƒ“ƒlƒ‹”.
-	 * @return	‚È‚µ.
+	 * @brief	ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã‚’è¨­å®š.
+	 * @param	short numChannels	ãƒãƒ£ãƒ³ãƒãƒ«æ•°.
+	 * @return	ãªã—.
 	 */
 	void setNumChannels(short numChannels);
 
 	/**
-	 * @brief	1 channel‚É‚Â‚«A‚¢‚­‚ÂƒTƒ“ƒvƒ‹”‚ª‚ ‚é‚©‚ğİ’è
+	 * @brief	1 channelã«ã¤ãã€ã„ãã¤ã‚µãƒ³ãƒ—ãƒ«æ•°ãŒã‚ã‚‹ã‹ã‚’è¨­å®š
 	 * @param	long samplesPerChannel 
-	 * @return	‚È‚µ.
+	 * @return	ãªã—.
 	 */
 	void setSamplesPerChannel(long samplesPerChannel);
 
 	/**
-	 * @brief	ƒTƒ“ƒvƒŠƒ“ƒOü”g”‚ğæ“¾.
-	 * @param	‚È‚µ.
-	 * @return	ƒTƒ“ƒvƒŠƒ“ƒOü”g”.
+	 * @brief	ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°ã‚’å–å¾—.
+	 * @param	ãªã—.
+	 * @return	ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°.
 	 */
 	long	getSampleRate() const { return this->m_lSampleRate; }
 
 	/**
-	 * @brief	—Êq‰»Bit‚ğæ“¾‚·‚é
-	 * @param	‚È‚µ.
-	 * @return	—Êq‰»Bit.
+	 * @brief	é‡å­åŒ–Bitã‚’å–å¾—ã™ã‚‹
+	 * @param	ãªã—.
+	 * @return	é‡å­åŒ–Bit.
 	 */
 	short	getBitsPerSample() const { return this->m_shBitsPerSample; }
 
 	/**
-	 * @brief	ƒ`ƒƒƒ“ƒlƒ‹”‚ğæ“¾‚·‚é.
-	 * @param	‚È‚µ.
-	 * @return	ƒ`ƒƒƒ“ƒlƒ‹”.
+	 * @brief	ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã‚’å–å¾—ã™ã‚‹.
+	 * @param	ãªã—.
+	 * @return	ãƒãƒ£ãƒ³ãƒãƒ«æ•°.
 	 */
 	short	getNumChannels() const { return this->m_shNumChannels; }
 
 	/**
-	 * @brief	1 channel‚É‚Â‚«A‚¢‚­‚ÂƒTƒ“ƒvƒ‹”‚ª‚ ‚é‚©‚ğæ“¾
-	 * @param	‚È‚µ.
-	 * @return	1ƒ`ƒƒƒ“ƒlƒ‹‚ÌƒTƒ“ƒvƒ‹”.
+	 * @brief	1 channelã«ã¤ãã€ã„ãã¤ã‚µãƒ³ãƒ—ãƒ«æ•°ãŒã‚ã‚‹ã‹ã‚’å–å¾—
+	 * @param	ãªã—.
+	 * @return	1ãƒãƒ£ãƒ³ãƒãƒ«ã®ã‚µãƒ³ãƒ—ãƒ«æ•°.
 	 */
 	long	getSamplesPerChannel() const { return this->m_lSamplesPerChannel; }
 
 	/**
-	 * @brief	1‚Â‚ÌƒuƒƒbƒN‚Ì‹æØ‚è(byte)‚ğæ“¾.
-	 * @param	‚È‚µ.
-	 * @return	1‚Â‚ÌƒuƒƒbƒN‚Ì‹æØ‚è(byte).
+	 * @brief	1ã¤ã®ãƒ–ãƒ­ãƒƒã‚¯ã®åŒºåˆ‡ã‚Š(byte)ã‚’å–å¾—.
+	 * @param	ãªã—.
+	 * @return	1ã¤ã®ãƒ–ãƒ­ãƒƒã‚¯ã®åŒºåˆ‡ã‚Š(byte).
 	 */
 	short	getBlockAlign() const { return this->m_shNumChannels*this->getBytesPerSample(); }
 
 	/**
-	 * @brief	1ƒTƒ“ƒvƒ‹‚É‚Â‚«A‰½ƒoƒCƒgg‚¤‚©‚ğæ“¾
-	 * @param	‚È‚µ.
-	 * @return	1ƒTƒ“ƒvƒ‹‚É‚Â‚«A‰½ƒoƒCƒgg‚¤‚©.
+	 * @brief	1ã‚µãƒ³ãƒ—ãƒ«ã«ã¤ãã€ä½•ãƒã‚¤ãƒˆä½¿ã†ã‹ã‚’å–å¾—
+	 * @param	ãªã—.
+	 * @return	1ã‚µãƒ³ãƒ—ãƒ«ã«ã¤ãã€ä½•ãƒã‚¤ãƒˆä½¿ã†ã‹.
 	 */
 	short	getBytesPerSample() const;
 
 	/**
-	 * @brief	‘SƒTƒ“ƒvƒ‹”‚ğæ“¾.
-	 * @param	‚È‚µ.
-	 * @return	‘SƒTƒ“ƒvƒ‹”.
+	 * @brief	å…¨ã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’å–å¾—.
+	 * @param	ãªã—.
+	 * @return	å…¨ã‚µãƒ³ãƒ—ãƒ«æ•°.
 	 */
 	long	getNumSamples() const { return this->m_lSamplesPerChannel*this->m_shNumChannels; }
 
 	/**
-	 * @brief	ƒƒ‚ƒŠ‚ÉƒTƒ“ƒvƒ‹’l‚ğ‘‚«‚Ş.
+	 * @brief	ãƒ¡ãƒ¢ãƒªã«ã‚µãƒ³ãƒ—ãƒ«å€¤ã‚’æ›¸ãè¾¼ã‚€.
 	 * @param	double sample
 	 * @param	long num
 	 * @param	short channel
-	 * @return	‚È‚µ.
+	 * @return	ãªã—.
 	 */
 	void	writeSampleIntoMemory(double sample, long num, short channel=0);
 
 	/**
-	 * @brief	ƒƒ‚ƒŠ‚©‚çƒTƒ“ƒvƒ‹’l‚ğ“Ç‚İ‚±‚Ş.
+	 * @brief	ãƒ¡ãƒ¢ãƒªã‹ã‚‰ã‚µãƒ³ãƒ—ãƒ«å€¤ã‚’èª­ã¿ã“ã‚€.
 	 * @param	long num
 	 * @param	short channel
-	 * @return	ƒTƒ“ƒvƒ‹’l.
+	 * @return	ã‚µãƒ³ãƒ—ãƒ«å€¤.
 	 */
 	double	readSampleFromMemory(long num, short channel=0) const;
     
 	/**
-	 * @brief	=‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh.
+	 * @brief	=æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰.
 	 */
 	const SoundInformation &operator=(const SoundInformation &right);
 
 	/**
-	 * @brief	+=‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh.
+	 * @brief	+=æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰.
 	 */
 	const SoundInformation &operator+=(SoundInformation &ob);
 
 	/**
-	 * @brief	+‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh.
+	 * @brief	+æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰.
 	 */
 	SoundInformation operator+(const SoundInformation &ob);
     
 	/**
-	 * @brief	ƒTƒ“ƒvƒ‹‚ÆƒTƒ“ƒvƒ‹‚ÌŠÔ‚Ì•âŠÔ.
+	 * @brief	ã‚µãƒ³ãƒ—ãƒ«ã¨ã‚µãƒ³ãƒ—ãƒ«ã®é–“ã®è£œé–“.
 	 */
 	double	interpolation(double i_dThreshold, short i_shChannel);
 
 protected:
 	/**
-	 * @brief	sincŠÖ”.
+	 * @brief	sincé–¢æ•°.
 	 */
 	double sinc(double i_dSample);
 
 	/**
-	 * @biref	ƒTƒ“ƒvƒŠƒ“ƒOü”g”. [sample/sec].
+	 * @biref	ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°. [sample/sec].
 	 */
 	long    m_lSampleRate;
 
 	/**
-	 * @brief	—Êq‰»ƒrƒbƒg. [bit/sample].
+	 * @brief	é‡å­åŒ–ãƒ“ãƒƒãƒˆ. [bit/sample].
 	 */
 	short   m_shBitsPerSample;
 
 	/**
-	 * @brief	ƒ`ƒƒƒ“ƒlƒ‹‚Ì”.
+	 * @brief	ãƒãƒ£ãƒ³ãƒãƒ«ã®æ•°.
 	 */
 	short   m_shNumChannels;
 
 	/**
-	 * @brief	‚Pƒ`ƒƒƒ“ƒlƒ‹‚ÌƒTƒ“ƒvƒ‹‚Ì”. [sample/channel].
+	 * @brief	ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«ã®ã‚µãƒ³ãƒ—ãƒ«ã®æ•°. [sample/channel].
 	 */
 	long    m_lSamplesPerChannel;
 
 	/**
-	 * @brief	ƒTƒ“ƒvƒ‹’l.
+	 * @brief	ã‚µãƒ³ãƒ—ãƒ«å€¤.
 	 */
 	double  *m_pdSample;
 };

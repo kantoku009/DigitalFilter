@@ -1,6 +1,6 @@
 /**
  * @file	WaveformtOperator.h
- * @brief	WAVEƒtƒ@ƒCƒ‹‚ğˆµ‚¤ƒNƒ‰ƒX.
+ * @brief	WAVEãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹.
  */
 
 #ifndef __WAVE_FORMAT_OPERATOR_H__
@@ -35,13 +35,13 @@ typedef struct TFmtChunk
 
 
 /**
- * @brief	WAVEƒtƒ@ƒCƒ‹‚ğˆµ‚¤ƒNƒ‰ƒX.
+ * @brief	WAVEãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹.
  */
 class WaveFormatOperator : public SoundInformation
 {
 public:
 	/**
-	 * @brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^.
+	 * @brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
 	 */
     WaveFormatOperator(long  sampleRate=44100,
                        short bitsPerSample=8,
@@ -56,203 +56,203 @@ public:
 	}
 							
 	/**
-	 * @brief	ƒfƒXƒgƒ‰ƒNƒ^.
+	 * @brief	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
 	 */
-    virtual ~WaveFormatOperator(){ }
+    virtual â€¾WaveFormatOperator(){ }
 
 	/**
-	 * @brief	WAVEƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚±‚İ.
+	 * @brief	WAVEãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿ã“ã¿.
 	 * @param	const string i_strFilename
-	 * @return	¬Œ÷/¸”s.
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
     bool readWaveFile(const string i_strFileName);
 
 	/**
-	 * @brief	WAVEƒtƒ@ƒCƒ‹‚É‘‚«‚İ.
-	 * @param	const string i_strFileName	ƒtƒ@ƒCƒ‹–¼.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	WAVEãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã¿.
+	 * @param	const string i_strFileName	ãƒ•ã‚¡ã‚¤ãƒ«å.
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
     bool writeWaveFile(const string i_strFileName);
 
 private:
 	/**
-	 * @brief	WAVEƒtƒ@ƒCƒ‹‚©‚çRIFF chunk‚ğ“Ç‚İ‚±‚İ.
-	 * @param	ifstream i_cFileStream	“Ç‚İ‚İƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	WAVEãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰RIFF chunkã‚’èª­ã¿ã“ã¿.
+	 * @param	ifstream i_cFileStream	èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ .
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
 	bool readRIFFChunk(ifstream& i_cFileStream);
 
 	/**
-	 * @brief	WAVEƒtƒ@ƒCƒ‹‚©‚çWAVE chunk‚ğ“Ç‚İ‚±‚İ.
-	 * @param	ifstream i_cFileStream	“Ç‚İ‚İƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	WAVEãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰WAVE chunkã‚’èª­ã¿ã“ã¿.
+	 * @param	ifstream i_cFileStream	èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ .
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
 	bool readWAVEChunk(ifstream& i_cFileStream);
 
 	/**
-	 * @brief	WAVEƒtƒ@ƒCƒ‹‚©‚çfmt chunk‚ğ“Ç‚İ‚±‚İ.
-	 * @param	ifstream i_cFileStream	“Ç‚İ‚İƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	WAVEãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰fmt chunkã‚’èª­ã¿ã“ã¿.
+	 * @param	ifstream i_cFileStream	èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ .
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
 	bool readFmtChunk(ifstream& i_cFileStream, TChunk& i_stChunk);
 
 	/**
-	 * @brief	WAVEƒtƒ@ƒCƒ‹‚©‚çSampleƒf[ƒ^‚ğ“Ç‚İ‚±‚İ.
-	 * @param	ifstream i_cFileStream	“Ç‚İ‚İƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	WAVEãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰Sampleãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿ã“ã¿.
+	 * @param	ifstream i_cFileStream	èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ .
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
 	bool readSample(ifstream& i_cFileStream, TChunk& i_stChunk);
 
 	/**
-	 * @brief	8bit‚Å—Êq‰»‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚±‚Ş.
-	 * @param	ifstream& i_cFileStream	“Ç‚İ‚İƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	8bitã§é‡å­åŒ–ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿ã“ã‚€.
+	 * @param	ifstream& i_cFileStream	èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ .
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
     bool readSample8FromFile(ifstream& i_cFileStream);
 
 	/**
-	 * @brief	16bit‚Å—Êq‰»‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚±‚Ş.
-	 * @param	ifstream& i_cFileStream	“Ç‚İ‚İƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	16bitã§é‡å­åŒ–ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿ã“ã‚€.
+	 * @param	ifstream& i_cFileStream	èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ .
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
     bool readSample16FromFile(ifstream& i_cFileStream);
 
 	/**
-	 * @brief	8bit,16bitˆÈŠO‚Å—Êq‰»‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚±‚Ş.
-	 * @param	ifstream& i_cFileStream	“Ç‚İ‚İƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	8bit,16bitä»¥å¤–ã§é‡å­åŒ–ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿ã“ã‚€.
+	 * @param	ifstream& i_cFileStream	èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ .
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
     bool readSampleOtherFromFile(ifstream& i_cFileStream);
 
 	/**
-	 * @brief	RIFF chunk‚ğWAVEƒtƒ@ƒCƒ‹‚Ö‘‚«‚İ.
-	 * @param	ofstream& i_cFileStream	‘‚«‚İƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	RIFF chunkã‚’WAVEãƒ•ã‚¡ã‚¤ãƒ«ã¸æ›¸ãè¾¼ã¿.
+	 * @param	ofstream& i_cFileStream	æ›¸ãè¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ .
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
 	bool writeRIFFChunk(ofstream& i_cFileStream);
 
 	/**
-	 * @brief	WAVE chunk‚ğWAVEƒtƒ@ƒCƒ‹‚Ö‘‚«‚İ.
-	 * @param	ofstream& i_cFileStream	‘‚«‚İƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	WAVE chunkã‚’WAVEãƒ•ã‚¡ã‚¤ãƒ«ã¸æ›¸ãè¾¼ã¿.
+	 * @param	ofstream& i_cFileStream	æ›¸ãè¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ .
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
 	bool writeWAVEChunk(ofstream& i_cFileStream);
 
 	/**
-	 * @brief	fmt chunk‚ğWAVEƒtƒ@ƒCƒ‹‚Ö‘‚«‚İ.
-	 * @param	ofstream& i_cFileStream	‘‚«‚İƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	fmt chunkã‚’WAVEãƒ•ã‚¡ã‚¤ãƒ«ã¸æ›¸ãè¾¼ã¿.
+	 * @param	ofstream& i_cFileStream	æ›¸ãè¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ .
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
 	bool writeFmtChunk(ofstream& i_cFileStream);
 
 	/**
-	 * @brief	Sampleƒf[ƒ^‚ğWAVEƒtƒ@ƒCƒ‹‚Ö‘‚«‚İ.
-	 * @param	ofstream& i_cFileStream	‘‚«‚İƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	Sampleãƒ‡ãƒ¼ã‚¿ã‚’WAVEãƒ•ã‚¡ã‚¤ãƒ«ã¸æ›¸ãè¾¼ã¿.
+	 * @param	ofstream& i_cFileStream	æ›¸ãè¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ .
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
 	bool writeSample(ofstream& i_cFileStream);
 
 	/**
-	 * @brief	8bit‚Å—Êq‰»‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğ‘‚«‚Ş.
-	 * @param	ofstream& i_cFileStream	‘‚«‚İƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	8bitã§é‡å­åŒ–ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ›¸ãè¾¼ã‚€.
+	 * @param	ofstream& i_cFileStream	æ›¸ãè¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ .
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
     bool writeSample8IntoFile(ofstream& i_cFileStream);
 
 	/**
-	 * @brief	16bit‚Å—Êq‰»‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğ‘‚«‚Ş.
-	 * @param	ofstream& i_cFileStream	‘‚«‚İƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	16bitã§é‡å­åŒ–ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ›¸ãè¾¼ã‚€.
+	 * @param	ofstream& i_cFileStream	æ›¸ãè¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ .
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
     bool writeSample16IntoFile(ofstream& i_cFileStream);
 
 	/**
-	 * @brief	8bit,16bitˆÈŠO‚Å—Êq‰»‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğ‘‚«‚Ş.
-	 * @param	ofstream&	i_cFileStream	‘‚«‚İƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€.
-	 * @return	¬Œ÷/¸”s.
+	 * @brief	8bit,16bitä»¥å¤–ã§é‡å­åŒ–ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ›¸ãè¾¼ã‚€.
+	 * @param	ofstream&	i_cFileStream	æ›¸ãè¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ .
+	 * @return	æˆåŠŸ/å¤±æ•—.
 	 */
     bool writeSampleOtherIntoFile(ofstream& i_cFileStream);
 
 	/**
-	 * @brief	bit shift‚ğ‚·‚é.
+	 * @brief	bit shiftã‚’ã™ã‚‹.
 	 * @param	short i_shBitShift
-	 * @return	bit shift‚µ‚½Œ‹‰Ê.
+	 * @return	bit shiftã—ãŸçµæœ.
 	 */
     long bitShift(short i_shNumShift);
     
 	/**
-	 * @brief	Big-endian‚©”Û‚©‚ğ’²‚×‚é.
-	 * @param	‚È‚µ.
+	 * @brief	Big-endianã‹å¦ã‹ã‚’èª¿ã¹ã‚‹.
+	 * @param	ãªã—.
 	 * @return	true:Big-endian / false:Little-endian
 	 */
     bool isBigEndian();
     
 	/**
-	 * @brief	longŒ^ Little-endian -> Big-endian ‚ğ•ÏŠ·‚·‚é.
-	 * @param	•ÏŠ·‚·‚éƒf[ƒ^.
-	 * @return	•ÏŠ·‚µ‚½Œ‹‰Ê.
+	 * @brief	longå‹ Little-endian -> Big-endian ã‚’å¤‰æ›ã™ã‚‹.
+	 * @param	å¤‰æ›ã™ã‚‹ãƒ‡ãƒ¼ã‚¿.
+	 * @return	å¤‰æ›ã—ãŸçµæœ.
 	 */
     long swapLong(char* i_pbyData);
 
 	/**
-	 * @brief	shortŒ^ Little-endian -> Big-endian ‚ğ•ÏŠ·‚·‚é.
-	 * @param	•ÏŠ·‚·‚éƒf[ƒ^.
-	 * @return	•ÏŠ·‚µ‚½Œ‹‰Ê.
+	 * @brief	shortå‹ Little-endian -> Big-endian ã‚’å¤‰æ›ã™ã‚‹.
+	 * @param	å¤‰æ›ã™ã‚‹ãƒ‡ãƒ¼ã‚¿.
+	 * @return	å¤‰æ›ã—ãŸçµæœ.
 	 */
     short swapShort(char* i_pbyData);
 
 	/**
-	 * @brief	intŒ^ Little-endian -> Big-endian ‚ğ•ÏŠ·‚·‚é.
-	 * @param	•ÏŠ·‚·‚éƒf[ƒ^.
-	 * @return	•ÏŠ·‚µ‚½Œ‹‰Ê.
+	 * @brief	intå‹ Little-endian -> Big-endian ã‚’å¤‰æ›ã™ã‚‹.
+	 * @param	å¤‰æ›ã™ã‚‹ãƒ‡ãƒ¼ã‚¿.
+	 * @return	å¤‰æ›ã—ãŸçµæœ.
 	 */
     int swapInt(char* i_pbyData);
 
 	/**
-	 * @brief	4ByteData‚ğlongŒ^‚É•ÏŠ·‚·‚é.
+	 * @brief	4ByteDataã‚’longå‹ã«å¤‰æ›ã™ã‚‹.
 	 * @param	char* data
-	 * @return	•ÏŠ·‚µ‚½”’l.
+	 * @return	å¤‰æ›ã—ãŸæ•°å€¤.
 	 */
 	long convert4ByteDataToLong(char* data);
 
 	/**
-	 * @brief	longŒ^‚ğ4ByteData‚É•ÏŠ·‚·‚é.
+	 * @brief	longå‹ã‚’4ByteDataã«å¤‰æ›ã™ã‚‹.
 	 * @param	long i_lInteger
-	 * @param	char* i_pbyData outˆø”.
-	 * @return	‚È‚µ.
+	 * @param	char* i_pbyData outå¼•æ•°.
+	 * @return	ãªã—.
 	 */
 	void convertLongTo4ByteData(long i_lInteger, char* i_pbyData);
 
 	/**
-	 * @brief	2ByteData‚ğshortŒ^‚É•ÏŠ·‚·‚é.
+	 * @brief	2ByteDataã‚’shortå‹ã«å¤‰æ›ã™ã‚‹.
 	 * @param	char* data
-	 * @return	•ÏŠ·‚µ‚½”’l.
+	 * @return	å¤‰æ›ã—ãŸæ•°å€¤.
 	 */
 	short convert2ByteDataToShort(char* data);
 
 	/**
-	 * @brief	shortŒ^‚ğ2ByteData‚É•ÏŠ·‚·‚é.
+	 * @brief	shortå‹ã‚’2ByteDataã«å¤‰æ›ã™ã‚‹.
 	 * @param	short i_shInteger
-	 * @param	char* i_pbyData outˆø”.
-	 * @return	‚È‚µ.
+	 * @param	char* i_pbyData outå¼•æ•°.
+	 * @return	ãªã—.
 	 */
 	void convertShortTo2ByteData(short i_shInteger, char* i_pbyData);
 	
 	/**
-	 * @brief	TChunk‚ğ•\¦.
-	 * @param	char* i_pbyMessage	•\¦‚µ‚½‚¢ƒƒbƒZ[ƒW.
-	 * @param	TChunk i_stChunk	•\¦‚µ‚½‚¢TChunk.
-	 * @return	‚È‚µ.
-	 * @note	ƒfƒoƒbƒO—p.
+	 * @brief	TChunkã‚’è¡¨ç¤º.
+	 * @param	char* i_pbyMessage	è¡¨ç¤ºã—ãŸã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸.
+	 * @param	TChunk i_stChunk	è¡¨ç¤ºã—ãŸã„TChunk.
+	 * @return	ãªã—.
+	 * @note	ãƒ‡ãƒãƒƒã‚°ç”¨.
 	 */
 	void printChunk(char* i_pbyMessage, TChunk& i_stChunk);
 
 	/**
-	 * @brief	TFmtChunk‚ğ•\¦.
-	 * @param	char* i_pbyMessage		•\¦‚µ‚½‚¢ƒƒbƒZ[ƒW.
-	 * @param	TFmtChunk& i_stFmtChunk	•\¦‚µ‚½‚¢TFmtChunk
-	 * @return	‚È‚µ.
-	 * @note	ƒfƒoƒbƒO—p.
+	 * @brief	TFmtChunkã‚’è¡¨ç¤º.
+	 * @param	char* i_pbyMessage		è¡¨ç¤ºã—ãŸã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸.
+	 * @param	TFmtChunk& i_stFmtChunk	è¡¨ç¤ºã—ãŸã„TFmtChunk
+	 * @return	ãªã—.
+	 * @note	ãƒ‡ãƒãƒƒã‚°ç”¨.
 	 */
 	void printFmtChunk(char* i_pbyMessage, TFmtChunk& i_stFmtChunk);
 

@@ -16,5 +16,5 @@ make:
 clean:
 	rm $(OUTFILE_BUTTERWORTH)
 	rm $(OUTFILE_CHEBYCHEFF)
-
+	rm *.wav
 

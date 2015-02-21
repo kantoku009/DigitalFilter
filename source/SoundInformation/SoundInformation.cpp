@@ -4,22 +4,22 @@
 using namespace std;
 
 /*******************************************************************
-*SoundInformation�̃R���X�g���N�^
+*SoundInformationのコンストラクタ
 *
-*����
-*	sampleRate:�T���v�����O���g��
-*	bitsPerSample:1sample�ɂ���bit��
-*	numChannels:�`�����l����
-*	samplesPerChannel:1channel�ɂ��̃T���v����
+*引数
+*	sampleRate:サンプリング周波数
+*	bitsPerSample:1sampleにつきのbit数
+*	numChannels:チャンネル数
+*	samplesPerChannel:1channelにつきのサンプル数
 *
-*���[�J���ϐ�
-*	�Ȃ�
+*ローカル変数
+*	なし
 *
-*�Ԃ�l
-*	�Ȃ�
+*返り値
+*	なし
 *
-*�����̗���
-*	�����o�ϐ��̏�����
+*処理の流れ
+*	メンバ変数の初期化
 *
 ********************************************************************/
 SoundInformation::SoundInformation(long  sampleRate,
@@ -44,7 +44,7 @@ SoundInformation::SoundInformation(long  sampleRate,
 
 
 /**************************************************************
-*�R�s�[�R���X�g���N�^�[
+*コピーコンストラクター
 *
 **************************************************************/
 SoundInformation::SoundInformation(const SoundInformation &ob)
@@ -71,26 +71,26 @@ SoundInformation::SoundInformation(const SoundInformation &ob)
 }
 
 /*************************************************************************************************
-*setSampleRate : �T���v�����O���g���̐ݒ�
+*setSampleRate : サンプリング周波数の設定
 *
-*����
-*	sampleRate : �ݒ��̃T���v�����O���g��
+*引数
+*	sampleRate : 設定後のサンプリング周波数
 *
-*���[�J���ϐ�
-*	data : �T���v���l�̒l
-*	delta : ���݂̃T���v�����O���g���Ɛݒ肵�����T���v�����O���g���̔�(�ăT���v�����O���ɕK�v)
-*	samplePerChannel : �T���v�����O���g����ݒ肵�����1channel�ɂ��̃T���v����
-*	temp : ���݂�SoundInformation��ۑ����Ă����ϐ�
+*ローカル変数
+*	data : サンプル値の値
+*	delta : 現在のサンプリング周波数と設定したいサンプリング周波数の比(再サンプリング時に必要)
+*	samplePerChannel : サンプリング周波数を設定した後の1channelにつきのサンプル数
+*	temp : 現在のSoundInformationを保存しておく変数
 *
-*�Ԃ�l
-*	�Ȃ�
+*返り値
+*	なし
 *
-*�����̗���
-*	���݂̃T���v�����O���g���Ɛݒ��̃T���v�����O���g���������l�Ȃ�Ή���������return
-*	temp�Ɍ��݂�SoundInformation��ۑ�
-*	���݂̃T���v�����O���g���Ɛݒ��̃T���v�����O���g���̔�����߁A�ݒ���samplePerCahnnel��ݒ�
-*	�ăT���v�����O�̏���
-*	�T���v�����O���g���̐ݒ�
+*処理の流れ
+*	現在のサンプリング周波数と設定後のサンプリング周波数が同じ値ならば何もせずにreturn
+*	tempに現在のSoundInformationを保存
+*	現在のサンプリング周波数と設定後のサンプリング周波数の比を求め、設定後のsamplePerCahnnelを設定
+*	再サンプリングの処理
+*	サンプリング周波数の設定
 *
 **************************************************************************************************/
 void SoundInformation::setSampleRate(long sampleRate)
@@ -118,21 +118,21 @@ void SoundInformation::setSampleRate(long sampleRate)
 }
 
 /***************************************************************************
-*setBitsPerSample : �ʎq���r�b�g�̐ݒ�
+*setBitsPerSample : 量子化ビットの設定
 *
-*����
-*	bitsPerSample : �ݒ��̗ʎq���r�b�g
+*引数
+*	bitsPerSample : 設定後の量子化ビット
 *
 *
-*���[�J���ϐ�
-*	�Ȃ�
+*ローカル変数
+*	なし
 *
-*�Ԃ�l
-*	�Ȃ�
+*返り値
+*	なし
 *
-*�����̗���
-*	�ݒ�O�̗ʎq���r�b�g�Ɛݒ��̗ʎq���r�b�g�������Ȃ�΂�����return
-*	�ʎq���r�b�g��ݒ�
+*処理の流れ
+*	設定前の量子化ビットと設定後の量子化ビットが同じならばすぐにreturn
+*	量子化ビットを設定
 *
 **************************************************************************/
 void SoundInformation::setBitsPerSample(short bitsPerSample)
@@ -144,26 +144,26 @@ void SoundInformation::setBitsPerSample(short bitsPerSample)
 
 
 /***************************************************************************
-*setNumChannels : �`�����l������ݒ�
+*setNumChannels : チャンネル数を設定
 *
-*����
-*	numChannels : �ݒ��̃`�����l����
+*引数
+*	numChannels : 設定後のチャンネル数
 *
-*���[�J���ϐ�
-*	numSamples : �S�T���v����
-*	data : �T���v���l��ۑ�����
-*	lessChannel : �ݒ�O�Ɛݒ��̂ǂ��炩�̏��Ȃ��ق��̃`�����l����
-*	temp : �ݒ�O��SoundInformation
+*ローカル変数
+*	numSamples : 全サンプル数
+*	data : サンプル値を保存する
+*	lessChannel : 設定前と設定後のどちらかの少ないほうのチャンネル数
+*	temp : 設定前のSoundInformation
 *
-*�Ԃ�l
-*	�Ȃ�
+*返り値
+*	なし
 *
-*�����̗���
-*	temp�Ɍ��݂̏�Ԃ�SoundInformation���R�s�[
-*	�ݒ��̃`�����l�����ƑS�T���v������ݒ�
-*	data��ێ����郁�������m��
-*	�ݒ�O�Ɛݒ��Ń`�����l�����̏��Ȃ��ق����L�^
-*	�T���v���l�̃R�s�[
+*処理の流れ
+*	tempに現在の状態のSoundInformationをコピー
+*	設定後のチャンネル数と全サンプル数を設定
+*	dataを保持するメモリを確保
+*	設定前と設定後でチャンネル数の少ないほうを記録
+*	サンプル値のコピー
 *
 ****************************************************************************/
 void SoundInformation::setNumChannels(short numChannels)
@@ -209,26 +209,26 @@ void SoundInformation::setNumChannels(short numChannels)
 
 
 /************************************************************************
-*setSamplePerChannel : �P�`�����l���̃T���v������ݒ�
+*setSamplePerChannel : １チャンネルのサンプル数を設定
 *
-*����
-*	samplesPerChannel : �ݒ��̂P�`�����l���̃T���v����
+*引数
+*	samplesPerChannel : 設定後の１チャンネルのサンプル数
 *
-*���[�J���ϐ�
-*	temp : �ݒ�O��SoundInformation
-*	oldNumSamples : �ݒ�O�̑S�T���v����
-*	newNumSamples : �ݒ��̑S�T���v����
-*	lessNumSamples : �ݒ�O�Ɛݒ��̏��Ȃ����̑S�T���v����
+*ローカル変数
+*	temp : 設定前のSoundInformation
+*	oldNumSamples : 設定前の全サンプル数
+*	newNumSamples : 設定後の全サンプル数
+*	lessNumSamples : 設定前と設定後の少ない方の全サンプル数
 *
-*�Ԃ�l
-*	�Ȃ�
+*返り値
+*	なし
 *
-*�����̗���
-*	temp�Ɍ��݂̏�Ԃ�SoundInformation���R�s�[
-*	�ݒ�O�̑S�T���v�����Ɛݒ��̑S�T���v�������L��
-*	�ݒ�O�Ɛݒ��ł̑S�T���v�����̏��Ȃ��ق����L��
-*	�S�T���v�����A���������������m��
-*	�m�ۂ����������ɃT���v���l���R�s�[
+*処理の流れ
+*	tempに現在の状態のSoundInformationをコピー
+*	設定前の全サンプル数と設定後の全サンプル数を記憶
+*	設定前と設定後での全サンプル数の少ないほうを記憶
+*	全サンプル数、分だけメモリを確保
+*	確保したメモリにサンプル値をコピー
 *
 *************************************************************************/
 void SoundInformation::setSamplesPerChannel(long samplesPerChannel)
@@ -267,22 +267,22 @@ void SoundInformation::setSamplesPerChannel(long samplesPerChannel)
 
 
 /***************************************************************************************
-*getBytesPerSample : �P�T���v���̃o�C�g�����擾
+*getBytesPerSample : １サンプルのバイト数を取得
 *
-*����
-*	�Ȃ�
+*引数
+*	なし
 *
-*���[�J���ϐ�
-*	bytesPerSample : �P�T���v���̃o�C�g��
+*ローカル変数
+*	bytesPerSample : １サンプルのバイト数
 *
-*�Ԃ�l
-*	1�T���v���̃o�C�g��
+*返り値
+*	1サンプルのバイト数
 *
-*�����̗���
-*	1�T���v���̃r�b�g����8�Ŋ���o�C�g�����Z�o��,
-*	1�T���v���̃r�b�g����8�̔{���łȂ���΁CbytesPerSampe��+1����
-*	bytesPerSample��4byte��菬������΁AbytesPerSample�͂��̂܂܂ŁC
-*	�傫�����bytesPerSample��4�ɐݒ�
+*処理の流れ
+*	1サンプルのビット数を8で割りバイト数を算出し,
+*	1サンプルのビット数が8の倍数でなければ，bytesPerSampeに+1する
+*	bytesPerSampleが4byteより小さければ、bytesPerSampleはそのままで，
+*	大きければbytesPerSampleを4に設定
 *
 ****************************************************************************************/
 short SoundInformation::getBytesPerSample() const 
@@ -297,21 +297,21 @@ short SoundInformation::getBytesPerSample() const
 
 
 /****************************************************************************************
-*readSampleFromMemory : ����������T���v���l���擾
+*readSampleFromMemory : メモリからサンプル値を取得
 *
-*����
-*	num : �擾����T���v�����ŏ����牽�Ԗڂ̂��̂����w��
-*	channel : �擾����T���v���̃`�����l�����w��
+*引数
+*	num : 取得するサンプルが最初から何番目のものかを指定
+*	channel : 取得するサンプルのチャンネルを指定
 *
-*���[�J���ϐ�
-*	index : 1�u���b�N�̒��̉��Ԗڂ����w��
+*ローカル変数
+*	index : 1ブロックの中の何番目かを指定
 *
-*�Ԃ�l
-*	�T���v���l
+*返り値
+*	サンプル値
 *
-*�����̗���
-*	index���S�T���v������菬������΃T���v���l��Ԃ�
-*	index���S�T���v�������傫�����0��Ԃ�
+*処理の流れ
+*	indexが全サンプル数より小さければサンプル値を返す
+*	indexが全サンプル数より大きければ0を返す
 *
 ****************************************************************************************/
 double SoundInformation::readSampleFromMemory(long num,short channel)  const
@@ -331,22 +331,22 @@ double SoundInformation::readSampleFromMemory(long num,short channel)  const
 
 
 /****************************************************************************************
-*writeSampleIntoMemory : �������ɃT���v���l����������
+*writeSampleIntoMemory : メモリにサンプル値を書き込む
 *
-*����
-*	sample : �������ރT���v���l
-*	num : �������ރT���v�����ŏ����牽�Ԗڂ̂��̂����w��
-*	channel : �������ރT���v���̃`�����l�����w��
+*引数
+*	sample : 書き込むサンプル値
+*	num : 書き込むサンプルが最初から何番目のものかを指定
+*	channel : 書き込むサンプルのチャンネルを指定
 *
-*���[�J���ϐ�
-*	index : 1�u���b�N�̒��̉��Ԗڂ����w��
+*ローカル変数
+*	index : 1ブロックの中の何番目かを指定
 *
-*�Ԃ�l
-*	�Ȃ�
+*返り値
+*	なし
 *
-*�����̗���
-*	index���S�T���v������菬������΃T���v���l���������ށC
-*	index���S�T���v�������傫����Ώ������܂Ȃ�
+*処理の流れ
+*	indexが全サンプル数より小さければサンプル値を書き込む，
+*	indexが全サンプル数より大きければ書き込まない
 *
 ****************************************************************************************/
 void SoundInformation::writeSampleIntoMemory(double sample,long num,short channel)
@@ -362,24 +362,24 @@ void SoundInformation::writeSampleIntoMemory(double sample,long num,short channe
 
 
 /*********************************************************************************************************
-*&operator= : =���Z�q�̃I�[�o�[���[�h
+*&operator= : =演算子のオーバーロード
 *
-*����
-*	=���Z�q�̉E�ӂ�SoundInformation
+*引数
+*	=演算子の右辺のSoundInformation
 *
-*���[�J���ϐ�
-*	�Ȃ�
+*ローカル変数
+*	なし
 *
-*�Ԃ�l
-*	this�|�C���^
+*返り値
+*	thisポインタ
 *
-*�����̗���
-*	���Ӓl�ƉE�Ӓl���������̂Ȃ�Ύ������M����Ԃ�
-*	���Ӓl�̑S�T���v�����ƉE�Ӓl�̑S�T���v�������قȂ��Ă����,
-*		�E�Ӓl�̑S�T���v������ݒ�C�E�Ӓl�̃`�����l������ݒ�C�E�Ӓl�̑S�T���v�����������������m��
-*	�T���v���l���R�s�[
-*	�T���v�����O���g����ݒ�
-*	�P�T���v���̃r�b�g����ݒ�
+*処理の流れ
+*	左辺値と右辺値が同じものならば自分自信をを返す
+*	左辺値の全サンプル数と右辺値の全サンプル数が異なっていれば,
+*		右辺値の全サンプル数を設定，右辺値のチャンネル数を設定，右辺値の全サンプル数分だけメモリ確保
+*	サンプル値をコピー
+*	サンプリング周波数を設定
+*	１サンプルのビット数を設定
 *
 *******************************************************************************************************/
 const SoundInformation &SoundInformation::operator=(const SoundInformation &right)
@@ -409,7 +409,7 @@ const SoundInformation &SoundInformation::operator=(const SoundInformation &righ
 }
 
 /********************************************
- * +���Z�q�̃I�[�o�[���[�h.
+ * +演算子のオーバーロード.
  ********************************************/
 SoundInformation SoundInformation::operator+(const SoundInformation &ob)
 {
@@ -467,7 +467,7 @@ SoundInformation SoundInformation::operator+(const SoundInformation &ob)
 }
 
 /**********************************************
- * +=���Z�q�̃I�[�o�[���[�h.
+ * +=演算子のオーバーロード.
  **********************************************/
 const SoundInformation &SoundInformation::operator+=(SoundInformation &ob)
 {
@@ -537,24 +537,24 @@ const SoundInformation &SoundInformation::operator+=(SoundInformation &ob)
 
 
 /*****************************************
-*sinc : sinc�֐��̋ߎ�
+*sinc : sinc関数の近似
 *
-*����
-*	x : 臒l
+*引数
+*	x : 閾値
 *
-*���[�J���ϐ�
-*	�Ȃ�
+*ローカル変数
+*	なし
 *
-*�����̗���
-*	x�̐�Βl���Ƃ�
-*	sinc�֐��̋ߎ��l���v�Z
+*処理の流れ
+*	xの絶対値をとる
+*	sinc関数の近似値を計算
 *
-*�Ԃ�l
-*	sinc�֐��̒l
+*返り値
+*	sinc関数の値
 *
-*���l
-*-2�`2�܂ł̊Ԃ����l���Ă��Ȃ�
-*���̑��̂Ƃ����0�Ƌߎ����Ă��܂�
+*備考
+*-2〜2までの間しか考えていない
+*その他のところは0と近似してしまう
 *
 ******************************************/
 double SoundInformation::sinc(double i_dSample)
@@ -568,22 +568,22 @@ double SoundInformation::sinc(double i_dSample)
 }
 
 /********************************************
-*interpolation : ��Ԋ֐�
+*interpolation : 補間関数
 *
-*����
-*	x : 臒l
-*	channel : �^�[�Q�b�g�̃`�����l��
+*引数
+*	x : 閾値
+*	channel : ターゲットのチャンネル
 *
-*���[�J���ϐ�
-*	x0 : 臒l�𐮐����������́i�����_�ȉ��؂�̂āj
-*	y : �⊮�����l
+*ローカル変数
+*	x0 : 閾値を整数化したもの（小数点以下切り捨て）
+*	y : 補完した値
 *
-*�Ԃ�l
-*	�⊮�����l
+*返り値
+*	補完した値
 *
-*���l
-*	sinc�֐���p���ċߖT�S�_�ŕ��
-*	臒l�̐����_���炻�̊�(x�̒l)��⊮����
+*備考
+*	sinc関数を用いて近傍４点で補間
+*	閾値の整数点からその間(xの値)を補完する
 *
 *********************************************/
 double SoundInformation::interpolation(double i_dThreshold, short i_shChannel)

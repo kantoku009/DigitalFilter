@@ -3,38 +3,22 @@
 #include <iostream>
 using namespace std;
 
-Filter::Filter()
-{
-    mSection = 0;
-    
-    mKindFilter = kLowpass;
-    mOrderNumber = 0;
-    mLowCutoffFreq = 0;
-    mHighCutoffFreq = 0;
-}
-
-
-Filter::~Filter()
-{
-    
-}
-
 
 /**********************************************************************
-* setCutoffFreq : ƒJƒbƒgƒIƒtü”g”‚ğİ’è
+* setCutoffFreq : ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°ã‚’è¨­å®š
 *
-*ˆø”
-*   inCutFreq : Lowpass ‚Ü‚½‚ÍHighpass ‚ÌƒJƒbƒgƒIƒtü”g”
+*å¼•æ•°
+*   inCutFreq : Lowpass ã¾ãŸã¯Highpass ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
 *
-*ƒ[ƒJƒ‹•Ï”
+*ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
 *   err : 
 *
-*•Ô‚è’l
-*   ‚È‚µ
+*è¿”ã‚Šå€¤
+*   ãªã—
 *
-*”õl
-*   ‚±‚Ìƒƒ“ƒoŠÖ”‚Íƒ‚[ƒh‚ªLowpass‚Ü‚½‚ÍHighpassƒtƒBƒ‹ƒ^‚Ì‚Æ‚«‚Ég—p
-*   Bandpass‚Ì‚É‚Íg‚¦‚È‚¢
+*å‚™è€ƒ
+*   ã“ã®ãƒ¡ãƒ³ãƒé–¢æ•°ã¯ãƒ¢ãƒ¼ãƒ‰ãŒLowpassã¾ãŸã¯Highpassãƒ•ã‚£ãƒ«ã‚¿ã®ã¨ãã«ä½¿ç”¨
+*   Bandpassã®æ™‚ã«ã¯ä½¿ãˆãªã„
 *
 **********************************************************************/
 void Filter::setCutoffFreq(double inCutFreq)
@@ -62,23 +46,23 @@ void Filter::setCutoffFreq(double inCutFreq)
 
 
 /**********************************************************************
-* getCutoffFreq : ƒJƒbƒgƒIƒtü”g”‚ğæ“¾
+* getCutoffFreq : ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°ã‚’å–å¾—
 *
-*ˆø”
-*   ‚È‚µ
+*å¼•æ•°
+*   ãªã—
 *
-*ƒ[ƒJƒ‹•Ï”
+*ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
 *   err : 
 *
-*•Ô‚è’l
-*   Lowpass‚Ü‚½‚ÍHighpass‚ÌƒJƒbƒgƒIƒtü”g”
+*è¿”ã‚Šå€¤
+*   Lowpassã¾ãŸã¯Highpassã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
 *
-*”õl
-*   ‚±‚Ìƒƒ“ƒoŠÖ”‚Íƒ‚[ƒh‚ªLowpass‚Ü‚½‚ÍHighpassƒtƒBƒ‹ƒ^‚Ì‚Æ‚«‚Ég—p
-*   Bandpass‚Ì‚É‚Íg‚¦‚È‚¢
+*å‚™è€ƒ
+*   ã“ã®ãƒ¡ãƒ³ãƒé–¢æ•°ã¯ãƒ¢ãƒ¼ãƒ‰ãŒLowpassã¾ãŸã¯Highpassãƒ•ã‚£ãƒ«ã‚¿ã®ã¨ãã«ä½¿ç”¨
+*   Bandpassã®æ™‚ã«ã¯ä½¿ãˆãªã„
 *
 **********************************************************************/
-double Filter::getCutoffFreq()
+double Filter::getCutoffFreq() const
 {
     try{
         switch (mKindFilter){
@@ -103,21 +87,21 @@ double Filter::getCutoffFreq()
 
 
 /**********************************************************************
-* setCutoffFreq : ‚‚¢•û‚Æ’á‚¢•û‚ÌƒJƒbƒgƒIƒtü”g”‚ğİ’è
+* setCutoffFreq : é«˜ã„æ–¹ã¨ä½ã„æ–¹ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°ã‚’è¨­å®š
 *
-*ˆø”
-*   inLowCutFreq : ’á‚¢•û‚ÌƒJƒbƒgƒIƒtü”g”
-*   inHighCutFreq : ‚‚¢•û‚ÌƒJƒbƒgƒIƒtü”g”
+*å¼•æ•°
+*   inLowCutFreq : ä½ã„æ–¹ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
+*   inHighCutFreq : é«˜ã„æ–¹ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
 *
-*ƒ[ƒJƒ‹•Ï”
+*ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
 *   err : 
 *
-*•Ô‚è’l
-*   ‚È‚µ
+*è¿”ã‚Šå€¤
+*   ãªã—
 *
-*”õl
-*   ‚±‚Ìƒƒ“ƒoŠÖ”‚Íƒ‚[ƒh‚ªBandpassƒtƒBƒ‹ƒ^‚Ì‚Æ‚«‚Ég—p
-*   Lowpass,Highpass‚Ì‚É‚Íg‚¦‚È‚¢
+*å‚™è€ƒ
+*   ã“ã®ãƒ¡ãƒ³ãƒé–¢æ•°ã¯ãƒ¢ãƒ¼ãƒ‰ãŒBandpassãƒ•ã‚£ãƒ«ã‚¿ã®ã¨ãã«ä½¿ç”¨
+*   Lowpass,Highpassã®æ™‚ã«ã¯ä½¿ãˆãªã„
 *
 **********************************************************************/
 void Filter::setCutoffFreq(double inLowCutFreq,double inHighCutFreq)
@@ -143,23 +127,23 @@ void Filter::setCutoffFreq(double inLowCutFreq,double inHighCutFreq)
 
 
 /**********************************************************************
-* getLowCutoffFreq : ’á‚¢•û‚ÌƒJƒbƒgƒIƒtü”g”‚ğæ“¾
+* getLowCutoffFreq : ä½ã„æ–¹ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°ã‚’å–å¾—
 *
-*ˆø”
-*   ‚È‚µ
+*å¼•æ•°
+*   ãªã—
 *
-*ƒ[ƒJƒ‹•Ï”
+*ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
 *   err : 
 *
-*•Ô‚è’l
-*   ’á‚¢•û‚ÌƒJƒbƒgƒIƒtü”g”
+*è¿”ã‚Šå€¤
+*   ä½ã„æ–¹ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
 *
-*”õl
-*   ‚±‚Ìƒƒ“ƒoŠÖ”‚Íƒ‚[ƒh‚ªBandpassƒtƒBƒ‹ƒ^‚Ì‚Æ‚«‚Ég—p
-*   Lowpass,Highpass‚Ì‚É‚Íg‚¦‚È‚¢
+*å‚™è€ƒ
+*   ã“ã®ãƒ¡ãƒ³ãƒé–¢æ•°ã¯ãƒ¢ãƒ¼ãƒ‰ãŒBandpassãƒ•ã‚£ãƒ«ã‚¿ã®ã¨ãã«ä½¿ç”¨
+*   Lowpass,Highpassã®æ™‚ã«ã¯ä½¿ãˆãªã„
 *
 **********************************************************************/
-double Filter::getLowCutoffFreq()
+double Filter::getLowCutoffFreq() const
 {
     try{
         switch (mKindFilter){
@@ -183,23 +167,23 @@ double Filter::getLowCutoffFreq()
 
 
 /**********************************************************************
-* getHighCutoffFreq : ‚‚¢•û‚ÌƒJƒbƒgƒIƒtü”g”‚ğæ“¾
+* getHighCutoffFreq : é«˜ã„æ–¹ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°ã‚’å–å¾—
 *
-*ˆø”
-*   ‚È‚µ
+*å¼•æ•°
+*   ãªã—
 *
-*ƒ[ƒJƒ‹•Ï”
+*ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
 *   err : 
 *
-*•Ô‚è’l
-*   ‚‚¢•û‚ÌƒJƒbƒgƒIƒtü”g”
+*è¿”ã‚Šå€¤
+*   é«˜ã„æ–¹ã®ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
 *
-*”õl
-*   ‚±‚Ìƒƒ“ƒoŠÖ”‚Íƒ‚[ƒh‚ªBandpassƒtƒBƒ‹ƒ^‚Ì‚Æ‚«‚Ég—p
-*   Lowpass,Highpass‚Ì‚É‚Íg‚¦‚È‚¢
+*å‚™è€ƒ
+*   ã“ã®ãƒ¡ãƒ³ãƒé–¢æ•°ã¯ãƒ¢ãƒ¼ãƒ‰ãŒBandpassãƒ•ã‚£ãƒ«ã‚¿ã®ã¨ãã«ä½¿ç”¨
+*   Lowpass,Highpassã®æ™‚ã«ã¯ä½¿ãˆãªã„
 *
 **********************************************************************/
-double Filter::getHighCutoffFreq()
+double Filter::getHighCutoffFreq() const
 {
     try{
         switch (mKindFilter){
@@ -222,13 +206,13 @@ double Filter::getHighCutoffFreq()
 
 
 /**********************************************************************
-* passFilter : ƒtƒBƒ‹ƒ^‚ğÀs‚·‚éŠÖ”
+* passFilter : ãƒ•ã‚£ãƒ«ã‚¿ã‚’å®Ÿè¡Œã™ã‚‹
 *
-*ˆø”
-*   sample: ˆ—‚·‚éƒTƒ“ƒvƒ‹
+* å¼•æ•°
+*   sample: å‡¦ç†ã™ã‚‹ã‚µãƒ³ãƒ—ãƒ«å€¤
 *
-*•Ô‚è’l
-*   ƒtƒBƒ‹ƒ^‚ğ’Ê‚µ‚½ƒTƒ“ƒvƒ‹
+* è¿”ã‚Šå€¤
+*   ãƒ•ã‚£ãƒ«ã‚¿ã‚’é€šã—ãŸã‚µãƒ³ãƒ—ãƒ«å€¤
 *
 ***********************************************************************/
 double Filter::passFilter(double sample)
@@ -238,20 +222,20 @@ double Filter::passFilter(double sample)
 
 
 /************************************************************
-*transferFunction : “`’BŠÖ”
+* transferFunction : ä¼é”é–¢æ•°
 *
-*ˆø”
-*   valSample : “`’BŠÖ”‚É“n‚·ƒTƒ“ƒvƒ‹’l
+* å¼•æ•°
+*   valSample : ä¼é”é–¢æ•°ã«æ¸¡ã™ã‚µãƒ³ãƒ—ãƒ«å€¤
 *
-*ƒ[ƒJƒ‹•Ï”
-*   data : “`’BŠÖ”‚Ì‚»‚ê‚¼‚ê‚ÌƒZƒNƒVƒ‡ƒ“‚ğ’Ê‚Á‚Ä‚­’l
+* ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
+*   data : ä¼é”é–¢æ•°ã®ãã‚Œãã‚Œã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚’é€šã£ã¦ãå€¤
 *
-*•Ô‚è’l
-*   “ü—Í(valSample)‚ª“`’BŠÖ”‚ğ’Ê‚è‚Ê‚¯‚½o—Í(data)
+* è¿”ã‚Šå€¤
+*   å…¥åŠ›(valSample)ãŒä¼é”é–¢æ•°ã‚’é€šã‚Šã¬ã‘ãŸå‡ºåŠ›(data)
 *
-*”õl
-*   H(z)‚ğ“`’BŠÖ”‚Æ‚·‚é
-*   \[ H(z) = H_{0}(z) \prod^{m}_{i=1} H_{i}(z) \]
+* å‚™è€ƒ
+*   H(z)ã‚’ä¼é”é–¢æ•°ã¨ã™ã‚‹
+*   Â¥[ H(z) = H_{0}(z) Â¥prod^{m}_{i=1} H_{i}(z) Â¥]
 *
 ************************************************************/
 double Filter::transferFunction(double valSample)
