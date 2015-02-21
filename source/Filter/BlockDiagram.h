@@ -36,7 +36,7 @@ public:
 	/**
 	 * @brief	デストラクタ.
 	 */
-    virtual ‾BlockDiagram()
+    virtual ~BlockDiagram()
 	{
 		delete [] this->mCoefficientA;
 		delete [] this->mCoefficientB;

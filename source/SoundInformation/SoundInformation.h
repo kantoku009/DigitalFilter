@@ -38,7 +38,7 @@ public:
 	 * @return	なし.
 	 * @note	コンストラクタで確保したメモリの確保.
 	 */
-	virtual ‾SoundInformation()
+	virtual ~SoundInformation()
 	{
 		delete [] this->m_pdSample;
 		this->m_pdSample=0;

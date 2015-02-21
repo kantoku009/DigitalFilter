@@ -58,7 +58,7 @@ public:
 	/**
 	 * @brief	デストラクタ.
 	 */
-    virtual ‾WaveFormatOperator(){ }
+    virtual ~WaveFormatOperator(){ }
 
 	/**
 	 * @brief	WAVEファイルから読みこみ.
