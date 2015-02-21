@@ -2,8 +2,8 @@ CC = g++
 LIBS = 
 LDFLAGS = -Wall -O2
 
-SRCS_BUTTERWORTH = ./main_Butterworth.cpp ./Butterworth.cpp ./Filter.cpp ./BlockDiagram.cpp ./SoundInformation/SoundInformation.cpp ./SoundInformation/WaveFormatOperator.cpp
-SRCS_CHEBYCHEFF = ./main_Chebycheff.cpp ./Chebycheff.cpp ./Filter.cpp ./BlockDiagram.cpp ./SoundInformation/SoundInformation.cpp ./SoundInformation/WaveFormatOperator.cpp
+SRCS_BUTTERWORTH = ./main_Butterworth.cpp ./Filter/Butterworth.cpp ./Filter/Filter.cpp ./Filter/BlockDiagram.cpp ./SoundInformation/SoundInformation.cpp ./SoundInformation/WaveFormatOperator.cpp
+SRCS_CHEBYCHEFF = ./main_Chebycheff.cpp ./Filter/Chebycheff.cpp ./Filter/Filter.cpp ./Filter/BlockDiagram.cpp ./SoundInformation/SoundInformation.cpp ./SoundInformation/WaveFormatOperator.cpp
 
 OUTFILE_BUTTERWORTH = ./butterworth_filter
 OUTFILE_CHEBYCHEFF = ./chebycheff_filter

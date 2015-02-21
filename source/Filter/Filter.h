@@ -25,8 +25,15 @@ private:
 class Filter
 {
 public:
+	/**
+	 * @brief	コンストラクタ.
+	 */
     Filter();
-    ~Filter();
+
+	/**
+	 * @brief	デストラクタ.
+	 */
+    virtual ~Filter();
     
     void selectFilterMode(FilterMode inKindFilter){ mKindFilter = inKindFilter; }
     FilterMode getFilterMode(){ return mKindFilter; }

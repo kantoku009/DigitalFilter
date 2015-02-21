@@ -1,7 +1,6 @@
 #include "./SoundInformation/SoundInformation.h"
 #include "./SoundInformation/WaveFormatOperator.h"
-#include "Filter.h"
-#include "Chebycheff.h"
+#include "./Filter/Chebycheff.h"
 
 #include <iostream>
 #include <string>
