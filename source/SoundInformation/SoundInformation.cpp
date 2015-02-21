@@ -1,8 +1,6 @@
 #include "SoundInformation.h"
-#include <new>
-#include <cstring>
+
 #include <iostream>
-#include <fstream>
 using namespace std;
 
 /*******************************************************************
@@ -29,7 +27,8 @@ SoundInformation::SoundInformation(long  sampleRate,
                                    short numChannels,
                                    long  samplesPerChannel)
 {
-	try{
+	try
+	{
 		this->m_pdSample = new double [samplesPerChannel*numChannels];
 	}
 	catch(bad_alloc err){
@@ -54,7 +53,8 @@ SoundInformation::SoundInformation(const SoundInformation &ob)
 	this->m_lSampleRate = ob.getSampleRate();
 	this->m_shBitsPerSample = ob.m_shBitsPerSample;
 
-	if(ob.getNumSamples() != getNumSamples()){
+	if(ob.getNumSamples() != this->getNumSamples())
+	{
 		this->m_lSamplesPerChannel = ob.m_lSamplesPerChannel;
 		this->m_shNumChannels = ob.m_shNumChannels;
 		try
@@ -95,23 +95,22 @@ SoundInformation::SoundInformation(const SoundInformation &ob)
 **************************************************************************************************/
 void SoundInformation::setSampleRate(long sampleRate)
 {
-	double				data,delta;
-	long				samplesPerChannel;
-	SoundInformation	temp;
+	double data;
 	
-	if(sampleRate == getSampleRate()) return;
+	if(sampleRate == this->getSampleRate()) return;
 	
-	temp = *this;
+	SoundInformation temp = *this;
+	double delta = (double)this->getSampleRate()/sampleRate;
+	
+	long samplesPerChannel = this->getSamplesPerChannel() / delta;
+	this->setSamplesPerChannel(samplesPerChannel);
 
-	delta = (double)getSampleRate()/sampleRate;
-	
-	samplesPerChannel = getSamplesPerChannel() / delta;
-	setSamplesPerChannel(samplesPerChannel);
-
-	for(short channel=0;channel<getNumChannels();channel++){
-		for(long index=0;index<getSamplesPerChannel();index++){
-			data = temp.interpolation(index*delta,channel);
-			writeSampleIntoMemory(data,index,channel);
+	for(short channel=0;channel<this->getNumChannels();channel++)
+	{
+		for(long index=0;index<this->getSamplesPerChannel();index++)
+		{
+			data = temp.interpolation(index*delta, channel);
+			this->writeSampleIntoMemory(data, index, channel);
 		}
 	}
 
@@ -169,17 +168,14 @@ void SoundInformation::setBitsPerSample(short bitsPerSample)
 ****************************************************************************/
 void SoundInformation::setNumChannels(short numChannels)
 {
-	long				numSamples;
-	double				data;
-	short				lessChannel;
-	SoundInformation	temp;
+	double data;
+	short lessChannel;
 	
-	if(numChannels == getNumChannels()) return;
+	if(numChannels == this->getNumChannels()) return;
 	
-	temp = *this;
-	
+	SoundInformation temp = *this;
 	this->m_shNumChannels = numChannels;
-	numSamples = this->getNumSamples();
+	long numSamples = this->getNumSamples();
 	
 	try
 	{
@@ -193,14 +189,20 @@ void SoundInformation::setNumChannels(short numChannels)
 	memset(this->m_pdSample, 0, numSamples*sizeof(double));
 	
 	if(temp.getNumChannels() < this->getNumChannels())
+	{
 		lessChannel = temp.getNumChannels();
+	}
 	else
+	{
 		lessChannel = this->getNumChannels();
+	}
 		
-	for(long index=0;index<getSamplesPerChannel();index++){
-		for(short channel=0;channel<lessChannel;channel++){
+	for(long index=0;index<this->getSamplesPerChannel();index++)
+	{
+		for(short channel=0;channel<lessChannel;channel++)
+		{
 			data = temp.readSampleFromMemory(index,channel);
-			writeSampleIntoMemory(data,index,channel);
+			this->writeSampleIntoMemory(data,index,channel);
 		}
 	}
 }
@@ -231,20 +233,23 @@ void SoundInformation::setNumChannels(short numChannels)
 *************************************************************************/
 void SoundInformation::setSamplesPerChannel(long samplesPerChannel)
 {
-	SoundInformation temp;
-	long oldNumSamples,newNumSamples,lessNumSamples;
 	
-	if(samplesPerChannel == getSamplesPerChannel()) return;
+	if(samplesPerChannel == this->getSamplesPerChannel()) return;
 	
-	temp = *this;
+	SoundInformation temp = *this;
 	
-	oldNumSamples = this->getNumSamples();
+	long oldNumSamples = this->getNumSamples();
 	this->m_lSamplesPerChannel = samplesPerChannel;
-	newNumSamples = this->getNumSamples();
+	long newNumSamples = this->getNumSamples();
+	long lessNumSamples;
 	if(oldNumSamples < newNumSamples)
+	{
 		lessNumSamples = oldNumSamples;
+	}
 	else
+	{
 		lessNumSamples = newNumSamples;
+	}
 
 	try
 	{
@@ -311,16 +316,17 @@ short SoundInformation::getBytesPerSample() const
 ****************************************************************************************/
 double SoundInformation::readSampleFromMemory(long num,short channel)  const
 {
-	long index;
-	short numChan;
 	
-	numChan = this->getNumChannels();
-	index = numChan*num + channel;
+	short numChan = this->getNumChannels();
+	long index = numChan*num + channel;
+	double sample = 0.0;
 	
-	if(index < getNumSamples())
-		return this->m_pdSample[index];
-	else
-		return 0.0;
+	if(index < this->getNumSamples())
+	{
+		sample = this->m_pdSample[index];
+	}
+
+	return sample;
 }
 
 
@@ -345,15 +351,13 @@ double SoundInformation::readSampleFromMemory(long num,short channel)  const
 ****************************************************************************************/
 void SoundInformation::writeSampleIntoMemory(double sample,long num,short channel)
 {
-	long index;
-	short numChan;
-	
-	numChan = this->getNumChannels();
-	
-	index = numChan*num + channel;
+	short numChan = this->getNumChannels();
+	long index = numChan*num + channel;
 
 	if(index < getNumSamples())
+	{
 		this->m_pdSample[index] = sample;
+	}
 }
 
 
@@ -380,10 +384,10 @@ void SoundInformation::writeSampleIntoMemory(double sample,long num,short channe
 *******************************************************************************************************/
 const SoundInformation &SoundInformation::operator=(const SoundInformation &right)
 {
-	
 	if(this == &right) return *this;
 	
-	if(right.getNumSamples() != getNumSamples()){
+	if(right.getNumSamples() != getNumSamples())
+	{
 		delete [] this->m_pdSample;
 		this->m_lSamplesPerChannel = right.m_lSamplesPerChannel;
 		this->m_shNumChannels = right.m_shNumChannels;
@@ -404,40 +408,57 @@ const SoundInformation &SoundInformation::operator=(const SoundInformation &righ
 	return *this;
 }
 
-
+/********************************************
+ * +演算子のオーバーロード.
+ ********************************************/
 SoundInformation SoundInformation::operator+(const SoundInformation &ob)
 {
 	SoundInformation temp;
-	short numChan;
-	long numSamplesPerChan;
-	
-	if(getSampleRate() < ob.getSampleRate())
-		temp.setSampleRate(getSampleRate());
+	if(this->getSampleRate() < ob.getSampleRate())
+	{
+		temp.setSampleRate(this->getSampleRate());
+	}
 	else
+	{
 		temp.setSampleRate(ob.getSampleRate());
+	}
 
-	if(getSamplesPerChannel() < ob.getSamplesPerChannel())
-		temp.setSamplesPerChannel(getSamplesPerChannel());
+	if(this->getSamplesPerChannel() < ob.getSamplesPerChannel())
+	{
+		temp.setSamplesPerChannel(this->getSamplesPerChannel());
+	}
 	else
+	{
 		temp.setSamplesPerChannel(ob.getSamplesPerChannel());
+	}
 	
-	if(getNumChannels() < ob.getNumChannels())
+	if(this->getNumChannels() < ob.getNumChannels())
+	{
 		temp.setNumChannels(getNumChannels());
+	}
 	else
+	{
 		temp.setNumChannels(ob.getNumChannels());
+	}
 
 	if(getBitsPerSample() < ob.getBitsPerSample())
+	{
 		temp.setBitsPerSample(getBitsPerSample());
+	}
 	else
+	{
 		temp.setBitsPerSample(ob.getBitsPerSample());
+	}
 	
-	numSamplesPerChan = temp.getSamplesPerChannel();
-	numChan = temp.getNumChannels();
-	for(long index=0;index<numSamplesPerChan;index++){
-		for(short chan=0;chan<numChan;chan++){
+	long numSamplesPerChan = temp.getSamplesPerChannel();
+	short numChan = temp.getNumChannels();
+	for(long index=0;index<numSamplesPerChan;index++)
+	{
+		for(short chan=0;chan<numChan;chan++)
+		{
 			double data;
 			
-			data = readSampleFromMemory(index,chan) + ob.readSampleFromMemory(index,chan);
+			data = this->readSampleFromMemory(index,chan) + ob.readSampleFromMemory(index,chan);
 			temp.writeSampleIntoMemory(data,index,chan);
 		}
 	}
@@ -445,48 +466,69 @@ SoundInformation SoundInformation::operator+(const SoundInformation &ob)
 	return temp;
 }
 
-
+/**********************************************
+ * +=演算子のオーバーロード.
+ **********************************************/
 const SoundInformation &SoundInformation::operator+=(SoundInformation &ob)
 {
-	short numChan;
-	long numSamplesPerChan;
-	
-	if(getSampleRate() != ob.getSampleRate()){
-		if(getSampleRate() < ob.getSampleRate())
+	if(this->getSampleRate() != ob.getSampleRate())
+	{
+		if(this->getSampleRate() < ob.getSampleRate())
+		{
 			ob.setSampleRate(getSampleRate());
+		}
 		else
-			setSampleRate(ob.getSampleRate());
+		{
+			this->setSampleRate(ob.getSampleRate());
+		}
 	}
 	
-	if(getSamplesPerChannel() != ob.getSamplesPerChannel()){
-		if(getSamplesPerChannel() < ob.getSamplesPerChannel())
+	if(this->getSamplesPerChannel() != ob.getSamplesPerChannel())
+	{
+		if(this->getSamplesPerChannel() < ob.getSamplesPerChannel())
+		{
 			ob.setSamplesPerChannel(getSamplesPerChannel());
+		}
 		else
-			setSamplesPerChannel(ob.getSamplesPerChannel());
+		{
+			this->setSamplesPerChannel(ob.getSamplesPerChannel());
+		}
 	}
 	
-	if(getNumChannels() != ob.getNumChannels()){
-		if(getNumChannels() < ob.getNumChannels())
+	if(this->getNumChannels() != ob.getNumChannels())
+	{
+		if(this->getNumChannels() < ob.getNumChannels())
+		{
 			ob.setNumChannels(getNumChannels());
+		}
 		else
-			setNumChannels(ob.getNumChannels());
+		{
+			this->setNumChannels(ob.getNumChannels());
+		}
 	}
 	
-	if(getBitsPerSample() < ob.getBitsPerSample()){
-		if(getBitsPerSample() < ob.getBitsPerSample())
+	if(this->getBitsPerSample() < ob.getBitsPerSample())
+	{
+		if(this->getBitsPerSample() < ob.getBitsPerSample())
+		{
 			ob.setBitsPerSample(getBitsPerSample());
+		}
 		else
-			setBitsPerSample(ob.getBitsPerSample());
+		{
+			this->setBitsPerSample(ob.getBitsPerSample());
+		}
 	}
 	
-	numSamplesPerChan = getSamplesPerChannel();
-	numChan = getNumChannels();
-	for(long index=0;index<numSamplesPerChan;index++){
-		for(short chan=0;chan<numChan;chan++){
+	long numSamplesPerChan = this->getSamplesPerChannel();
+	short numChan = this->getNumChannels();
+	for(long index=0;index<numSamplesPerChan;index++)
+	{
+		for(short chan=0;chan<numChan;chan++)
+		{
 			double data;
 			
-			data = readSampleFromMemory(index,chan) + ob.readSampleFromMemory(index,chan);
-			writeSampleIntoMemory(data,index,chan);
+			data = this->readSampleFromMemory(index,chan) + ob.readSampleFromMemory(index,chan);
+			this->writeSampleIntoMemory(data,index,chan);
 		}
 	}
 
