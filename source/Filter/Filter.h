@@ -44,7 +44,7 @@ public:
 	/**
 	 * @brief	コンストラクタ.
 	 */
-    Filter()
+	Filter()
 	{
 		mSection = 0;
     
@@ -57,17 +57,17 @@ public:
 	/**
 	 * @brief	デストラクタ.
 	 */
-    virtual ~Filter(){ }
+	virtual ~Filter(){ }
     
 	/**
 	 * @brief	フィルタモードを設定.
 	 * @note	モードに関しては, FilterModeを参照.
 	 */
-    void selectFilterMode(FilterMode inKindFilter){ mKindFilter = inKindFilter; }
+	void selectFilterMode(FilterMode inKindFilter){ mKindFilter = inKindFilter; }
 	/**
 	 * @brief	フィルタモードを取得.
 	 */
-    FilterMode getFilterMode(){ return mKindFilter; }
+	FilterMode getFilterMode(){ return mKindFilter; }
     
 	/**
 	 * @brief	カットオフ周波数を設定.
@@ -76,7 +76,7 @@ public:
 	 * @note	このメンバ関数はモードがLowpassまたはHighpassフィルタのときに使用する.
 	 *			Bandpassの時には使えない.
 	 */
-    void setCutoffFreq(double inCutFreq);
+	void setCutoffFreq(double inCutFreq);
 
 	/**
 	 * @brief	カットオフ周波数を取得.
@@ -85,7 +85,7 @@ public:
 	 * @note	このメンバ関数はモードがLowpassまたはHighpassフィルタのときに使用する.
 	 *			Bandpassの時には使えない.
 	 */
-    double getCutoffFreq() const;
+	double getCutoffFreq() const;
     
 	/**
 	 * @brief	高い方と低い方のカットオフ周波数を設定.
@@ -95,7 +95,7 @@ public:
 	 * @note	このメンバ関数はモードがBandpassフィルタのときに使用する.
 	 *			Lowpass,Highpassの時には使えない
 	 */
-    void setCutoffFreq(double inLowCutFreq,double inHighCutFreq);
+	void setCutoffFreq(double inLowCutFreq,double inHighCutFreq);
 
 	/**
 	 * @brief	低い方のカットオフ周波数を取得.
@@ -104,7 +104,7 @@ public:
 	 * @note	このメンバ関数はモードがBandpassフィルタのときに使用する.
 	 *			Lowpass,Highpassの時には使えない.
 	 */
-    double getLowCutoffFreq() const;
+	double getLowCutoffFreq() const;
 
 	/**
 	 * @brief	高い方のカットオフ周波数を取得.
@@ -113,21 +113,21 @@ public:
 	 * @note	このメンバ関数はモードがBandpassフィルタのときに使用する.
 	 *			Lowpass,Highpassの時には使えない.
 	 */
-    double getHighCutoffFreq() const;
+	double getHighCutoffFreq() const;
     
 	/**
 	 * @brief	フィルタの次数を取得.
 	 * @param	なし.
 	 * @return	フィルタの次数.
 	 */
-    long getOrderNumber() const { return mOrderNumber; }
+	long getOrderNumber() const { return mOrderNumber; }
     
 	/**
 	 * @brief	フィルタを実行する.
 	 * @param	double sample	処理するサンプル値.
 	 * @return	フィルタを通したサンプル値.
 	 */
-    double passFilter(double sample);
+	double passFilter(double sample);
     
 protected:
 	/**
@@ -135,12 +135,12 @@ protected:
 	 * @param	long inOrder	フィルタの次数.
 	 * @return	なし.
 	 */
-    void setOrderNumber(long inOrder){ mOrderNumber = inOrder; }
+	void setOrderNumber(long inOrder){ mOrderNumber = inOrder; }
 
 	/**
 	 * @brief	ブロックダイアグラム.
 	 */
-    BlockDiagram *mSection;
+	BlockDiagram *mSection;
     
 private:
 	/**
@@ -148,17 +148,17 @@ private:
 	 * @param	double valSample	伝達関数に渡すサンプル値.
 	 * @return	伝達関数を通したサンプル値.
 	 */
-    double transferFunction(double valSample);
+	double transferFunction(double valSample);
     
 	/**
 	 * @brief	フィルタのモード.
 	 */
-    FilterMode mKindFilter;
+	FilterMode mKindFilter;
 
 	/**
 	 * @brief	フィルタの次数.
 	 */
-    long mOrderNumber;
+	long mOrderNumber;
 
 	/**
 	 * @brief	低い方のカットオフ周波数.
@@ -166,8 +166,8 @@ private:
 	 *			  ・kLowpass
 	 *			  ・kBandpass
 	 */
+	double mLowCutoffFreq;
 
-    double mLowCutoffFreq;
 	/**
 	 * @brief	高い方のカットオフ周波数.
 	 * @note	以下のフィルタモードで使用する.

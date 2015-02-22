@@ -18,7 +18,7 @@ public:
 	/**
 	 * @brief	コンストラクタ.
 	 */
-    BlockDiagram()
+	BlockDiagram()
 	{
 		this->setOrder(0);
 		this->mCoefficientA = 0;
@@ -28,7 +28,7 @@ public:
 	/**
 	 * @brief	コピーコンストラクタ.
 	 */
-    BlockDiagram(const BlockDiagram &copy)
+	BlockDiagram(const BlockDiagram &copy)
 	{
 		this->init(copy.getOrder(), copy.getCoefficientA(), copy.getCoefficientB());
 	}
@@ -36,7 +36,7 @@ public:
 	/**
 	 * @brief	デストラクタ.
 	 */
-    virtual ~BlockDiagram()
+	virtual ~BlockDiagram()
 	{
 		delete [] this->mCoefficientA;
 		delete [] this->mCoefficientB;
@@ -49,42 +49,42 @@ public:
 	 * @param	const double *b	ダイアグラムの係数.
 	 * @return	なし.
 	 */
-    void init(int order, const double *a, const double *b);
+	void init(int order, const double *a, const double *b);
     
 	/**
 	 * @brief	データをダイアグラムに注入.
 	 * @param	double sample	入力サンプル値.
 	 * @return	入力がダイアグラムを通り抜けた後のデータ.
 	 */
-    double inject(double sample);
+	double inject(double sample);
     
 	/**
 	 * @brief	次数の取得.
 	 * @param	なし.
 	 * @return	次数.
 	 */
-    int getOrder() const { return mOrder; }
+	int getOrder() const { return mOrder; }
 
 	/**
 	 * @brief	係数を取得.
 	 */
-    const double *getCoefficientA() const{ return mCoefficientA; }
+	const double *getCoefficientA() const{ return mCoefficientA; }
 
 	/**
 	 * @brief	係数を取得.
 	 */
-    const double *getCoefficientB() const{ return mCoefficientB; }
+	const double *getCoefficientB() const{ return mCoefficientB; }
 
 	/**
 	 * @brief	=演算子のオーバーロード.
 	 */
-    const BlockDiagram &operator=(const BlockDiagram &right);
+	const BlockDiagram &operator=(const BlockDiagram &right);
 private:
     
 	/**
 	 * @brief	以前のサンプル値を初期化.
 	 */
-    void initPreviousSample(int i_iNum)
+	void initPreviousSample(int i_iNum)
 	{
 		for(int a_iIndex=0; a_iIndex<=i_iNum; a_iIndex++)
 		{
@@ -95,7 +95,7 @@ private:
 	/**
 	 * @brief	以前のサンプル値を追加.
 	 */
-    void pushPreviousSample(double val)
+	void pushPreviousSample(double val)
 	{
 		this->mPreviousSample.push_front(val);
 	}
@@ -103,7 +103,7 @@ private:
 	/**
 	 * @brief	以前のサンプル値を押し出す.
 	 */
-    void popPreviousSample()
+	void popPreviousSample()
 	{
 		this->mPreviousSample.pop_back();
 	}
@@ -111,7 +111,7 @@ private:
 	/**
 	 * @brief	以前のサンプル値を取り出す.
 	 */
-    double getPreviousSample(int n)
+	double getPreviousSample(int n)
 	{
 		return this->mPreviousSample[n-1];
 	}
@@ -120,27 +120,27 @@ private:
 	 * @brief	以前のサンプル値.
 	 * @note	キューで実現する.
 	 */
-    deque< double > mPreviousSample;
+	deque< double > mPreviousSample;
 
 	/**
 	 * @brief	係数.
 	 */
-    double *mCoefficientA;
+	double *mCoefficientA;
 
 	/**
 	 * @brief	係数.
 	 */
-    double *mCoefficientB;
+	double *mCoefficientB;
     
 	/**
 	 * @brief	次数を設定.
 	 */
-    void setOrder(int order){ mOrder = order; }
+	void setOrder(int order){ mOrder = order; }
 
 	/**
 	 * @brief	次数.
 	 */
-    int mOrder;
+	int mOrder;
 };
 
 #endif

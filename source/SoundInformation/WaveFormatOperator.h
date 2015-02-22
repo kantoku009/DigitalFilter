@@ -43,7 +43,7 @@ public:
 	/**
 	 * @brief	コンストラクタ.
 	 */
-    WaveFormatOperator(long  sampleRate=44100,
+	WaveFormatOperator(long  sampleRate=44100,
                        short bitsPerSample=8,
                        short numChannels=1,
                        long  numSamples=44100)
@@ -58,21 +58,21 @@ public:
 	/**
 	 * @brief	デストラクタ.
 	 */
-    virtual ~WaveFormatOperator(){ }
+	virtual ~WaveFormatOperator(){ }
 
 	/**
 	 * @brief	WAVEファイルから読みこみ.
 	 * @param	const string i_strFilename
 	 * @return	成功/失敗.
 	 */
-    bool readWaveFile(const string i_strFileName);
+	bool readWaveFile(const string i_strFileName);
 
 	/**
 	 * @brief	WAVEファイルに書き込み.
 	 * @param	const string i_strFileName	ファイル名.
 	 * @return	成功/失敗.
 	 */
-    bool writeWaveFile(const string i_strFileName);
+	bool writeWaveFile(const string i_strFileName);
 
 private:
 	/**
@@ -108,21 +108,21 @@ private:
 	 * @param	ifstream& i_cFileStream	読み込みファイルストリーム.
 	 * @return	成功/失敗.
 	 */
-    bool readSample8FromFile(ifstream& i_cFileStream);
+	bool readSample8FromFile(ifstream& i_cFileStream);
 
 	/**
 	 * @brief	16bitで量子化されたファイルを読みこむ.
 	 * @param	ifstream& i_cFileStream	読み込みファイルストリーム.
 	 * @return	成功/失敗.
 	 */
-    bool readSample16FromFile(ifstream& i_cFileStream);
+	bool readSample16FromFile(ifstream& i_cFileStream);
 
 	/**
 	 * @brief	8bit,16bit以外で量子化されたファイルを読みこむ.
 	 * @param	ifstream& i_cFileStream	読み込みファイルストリーム.
 	 * @return	成功/失敗.
 	 */
-    bool readSampleOtherFromFile(ifstream& i_cFileStream);
+	bool readSampleOtherFromFile(ifstream& i_cFileStream);
 
 	/**
 	 * @brief	RIFF chunkをWAVEファイルへ書き込み.
@@ -157,56 +157,56 @@ private:
 	 * @param	ofstream& i_cFileStream	書き込みファイルストリーム.
 	 * @return	成功/失敗.
 	 */
-    bool writeSample8IntoFile(ofstream& i_cFileStream);
+	bool writeSample8IntoFile(ofstream& i_cFileStream);
 
 	/**
 	 * @brief	16bitで量子化されたファイルを書き込む.
 	 * @param	ofstream& i_cFileStream	書き込みファイルストリーム.
 	 * @return	成功/失敗.
 	 */
-    bool writeSample16IntoFile(ofstream& i_cFileStream);
+	bool writeSample16IntoFile(ofstream& i_cFileStream);
 
 	/**
 	 * @brief	8bit,16bit以外で量子化されたファイルを書き込む.
 	 * @param	ofstream&	i_cFileStream	書き込みファイルストリーム.
 	 * @return	成功/失敗.
 	 */
-    bool writeSampleOtherIntoFile(ofstream& i_cFileStream);
+	bool writeSampleOtherIntoFile(ofstream& i_cFileStream);
 
 	/**
 	 * @brief	bit shiftをする.
 	 * @param	short i_shBitShift
 	 * @return	bit shiftした結果.
 	 */
-    long bitShift(short i_shNumShift);
+	long bitShift(short i_shNumShift);
     
 	/**
 	 * @brief	Big-endianか否かを調べる.
 	 * @param	なし.
 	 * @return	true:Big-endian / false:Little-endian
 	 */
-    bool isBigEndian();
+	bool isBigEndian();
     
 	/**
 	 * @brief	long型 Little-endian -> Big-endian を変換する.
 	 * @param	変換するデータ.
 	 * @return	変換した結果.
 	 */
-    long swapLong(char* i_pbyData);
+	long swapLong(char* i_pbyData);
 
 	/**
 	 * @brief	short型 Little-endian -> Big-endian を変換する.
 	 * @param	変換するデータ.
 	 * @return	変換した結果.
 	 */
-    short swapShort(char* i_pbyData);
+	short swapShort(char* i_pbyData);
 
 	/**
 	 * @brief	int型 Little-endian -> Big-endian を変換する.
 	 * @param	変換するデータ.
 	 * @return	変換した結果.
 	 */
-    int swapInt(char* i_pbyData);
+	int swapInt(char* i_pbyData);
 
 	/**
 	 * @brief	4ByteDataをlong型に変換する.
@@ -237,7 +237,7 @@ private:
 	 * @return	なし.
 	 */
 	void convertShortTo2ByteData(short i_shInteger, char* i_pbyData);
-	
+
 	/**
 	 * @brief	TChunkを表示.
 	 * @param	char* i_pbyMessage	表示したいメッセージ.
