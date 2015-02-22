@@ -16,7 +16,7 @@ C++言語にてデジタルフィルタを作成した。
 フィルタの設定は以下のようにした。
 
 - カットオフ周波数： 400[Hz]
-- -48[db/oct]
+- 1オクターブの減衰率： -48[db/oct]
 
 ![Butterworth Low-pass -48dB/oct](./img/Butterworth_lowpass_48dB.png)
 
@@ -24,7 +24,7 @@ C++言語にてデジタルフィルタを作成した。
 フィルタの設定は以下のようにした。
 
 - カットオフ周波数： 2000[Hz]
-- -48[db/oct]
+- 1オクターブの減衰率： -48[db/oct]
 
 ![Butterworth High-pass -48dB/oct](./img/Butterworth_highpass_48dB.png)
 
@@ -37,7 +37,7 @@ C++言語にてデジタルフィルタを作成した。
 フィルタの設定は以下のようにした。
 
 - カットオフ周波数： 400[Hz]
-- -48[db/oct]
+- 1オクターブの減衰率： -48[db/oct]
 
 ![Chebycheff Low-pass -48dB/oct](./img/Chebycheff_lowpass_48dB.png)
 
@@ -45,7 +45,7 @@ C++言語にてデジタルフィルタを作成した。
 フィルタの設定は以下のようにした。
 
 - カットオフ周波数： 2000[Hz]
-- -48[db/oct]
+- 1オクターブの減衰率： -48[db/oct]
 
 ![Chebycheff High-pass -48dB/oct](./img/Chebycheff_highpass_48dB.png)
 
