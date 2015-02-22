@@ -1,0 +1,194 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_JP_AUTHOR	HIGASHI Hirohito	/Twitter: @h_east/
+!_TAG_PROGRAM_JP_URL	http://hp.vector.co.jp/authors/VA025040/	//
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6b1J2	//
+BlockDiagram	Filter/BlockDiagram.h	/^    BlockDiagram()$/;"	f	class:BlockDiagram
+BlockDiagram	Filter/BlockDiagram.h	/^    BlockDiagram(const BlockDiagram &copy)$/;"	f	class:BlockDiagram
+BlockDiagram	Filter/BlockDiagram.h	/^class BlockDiagram$/;"	c
+Butterworth	Filter/Butterworth.h	/^    Butterworth()$/;"	f	class:Butterworth
+Butterworth	Filter/Butterworth.h	/^class Butterworth : public Filter$/;"	c
+CC	Makefile	/^CC = g++$/;"	m
+CC	test_source/Makefile	/^CC = g++$/;"	m
+Chebycheff	Filter/Chebycheff.h	/^    Chebycheff()$/;"	f	class:Chebycheff
+Chebycheff	Filter/Chebycheff.h	/^class Chebycheff : public Filter{$/;"	c
+Filter	Filter/Filter.h	/^    Filter()$/;"	f	class:Filter
+Filter	Filter/Filter.h	/^class Filter$/;"	c
+FilterError	Filter/Filter.h	/^    FilterError(char *message)$/;"	f	class:FilterError
+FilterError	Filter/Filter.h	/^class FilterError$/;"	c
+FilterMode	Filter/Filter.h	/^}FilterMode;$/;"	t	typeref:enum:__anon1
+LDFLAGS	Makefile	/^LDFLAGS = -Wall -O2$/;"	m
+LDFLAGS	test_source/Makefile	/^LDFLAGS = -Wall -O2$/;"	m
+LIBS	Makefile	/^LIBS = $/;"	m
+LIBS	test_source/Makefile	/^LIBS = $/;"	m
+OUTFILE_BUTTERWORTH	Makefile	/^OUTFILE_BUTTERWORTH = .\/butterworth_filter$/;"	m
+OUTFILE_CHEBYCHEFF	Makefile	/^OUTFILE_CHEBYCHEFF = .\/chebycheff_filter$/;"	m
+OUTFILE_TEST_WAVEFORMAT_OPERATOR	test_source/Makefile	/^OUTFILE_TEST_WAVEFORMAT_OPERATOR = .\/test_WaveFormatOperator$/;"	m
+PI	Filter/Butterworth.h	/^#define PI /;"	d
+PI	Filter/Chebycheff.h	/^#define PI /;"	d
+SRCS_BUTTERWORTH	Makefile	/^SRCS_BUTTERWORTH = .\/main_Butterworth.cpp .\/Filter\/Butterworth.cpp .\/Filter\/Filter.cpp .\/Filter\/BlockDiagram.cpp .\/SoundInformation\/SoundInformation.cpp .\/SoundInformation\/WaveFormatOperator.cpp$/;"	m
+SRCS_CHEBYCHEFF	Makefile	/^SRCS_CHEBYCHEFF = .\/main_Chebycheff.cpp .\/Filter\/Chebycheff.cpp .\/Filter\/Filter.cpp .\/Filter\/BlockDiagram.cpp .\/SoundInformation\/SoundInformation.cpp .\/SoundInformation\/WaveFormatOperator.cpp$/;"	m
+SRCS_TEST_WAVEFORMAT_OPERATOR	test_source/Makefile	/^SRCS_TEST_WAVEFORMAT_OPERATOR = .\/test_WaveFormatOperator.cpp ..\/SoundInformation\/SoundInformation.cpp ..\/SoundInformation\/WaveFormatOperator.cpp$/;"	m
+SoundInformation	SoundInformation/SoundInformation.cpp	/^SoundInformation::SoundInformation(const SoundInformation &ob)$/;"	f	class:SoundInformation
+SoundInformation	SoundInformation/SoundInformation.cpp	/^SoundInformation::SoundInformation(long  sampleRate,$/;"	f	class:SoundInformation
+SoundInformation	SoundInformation/SoundInformation.h	/^class SoundInformation$/;"	c
+TChunk	SoundInformation/WaveFormatOperator.h	/^typedef struct TChunk$/;"	s
+TChunk	SoundInformation/WaveFormatOperator.h	/^}TChunk;$/;"	t	typeref:struct:TChunk
+TFmtChunk	SoundInformation/WaveFormatOperator.h	/^typedef struct TFmtChunk$/;"	s
+TFmtChunk	SoundInformation/WaveFormatOperator.h	/^}TFmtChunk;$/;"	t	typeref:struct:TFmtChunk
+WaveFormatError	SoundInformation/WaveFormatOperator.cpp	/^    WaveFormatError(char *message)$/;"	f	class:WaveFormatError
+WaveFormatError	SoundInformation/WaveFormatOperator.cpp	/^class WaveFormatError$/;"	c	file:
+WaveFormatOperator	SoundInformation/WaveFormatOperator.h	/^    WaveFormatOperator(long  sampleRate=44100,$/;"	f	class:WaveFormatOperator
+WaveFormatOperator	SoundInformation/WaveFormatOperator.h	/^class WaveFormatOperator : public SoundInformation$/;"	c
+__BLOCK_DIAGRAM_H__	Filter/BlockDiagram.h	/^#define __BLOCK_DIAGRAM_H__$/;"	d
+__BUTTERWORTH_H__	Filter/Butterworth.h	/^#define __BUTTERWORTH_H__$/;"	d
+__CHEBYCHEFF_H__	Filter/Chebycheff.h	/^#define __CHEBYCHEFF_H__$/;"	d
+__FILTER_H__	Filter/Filter.h	/^#define __FILTER_H__$/;"	d
+__SOUND_INFORMATION_H__	SoundInformation/SoundInformation.h	/^#define __SOUND_INFORMATION_H__$/;"	d
+__WAVE_FORMAT_OPERATOR_H__	SoundInformation/WaveFormatOperator.h	/^#define __WAVE_FORMAT_OPERATOR_H__$/;"	d
+acosh	Filter/Chebycheff.h	/^    double acosh(double theta){ return log(theta+sqrt((theta+1)*(theta-1))); }$/;"	f	class:Chebycheff
+bitShift	SoundInformation/WaveFormatOperator.cpp	/^long WaveFormatOperator::bitShift(short i_shBitShift)$/;"	f	class:WaveFormatOperator
+convert2ByteDataToShort	SoundInformation/WaveFormatOperator.cpp	/^short WaveFormatOperator::convert2ByteDataToShort(char* i_pbyData)$/;"	f	class:WaveFormatOperator
+convert4ByteDataToLong	SoundInformation/WaveFormatOperator.cpp	/^long WaveFormatOperator::convert4ByteDataToLong(char* i_pbyData)$/;"	f	class:WaveFormatOperator
+convertLongTo4ByteData	SoundInformation/WaveFormatOperator.cpp	/^void WaveFormatOperator::convertLongTo4ByteData(long i_lInteger, char* i_pbyData)$/;"	f	class:WaveFormatOperator
+convertShortTo2ByteData	SoundInformation/WaveFormatOperator.cpp	/^void WaveFormatOperator::convertShortTo2ByteData(short i_shInteger, char* i_pbyData)$/;"	f	class:WaveFormatOperator
+decisionPrototype	Filter/Butterworth.cpp	/^void Butterworth::decisionPrototype(double inPassFreq,$/;"	f	class:Butterworth
+decisionPrototype	Filter/Chebycheff.cpp	/^void Chebycheff::decisionPrototype( double inPassFreq,$/;"	f	class:Chebycheff
+digital2analog	Filter/Butterworth.h	/^    double digital2analog(double inOmega){ return 2*tan(inOmega\/2); }$/;"	f	class:Butterworth
+digital2analog	Filter/Chebycheff.h	/^    double digital2analog(double inOmega){ return 2*tan(inOmega\/2); }$/;"	f	class:Chebycheff
+getAlpha	Filter/Butterworth.cpp	/^double Butterworth::getAlpha(long i)$/;"	f	class:Butterworth
+getAlpha	Filter/Chebycheff.cpp	/^double Chebycheff::getAlpha(long i)$/;"	f	class:Chebycheff
+getBeta	Filter/Chebycheff.cpp	/^double Chebycheff::getBeta(long i)$/;"	f	class:Chebycheff
+getBitsPerSample	SoundInformation/SoundInformation.h	/^	short	getBitsPerSample() const { return this->m_shBitsPerSample; }$/;"	f	class:SoundInformation
+getBlockAlign	SoundInformation/SoundInformation.h	/^	short	getBlockAlign() const { return this->m_shNumChannels*this->getBytesPerSample(); }$/;"	f	class:SoundInformation
+getBytesPerSample	SoundInformation/SoundInformation.cpp	/^short SoundInformation::getBytesPerSample() const $/;"	f	class:SoundInformation
+getCoefficientA	Filter/BlockDiagram.h	/^    const double *getCoefficientA() const{ return mCoefficientA; }$/;"	f	class:BlockDiagram
+getCoefficientB	Filter/BlockDiagram.h	/^    const double *getCoefficientB() const{ return mCoefficientB; }$/;"	f	class:BlockDiagram
+getCutoffFreq	Filter/Filter.cpp	/^double Filter::getCutoffFreq() const$/;"	f	class:Filter
+getFilterMode	Filter/Filter.h	/^    FilterMode getFilterMode(){ return mKindFilter; }$/;"	f	class:Filter
+getHighBeta	Filter/Butterworth.cpp	/^double Butterworth::getHighBeta(double inCutFreq)$/;"	f	class:Butterworth
+getHighCutoffFreq	Filter/Filter.cpp	/^double Filter::getHighCutoffFreq() const$/;"	f	class:Filter
+getHighGamma	Filter/Chebycheff.cpp	/^double Chebycheff::getHighGamma(double inCutFreq)$/;"	f	class:Chebycheff
+getLowBeta	Filter/Butterworth.cpp	/^double Butterworth::getLowBeta(double inCutFreq)$/;"	f	class:Butterworth
+getLowCutoffFreq	Filter/Filter.cpp	/^double Filter::getLowCutoffFreq() const$/;"	f	class:Filter
+getLowGamma	Filter/Chebycheff.cpp	/^double Chebycheff::getLowGamma(double inCutFreq)$/;"	f	class:Chebycheff
+getNumChannels	SoundInformation/SoundInformation.h	/^	short	getNumChannels() const { return this->m_shNumChannels; }$/;"	f	class:SoundInformation
+getNumSamples	SoundInformation/SoundInformation.h	/^	long	getNumSamples() const { return this->m_lSamplesPerChannel*this->m_shNumChannels; }$/;"	f	class:SoundInformation
+getOrder	Filter/BlockDiagram.h	/^    int getOrder() const { return mOrder; }$/;"	f	class:BlockDiagram
+getOrderNumber	Filter/Filter.h	/^    long getOrderNumber() const { return mOrderNumber; }$/;"	f	class:Filter
+getPreviousSample	Filter/BlockDiagram.h	/^    double getPreviousSample(int n)$/;"	f	class:BlockDiagram
+getPrototypeCutFreq	Filter/Butterworth.h	/^    double getPrototypeCutFreq() const{ return mPrototypeCutFreq; }$/;"	f	class:Butterworth
+getPrototypeCutFreq	Filter/Chebycheff.h	/^    double getPrototypeCutFreq(){ return mPrototypeCutFreq; }$/;"	f	class:Chebycheff
+getPrototypePassFreq	Filter/Chebycheff.h	/^    double getPrototypePassFreq(){ return mPrototypePassFreq; }$/;"	f	class:Chebycheff
+getSampleRate	Filter/Butterworth.h	/^    double getSampleRate() const { return mSampleRate; }$/;"	f	class:Butterworth
+getSampleRate	Filter/Chebycheff.h	/^	double getSampleRate(){ return mSampleRate; }$/;"	f	class:Chebycheff
+getSampleRate	SoundInformation/SoundInformation.h	/^	long	getSampleRate() const { return this->m_lSampleRate; }$/;"	f	class:SoundInformation
+getSamplesPerChannel	SoundInformation/SoundInformation.h	/^	long	getSamplesPerChannel() const { return this->m_lSamplesPerChannel; }$/;"	f	class:SoundInformation
+id	SoundInformation/WaveFormatOperator.h	/^    char id[4];$/;"	m	struct:TChunk
+init	Filter/BlockDiagram.cpp	/^void BlockDiagram::init(int order,const double *a,const double *b)$/;"	f	class:BlockDiagram
+initBandTransferFunction	Filter/Butterworth.cpp	/^BlockDiagram *Butterworth::initBandTransferFunction$/;"	f	class:Butterworth
+initBandTransferFunction	Filter/Chebycheff.cpp	/^BlockDiagram *Chebycheff::initBandTransferFunction(double inLowCutFreq,$/;"	f	class:Chebycheff
+initHighTransferFunction	Filter/Butterworth.cpp	/^BlockDiagram *Butterworth::initHighTransferFunction(double inCutFreq)$/;"	f	class:Butterworth
+initHighTransferFunction	Filter/Chebycheff.cpp	/^BlockDiagram *Chebycheff::initHighTransferFunction(double inCutFreq)$/;"	f	class:Chebycheff
+initLowTransferFunction	Filter/Butterworth.cpp	/^BlockDiagram *Butterworth::initLowTransferFunction(double inCutFreq)$/;"	f	class:Butterworth
+initLowTransferFunction	Filter/Chebycheff.cpp	/^BlockDiagram *Chebycheff::initLowTransferFunction(double inCutFreq)$/;"	f	class:Chebycheff
+initPreviousSample	Filter/BlockDiagram.h	/^    void initPreviousSample(int i_iNum)$/;"	f	class:BlockDiagram
+initTransferFunction	Filter/Butterworth.cpp	/^void Butterworth::initTransferFunction()$/;"	f	class:Butterworth
+initTransferFunction	Filter/Chebycheff.cpp	/^void Chebycheff::initTransferFunction()$/;"	f	class:Chebycheff
+inject	Filter/BlockDiagram.cpp	/^double BlockDiagram::inject(double sample)$/;"	f	class:BlockDiagram
+interpolation	SoundInformation/SoundInformation.cpp	/^double SoundInformation::interpolation(double i_dThreshold, short i_shChannel)$/;"	f	class:SoundInformation
+isBigEndian	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::isBigEndian()$/;"	f	class:WaveFormatOperator
+kBandpass	Filter/Filter.h	/^	kBandpass,	\/\/ Band pass filter.$/;"	e	enum:__anon1
+kHighpass	Filter/Filter.h	/^	kHighpass,	\/\/ High pass filter.$/;"	e	enum:__anon1
+kLowpass	Filter/Filter.h	/^	kLowpass,	\/\/ Low  pass filter.$/;"	e	enum:__anon1
+mAlpha0	Filter/Chebycheff.h	/^    double mAlpha0;$/;"	m	class:Chebycheff
+mCoefficientA	Filter/BlockDiagram.h	/^    double *mCoefficientA;$/;"	m	class:BlockDiagram
+mCoefficientB	Filter/BlockDiagram.h	/^    double *mCoefficientB;$/;"	m	class:BlockDiagram
+mEpsilon	Filter/Chebycheff.h	/^    double mEpsilon;$/;"	m	class:Chebycheff
+mHighCutoffFreq	Filter/Filter.h	/^	double mHighCutoffFreq;$/;"	m	class:Filter
+mKindFilter	Filter/Filter.h	/^    FilterMode mKindFilter;$/;"	m	class:Filter
+mLowCutoffFreq	Filter/Filter.h	/^    double mLowCutoffFreq;$/;"	m	class:Filter
+mMessage	Filter/Filter.h	/^    char *mMessage;$/;"	m	class:FilterError
+mMessage	SoundInformation/WaveFormatOperator.cpp	/^    char* mMessage;$/;"	m	class:WaveFormatError	file:
+mOrder	Filter/BlockDiagram.h	/^    int mOrder;$/;"	m	class:BlockDiagram
+mOrderNumber	Filter/Filter.h	/^    long mOrderNumber;$/;"	m	class:Filter
+mPreviousSample	Filter/BlockDiagram.h	/^    deque< double > mPreviousSample;$/;"	m	class:BlockDiagram
+mPrototypeCutFreq	Filter/Butterworth.h	/^    double mPrototypeCutFreq;$/;"	m	class:Butterworth
+mPrototypeCutFreq	Filter/Chebycheff.h	/^    double mPrototypeCutFreq;$/;"	m	class:Chebycheff
+mPrototypePassFreq	Filter/Chebycheff.h	/^    double mPrototypePassFreq;$/;"	m	class:Chebycheff
+mSampleRate	Filter/Butterworth.h	/^    double mSampleRate;$/;"	m	class:Butterworth
+mSampleRate	Filter/Chebycheff.h	/^    double mSampleRate;$/;"	m	class:Chebycheff
+mSection	Filter/Filter.h	/^    BlockDiagram *mSection;$/;"	m	class:Filter
+m_lSampleRate	SoundInformation/SoundInformation.h	/^	long    m_lSampleRate;$/;"	m	class:SoundInformation
+m_lSamplesPerChannel	SoundInformation/SoundInformation.h	/^	long    m_lSamplesPerChannel;$/;"	m	class:SoundInformation
+m_pdSample	SoundInformation/SoundInformation.h	/^	double  *m_pdSample;$/;"	m	class:SoundInformation
+m_shBitsPerSample	SoundInformation/SoundInformation.h	/^	short   m_shBitsPerSample;$/;"	m	class:SoundInformation
+m_shNumChannels	SoundInformation/SoundInformation.h	/^	short   m_shNumChannels;$/;"	m	class:SoundInformation
+main	main_Butterworth.cpp	/^int main(int argc, char* argv[])$/;"	f
+main	main_Chebycheff.cpp	/^int main(int argc, char* argv[])$/;"	f
+main	test_source/test_WaveFormatOperator.cpp	/^int main(int argc, char* argv[])$/;"	f
+nAvgBytesPerSec	SoundInformation/WaveFormatOperator.h	/^    char nAvgBytesPerSec[4];$/;"	m	struct:TFmtChunk
+nBlockAlign	SoundInformation/WaveFormatOperator.h	/^    char nBlockAlign[2];$/;"	m	struct:TFmtChunk
+nChannels	SoundInformation/WaveFormatOperator.h	/^    char nChannels[2];$/;"	m	struct:TFmtChunk
+nSamplesPerSec	SoundInformation/WaveFormatOperator.h	/^    char nSamplesPerSec[4];$/;"	m	struct:TFmtChunk
+operator +	SoundInformation/SoundInformation.cpp	/^SoundInformation SoundInformation::operator+(const SoundInformation &ob)$/;"	f	class:SoundInformation
+operator +=	SoundInformation/SoundInformation.cpp	/^const SoundInformation &SoundInformation::operator+=(SoundInformation &ob)$/;"	f	class:SoundInformation
+operator =	Filter/BlockDiagram.cpp	/^const BlockDiagram &BlockDiagram::operator=(const BlockDiagram &right)$/;"	f	class:BlockDiagram
+operator =	SoundInformation/SoundInformation.cpp	/^const SoundInformation &SoundInformation::operator=(const SoundInformation &right)$/;"	f	class:SoundInformation
+passFilter	Filter/Filter.cpp	/^double Filter::passFilter(double sample)$/;"	f	class:Filter
+popPreviousSample	Filter/BlockDiagram.h	/^    void popPreviousSample()$/;"	f	class:BlockDiagram
+printCharacteristic	Filter/Butterworth.cpp	/^void Butterworth::printCharacteristic(char *fNameAmp,char *fNamePhase)$/;"	f	class:Butterworth
+printCharacteristic	Filter/Chebycheff.cpp	/^void Chebycheff::printCharacteristic(char *fNameAmp,char *fNamePhase)$/;"	f	class:Chebycheff
+printChunk	SoundInformation/WaveFormatOperator.cpp	/^void WaveFormatOperator::printChunk(char* i_pbyMessage, TChunk& i_stChunk)$/;"	f	class:WaveFormatOperator
+printFmtChunk	SoundInformation/WaveFormatOperator.cpp	/^void WaveFormatOperator::printFmtChunk(char* i_pbyMessage, TFmtChunk& i_stFmtChunk)$/;"	f	class:WaveFormatOperator
+pushPreviousSample	Filter/BlockDiagram.h	/^    void pushPreviousSample(double val)$/;"	f	class:BlockDiagram
+readFmtChunk	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::readFmtChunk(ifstream& i_cFileStream, TChunk& i_stChunk)$/;"	f	class:WaveFormatOperator
+readRIFFChunk	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::readRIFFChunk(ifstream& i_cFileStream)$/;"	f	class:WaveFormatOperator
+readSample	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::readSample(ifstream& i_cFileStream, TChunk& i_stChunk)$/;"	f	class:WaveFormatOperator
+readSample16FromFile	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::readSample16FromFile(ifstream& i_cFileStream)$/;"	f	class:WaveFormatOperator
+readSample8FromFile	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::readSample8FromFile(ifstream& i_cFileStream)$/;"	f	class:WaveFormatOperator
+readSampleFromMemory	SoundInformation/SoundInformation.cpp	/^double SoundInformation::readSampleFromMemory(long num,short channel)  const$/;"	f	class:SoundInformation
+readSampleOtherFromFile	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::readSampleOtherFromFile(ifstream& i_cFileStream)$/;"	f	class:WaveFormatOperator
+readWAVEChunk	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::readWAVEChunk(ifstream& i_cFileStream)$/;"	f	class:WaveFormatOperator
+readWaveFile	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::readWaveFile(const string i_strFileName)$/;"	f	class:WaveFormatOperator
+runFilter	main_Butterworth.cpp	/^bool runFilter(Filter& i_cFilter, SoundInformation& i_cSoundInformation, long i_lBegin, long i_lEnd, short i_shChannel )$/;"	f
+runFilter	main_Chebycheff.cpp	/^bool runFilter(Filter& i_cFilter, SoundInformation& i_cSoundInformation, long i_lBegin, long i_lEnd, short i_shChannel )$/;"	f
+selectFilterMode	Filter/Filter.h	/^    void selectFilterMode(FilterMode inKindFilter){ mKindFilter = inKindFilter; }$/;"	f	class:Filter
+setBitsPerSample	SoundInformation/SoundInformation.cpp	/^void SoundInformation::setBitsPerSample(short bitsPerSample)$/;"	f	class:SoundInformation
+setCutoffFreq	Filter/Filter.cpp	/^void Filter::setCutoffFreq(double inCutFreq)$/;"	f	class:Filter
+setCutoffFreq	Filter/Filter.cpp	/^void Filter::setCutoffFreq(double inLowCutFreq,double inHighCutFreq)$/;"	f	class:Filter
+setNumChannels	SoundInformation/SoundInformation.cpp	/^void SoundInformation::setNumChannels(short numChannels)$/;"	f	class:SoundInformation
+setOrder	Filter/BlockDiagram.h	/^    void setOrder(int order){ mOrder = order; }$/;"	f	class:BlockDiagram
+setOrderNumber	Filter/Filter.h	/^    void setOrderNumber(long inOrder){ mOrderNumber = inOrder; }$/;"	f	class:Filter
+setSampleRate	Filter/Butterworth.h	/^    void setSampleRate(double inSampleRate){ mSampleRate = inSampleRate; }$/;"	f	class:Butterworth
+setSampleRate	Filter/Chebycheff.h	/^    void setSampleRate(double inSampleRate){ mSampleRate = inSampleRate; }$/;"	f	class:Chebycheff
+setSampleRate	SoundInformation/SoundInformation.cpp	/^void SoundInformation::setSampleRate(long sampleRate)$/;"	f	class:SoundInformation
+setSamplesPerChannel	SoundInformation/SoundInformation.cpp	/^void SoundInformation::setSamplesPerChannel(long samplesPerChannel)$/;"	f	class:SoundInformation
+sinc	SoundInformation/SoundInformation.cpp	/^double SoundInformation::sinc(double i_dSample)$/;"	f	class:SoundInformation
+size	SoundInformation/WaveFormatOperator.h	/^	char size[4];$/;"	m	struct:TChunk
+swapInt	SoundInformation/WaveFormatOperator.cpp	/^int WaveFormatOperator::swapInt(char* i_pbyData)$/;"	f	class:WaveFormatOperator
+swapLong	SoundInformation/WaveFormatOperator.cpp	/^long WaveFormatOperator::swapLong(char* i_pbyData)$/;"	f	class:WaveFormatOperator
+swapShort	SoundInformation/WaveFormatOperator.cpp	/^short WaveFormatOperator::swapShort(char* i_pbyData)$/;"	f	class:WaveFormatOperator
+transferFunction	Filter/Filter.cpp	/^double Filter::transferFunction(double valSample)$/;"	f	class:Filter
+wBitsPerSample	SoundInformation/WaveFormatOperator.h	/^    char wBitsPerSample[2];$/;"	m	struct:TFmtChunk
+wFormatTag	SoundInformation/WaveFormatOperator.h	/^    char wFormatTag[2];$/;"	m	struct:TFmtChunk
+what	Filter/Filter.h	/^    const char *what() const { return mMessage; }$/;"	f	class:FilterError
+what	SoundInformation/WaveFormatOperator.cpp	/^    const char* what() const { return mMessage; }$/;"	f	class:WaveFormatError
+writeFmtChunk	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::writeFmtChunk(ofstream& i_cFileStream)$/;"	f	class:WaveFormatOperator
+writeRIFFChunk	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::writeRIFFChunk(ofstream& i_cFileStream)$/;"	f	class:WaveFormatOperator
+writeSample	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::writeSample(ofstream& i_cFileStream)$/;"	f	class:WaveFormatOperator
+writeSample16IntoFile	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::writeSample16IntoFile(ofstream& i_cFileStream)$/;"	f	class:WaveFormatOperator
+writeSample8IntoFile	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::writeSample8IntoFile(ofstream& i_cFileStream)$/;"	f	class:WaveFormatOperator
+writeSampleIntoMemory	SoundInformation/SoundInformation.cpp	/^void SoundInformation::writeSampleIntoMemory(double sample,long num,short channel)$/;"	f	class:SoundInformation
+writeSampleOtherIntoFile	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::writeSampleOtherIntoFile(ofstream& i_cFileStream)$/;"	f	class:WaveFormatOperator
+writeWAVEChunk	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::writeWAVEChunk(ofstream& i_cFileStream)$/;"	f	class:WaveFormatOperator
+writeWaveFile	SoundInformation/WaveFormatOperator.cpp	/^bool WaveFormatOperator::writeWaveFile(const string i_strFileName)$/;"	f	class:WaveFormatOperator
+~BlockDiagram	Filter/BlockDiagram.h	/^    virtual ~BlockDiagram()$/;"	f	class:BlockDiagram
+~Butterworth	Filter/Butterworth.h	/^    virtual ~Butterworth()$/;"	f	class:Butterworth
+~Chebycheff	Filter/Chebycheff.h	/^    virtual ~Chebycheff()$/;"	f	class:Chebycheff
+~Filter	Filter/Filter.h	/^    virtual ~Filter(){ }$/;"	f	class:Filter
+~SoundInformation	SoundInformation/SoundInformation.h	/^	virtual ~SoundInformation()$/;"	f	class:SoundInformation
+~WaveFormatOperator	SoundInformation/WaveFormatOperator.h	/^    virtual ~WaveFormatOperator(){ }$/;"	f	class:WaveFormatOperator
