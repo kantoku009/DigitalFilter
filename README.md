@@ -7,6 +7,34 @@ C++言語にてデジタルフィルタを作成した。
 - Butterworth
 - Chebycheff
 
+WAVEファイルを読み込んで、デジタルフィルタに通すようにした。  
+全ソースコードのダウンロードは以下から行える。
+
+- [DigitalFilter](https://github.com/kantoku009/DigitalFilter/archive/master.zip)
+
+----
+
+#ビルド
+zipファイルを解凍するし、コマンドラインから以下のディレクトリに移動。  
+
+ - %cd ./source
+
+makeを実行する。  
+
+ - %make
+
+以下の実行ファイルが出来上がる。
+
+ - butterworth_filter
+ - chebycheff_filter
+
+使い方は以下。  
+
+ - %./butterworth_filter [WAVEファイル名] [dB/oct]  
+ - %./chebycheff_filter [WAVEファイル名] [dB/oct]  
+
+dB/octは、1オクターブで何dB減衰させるかを指定する数値。
+
 ----
 
 #Butterworthフィルタ
