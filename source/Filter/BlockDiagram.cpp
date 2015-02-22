@@ -24,12 +24,15 @@ using namespace std;
 void BlockDiagram::init(int order,const double *a,const double *b)
 {
     //次数の設定
-    setOrder(order);
+    this->setOrder(order);
     
-    try{
+    try
+	{
         mCoefficientA = new double [order+1];
         mCoefficientB = new double [order+1];
-    }catch(bad_alloc err){
+    }
+	catch(bad_alloc err)
+	{
         cerr << err.what() << endl;
     }
     
@@ -38,7 +41,7 @@ void BlockDiagram::init(int order,const double *a,const double *b)
         mCoefficientB[i] = b[i];
     }
     
-    initPreviousSample(mOrder);
+    this->initPreviousSample(mOrder);
 }
 
 /*************************************

@@ -7,16 +7,15 @@ using namespace std;
 
 #include "WaveFormatOperator.h"
 
-
 // デバッグ用フラグ.
-static bool DEBUG=false;
+bool g_bIsDEBUG=false;
 
 class WaveFormatError
 {
 public:
     WaveFormatError(char *message)
     {
-        int len;
+        size_t len;
         
         len = strlen(message);
         mMessage = new char [len+1];
@@ -64,7 +63,7 @@ bool WaveFormatOperator::readWaveFile(const string i_strFileName)
 			{
 				long lSize = this->convert4ByteDataToLong(chunk.size);
 	            fp.seekg(lSize,ios::cur);
-				if(DEBUG) this->printChunk((char*)"Read Chunk", chunk);
+				if(g_bIsDEBUG) this->printChunk((char*)"Read Chunk", chunk);
 	        }
 	    }
 	}catch(WaveFormatError err){
@@ -89,7 +88,7 @@ bool WaveFormatOperator::readRIFFChunk(ifstream& i_cFileStream)
 		throw WaveFormatError((char*)"WaveFormatOperator error: not RIFF file");
 	}
 
-	if(DEBUG) printChunk((char*)"Read Chunk", chunk);
+	if(g_bIsDEBUG) printChunk((char*)"Read Chunk", chunk);
 	return true;
 }
 
@@ -107,7 +106,7 @@ bool WaveFormatOperator::readWAVEChunk(ifstream& i_cFileStream)
 		throw WaveFormatError((char*)"WaveFormatOperator error: not WAVE file");
 	}
 
-	if(DEBUG) printChunk((char*)"Read Chunk", chunk);
+	if(g_bIsDEBUG) printChunk((char*)"Read Chunk", chunk);
 	return true;
 }
 
@@ -130,8 +129,8 @@ bool WaveFormatOperator::readFmtChunk(ifstream& i_cFileStream, TChunk& i_stChunk
 	this->setBitsPerSample(wBitsPerSample);
 	this->setNumChannels(nChannels);
 
-	if(DEBUG) printChunk((char*)"Read Chunk", i_stChunk);
-	if(DEBUG) printFmtChunk((char*)"Read fmt", fmt);
+	if(g_bIsDEBUG) printChunk((char*)"Read Chunk", i_stChunk);
+	if(g_bIsDEBUG) printFmtChunk((char*)"Read fmt", fmt);
  	return true;
 }
 
@@ -164,7 +163,7 @@ bool WaveFormatOperator::readSample(ifstream& i_cFileStream, TChunk& i_stChunk)
 		return false;
 	}
 
-	if(DEBUG) printChunk((char*)"Read Chunk", i_stChunk);
+	if(g_bIsDEBUG) printChunk((char*)"Read Chunk", i_stChunk);
 	return true;
 }
 
@@ -295,7 +294,7 @@ bool WaveFormatOperator::writeRIFFChunk(ofstream& i_cFileStream)
 	// chunkをファイルへ書き込み.
     i_cFileStream.write((char*)&chunk,sizeof(chunk));
 
-	if(DEBUG) printChunk((char*)"Write Chunk", chunk);
+	if(g_bIsDEBUG) printChunk((char*)"Write Chunk", chunk);
  	return true;
 }
 
@@ -310,7 +309,7 @@ bool WaveFormatOperator::writeWAVEChunk(ofstream& i_cFileStream)
 	strncpy(chunk.id, "WAVE", 4);
     i_cFileStream.write(chunk.id, 4);
 
-	if(DEBUG) printChunk((char*)"Write Chunk", chunk);
+	if(g_bIsDEBUG) printChunk((char*)"Write Chunk", chunk);
 	return true;
 }
 
@@ -351,8 +350,8 @@ bool WaveFormatOperator::writeFmtChunk(ofstream& i_cFileStream)
     // fmt chunkをファイルへ書き込み.
     i_cFileStream.write((char*)&fmt,sizeof(fmt));
 
-	if(DEBUG) printChunk((char*)"Write Chunk", chunk);
-	if(DEBUG) printFmtChunk((char*)"Write FMT Chunk", fmt);
+	if(g_bIsDEBUG) printChunk((char*)"Write Chunk", chunk);
+	if(g_bIsDEBUG) printFmtChunk((char*)"Write FMT Chunk", fmt);
 	return true;
 }
 
@@ -394,7 +393,7 @@ bool WaveFormatOperator::writeSample(ofstream& i_cFileStream)
 		return false;
 	}
 
-	if(DEBUG) printChunk((char*)"Write Sample Chunk", chunk);
+	if(g_bIsDEBUG) printChunk((char*)"Write Sample Chunk", chunk);
 	return true;
 }
 

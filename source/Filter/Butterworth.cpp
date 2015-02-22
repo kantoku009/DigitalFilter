@@ -47,10 +47,9 @@ void Butterworth::decisionPrototype(double inPassFreq,
     double omega_dp,omega_ds;
     double omega_ap,omega_as;
     double n;
-    //double temp;		// @@TBA. 使用していない.削除すること
     double fs;
     
-    fs = getSampleRate();
+    fs = this->getSampleRate();
 
     //サンプリング周波数で規格化
     inPassFreq /= fs;
@@ -72,11 +71,11 @@ void Butterworth::decisionPrototype(double inPassFreq,
     n = 0.5;
     n *= ( log10(pow(10,inAttenuateGain/10)-1) - log10(pow(10,inRippleGain/10)-1) );
     n /= ( log10(omega_as) - log10(omega_ap) );
-    setOrderNumber(static_cast<long>(n) + 1);
+    this->setOrderNumber(static_cast<long>(n) + 1);
     
     //プロトタイプのカットオフ周波数の決定
     mPrototypeCutFreq = omega_ap / pow((pow(10,inRippleGain/10) - 1),
-        1/(2*(static_cast<double>(getOrderNumber()))));
+        1/(2*(static_cast<double>(this->getOrderNumber()))));
 
 }
 
@@ -189,7 +188,7 @@ void Butterworth::initTransferFunction()
 ¥begin{verbatim}
 *
 *****************************************************************************/
-BlockDiagram *Butterworth::initLowTransferFunction(double inCutFreq)
+BlockDiagram* Butterworth::initLowTransferFunction(double inCutFreq)
 {
     double alpha,beta;
     double a[3],b[3];
@@ -199,7 +198,7 @@ BlockDiagram *Butterworth::initLowTransferFunction(double inCutFreq)
     BlockDiagram *lowpassSection;
     
     //次数を取得
-    orderNumber = getOrderNumber();
+    orderNumber = this->getOrderNumber();
     isOrderNumberEven = (orderNumber%2 == 0)? true:false;
 
     if(isOrderNumberEven)
@@ -209,7 +208,8 @@ BlockDiagram *Butterworth::initLowTransferFunction(double inCutFreq)
     }
     numSection++;
     
-    try{
+    try
+	{
         lowpassSection = new BlockDiagram [numSection];
     }catch(bad_alloc err){
         cerr << err.what() << endl;
@@ -217,7 +217,7 @@ BlockDiagram *Butterworth::initLowTransferFunction(double inCutFreq)
     }
 
     //係数を決定
-    beta = getLowBeta(inCutFreq);
+    beta = this->getLowBeta(inCutFreq);
     //1次の伝達関数の初期化
     if(isOrderNumberEven){
         a[0] = 1;
@@ -542,7 +542,7 @@ double Butterworth::getLowBeta(double inCutFreq)
     double omega_dc,omega_ac;
     double theta;
     
-    fs = getSampleRate();
+    fs = this->getSampleRate();
     omega_dc = 2*PI * inCutFreq / fs;
     omega_ac = digital2analog(omega_dc);
     

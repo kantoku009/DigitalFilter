@@ -19,11 +19,12 @@ typedef enum
 }FilterMode;
 
 
-class FilterError{
+class FilterError
+{
 public:
     FilterError(char *message)
     {
-        int len;
+        size_t len;
         
         len = strlen(message);
         mMessage = new char [len+1];
