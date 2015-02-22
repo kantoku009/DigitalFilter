@@ -16,7 +16,6 @@ using namespace std;
 
 /**
  * @brief	チェビシェフフィルタ.
- * @note	IIRフィルタの一種.
  */
 class Chebycheff : public Filter{
 public:

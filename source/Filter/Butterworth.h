@@ -15,7 +15,6 @@ using namespace std;
 
 /**
  * @brief	バターワースフィルタ.
- * @note	FIRフィルタの一種.
  */
 class Butterworth : public Filter
 {

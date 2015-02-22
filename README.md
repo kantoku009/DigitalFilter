@@ -4,8 +4,8 @@ Digital Filter
 C++言語にてデジタルフィルタを作成した。  
 作成したフィルタは以下。
 
-- FIR: Butterworth
-- IIR: Chebycheff
+- Butterworth
+- Chebycheff
 
 ----
 
