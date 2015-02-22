@@ -66,6 +66,11 @@ C++言語にてデジタルフィルタを作成した。
 [WavePad 音声編集ソフト](http://www.nch.com.au/wavepad/jp/index.html?gclid=CLbS3J3y9MMCFRWSvQodjjYAqw)
 
 ##デジタルフィルタ
+###サイト
 デジタルフィルタに関しては以下サイトの[実用ディジタル信号処理講座 第3章 デジタルフィルタの基礎](http://www.sound.sie.dendai.ac.jp/dsp/Text/PDF/Chap3.pdf)を参考にした。  
 [音響情報研究室](http://www.sound.sie.dendai.ac.jp/index-j.html)
+
+###書籍
+以下の書籍を参考にした。  
+[「デジタルフィルタ (ビギナーズ)」  中村 尚五 (著)](http://www.amazon.co.jp/dp/4501313501/)
 
