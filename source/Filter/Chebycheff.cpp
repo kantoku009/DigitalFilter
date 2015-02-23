@@ -98,15 +98,15 @@ void Chebycheff::initTransferFunction()
     try{
         switch (getFilterMode()){
             case kLowpass:
-            this->m_pcSection = initLowTransferFunction(getCutoffFreq());
+            this->m_pcBlockDiagram = initLowTransferFunction(getCutoffFreq());
             break;
             
             case kHighpass:
-            this->m_pcSection = initHighTransferFunction(getCutoffFreq());
+            this->m_pcBlockDiagram = initHighTransferFunction(getCutoffFreq());
             break;
             
             case kBandpass:
-            this->m_pcSection = initBandTransferFunction(getLowCutoffFreq()
+            this->m_pcBlockDiagram = initBandTransferFunction(getLowCutoffFreq()
                                                 ,getHighCutoffFreq());
             break;
             
@@ -605,8 +605,8 @@ void Chebycheff::printCharacteristic(char *fNameAmp,char *fNamePhase)
         e2 = polar(1.0,-2*omega);
         h = polar(1.0,0.0);
         for(long i=0;i<numSection;i++){
-            a = this->m_pcSection[i].getCoefficientA();
-            b = this->m_pcSection[i].getCoefficientB();
+            a = this->m_pcBlockDiagram[i].getCoefficientA();
+            b = this->m_pcBlockDiagram[i].getCoefficientB();
             h *= b[0] * (a[0] + a[1]*e1 + a[2]*e2) / (1.0 - b[1]*e1 - b[2]*e2);
         }
 

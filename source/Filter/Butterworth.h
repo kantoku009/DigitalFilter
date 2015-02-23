@@ -33,9 +33,9 @@ public:
 	 */
 	virtual ~Butterworth()
 	{
-		if(this->m_pcSection !=0)
+		if(this->m_pcBlockDiagram !=0)
 		{
-			delete [] this->m_pcSection;
+			delete [] this->m_pcBlockDiagram;
 		}
 	}
     

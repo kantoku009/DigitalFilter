@@ -87,15 +87,15 @@ void Butterworth::initTransferFunction()
     try{
         switch (getFilterMode()){
             case kLowpass:
-            m_pcSection = initLowTransferFunction(getCutoffFreq());
+            m_pcBlockDiagram = initLowTransferFunction(getCutoffFreq());
             break;
             
             case kHighpass:
-            m_pcSection = initHighTransferFunction(getCutoffFreq());
+            m_pcBlockDiagram = initHighTransferFunction(getCutoffFreq());
             break;
             
             case kBandpass:
-            m_pcSection = initBandTransferFunction(getLowCutoffFreq(),getHighCutoffFreq());
+            m_pcBlockDiagram = initBandTransferFunction(getLowCutoffFreq(),getHighCutoffFreq());
             break;
             
             default:
@@ -659,8 +659,8 @@ void Butterworth::printCharacteristic(char *fNameAmp,char *fNamePhase)
         e2 = polar(1.0,-2*omega);
         h = polar(1.0,0.0);
         for(long i=0;i<numSection;i++){
-            a = m_pcSection[i].getCoefficientA();
-            b = m_pcSection[i].getCoefficientB();
+            a = this->m_pcBlockDiagram[i].getCoefficientA();
+            b = this->m_pcBlockDiagram[i].getCoefficientB();
             
             h *= b[0] * (a[0] + a[1]*e1 + a[2]*e2) / (1.0 - b[1]*e1 - b[2]*e2);
         }

@@ -46,7 +46,7 @@ public:
 	 */
 	Filter()
 	{
-		this->m_pcSection = 0;
+		this->m_pcBlockDiagram= 0;
     
 		this->m_eKindFilter = kLowpass;
 		this->m_lOrderNumber = 0;
@@ -141,7 +141,7 @@ protected:
 	/**
 	 * @brief	ブロックダイアグラム.
 	 */
-	BlockDiagram *m_pcSection;
+	BlockDiagram *m_pcBlockDiagram;
     
 private:
 	/**

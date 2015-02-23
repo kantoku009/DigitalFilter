@@ -33,9 +33,9 @@ public:
 	 */
 	virtual ~Chebycheff()
 	{
-		if(0!=this->m_pcSection)
+		if(0!=this->m_pcBlockDiagram)
 		{
-			delete [] this->m_pcSection;
+			delete [] this->m_pcBlockDiagram;
 		}
 	}
 

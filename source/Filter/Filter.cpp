@@ -257,7 +257,7 @@ double Filter::transferFunction(double valSample)
     
     data = valSample;
     for(long i=0;i<numSection;i++)
-        data = this->m_pcSection[i].inject(data);
+        data = this->m_pcBlockDiagram[i].inject(data);
 
     return data;
 }
