@@ -24,8 +24,8 @@ public:
 	 */
 	Chebycheff()
 	{
-		this->mSampleRate = 0.0;
-		this->mPrototypeCutFreq = 0.0;
+		this->m_dSampleRate = 0.0;
+		this->m_dPrototypeCutFreq = 0.0;
 	}
 
 	/**
@@ -33,9 +33,9 @@ public:
 	 */
 	virtual ~Chebycheff()
 	{
-		if(0!=this->mSection)
+		if(0!=this->m_pcSection)
 		{
-			delete [] this->mSection;
+			delete [] this->m_pcSection;
 		}
 	}
 
@@ -44,14 +44,14 @@ public:
 	 * @param	double inSampleRate	サンプリング周波数.
 	 * @return	なし.
 	 */
-	void setSampleRate(double inSampleRate){ mSampleRate = inSampleRate; }
+	void setSampleRate(double i_dSampleRate){ this->m_dSampleRate = i_dSampleRate; }
 
 	/**
 	 * @brief	サンプリング周波数を取得.
 	 * @param	なし.
 	 * @return	サンプリング周波数.
 	 */
-	double getSampleRate(){ return mSampleRate; }
+	double getSampleRate(){ return this->m_dSampleRate; }
 
 	/**
 	 * @brief	プロトタイプローパスフィルタを決定.
@@ -71,12 +71,12 @@ public:
 	 * @param	なし.
 	 * @return	プロトタイプローパスフィルタのカットオフ周波数.
 	 */
-	double getPrototypeCutFreq(){ return mPrototypeCutFreq; }
+	double getPrototypeCutFreq(){ return this->m_dPrototypeCutFreq; }
 
 	/**
 	 * @brief	プロトタイプのカットオフ周波数を取得.
 	 */
-	double getPrototypePassFreq(){ return mPrototypePassFreq; }
+	double getPrototypePassFreq(){ return this->m_dPrototypePassFreq; }
     
 	/**
 	 * @brief	デジタルの周波数からアナログの周波数へ変換.
@@ -139,27 +139,27 @@ private:
 	/**
 	 * @brief	epsilon
 	 */
-	double mEpsilon;
+	double m_dEpsilon;
 
 	/**
 	 * @brief	係数.
 	 */
-	double mAlpha0;
+	double m_dAlpha0;
 
 	/**
 	 * @brief	サンプリング周波数.
 	 */
-	double mSampleRate;
+	double m_dSampleRate;
 
 	/**
 	 * @brief	プロトタイプローパスフィルタのカットオフ周波数.
 	 */
-	double mPrototypeCutFreq;
+	double m_dPrototypeCutFreq;
 
 	/**
 	 * @brief	プロトタイプのカットオフ周波数.
 	 */
-	double mPrototypePassFreq;
+	double m_dPrototypePassFreq;
 };
 
 #endif

@@ -46,12 +46,12 @@ public:
 	 */
 	Filter()
 	{
-		mSection = 0;
+		this->m_pcSection = 0;
     
-		mKindFilter = kLowpass;
-		mOrderNumber = 0;
-		mLowCutoffFreq = 0;
-		mHighCutoffFreq = 0;
+		this->m_eKindFilter = kLowpass;
+		this->m_lOrderNumber = 0;
+		this->m_dLowCutoffFreq = 0;
+		this->m_dHighCutoffFreq = 0;
 	}
 
 	/**
@@ -63,11 +63,12 @@ public:
 	 * @brief	フィルタモードを設定.
 	 * @note	モードに関しては, FilterModeを参照.
 	 */
-	void selectFilterMode(FilterMode inKindFilter){ mKindFilter = inKindFilter; }
+	void selectFilterMode(FilterMode i_eKindFilter){ this->m_eKindFilter = i_eKindFilter; }
+
 	/**
 	 * @brief	フィルタモードを取得.
 	 */
-	FilterMode getFilterMode(){ return mKindFilter; }
+	FilterMode getFilterMode(){ return this->m_eKindFilter; }
     
 	/**
 	 * @brief	カットオフ周波数を設定.
@@ -120,7 +121,7 @@ public:
 	 * @param	なし.
 	 * @return	フィルタの次数.
 	 */
-	long getOrderNumber() const { return mOrderNumber; }
+	long getOrderNumber() const { return this->m_lOrderNumber; }
     
 	/**
 	 * @brief	フィルタを実行する.
@@ -135,12 +136,12 @@ protected:
 	 * @param	long inOrder	フィルタの次数.
 	 * @return	なし.
 	 */
-	void setOrderNumber(long inOrder){ mOrderNumber = inOrder; }
+	void setOrderNumber(long i_lOrder){ this->m_lOrderNumber = i_lOrder; }
 
 	/**
 	 * @brief	ブロックダイアグラム.
 	 */
-	BlockDiagram *mSection;
+	BlockDiagram *m_pcSection;
     
 private:
 	/**
@@ -153,12 +154,12 @@ private:
 	/**
 	 * @brief	フィルタのモード.
 	 */
-	FilterMode mKindFilter;
+	FilterMode m_eKindFilter;
 
 	/**
 	 * @brief	フィルタの次数.
 	 */
-	long mOrderNumber;
+	long m_lOrderNumber;
 
 	/**
 	 * @brief	低い方のカットオフ周波数.
@@ -166,7 +167,7 @@ private:
 	 *			  ・kLowpass
 	 *			  ・kBandpass
 	 */
-	double mLowCutoffFreq;
+	double m_dLowCutoffFreq;
 
 	/**
 	 * @brief	高い方のカットオフ周波数.
@@ -174,7 +175,7 @@ private:
 	 *			  ・kHighpass
 	 *			  ・kBandpass
 	 */
-	double mHighCutoffFreq;
+	double m_dHighCutoffFreq;
 };
 
 #endif

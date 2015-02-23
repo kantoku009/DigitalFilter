@@ -24,13 +24,13 @@ using namespace std;
 void Filter::setCutoffFreq(double inCutFreq)
 {
     try{
-        switch (mKindFilter){
+        switch (this->m_eKindFilter){
             case kLowpass:
-            mLowCutoffFreq = inCutFreq;
+            this->m_dLowCutoffFreq = inCutFreq;
             break;
             
             case kHighpass:
-            mHighCutoffFreq = inCutFreq;
+            this->m_dHighCutoffFreq = inCutFreq;
             break;
             
             case kBandpass:
@@ -65,12 +65,12 @@ void Filter::setCutoffFreq(double inCutFreq)
 double Filter::getCutoffFreq() const
 {
     try{
-        switch (mKindFilter){
+        switch (this->m_eKindFilter){
             case kLowpass:
-            return mLowCutoffFreq;
+            return this->m_dLowCutoffFreq;
             
             case kHighpass:
-            return mHighCutoffFreq;
+            return this->m_dHighCutoffFreq;
             
             case kBandpass:
             throw FilterError((char*)"Filter error: do not filter mode Bandpass. do not operate.");
@@ -107,14 +107,14 @@ double Filter::getCutoffFreq() const
 void Filter::setCutoffFreq(double inLowCutFreq,double inHighCutFreq)
 {
     try{
-        switch (mKindFilter){
+        switch (this->m_eKindFilter){
           case kLowpass:
           case kHighpass:
             throw FilterError((char*)"Filter error: filter mode Bandpass. do not operate.");
             
           case kBandpass:
-            mLowCutoffFreq = inLowCutFreq;
-            mHighCutoffFreq = inHighCutFreq;
+            this->m_dLowCutoffFreq = inLowCutFreq;
+            this->m_dHighCutoffFreq = inHighCutFreq;
             break;
             
           default:
@@ -146,13 +146,13 @@ void Filter::setCutoffFreq(double inLowCutFreq,double inHighCutFreq)
 double Filter::getLowCutoffFreq() const
 {
     try{
-        switch (mKindFilter){
+        switch (this->m_eKindFilter){
           case kLowpass:
           case kHighpass:
             throw FilterError((char*)"Filter error: filter mode Bandpass. do not operate.");
             
           case kBandpass:
-            return mLowCutoffFreq;
+            return this->m_dLowCutoffFreq;
 
           default:
             throw FilterError((char*)"Filter error: cause unknown");
@@ -186,13 +186,13 @@ double Filter::getLowCutoffFreq() const
 double Filter::getHighCutoffFreq() const
 {
     try{
-        switch (mKindFilter){
+        switch (this->m_eKindFilter){
           case kLowpass:
           case kHighpass:
             throw FilterError((char*)"Filter error: filter mode Bandpass. do not operate."); 
             
           case kBandpass:
-            return mHighCutoffFreq;
+            return this->m_dHighCutoffFreq;
             
           default:
             throw FilterError((char*)"Filter error: cause unknown");
@@ -257,7 +257,7 @@ double Filter::transferFunction(double valSample)
     
     data = valSample;
     for(long i=0;i<numSection;i++)
-        data = mSection[i].inject(data);
+        data = this->m_pcSection[i].inject(data);
 
     return data;
 }

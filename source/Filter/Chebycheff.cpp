@@ -73,22 +73,22 @@ void Chebycheff::decisionPrototype( double inPassFreq,
     if(inAttenuateGain < 0.0) inAttenuateGain = -inAttenuateGain;
 
     //epsilonの決定
-    mEpsilon = sqrt(pow(10,inRippleGain/10) - 1);
+    this->m_dEpsilon = sqrt(pow(10,inRippleGain/10) - 1);
     
     //次数の決定
-    n = acosh((1/mEpsilon)*sqrt(pow(10,inAttenuateGain/10)-1)) 
+    n = acosh((1/this->m_dEpsilon)*sqrt(pow(10,inAttenuateGain/10)-1)) 
             / acosh(omega_as/omega_ap);
     setOrderNumber(static_cast<long>(n) + 1);
 
     //alpha0の決定
-    mAlpha0 = sinh( 1/(static_cast<double>(getOrderNumber())) * asinh(1/mEpsilon) );
+    this->m_dAlpha0 = sinh( 1/(static_cast<double>(getOrderNumber())) * asinh(1/this->m_dEpsilon) );
 
     //プロトタイプのカットオフ周波数の決定
-    mPrototypeCutFreq = omega_ap
+    this->m_dPrototypeCutFreq = omega_ap
             *cosh( (1/(static_cast<double>(getOrderNumber()))) 
-            * acosh((1/mEpsilon)*sqrt(pow(10,0.3)-1)) );
+            * acosh((1/this->m_dEpsilon)*sqrt(pow(10,0.3)-1)) );
 
-    mPrototypePassFreq = omega_ap;
+    this->m_dPrototypePassFreq = omega_ap;
 
 }
 
@@ -98,15 +98,15 @@ void Chebycheff::initTransferFunction()
     try{
         switch (getFilterMode()){
             case kLowpass:
-            mSection = initLowTransferFunction(getCutoffFreq());
+            this->m_pcSection = initLowTransferFunction(getCutoffFreq());
             break;
             
             case kHighpass:
-            mSection = initHighTransferFunction(getCutoffFreq());
+            this->m_pcSection = initHighTransferFunction(getCutoffFreq());
             break;
             
             case kBandpass:
-            mSection = initBandTransferFunction(getLowCutoffFreq()
+            this->m_pcSection = initBandTransferFunction(getLowCutoffFreq()
                                                 ,getHighCutoffFreq());
             break;
             
@@ -189,10 +189,10 @@ BlockDiagram *Chebycheff::initLowTransferFunction(double inCutFreq)
         a[0] = 1;
         a[1] = 1;
         a[2] = 0;
-        b[0] = mAlpha0*omega_ap*(1-gamma) 
-                / ( (mAlpha0*omega_ap+2) - (mAlpha0*omega_ap-2)*gamma );
-        b[1] = -( (mAlpha0*omega_ap-2) - (mAlpha0*omega_ap+2)*gamma )
-                 / ( (mAlpha0*omega_ap+2) - (mAlpha0*omega_ap-2)*gamma );
+        b[0] = this->m_dAlpha0*omega_ap*(1-gamma) 
+                / ( (this->m_dAlpha0*omega_ap+2) - (this->m_dAlpha0*omega_ap-2)*gamma );
+        b[1] = -( (this->m_dAlpha0*omega_ap-2) - (this->m_dAlpha0*omega_ap+2)*gamma )
+                 / ( (this->m_dAlpha0*omega_ap+2) - (this->m_dAlpha0*omega_ap-2)*gamma );
         b[2] = 0;
     }
     lowpassSection[0].init(2,a,b);
@@ -301,10 +301,10 @@ BlockDiagram *Chebycheff::initHighTransferFunction(double inCutFreq)
         a[0] = 1;
         a[1] = -1;
         a[2] = 0;
-        b[0] = mAlpha0*omega_ap*(1-gamma) 
-                / ( (mAlpha0*omega_ap+2) - (mAlpha0*omega_ap-2)*gamma );
-        b[1] = ( (mAlpha0*omega_ap-2) - (mAlpha0*omega_ap+2)*gamma ) 
-                / ( (mAlpha0*omega_ap+2) - (mAlpha0*omega_ap-2)*gamma );
+        b[0] = this->m_dAlpha0*omega_ap*(1-gamma) 
+                / ( (this->m_dAlpha0*omega_ap+2) - (this->m_dAlpha0*omega_ap-2)*gamma );
+        b[1] = ( (this->m_dAlpha0*omega_ap-2) - (this->m_dAlpha0*omega_ap+2)*gamma ) 
+                / ( (this->m_dAlpha0*omega_ap+2) - (this->m_dAlpha0*omega_ap-2)*gamma );
         b[2] = 0;
     }
     highpassSection[0].init(2,a,b);
@@ -410,7 +410,7 @@ double Chebycheff::getAlpha(long i)
     else
         v = i;
     
-    return 2*mAlpha0*cos(PI*v/n);
+    return 2*this->m_dAlpha0*cos(PI*v/n);
 }
 
 
@@ -448,7 +448,7 @@ double Chebycheff::getBeta(long i)
     else
         v = i;
     
-    return mAlpha0*mAlpha0 + sin(PI*v/n)*sin(PI*v/n);
+    return this->m_dAlpha0*this->m_dAlpha0 + sin(PI*v/n)*sin(PI*v/n);
 }
 
 
@@ -605,8 +605,8 @@ void Chebycheff::printCharacteristic(char *fNameAmp,char *fNamePhase)
         e2 = polar(1.0,-2*omega);
         h = polar(1.0,0.0);
         for(long i=0;i<numSection;i++){
-            a = mSection[i].getCoefficientA();
-            b = mSection[i].getCoefficientB();
+            a = this->m_pcSection[i].getCoefficientA();
+            b = this->m_pcSection[i].getCoefficientB();
             h *= b[0] * (a[0] + a[1]*e1 + a[2]*e2) / (1.0 - b[1]*e1 - b[2]*e2);
         }
 

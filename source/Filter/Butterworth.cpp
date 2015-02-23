@@ -74,7 +74,7 @@ void Butterworth::decisionPrototype(double inPassFreq,
     this->setOrderNumber(static_cast<long>(n) + 1);
     
     //プロトタイプのカットオフ周波数の決定
-    mPrototypeCutFreq = omega_ap / pow((pow(10,inRippleGain/10) - 1),
+    this->m_dPrototypeCutFreq = omega_ap / pow((pow(10,inRippleGain/10) - 1),
         1/(2*(static_cast<double>(this->getOrderNumber()))));
 
 }
@@ -87,15 +87,15 @@ void Butterworth::initTransferFunction()
     try{
         switch (getFilterMode()){
             case kLowpass:
-            mSection = initLowTransferFunction(getCutoffFreq());
+            m_pcSection = initLowTransferFunction(getCutoffFreq());
             break;
             
             case kHighpass:
-            mSection = initHighTransferFunction(getCutoffFreq());
+            m_pcSection = initHighTransferFunction(getCutoffFreq());
             break;
             
             case kBandpass:
-            mSection = initBandTransferFunction(getLowCutoffFreq(),getHighCutoffFreq());
+            m_pcSection = initBandTransferFunction(getLowCutoffFreq(),getHighCutoffFreq());
             break;
             
             default:
@@ -659,8 +659,8 @@ void Butterworth::printCharacteristic(char *fNameAmp,char *fNamePhase)
         e2 = polar(1.0,-2*omega);
         h = polar(1.0,0.0);
         for(long i=0;i<numSection;i++){
-            a = mSection[i].getCoefficientA();
-            b = mSection[i].getCoefficientB();
+            a = m_pcSection[i].getCoefficientA();
+            b = m_pcSection[i].getCoefficientB();
             
             h *= b[0] * (a[0] + a[1]*e1 + a[2]*e2) / (1.0 - b[1]*e1 - b[2]*e2);
         }

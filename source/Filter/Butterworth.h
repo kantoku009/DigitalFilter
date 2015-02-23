@@ -24,9 +24,8 @@ public:
 	 */
 	Butterworth()
 	{
-		this->mSampleRate = 0.0;
-		this->mPrototypeCutFreq = 0.0;
-		this->mSection = 0;
+		this->m_dSampleRate = 0.0;
+		this->m_dPrototypeCutFreq = 0.0;
 	}
 
 	/**
@@ -34,9 +33,9 @@ public:
 	 */
 	virtual ~Butterworth()
 	{
-		if(this->mSection !=0)
+		if(this->m_pcSection !=0)
 		{
-			delete [] this->mSection;
+			delete [] this->m_pcSection;
 		}
 	}
     
@@ -45,14 +44,14 @@ public:
 	 * @param	double inSampleRate	サンプリング周波数.
 	 * @return	なし.
 	 */
-	void setSampleRate(double inSampleRate){ mSampleRate = inSampleRate; }
+	void setSampleRate(double i_dSampleRate){ this->m_dSampleRate = i_dSampleRate; }
 
 	/**
 	 * @brief	サンプリング周波数を取得.
 	 * @param	なし.
 	 * @return	サンプリング周波数.
 	 */
-	double getSampleRate() const { return mSampleRate; }
+	double getSampleRate() const { return this->m_dSampleRate; }
     
 	/**
 	 * @brief	プロトタイプローパスフィルタを決定.
@@ -70,7 +69,7 @@ public:
 	 * @param	なし.
 	 * @return	プロトタイプローパスフィルタのカットオフ周波数.
 	 */
-	double getPrototypeCutFreq() const{ return mPrototypeCutFreq; }
+	double getPrototypeCutFreq() const{ return this->m_dPrototypeCutFreq; }
     
 	/**
 	 * @brief	デジタルの周波数からアナログの周波数へ変換.
@@ -135,12 +134,12 @@ private:
 	/**
 	 * @brief	サンプリング周波数.
 	 */
-	double mSampleRate;
+	double m_dSampleRate;
 
 	/**
 	 * @brief	プロトタイプローパスフィルタのカットオフ周波数
 	 */
-	double mPrototypeCutFreq;
+	double m_dPrototypeCutFreq;
 };
 
 #endif

@@ -28,20 +28,20 @@ void BlockDiagram::init(int order,const double *a,const double *b)
     
     try
 	{
-        mCoefficientA = new double [order+1];
-        mCoefficientB = new double [order+1];
+        this->m_pdCoefficientA = new double [order+1];
+        this->m_pdCoefficientB = new double [order+1];
     }
 	catch(bad_alloc err)
 	{
         cerr << err.what() << endl;
     }
     
-    for(int i=0;i<=mOrder;i++){
-        mCoefficientA[i] = a[i];
-        mCoefficientB[i] = b[i];
+    for(int i=0;i<=this->m_iOrder;i++){
+        this->m_pdCoefficientA[i] = a[i];
+        this->m_pdCoefficientB[i] = b[i];
     }
     
-    this->initPreviousSample(mOrder);
+    this->initPreviousSample(this->m_iOrder);
 }
 
 /*************************************
@@ -63,13 +63,13 @@ double BlockDiagram::inject(double sample)
 {
     double data1,data2;
     
-    data1 = mCoefficientB[0] * sample;
-    for(int i_iIndex=1; i_iIndex<=mOrder; i_iIndex++)
-        data1 += mCoefficientB[i_iIndex] * getPreviousSample(i_iIndex);
+    data1 = this->m_pdCoefficientB[0] * sample;
+    for(int i_iIndex=1; i_iIndex<=this->m_iOrder; i_iIndex++)
+        data1 += this->m_pdCoefficientB[i_iIndex] * getPreviousSample(i_iIndex);
 
-    data2 = mCoefficientA[0] * data1;
-    for(int i_iIndex=1; i_iIndex<=mOrder; i_iIndex++)
-        data2 += mCoefficientA[i_iIndex] * getPreviousSample(i_iIndex);
+    data2 = this->m_pdCoefficientA[0] * data1;
+    for(int i_iIndex=1; i_iIndex<=this->m_iOrder; i_iIndex++)
+        data2 += this->m_pdCoefficientA[i_iIndex] * getPreviousSample(i_iIndex);
     
     //サンプル値の保存
     popPreviousSample();
@@ -82,14 +82,13 @@ double BlockDiagram::inject(double sample)
 /******************************
  * =演算子のオーバーロード.
  ******************************/
-const BlockDiagram &BlockDiagram::operator=(const BlockDiagram &right)
+const BlockDiagram &BlockDiagram::operator=(const BlockDiagram& i_cBlockDiagram)
 {
-    if(this == &right)
-        return *this;
+    if(this == &i_cBlockDiagram) return *this;
     
-    delete [] mCoefficientA;
-    delete [] mCoefficientB;
-    init(right.getOrder(),right.getCoefficientA(),right.getCoefficientB());
+    delete [] this->m_pdCoefficientA;
+    delete [] this->m_pdCoefficientB;
+    this->init(i_cBlockDiagram.getOrder(), i_cBlockDiagram.getCoefficientA(), i_cBlockDiagram.getCoefficientB());
     
     return *this;
 }

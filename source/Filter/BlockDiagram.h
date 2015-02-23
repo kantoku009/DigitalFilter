@@ -21,16 +21,16 @@ public:
 	BlockDiagram()
 	{
 		this->setOrder(0);
-		this->mCoefficientA = 0;
-		this->mCoefficientB = 0;
+		this->m_pdCoefficientA = 0;
+		this->m_pdCoefficientB = 0;
 	}
 
 	/**
 	 * @brief	コピーコンストラクタ.
 	 */
-	BlockDiagram(const BlockDiagram &copy)
+	BlockDiagram(const BlockDiagram& i_cBlockDiagram)
 	{
-		this->init(copy.getOrder(), copy.getCoefficientA(), copy.getCoefficientB());
+		this->init(i_cBlockDiagram.getOrder(), i_cBlockDiagram.getCoefficientA(), i_cBlockDiagram.getCoefficientB());
 	}
 
 	/**
@@ -38,8 +38,8 @@ public:
 	 */
 	virtual ~BlockDiagram()
 	{
-		delete [] this->mCoefficientA;
-		delete [] this->mCoefficientB;
+		delete [] this->m_pdCoefficientA;
+		delete [] this->m_pdCoefficientB;
 	}
     
 	/**
@@ -63,17 +63,17 @@ public:
 	 * @param	なし.
 	 * @return	次数.
 	 */
-	int getOrder() const { return mOrder; }
+	int getOrder() const { return this->m_iOrder; }
 
 	/**
 	 * @brief	係数を取得.
 	 */
-	const double *getCoefficientA() const{ return mCoefficientA; }
+	const double *getCoefficientA() const{ return this->m_pdCoefficientA; }
 
 	/**
 	 * @brief	係数を取得.
 	 */
-	const double *getCoefficientB() const{ return mCoefficientB; }
+	const double *getCoefficientB() const{ return this->m_pdCoefficientB; }
 
 	/**
 	 * @brief	=演算子のオーバーロード.
@@ -97,7 +97,7 @@ private:
 	 */
 	void pushPreviousSample(double val)
 	{
-		this->mPreviousSample.push_front(val);
+		this->m_quePreviousSample.push_front(val);
 	}
 
 	/**
@@ -105,7 +105,7 @@ private:
 	 */
 	void popPreviousSample()
 	{
-		this->mPreviousSample.pop_back();
+		this->m_quePreviousSample.pop_back();
 	}
 
 	/**
@@ -113,34 +113,34 @@ private:
 	 */
 	double getPreviousSample(int n)
 	{
-		return this->mPreviousSample[n-1];
+		return this->m_quePreviousSample[n-1];
 	}
 
 	/**
 	 * @brief	以前のサンプル値.
 	 * @note	キューで実現する.
 	 */
-	deque< double > mPreviousSample;
+	deque< double > m_quePreviousSample;
 
 	/**
 	 * @brief	係数.
 	 */
-	double *mCoefficientA;
+	double *m_pdCoefficientA;
 
 	/**
 	 * @brief	係数.
 	 */
-	double *mCoefficientB;
+	double *m_pdCoefficientB;
     
 	/**
 	 * @brief	次数を設定.
 	 */
-	void setOrder(int order){ mOrder = order; }
+	void setOrder(int i_iOrder){ this->m_iOrder = i_iOrder; }
 
 	/**
 	 * @brief	次数.
 	 */
-	int mOrder;
+	int m_iOrder;
 };
 
 #endif
