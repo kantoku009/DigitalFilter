@@ -5,18 +5,20 @@
 #ifndef __BUTTERWORTH_H__
 #define __BUTTERWORTH_H__
 
-#include "Filter.h"
+#include "./IIRFilter.h"
+#include "../BlockDiagram.h"
 
 #include <cmath>
 #include <complex>
 using namespace std;
 
-#define PI 3.1415926535897932384626433832795
+//#define PI 3.1415926535897932384626433832795
+#define	FILTER_DESIGN_NAME	"Butterworth"
 
 /**
  * @brief	バターワースフィルタ.
  */
-class Butterworth : public Filter
+class Butterworth : public IIRFilter
 {
 public:
 	/**
@@ -24,8 +26,6 @@ public:
 	 */
 	Butterworth()
 	{
-		this->m_dSampleRate = 0.0;
-		this->m_dPrototypeCutFreq = 0.0;
 	}
 
 	/**
@@ -33,26 +33,23 @@ public:
 	 */
 	virtual ~Butterworth()
 	{
-		if(this->m_pcBlockDiagram !=0)
-		{
-			delete [] this->m_pcBlockDiagram;
-		}
 	}
     
 	/**
-	 * @brief	サンプリング周波数を設定.
-	 * @param	double inSampleRate	サンプリング周波数.
-	 * @return	なし.
+	 * @brief	デジタルフィルタ設計名を取得.
 	 */
-	void setSampleRate(double i_dSampleRate){ this->m_dSampleRate = i_dSampleRate; }
+	virtual const char* description() const { return FILTER_DESIGN_NAME; }
 
 	/**
-	 * @brief	サンプリング周波数を取得.
-	 * @param	なし.
-	 * @return	サンプリング周波数.
+	 * @brief	ローパスフィルタの初期化.
 	 */
-	double getSampleRate() const { return this->m_dSampleRate; }
-    
+	virtual void initLowPassFilter();
+
+	/**
+	 * @brief	デジタルフィルタの設定を読み込む.
+	 */
+	virtual void readConfig();
+
 	/**
 	 * @brief	プロトタイプローパスフィルタを決定.
 	 * @param	double inPassFreq		パスバンドの周波数[Hz]
@@ -61,32 +58,18 @@ public:
 	 * @param	double inAttenuateGain	減衰量[dB]
 	 * @return	なし.
 	 */
-	void decisionPrototype(double inPassFreq,double inRippleGain,
-                           double inStopFreq,double inAttenuateGain);
+	virtual void decisionPrototype(
+						double i_dPassFreq,
+						double i_dRippleGain,
+						double i_dStopFreq,
+						double i_dAttenuateGain);
     
 	/**
-	 * @brief	プロトタイプローパスフィルタのカットオフ周波数を取得.
-	 * @param	なし.
-	 * @return	プロトタイプローパスフィルタのカットオフ周波数.
+	 * @brief	伝達関数の振幅特性と位相特性をファイルに出力.
+	 * @note	デバッグ用.
 	 */
-	double getPrototypeCutFreq() const{ return this->m_dPrototypeCutFreq; }
-    
-	/**
-	 * @brief	デジタルの周波数からアナログの周波数へ変換.
-	 * @param	double inOmega	デジタルの周波数.
-	 * @return	アナログの周波数.
-	 */
-	double digital2analog(double inOmega){ return 2*tan(inOmega/2); }
+	virtual void printCharacteristic(char* i_pbyNameAmp, char* i_pbyNamePhase) const;
 
-	/**
-	 * @brief	伝達関数を初期化.
-	 */
-	void initTransferFunction();
-
-	/**
-	 * @brief	振幅特性と位相特性をファイルへ出力.
-	 */
-	void printCharacteristic(char *inAmpFileName,char *inPhaseFileName);
 private:
 	/**
 	 * @brief	伝達関数の係数を取得.
@@ -130,17 +113,7 @@ private:
 	 * @return	バンドパスフィルタの伝達関数.
 	 */
 	BlockDiagram* initBandTransferFunction(double inLowCutFreq, double inHighCutFreq);
-    
-	/**
-	 * @brief	サンプリング周波数.
-	 */
-	double m_dSampleRate;
-
-	/**
-	 * @brief	プロトタイプローパスフィルタのカットオフ周波数
-	 */
-	double m_dPrototypeCutFreq;
 };
 
-#endif
+#endif	//__BUTTERWORTH_H__
 

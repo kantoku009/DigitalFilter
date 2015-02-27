@@ -6,15 +6,51 @@
 #include <complex>
 using namespace std;
 
+#define PI 3.1415926535897932384626433832795
+
+//readConfig()でファイルから読み出したい変数.
+static double m_dSampleRate;
+static double m_dPassFreq;
+static double m_dRippleGain;
+static double m_dStopFreq;
+static double m_dAttenuateGain;
+static double m_dCutoffFreq;
+
+void Butterworth::initLowPassFilter()
+{
+	this->readConfig();
+
+	this->setSampleRate(m_dSampleRate);
+	this->decisionPrototype(m_dPassFreq, m_dRippleGain, m_dStopFreq, m_dAttenuateGain);
+	this->setCutoffFreq(m_dCutoffFreq);
+
+	m_pcBlockDiagram = this->initLowTransferFunction(m_dCutoffFreq);
+}
+
+/**************************************
+ * デジタルフィルタの設定を読み込む.
+ **************************************/
+void Butterworth::readConfig()
+{
+	m_dSampleRate = 44.1*1000;
+
+	m_dPassFreq = 400.0;
+	m_dRippleGain = -1.0;
+	m_dStopFreq = 800.0;
+	m_dAttenuateGain = 48;
+
+	m_dCutoffFreq = 400.0;
+
+}
 
 /***********************************************************
 * decisionPrototype : プロトタイプローパスフィルタを決定
 *
 * 引数
-*   inPassFrquency : パスバンドの周波数[Hz]
-*   inRippleGain : 偏差の量[dB]
-*   inStopFrequency : ストップバンドの周波数[Hz]
-*   inAttenuateGain : 減衰量[dB]
+*   i_dPassFrquency : パスバンドの周波数[Hz]
+*   i_dRippleGain : 偏差の量[dB]
+*   i_dStopFrequency : ストップバンドの周波数[Hz]
+*   i_dAttenuateGain : 減衰量[dB]
 *
 * ローカル変数
 *   omega_dp : デジタル周波数のパスバンド[rad/sec]
@@ -39,10 +75,10 @@ using namespace std;
 ¥[ ¥omega_{ac} = ¥frac{¥omega_{ap}}{(10^{¥frac{r}{10}} - 1)^{¥frac{1}{2n}}} ¥]
 ¥begin{verbatim}
 ************************************************************/
-void Butterworth::decisionPrototype(double inPassFreq,
-                                    double inRippleGain,
-                                    double inStopFreq,
-                                    double inAttenuateGain)
+void Butterworth::decisionPrototype(double i_dPassFreq,
+                                    double i_dRippleGain,
+                                    double i_dStopFreq,
+                                    double i_dAttenuateGain)
 {
     double omega_dp,omega_ds;
     double omega_ap,omega_as;
@@ -52,58 +88,31 @@ void Butterworth::decisionPrototype(double inPassFreq,
     fs = this->getSampleRate();
 
     //サンプリング周波数で規格化
-    inPassFreq /= fs;
-    inStopFreq /= fs;
+    i_dPassFreq /= fs;
+    i_dStopFreq /= fs;
     
     //周波数から角周波数へ変換
-    omega_dp = 2*PI * inPassFreq;
-    omega_ds = 2*PI * inStopFreq;
+    omega_dp = 2*PI * i_dPassFreq;
+    omega_ds = 2*PI * i_dStopFreq;
 
     //デジタルの周波数からアナログの周波数へ変換
     omega_ap = digital2analog(omega_dp);
     omega_as = digital2analog(omega_ds);
     
     //ゲインの絶対値化
-    if(inRippleGain < 0.0) inRippleGain = -inRippleGain;
-    if(inAttenuateGain < 0.0) inAttenuateGain = -inAttenuateGain;
+    if(i_dRippleGain < 0.0)		i_dRippleGain = -i_dRippleGain;
+    if(i_dAttenuateGain < 0.0)	i_dAttenuateGain = -i_dAttenuateGain;
 
     //次数の決定
     n = 0.5;
-    n *= ( log10(pow(10,inAttenuateGain/10)-1) - log10(pow(10,inRippleGain/10)-1) );
+    n *= ( log10(pow(10,i_dAttenuateGain/10)-1) - log10(pow(10,i_dRippleGain/10)-1) );
     n /= ( log10(omega_as) - log10(omega_ap) );
     this->setOrderNumber(static_cast<long>(n) + 1);
     
     //プロトタイプのカットオフ周波数の決定
-    this->m_dPrototypeCutFreq = omega_ap / pow((pow(10,inRippleGain/10) - 1),
+    this->m_dPrototypeCutFreq = omega_ap / pow((pow(10,i_dRippleGain/10) - 1),
         1/(2*(static_cast<double>(this->getOrderNumber()))));
 
-}
-
-/*******************************
- * 伝達関数を初期化.
- *******************************/
-void Butterworth::initTransferFunction()
-{
-    try{
-        switch (getFilterMode()){
-            case kLowpass:
-            m_pcBlockDiagram = initLowTransferFunction(getCutoffFreq());
-            break;
-            
-            case kHighpass:
-            m_pcBlockDiagram = initHighTransferFunction(getCutoffFreq());
-            break;
-            
-            case kBandpass:
-            m_pcBlockDiagram = initBandTransferFunction(getLowCutoffFreq(),getHighCutoffFreq());
-            break;
-            
-            default:
-            throw FilterError((char*)"Butterwort error: cause unknown");
-        }
-    }catch (FilterError err){
-        cerr << err.what() << endl;
-    }
 }
 
 
@@ -628,8 +637,10 @@ double Butterworth::getHighBeta(double inCutFreq)
 *   なし
 *
 ***********************************************************************/
-void Butterworth::printCharacteristic(char *fNameAmp,char *fNamePhase)
+void Butterworth::printCharacteristic(char *i_pbyNameAmp, char *i_pbyNamePhase) const
 {
+	//とりあえずコメントアウト.
+	/*
     ofstream fpAmp(fNameAmp,ios::out),fpPhase(fNamePhase,ios::out);
     long orderNumber,numSection;
     bool isOrderEven;
@@ -670,5 +681,6 @@ void Butterworth::printCharacteristic(char *fNameAmp,char *fNamePhase)
         fpAmp << freq << ',' << 20*log10(amp) << endl;
         fpPhase << freq << ',' << phase << endl;
     }
+	*/
 }
 

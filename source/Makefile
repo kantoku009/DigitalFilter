@@ -2,19 +2,19 @@ CC = g++
 LIBS = 
 LDFLAGS = -Wall -O2
 
-SRCS_BUTTERWORTH = ./main_Butterworth.cpp ./Filter/Butterworth.cpp ./Filter/Filter.cpp ./Filter/BlockDiagram.cpp ./SoundInformation/SoundInformation.cpp ./SoundInformation/WaveFormatOperator.cpp
-SRCS_CHEBYCHEFF = ./main_Chebycheff.cpp ./Filter/Chebycheff.cpp ./Filter/Filter.cpp ./Filter/BlockDiagram.cpp ./SoundInformation/SoundInformation.cpp ./SoundInformation/WaveFormatOperator.cpp
+SRCS_MAIN = ./main.cpp 
+SRCS_WAVEFILE = ./SoundInformation/SoundInformation.cpp ./SoundInformation/WaveFormatOperator.cpp 
+SRCS_FILTERS = ./Filter/FilterDesign/BlockDiagram.cpp 
+SRCS_BUTTERWORTH = ./Filter/FilterDesign/IIRFilter/Butterworth.cpp 
+SRCS = $(SRCS_MAIN) $(SRCS_WAVEFILE) $(SRCS_FILTERS) $(SRCS_BUTTERWORTH)
 
-OUTFILE_BUTTERWORTH = ./butterworth_filter
-OUTFILE_CHEBYCHEFF = ./chebycheff_filter
+OUTFILE = ./myfilter
 
 
 make:
-	$(CC) $(LDFLAGS) -o $(OUTFILE_BUTTERWORTH) $(LIBS) $(SRCS_BUTTERWORTH)
-	$(CC) $(LDFLAGS) -o $(OUTFILE_CHEBYCHEFF) $(LIBS) $(SRCS_CHEBYCHEFF) 
+	$(CC) $(LDFLAGS) -o $(OUTFILE) $(LIBS) $(SRCS)
 
 clean:
-	rm $(OUTFILE_BUTTERWORTH)
-	rm $(OUTFILE_CHEBYCHEFF)
+	rm $(OUTFILE)
 	rm *.wav
 

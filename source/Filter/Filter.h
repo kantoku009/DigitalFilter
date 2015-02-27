@@ -6,34 +6,10 @@
 #ifndef __FILTER_H__
 #define __FILTER_H__
 
-#include "BlockDiagram.h"
+#include <string>
+using namespace std;
 
-/**
- * @brief	フィルタモード.
- */
-typedef enum
-{
-	kLowpass,	// Low  pass filter.
-	kHighpass,	// High pass filter.
-	kBandpass,	// Band pass filter.
-}FilterMode;
-
-
-class FilterError
-{
-public:
-    FilterError(char *message)
-    {
-        size_t len;
-        
-        len = strlen(message);
-        mMessage = new char [len+1];
-        strcpy(mMessage,message);
-    }
-    const char *what() const { return mMessage; }
-private:
-    char *mMessage;
-};
+#include "./FilterType/FilterType.h"
 
 /**
  * @brief	デジタルフィルタのクラス.
@@ -41,142 +17,81 @@ private:
 class Filter
 {
 public:
+
 	/**
 	 * @brief	コンストラクタ.
 	 */
-	Filter()
+	Filter(FilterType* i_icFilterType)
 	{
-		this->m_pcBlockDiagram= 0;
-    
-		this->m_eKindFilter = kLowpass;
-		this->m_lOrderNumber = 0;
-		this->m_dLowCutoffFreq = 0;
-		this->m_dHighCutoffFreq = 0;
+		this->init(i_icFilterType);
 	}
 
 	/**
 	 * @brief	デストラクタ.
 	 */
-	virtual ~Filter(){ }
+	virtual ~Filter()
+	{
+		delete m_icFilterType;
+	}
     
 	/**
-	 * @brief	フィルタモードを設定.
-	 * @note	モードに関しては, FilterModeを参照.
+	 * @brief	フィルタ名を取得.
 	 */
-	void selectFilterMode(FilterMode i_eKindFilter){ this->m_eKindFilter = i_eKindFilter; }
+	virtual const char* description() const
+	{
+		string a_strFilterTypeName = string(m_icFilterType->description());
+		string a_strFilterDesignName = string(m_icFilterType->getFilterDesign()->description());
+		string a_strFilterName = a_strFilterDesignName + a_strFilterTypeName;
+		return a_strFilterName.c_str();
+	}
 
 	/**
-	 * @brief	フィルタモードを取得.
+	 * @brief	初期化.
 	 */
-	FilterMode getFilterMode(){ return this->m_eKindFilter; }
-    
-	/**
-	 * @brief	カットオフ周波数を設定.
-	 * @param	double inCutFreq	カットオフ周波数.
-	 * @return	なし.
-	 * @note	このメンバ関数はモードがLowpassまたはHighpassフィルタのときに使用する.
-	 *			Bandpassの時には使えない.
-	 */
-	void setCutoffFreq(double inCutFreq);
+	virtual void init(FilterType* i_icFilterType)
+	{
+		this->setFilterType(i_icFilterType);
+	}
 
 	/**
-	 * @brief	カットオフ周波数を取得.
-	 * @param	なし.
-	 * @return	カットオフ周波数.
-	 * @note	このメンバ関数はモードがLowpassまたはHighpassフィルタのときに使用する.
-	 *			Bandpassの時には使えない.
+	 * @brief	フィルタにサンプル値を通す.
+	 * @param	double sample	入力サンプル値.
+	 * @return	出力サンプル値.
 	 */
-	double getCutoffFreq() const;
-    
-	/**
-	 * @brief	高い方と低い方のカットオフ周波数を設定.
-	 * @param	double inLowCutFreq
-	 * @param	double inHighCutFreq
-	 * @return	なし.
-	 * @note	このメンバ関数はモードがBandpassフィルタのときに使用する.
-	 *			Lowpass,Highpassの時には使えない
-	 */
-	void setCutoffFreq(double inLowCutFreq,double inHighCutFreq);
+	virtual double passFilter(double i_dSample) const
+	{
+		return m_icFilterType->passFilter(i_dSample);
+	}
 
 	/**
-	 * @brief	低い方のカットオフ周波数を取得.
+	 * @brief	フィルタタイプを取得.
 	 * @param	なし.
-	 * @return	低い方のカットオフ周波数.
-	 * @note	このメンバ関数はモードがBandpassフィルタのときに使用する.
-	 *			Lowpass,Highpassの時には使えない.
+	 * @return	フィルタタイプ.
 	 */
-	double getLowCutoffFreq() const;
+	virtual FilterType* getFilterType() const
+	{
+		return m_icFilterType;
+	}
 
-	/**
-	 * @brief	高い方のカットオフ周波数を取得.
-	 * @param	なし.
-	 * @return	高い方のカットオフ周波数.
-	 * @note	このメンバ関数はモードがBandpassフィルタのときに使用する.
-	 *			Lowpass,Highpassの時には使えない.
-	 */
-	double getHighCutoffFreq() const;
-    
-	/**
-	 * @brief	フィルタの次数を取得.
-	 * @param	なし.
-	 * @return	フィルタの次数.
-	 */
-	long getOrderNumber() const { return this->m_lOrderNumber; }
-    
-	/**
-	 * @brief	フィルタを実行する.
-	 * @param	double sample	処理するサンプル値.
-	 * @return	フィルタを通したサンプル値.
-	 */
-	double passFilter(double sample);
-    
 protected:
+
 	/**
-	 * @brief	フィルタの次数を設定.
-	 * @param	long inOrder	フィルタの次数.
+	 * @brief	フィルタタイプを設定.
+	 * @param	FilterType* i_icFilterType フィルタタイプ.
 	 * @return	なし.
 	 */
-	void setOrderNumber(long i_lOrder){ this->m_lOrderNumber = i_lOrder; }
+	virtual void setFilterType(FilterType* i_icFilterType)
+	{
+		m_icFilterType = i_icFilterType;
+	}
 
-	/**
-	 * @brief	ブロックダイアグラム.
-	 */
-	BlockDiagram *m_pcBlockDiagram;
-    
 private:
-	/**
-	 * @brief	伝達関数.
-	 * @param	double valSample	伝達関数に渡すサンプル値.
-	 * @return	伝達関数を通したサンプル値.
-	 */
-	double transferFunction(double valSample);
-    
-	/**
-	 * @brief	フィルタのモード.
-	 */
-	FilterMode m_eKindFilter;
 
 	/**
-	 * @brief	フィルタの次数.
+	 * @brief	フィルタタイプ.
 	 */
-	long m_lOrderNumber;
-
-	/**
-	 * @brief	低い方のカットオフ周波数.
-	 * @note	以下のフィルタモードで使用する.
-	 *			  ・kLowpass
-	 *			  ・kBandpass
-	 */
-	double m_dLowCutoffFreq;
-
-	/**
-	 * @brief	高い方のカットオフ周波数.
-	 * @note	以下のフィルタモードで使用する.
-	 *			  ・kHighpass
-	 *			  ・kBandpass
-	 */
-	double m_dHighCutoffFreq;
+	FilterType* m_icFilterType;
 };
 
-#endif
+#endif	//__FILTER_H__
 
