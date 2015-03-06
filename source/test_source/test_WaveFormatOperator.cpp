@@ -1,11 +1,11 @@
-#include "../SoundInformation/WaveFormatOperator.h"
+#include "../SoundInformation/CWaveFormatOperator.h"
 
 #include <iostream>
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-    WaveFormatOperator waveFile;
+    CWaveFormatOperator waveFile;
 	char* inFileName = argv[1];
 	bool a_bIsSuccess = true;
 

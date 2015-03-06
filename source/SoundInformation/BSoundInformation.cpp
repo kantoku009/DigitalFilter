@@ -1,0 +1,609 @@
+#include "BSoundInformation.h"
+
+#include <iostream>
+using namespace std;
+
+/*******************************************************************
+*BSoundInformationのコンストラクタ
+*
+*引数
+*	sampleRate:サンプリング周波数
+*	bitsPerSample:1sampleにつきのbit数
+*	numChannels:チャンネル数
+*	samplesPerChannel:1channelにつきのサンプル数
+*
+*ローカル変数
+*	なし
+*
+*返り値
+*	なし
+*
+*処理の流れ
+*	メンバ変数の初期化
+*
+********************************************************************/
+BSoundInformation::BSoundInformation(long  sampleRate,
+                                   short bitsPerSample,
+                                   short numChannels,
+                                   long  samplesPerChannel)
+{
+	try
+	{
+		this->m_pdSample = new double [samplesPerChannel*numChannels];
+	}
+	catch(bad_alloc err){
+		cerr << "BSoundInformation error: BSoundInformation::BSoundInformation. " << err.what() << endl;
+	}
+	memset(this->m_pdSample, 0, samplesPerChannel*numChannels*sizeof(double));
+	
+	this->m_lSampleRate = sampleRate;
+	this->m_shBitsPerSample = bitsPerSample;
+	this->m_shNumChannels = numChannels;
+	this->m_lSamplesPerChannel = samplesPerChannel;
+}
+
+
+/**************************************************************
+*コピーコンストラクター
+*
+**************************************************************/
+BSoundInformation::BSoundInformation(const BSoundInformation &ob)
+{	
+
+	this->m_lSampleRate = ob.getSampleRate();
+	this->m_shBitsPerSample = ob.m_shBitsPerSample;
+
+	if(ob.getNumSamples() != this->getNumSamples())
+	{
+		this->m_lSamplesPerChannel = ob.m_lSamplesPerChannel;
+		this->m_shNumChannels = ob.m_shNumChannels;
+		try
+		{
+			this->m_pdSample = new double [this->getNumSamples()];
+		}
+		catch(bad_alloc err)
+		{
+			cerr << "BSoundInformation::operator=. " << err.what() << endl;
+		}
+	}
+	memcpy(this->m_pdSample, ob.m_pdSample, this->getNumSamples()*sizeof(double));
+	
+}
+
+/*************************************************************************************************
+*setSampleRate : サンプリング周波数の設定
+*
+*引数
+*	sampleRate : 設定後のサンプリング周波数
+*
+*ローカル変数
+*	data : サンプル値の値
+*	delta : 現在のサンプリング周波数と設定したいサンプリング周波数の比(再サンプリング時に必要)
+*	samplePerChannel : サンプリング周波数を設定した後の1channelにつきのサンプル数
+*	temp : 現在のBSoundInformationを保存しておく変数
+*
+*返り値
+*	なし
+*
+*処理の流れ
+*	現在のサンプリング周波数と設定後のサンプリング周波数が同じ値ならば何もせずにreturn
+*	tempに現在のBSoundInformationを保存
+*	現在のサンプリング周波数と設定後のサンプリング周波数の比を求め、設定後のsamplePerCahnnelを設定
+*	再サンプリングの処理
+*	サンプリング周波数の設定
+*
+**************************************************************************************************/
+void BSoundInformation::setSampleRate(long sampleRate)
+{
+	double data;
+	
+	if(sampleRate == this->getSampleRate()) return;
+	
+	BSoundInformation temp = *this;
+	double delta = (double)this->getSampleRate()/sampleRate;
+	
+	long samplesPerChannel = this->getSamplesPerChannel() / delta;
+	this->setSamplesPerChannel(samplesPerChannel);
+
+	for(short channel=0;channel<this->getNumChannels();channel++)
+	{
+		for(long index=0;index<this->getSamplesPerChannel();index++)
+		{
+			data = temp.interpolation(index*delta, channel);
+			this->writeSampleIntoMemory(data, index, channel);
+		}
+	}
+
+	this->m_lSampleRate = sampleRate;
+}
+
+/***************************************************************************
+*setBitsPerSample : 量子化ビットの設定
+*
+*引数
+*	bitsPerSample : 設定後の量子化ビット
+*
+*
+*ローカル変数
+*	なし
+*
+*返り値
+*	なし
+*
+*処理の流れ
+*	設定前の量子化ビットと設定後の量子化ビットが同じならばすぐにreturn
+*	量子化ビットを設定
+*
+**************************************************************************/
+void BSoundInformation::setBitsPerSample(short bitsPerSample)
+{
+	
+	if(bitsPerSample == this->getBitsPerSample()) return;
+	this->m_shBitsPerSample = bitsPerSample;
+}
+
+
+/***************************************************************************
+*setNumChannels : チャンネル数を設定
+*
+*引数
+*	numChannels : 設定後のチャンネル数
+*
+*ローカル変数
+*	numSamples : 全サンプル数
+*	data : サンプル値を保存する
+*	lessChannel : 設定前と設定後のどちらかの少ないほうのチャンネル数
+*	temp : 設定前のBSoundInformation
+*
+*返り値
+*	なし
+*
+*処理の流れ
+*	tempに現在の状態のBSoundInformationをコピー
+*	設定後のチャンネル数と全サンプル数を設定
+*	dataを保持するメモリを確保
+*	設定前と設定後でチャンネル数の少ないほうを記録
+*	サンプル値のコピー
+*
+****************************************************************************/
+void BSoundInformation::setNumChannels(short numChannels)
+{
+	double data;
+	short lessChannel;
+	
+	if(numChannels == this->getNumChannels()) return;
+	
+	BSoundInformation temp = *this;
+	this->m_shNumChannels = numChannels;
+	long numSamples = this->getNumSamples();
+	
+	try
+	{
+		delete [] this->m_pdSample;
+		this->m_pdSample = new double [numSamples];
+	}
+	catch(bad_alloc err)
+	{
+		cerr << "BSoundInformation::setNumChannels. " << err.what() << endl;
+	}
+	memset(this->m_pdSample, 0, numSamples*sizeof(double));
+	
+	if(temp.getNumChannels() < this->getNumChannels())
+	{
+		lessChannel = temp.getNumChannels();
+	}
+	else
+	{
+		lessChannel = this->getNumChannels();
+	}
+		
+	for(long index=0;index<this->getSamplesPerChannel();index++)
+	{
+		for(short channel=0;channel<lessChannel;channel++)
+		{
+			data = temp.readSampleFromMemory(index,channel);
+			this->writeSampleIntoMemory(data,index,channel);
+		}
+	}
+}
+
+
+/************************************************************************
+*setSamplePerChannel : １チャンネルのサンプル数を設定
+*
+*引数
+*	samplesPerChannel : 設定後の１チャンネルのサンプル数
+*
+*ローカル変数
+*	temp : 設定前のBSoundInformation
+*	oldNumSamples : 設定前の全サンプル数
+*	newNumSamples : 設定後の全サンプル数
+*	lessNumSamples : 設定前と設定後の少ない方の全サンプル数
+*
+*返り値
+*	なし
+*
+*処理の流れ
+*	tempに現在の状態のBSoundInformationをコピー
+*	設定前の全サンプル数と設定後の全サンプル数を記憶
+*	設定前と設定後での全サンプル数の少ないほうを記憶
+*	全サンプル数、分だけメモリを確保
+*	確保したメモリにサンプル値をコピー
+*
+*************************************************************************/
+void BSoundInformation::setSamplesPerChannel(long samplesPerChannel)
+{
+	
+	if(samplesPerChannel == this->getSamplesPerChannel()) return;
+	
+	BSoundInformation temp = *this;
+	
+	long oldNumSamples = this->getNumSamples();
+	this->m_lSamplesPerChannel = samplesPerChannel;
+	long newNumSamples = this->getNumSamples();
+	long lessNumSamples;
+	if(oldNumSamples < newNumSamples)
+	{
+		lessNumSamples = oldNumSamples;
+	}
+	else
+	{
+		lessNumSamples = newNumSamples;
+	}
+
+	try
+	{
+		delete [] this->m_pdSample;
+		this->m_pdSample = new double [newNumSamples];
+	}
+	catch(bad_alloc err)
+	{
+		cerr << "BSoundInformation::setSamplesPerChannel. " << err.what() << endl;
+	}
+
+	memset(this->m_pdSample, 0, newNumSamples*sizeof(double));
+	memcpy(this->m_pdSample, temp.m_pdSample, lessNumSamples*sizeof(double));
+}
+
+
+/***************************************************************************************
+*getBytesPerSample : １サンプルのバイト数を取得
+*
+*引数
+*	なし
+*
+*ローカル変数
+*	bytesPerSample : １サンプルのバイト数
+*
+*返り値
+*	1サンプルのバイト数
+*
+*処理の流れ
+*	1サンプルのビット数を8で割りバイト数を算出し,
+*	1サンプルのビット数が8の倍数でなければ，bytesPerSampeに+1する
+*	bytesPerSampleが4byteより小さければ、bytesPerSampleはそのままで，
+*	大きければbytesPerSampleを4に設定
+*
+****************************************************************************************/
+short BSoundInformation::getBytesPerSample() const 
+{
+	short bytesPerSample;
+	
+	bytesPerSample = this->m_shBitsPerSample/8 + (this->m_shBitsPerSample%8 != 0);
+	bytesPerSample = (bytesPerSample < sizeof(long))? bytesPerSample:sizeof(long);
+	
+	return bytesPerSample;
+}
+
+
+/****************************************************************************************
+*readSampleFromMemory : メモリからサンプル値を取得
+*
+*引数
+*	num : 取得するサンプルが最初から何番目のものかを指定
+*	channel : 取得するサンプルのチャンネルを指定
+*
+*ローカル変数
+*	index : 1ブロックの中の何番目かを指定
+*
+*返り値
+*	サンプル値
+*
+*処理の流れ
+*	indexが全サンプル数より小さければサンプル値を返す
+*	indexが全サンプル数より大きければ0を返す
+*
+****************************************************************************************/
+double BSoundInformation::readSampleFromMemory(long num,short channel)  const
+{
+	
+	short numChan = this->getNumChannels();
+	long index = numChan*num + channel;
+	double sample = 0.0;
+	
+	if(index < this->getNumSamples())
+	{
+		sample = this->m_pdSample[index];
+	}
+
+	return sample;
+}
+
+
+/****************************************************************************************
+*writeSampleIntoMemory : メモリにサンプル値を書き込む
+*
+*引数
+*	sample : 書き込むサンプル値
+*	num : 書き込むサンプルが最初から何番目のものかを指定
+*	channel : 書き込むサンプルのチャンネルを指定
+*
+*ローカル変数
+*	index : 1ブロックの中の何番目かを指定
+*
+*返り値
+*	なし
+*
+*処理の流れ
+*	indexが全サンプル数より小さければサンプル値を書き込む，
+*	indexが全サンプル数より大きければ書き込まない
+*
+****************************************************************************************/
+void BSoundInformation::writeSampleIntoMemory(double sample,long num,short channel)
+{
+	short numChan = this->getNumChannels();
+	long index = numChan*num + channel;
+
+	if(index < getNumSamples())
+	{
+		this->m_pdSample[index] = sample;
+	}
+}
+
+
+/*********************************************************************************************************
+*&operator= : =演算子のオーバーロード
+*
+*引数
+*	=演算子の右辺のBSoundInformation
+*
+*ローカル変数
+*	なし
+*
+*返り値
+*	thisポインタ
+*
+*処理の流れ
+*	左辺値と右辺値が同じものならば自分自信をを返す
+*	左辺値の全サンプル数と右辺値の全サンプル数が異なっていれば,
+*		右辺値の全サンプル数を設定，右辺値のチャンネル数を設定，右辺値の全サンプル数分だけメモリ確保
+*	サンプル値をコピー
+*	サンプリング周波数を設定
+*	１サンプルのビット数を設定
+*
+*******************************************************************************************************/
+const BSoundInformation &BSoundInformation::operator=(const BSoundInformation &right)
+{
+	if(this == &right) return *this;
+	
+	if(right.getNumSamples() != getNumSamples())
+	{
+		delete [] this->m_pdSample;
+		this->m_lSamplesPerChannel = right.m_lSamplesPerChannel;
+		this->m_shNumChannels = right.m_shNumChannels;
+		try
+		{
+			this->m_pdSample = new double [this->getNumSamples()];
+		}
+		catch(bad_alloc err)
+		{
+			cerr << "BSoundInformation::operator=. " << err.what() << endl;
+		}
+	}
+	memcpy(this->m_pdSample, right.m_pdSample, this->getNumSamples()*sizeof(double));
+	
+	this->m_lSampleRate = right.m_lSampleRate;
+	this->m_shBitsPerSample = right.m_shBitsPerSample;
+
+	return *this;
+}
+
+/********************************************
+ * +演算子のオーバーロード.
+ ********************************************/
+BSoundInformation BSoundInformation::operator+(const BSoundInformation &ob)
+{
+	BSoundInformation temp;
+	if(this->getSampleRate() < ob.getSampleRate())
+	{
+		temp.setSampleRate(this->getSampleRate());
+	}
+	else
+	{
+		temp.setSampleRate(ob.getSampleRate());
+	}
+
+	if(this->getSamplesPerChannel() < ob.getSamplesPerChannel())
+	{
+		temp.setSamplesPerChannel(this->getSamplesPerChannel());
+	}
+	else
+	{
+		temp.setSamplesPerChannel(ob.getSamplesPerChannel());
+	}
+	
+	if(this->getNumChannels() < ob.getNumChannels())
+	{
+		temp.setNumChannels(getNumChannels());
+	}
+	else
+	{
+		temp.setNumChannels(ob.getNumChannels());
+	}
+
+	if(getBitsPerSample() < ob.getBitsPerSample())
+	{
+		temp.setBitsPerSample(getBitsPerSample());
+	}
+	else
+	{
+		temp.setBitsPerSample(ob.getBitsPerSample());
+	}
+	
+	long numSamplesPerChan = temp.getSamplesPerChannel();
+	short numChan = temp.getNumChannels();
+	for(long index=0;index<numSamplesPerChan;index++)
+	{
+		for(short chan=0;chan<numChan;chan++)
+		{
+			double data;
+			
+			data = this->readSampleFromMemory(index,chan) + ob.readSampleFromMemory(index,chan);
+			temp.writeSampleIntoMemory(data,index,chan);
+		}
+	}
+	
+	return temp;
+}
+
+/**********************************************
+ * +=演算子のオーバーロード.
+ **********************************************/
+const BSoundInformation &BSoundInformation::operator+=(BSoundInformation &ob)
+{
+	if(this->getSampleRate() != ob.getSampleRate())
+	{
+		if(this->getSampleRate() < ob.getSampleRate())
+		{
+			ob.setSampleRate(getSampleRate());
+		}
+		else
+		{
+			this->setSampleRate(ob.getSampleRate());
+		}
+	}
+	
+	if(this->getSamplesPerChannel() != ob.getSamplesPerChannel())
+	{
+		if(this->getSamplesPerChannel() < ob.getSamplesPerChannel())
+		{
+			ob.setSamplesPerChannel(getSamplesPerChannel());
+		}
+		else
+		{
+			this->setSamplesPerChannel(ob.getSamplesPerChannel());
+		}
+	}
+	
+	if(this->getNumChannels() != ob.getNumChannels())
+	{
+		if(this->getNumChannels() < ob.getNumChannels())
+		{
+			ob.setNumChannels(getNumChannels());
+		}
+		else
+		{
+			this->setNumChannels(ob.getNumChannels());
+		}
+	}
+	
+	if(this->getBitsPerSample() < ob.getBitsPerSample())
+	{
+		if(this->getBitsPerSample() < ob.getBitsPerSample())
+		{
+			ob.setBitsPerSample(getBitsPerSample());
+		}
+		else
+		{
+			this->setBitsPerSample(ob.getBitsPerSample());
+		}
+	}
+	
+	long numSamplesPerChan = this->getSamplesPerChannel();
+	short numChan = this->getNumChannels();
+	for(long index=0;index<numSamplesPerChan;index++)
+	{
+		for(short chan=0;chan<numChan;chan++)
+		{
+			double data;
+			
+			data = this->readSampleFromMemory(index,chan) + ob.readSampleFromMemory(index,chan);
+			this->writeSampleIntoMemory(data,index,chan);
+		}
+	}
+
+	return *this;
+}
+
+
+/*****************************************
+*sinc : sinc関数の近似
+*
+*引数
+*	x : 閾値
+*
+*ローカル変数
+*	なし
+*
+*処理の流れ
+*	xの絶対値をとる
+*	sinc関数の近似値を計算
+*
+*返り値
+*	sinc関数の値
+*
+*備考
+*-2〜2までの間しか考えていない
+*その他のところは0と近似してしまう
+*
+******************************************/
+double BSoundInformation::sinc(double i_dSample)
+{
+    if(i_dSample < 0.0) i_dSample = -i_dSample;
+    
+    if(i_dSample < 1.0) return (1.0 - 2.0*i_dSample*i_dSample + i_dSample*i_dSample*i_dSample);
+    if(i_dSample < 2.0) return (4.0 - 8.0*i_dSample + 5.0*i_dSample*i_dSample - i_dSample*i_dSample*i_dSample);
+    
+    return 0.0;
+}
+
+/********************************************
+*interpolation : 補間関数
+*
+*引数
+*	x : 閾値
+*	channel : ターゲットのチャンネル
+*
+*ローカル変数
+*	x0 : 閾値を整数化したもの（小数点以下切り捨て）
+*	y : 補完した値
+*
+*返り値
+*	補完した値
+*
+*備考
+*	sinc関数を用いて近傍４点で補間
+*	閾値の整数点からその間(xの値)を補完する
+*
+*********************************************/
+double BSoundInformation::interpolation(double i_dThreshold, short i_shChannel)
+{
+    long a_lThresholdInteger;
+    
+    a_lThresholdInteger = (long)i_dThreshold;
+
+    double a_dInterpolation = 0.0;
+    for(int a_iIndex=-1;a_iIndex<=2;a_iIndex++)
+	{
+        if( ((i_dThreshold+a_iIndex) >= 0) && ((i_dThreshold+a_iIndex) < this->getSamplesPerChannel()) )
+		{
+             a_dInterpolation+= this->readSampleFromMemory(a_lThresholdInteger+a_iIndex, i_shChannel)*sinc(i_dThreshold-(a_lThresholdInteger+a_iIndex));
+		}
+    }
+
+    if(a_dInterpolation > 1.0) a_dInterpolation = 1.0;
+    if(a_dInterpolation < -1.0) a_dInterpolation = -1.0;
+
+    return a_dInterpolation;
+}
+
