@@ -8,18 +8,8 @@
 #include "../../ILowPassFilterDesign.h"
 #include "./CChebycheffCommon.h"
 
-#define	CHEBYCHEFF_LOWPASS_FILTER_DESIGN_NAME	"ChebycheffLowPass"
-
-
-//readConfig()でファイルから読み出したい変数.
-//static double m_dSampleRate;
-static double m_dPassFreq_ChebycheffLow;
-static double m_dRippleGain_ChebycheffLow;
-static double m_dStopFreq_ChebycheffLow;
-static double m_dAttenuateGain_ChebycheffLow;
-//static double m_dCutoffFreq;
-
-
+#define	CHEBYCHEFF_LOWPASS_FILTER_DESIGN_NAME		"ChebycheffLowPass"
+#define CHEBYCHEFF_LOWPASS_FILTER_CONFIG_FILENAME	"./config/ChebycheffLowPassFilter.conf"
 
 /**
  * @brief	チェビシェフ特性 ローパスデジタルフィルタ設計部のクラス.
@@ -30,7 +20,11 @@ public:
 	/**
 	 * @brief	コンストラクタ.
 	 */
-	CChebycheffLowPassFilterDesign(){ }
+	CChebycheffLowPassFilterDesign()
+	{ 
+		this->m_pbyFilterDesignName = CHEBYCHEFF_LOWPASS_FILTER_DESIGN_NAME;
+		this->m_pbyConfigFileName = CHEBYCHEFF_LOWPASS_FILTER_CONFIG_FILENAME;
+	}
 
 	/**
 	 * @brief	デストラクタ.
@@ -42,7 +36,7 @@ public:
 	 */
 	virtual const char* description() const
 	{
-		return CHEBYCHEFF_LOWPASS_FILTER_DESIGN_NAME;
+		return this->m_pbyFilterDesignName;
 	}
 
 	/**
@@ -52,28 +46,46 @@ public:
 	{
 		this->readConfig();
 
-		this->setSampleRate(m_dSampleRate);
-		this->decisionPrototype(m_dPassFreq_ChebycheffLow, m_dRippleGain_ChebycheffLow, m_dStopFreq_ChebycheffLow, m_dAttenuateGain_ChebycheffLow);
-		this->setCutoffFreq(m_dCutoffFreq);
+		this->setSampleRate(this->m_dSampleRate);
+		this->decisionPrototype(this->m_dPassFreq, this->m_dRippleGain, this->m_dStopFreq, this->m_dAttenuateGain);
+		this->setCutoffFreq(this->m_dCutoffFreq);
 
-		m_pcBlockDiagram = this->initLowTransferFunction(m_dCutoffFreq);
+		this->m_pcBlockDiagram = this->initLowTransferFunction(this->m_dCutoffFreq);
 	}
 	
 
 	/**
 	 * @brief	デジタルフィルタの設定部を読み込む.
-	 * @note	TBA.未実装.
 	 */
 	virtual void readConfig()
 	{
-		this->m_dSampleRate = 44.1*1000;
+		//configファイルを読み込み.
+		CFilterConfig a_cConfig;
+		map<string,string> a_mapPairsTable = a_cConfig.getConfig(this->m_pbyConfigFileName);
 
-		m_dPassFreq_ChebycheffLow = 400.0;
-		m_dRippleGain_ChebycheffLow = -1.0;
-		m_dStopFreq_ChebycheffLow = 800.0;
-		m_dAttenuateGain_ChebycheffLow = -48.0;
+		//mapを初期化するには コンパイル時に オプション -std=c++11 が必要.
+		map<string, double*> a_mapConfigTable = 
+		{
+			{"SampleRate",		&this->m_dSampleRate},
+			{"PassFreq",		&this->m_dPassFreq},
+			{"RippleGain",		&this->m_dRippleGain},
+			{"StopFreq",		&this->m_dStopFreq},
+			{"AttenuateGain",	&this->m_dAttenuateGain},
+			{"CutoffFreq",		&this->m_dCutoffFreq},
+		};
 
-		this->m_dCutoffFreq = 400.0;
+		//コンフィグの設定.
+		this->setConfig(a_mapPairsTable, a_mapConfigTable);
+
+		//デバッグ用にコンフィグを出力.
+		if(this->m_bIsDebug) this->printConfig();
+
+		//this->m_dSampleRate = 44.1*1000;
+		//this->m_dPassFreq = 400.0;
+		//this->m_dRippleGain = -1.0;
+		//this->m_dStopFreq = 800.0;
+		//this->m_dAttenuateGain = -48.0;
+		//this->m_dCutoffFreq = 400.0;
 	}
 
 	/**

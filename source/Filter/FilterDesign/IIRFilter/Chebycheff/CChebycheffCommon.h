@@ -105,11 +105,6 @@ protected:
 	 * @brief	係数.
 	 */
 	double m_dAlpha0;
-
-	/**
-	 * @brief	サンプリング周波数.
-	 */
-	double m_dSampleRate;
 };
 
 #endif	//__CCHEBYCHEFF_COMMON_H__

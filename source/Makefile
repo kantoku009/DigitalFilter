@@ -1,6 +1,6 @@
 CC = g++
 LIBS = 
-LDFLAGS = -Wall -O2
+LDFLAGS = -Wall -O2 -std=c++11
 
 SRCS_MAIN = ./main.cpp 
 SRCS_WAVEFILE = ./SoundInformation/BSoundInformation.cpp ./SoundInformation/CWaveFormatOperator.cpp 

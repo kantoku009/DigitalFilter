@@ -6,9 +6,6 @@
 #ifndef __CFILTER_H__
 #define __CFILTER_H__
 
-#include <string>
-using namespace std;
-
 #include "./FilterDesign/IFilterDesign.h"
 
 /**
@@ -39,8 +36,7 @@ public:
 	virtual const char* description() const
 	{
 		//デジタルフィルタ設計部名を取得.
-		string a_strFilterDesignName = string(m_piFilterDesign->description());
-		return a_strFilterDesignName.c_str();
+		return m_piFilterDesign->description();
 	}
 
 	/**

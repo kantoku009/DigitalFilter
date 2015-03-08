@@ -5,19 +5,17 @@
 #ifndef __CBUTTERWORTH_LOWPASSFILTER_DESIGN_H__
 #define __CBUTTERWORTH_LOWPASSFILTER_DESIGN_H__
 
+#include <string>
+#include <map>
+using namespace std;
+
 #include "../../ILowPassFilterDesign.h"
 #include "./CButterworthCommon.h"
 
-#define	BUTTERWORTH_LOWPASS_FILTER_DESIGN_NAME	"ButterworthLowPass"
+#include "../../CFilterConfig.h"
 
-//readConfig()でファイルから読み出したい変数.
-//static double m_dSampleRate;
-static double m_dPassFreq_ButterworthLow;
-static double m_dRippleGain_ButterworthLow;
-static double m_dStopFreq_ButterworthLow;
-static double m_dAttenuateGain_ButterworthLow;
-//static double m_dCutoffFreq;
-
+#define	BUTTERWORTH_LOWPASS_FILTER_DESIGN_NAME		"ButterworthLowPass"
+#define BUTTERWORTH_LOWPASS_FILTER_CONFIG_FILENAME	"./config/ButterworthLowPassFilter.conf"
 
 /**
  * @brief	バターワース特性 ローパスデジタルフィルタ設計部のクラス.
@@ -28,7 +26,11 @@ public:
 	/**
 	 * @brief	コンストラクタ.
 	 */
-	CButterworthLowPassFilterDesign(){ }
+	CButterworthLowPassFilterDesign()
+	{
+		this->m_pbyFilterDesignName = BUTTERWORTH_LOWPASS_FILTER_DESIGN_NAME;
+		this->m_pbyConfigFileName = BUTTERWORTH_LOWPASS_FILTER_CONFIG_FILENAME;
+	}
 
 	/**
 	 * @brief	デストラクタ.
@@ -36,11 +38,11 @@ public:
 	virtual ~CButterworthLowPassFilterDesign(){ }
 
 	/**
-	 * @brief	デジタルフィルタ設計部名を取得.
+	 * @brief	デジタルフィルタ設計名を取得.
 	 */
 	virtual const char* description() const
 	{
-		return BUTTERWORTH_LOWPASS_FILTER_DESIGN_NAME;
+		return m_pbyFilterDesignName;
 	}
 
 	/**
@@ -50,27 +52,45 @@ public:
 	{
 		this->readConfig();
 
-		this->setSampleRate(m_dSampleRate);
-		this->decisionPrototype(m_dPassFreq_ButterworthLow, m_dRippleGain_ButterworthLow, m_dStopFreq_ButterworthLow, m_dAttenuateGain_ButterworthLow);
+		this->setSampleRate(this->m_dSampleRate);
+		this->decisionPrototype(this->m_dPassFreq, this->m_dRippleGain, this->m_dStopFreq, this->m_dAttenuateGain);
 		this->setCutoffFreq(m_dCutoffFreq);
 
-		m_pcBlockDiagram = this->initLowTransferFunction(m_dCutoffFreq);
+		this->m_pcBlockDiagram = this->initLowTransferFunction(this->m_dCutoffFreq);
 	}
 	
 	/**
-	 * @brief	デジタルフィルタの設定部を読み込む.
-	 * @note	TBA.未実装.ファイルから読み込めるようにすること.
+	 * @brief	デジタルフィルタの設定を読み込む.
 	 */
 	virtual void readConfig()
 	{
-		this->m_dSampleRate = 44.1*1000;
+		//configファイルを読み込み.
+		CFilterConfig a_cConfig;
+		map<string,string> a_mapPairsTable = a_cConfig.getConfig(this->m_pbyConfigFileName);
 
-		m_dPassFreq_ButterworthLow = 400.0;
-		m_dRippleGain_ButterworthLow = -1.0;
-		m_dStopFreq_ButterworthLow = 800.0;
-		m_dAttenuateGain_ButterworthLow = -48.0;
+		//mapを初期化するには コンパイル時に オプション -std=c++11 が必要.
+		map<string, double*> a_mapConfigTable = 
+		{
+			{"SampleRate",		&this->m_dSampleRate},
+			{"PassFreq",		&this->m_dPassFreq},
+			{"RippleGain",		&this->m_dRippleGain},
+			{"StopFreq",		&this->m_dStopFreq},
+			{"AttenuateGain",	&this->m_dAttenuateGain},
+			{"CutoffFreq",		&this->m_dCutoffFreq},
+		};
 
-		this->m_dCutoffFreq = 400.0;
+		//コンフィグの設定.
+		this->setConfig(a_mapPairsTable, a_mapConfigTable);
+
+		//デバッグ用にコンフィグを出力.
+		if(this->m_bIsDebug) this->printConfig();
+		
+		//this->m_dSampleRate = 44.1*1000;
+		//this->m_dPassFreq = 400.0;
+		//this->m_dRippleGain = -1.0;
+		//this->m_dStopFreq = 800.0;
+		//this->m_dAttenuateGain = -48.0;
+		//this->m_dCutoffFreq = 400.0;
 	}
 
 	/**

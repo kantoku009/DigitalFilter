@@ -1,4 +1,4 @@
-#include <vector>
+#include <cstring>
 using namespace std;
 
 #include "./SoundInformation/CWaveFormatOperator.h"
@@ -33,62 +33,85 @@ bool runFilter(CFilter& i_cFilter, BSoundInformation& i_bSoundInformation, long 
 	return true;
 }
 
-IFilterBuilder* init_builder(short i_shIndex)
+CFilter* createFilter(short i_shIndex)
 {
-	IFilterBuilder* a_pcBuilder;
-	vector<IFilterBuilder*> a_vecBuilder;
 
-	//バターワース特性 ローパスフィルタ.
-	a_pcBuilder = new CButterworthLowPassFilterBuilder();
-	a_vecBuilder.push_back(a_pcBuilder);
+	IFilterBuilder* a_piFilterBuilder=0;
+	CFilter* a_pcFilter=0;
 
-	//バターワース特性 バンドパスフィルタ.
-	a_pcBuilder = new CButterworthBandPassFilterBuilder();
-	a_vecBuilder.push_back(a_pcBuilder);
+	switch (i_shIndex)
+	{
+		case 0:		//バターワース特性 ローパスフィルタ.
+		a_piFilterBuilder = new CButterworthLowPassFilterBuilder();
+		break;
 
-	//バターワース特性 ハイパスフィルタ.
-	a_pcBuilder = new CButterworthHighPassFilterBuilder();
-	a_vecBuilder.push_back(a_pcBuilder);
+		case 1:		//バターワース特性 バンドパスフィルタ.
+		a_piFilterBuilder = new CButterworthBandPassFilterBuilder();
+		break;
 
-	//チェビシェフ特性 ローパスフィルタ.
-	a_pcBuilder = new CChebycheffLowPassFilterBuilder();
-	a_vecBuilder.push_back(a_pcBuilder);
+		case 2:		//バターワース特性 ハイパスフィルタ.
+		a_piFilterBuilder = new CButterworthHighPassFilterBuilder();
+		break;
 
-	//チェビシェフ特性 バンドパスフィルタ.
-	a_pcBuilder = new CChebycheffBandPassFilterBuilder();
-	a_vecBuilder.push_back(a_pcBuilder);
+		case 3:		//チェビシェフ特性 ローパスフィルタ.
+		a_piFilterBuilder = new CChebycheffLowPassFilterBuilder();
+		break;
 
-	//チェビシェフ特性 ハイパスフィルタ.
-	a_pcBuilder = new CChebycheffHighPassFilterBuilder();
-	a_vecBuilder.push_back(a_pcBuilder);
+		case 4:		//チェビシェフ特性 バンドパスフィルタ.
+		a_piFilterBuilder = new CChebycheffBandPassFilterBuilder();
+		break;
 
-	//return a_vecBuilder[i_shIndex];
-	return a_pcBuilder;
+		case 5:		//チェビシェフ特性 ハイパスフィルタ.
+		a_piFilterBuilder = new CChebycheffHighPassFilterBuilder();
+		break;
+
+		default:
+		a_piFilterBuilder = 0;
+		break;
+	}
+
+	if(0 != a_piFilterBuilder)
+	{
+		a_pcFilter = a_piFilterBuilder->build();	
+		delete a_piFilterBuilder;
+	}
+
+	return a_pcFilter;
 }
 
 int main(int argc, char* argv[])
 {
     string inFileName(argv[1]);
     double dBPerOctDown=atof(argv[2]);
+	short a_shFilterIndex=atoi(argv[3]);
 
-	//フィルタ ビルダー
-	//バターワース特性 ローパスフィルタ.
+	////フィルタ ビルダー
+	////バターワース特性 ローパスフィルタ.
 	//CButterworthLowPassFilterBuilder a_cBuilder;
-	//バターワース特性 バンドパスフィルタ.
+	////バターワース特性 バンドパスフィルタ.
 	//CButterworthBandPassFilterBuilder a_cBuilder;
-	//バターワース特性 ハイパスフィルタ.
+	////バターワース特性 ハイパスフィルタ.
 	//CButterworthHighPassFilterBuilder a_cBuilder;
-	//チェビシェフ特性 ローパスフィルタ.
+	////チェビシェフ特性 ローパスフィルタ.
 	//CChebycheffLowPassFilterBuilder a_cBuilder;
-	//チェビシェフ特性 バンドパスフィルタ.
+	////チェビシェフ特性 バンドパスフィルタ.
 	//CChebycheffBandPassFilterBuilder a_cBuilder;
-	//チェビシェフ特性 ハイパスフィルタ.
-	CChebycheffHighPassFilterBuilder a_cBuilder;
-	CFilter* a_pcFilter = a_cBuilder.build();
+	////チェビシェフ特性 ハイパスフィルタ.
+	//CChebycheffHighPassFilterBuilder a_cBuilder;
+	//CFilter* a_pcFilter = a_cBuilder.build();
+
+	//フィルタを生成.
+	CFilter* a_pcFilter = createFilter(a_shFilterIndex);
+	if(0==a_pcFilter)
+	{
+		cout << "error: CFilter create failed." << endl;
+		return -1;
+	}
 
 	//フィルタ名を取得.
 	char a_strFilterName[256];
-	strcpy(a_strFilterName, a_pcFilter->description());
+    const char* a_pbyTemp = a_pcFilter->description();
+	strcpy(a_strFilterName, a_pbyTemp);
 
 	//出力ファイル名を決定.
 	string outFileName(a_strFilterName);
@@ -99,7 +122,8 @@ int main(int argc, char* argv[])
 
     cout << "load file now: " << inFileName << endl;
 	CWaveFormatOperator a_cWaveFile;
-    if(a_cWaveFile.readWaveFile(inFileName) == true){
+    if(true == a_cWaveFile.readWaveFile(inFileName))
+	{
         //cout << "get outLowAmp and outLowPhase" << endl;
         //a_pcFilter.printCharacteristic("outLowAmp.txt","outLowPhase.txt");
 
@@ -120,12 +144,13 @@ int main(int argc, char* argv[])
 		//フィルタ処理後の音声を書き出す.
         cout << "write file now: " << outFileName << endl;
         a_cWaveFile.writeWaveFile(outFileName);
-    }else{
+    }
+	else
+	{
         cout << "error: load file" << endl;
     }
     cout << "finish" << endl;
 	delete a_pcFilter;
-    
     
     return 0;
 }

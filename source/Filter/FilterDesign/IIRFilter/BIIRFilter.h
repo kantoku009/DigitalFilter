@@ -6,7 +6,11 @@
 #ifndef __CIIR_FILTER_H__
 #define __CIIR_FILTER_H__
 
+#include <cstdio>		//デバッグ用. printf()を使用したい.
 #include <cmath>
+#include <cstdlib>
+#include <string>
+#include <map>
 using namespace std;
 
 #include "../CBlockDiagram.h"
@@ -73,6 +77,22 @@ public:
 	virtual void printCharacteristic(char* i_pbyNameAmp, char* i_pbyNamePhase) const { }
 
 protected:
+
+	/**
+	 * @brief	コンフィグを設定.
+	 */
+	virtual void setConfig(map<string,string> i_mapPairsTable, map<string,double*> i_mapConfigTable)
+	{
+		map<string,double*>::iterator a_piIterator;
+		for(a_piIterator=i_mapConfigTable.begin(); a_piIterator!=i_mapConfigTable.end(); ++a_piIterator)
+		{
+			string a_strKey = a_piIterator->first;
+			string a_strValue = i_mapPairsTable[a_strKey];
+			*(a_piIterator->second) = atof(a_strValue.c_str());
+		}
+	}
+
+
 	/**
 	 * @brief	伝達関数にサンプルを通す.
 	 * @param	long i_lNumSection	ブロックダイアグラムのセクション数.
@@ -140,6 +160,22 @@ protected:
 	}
 
 	/**
+	 * @brief	フィルタの設定値を出力.
+	 * @note	デバッグ用.
+	 */
+	void printConfig() const
+	{
+		printf("  SampleRate = %.1f\n", this->m_dSampleRate);
+		printf("  PassFreq = %.1f\n", this->m_dPassFreq);
+		printf("  RippleGain = %.1f\n", this->m_dRippleGain);
+		printf("  StopFreq = %.1f\n", this->m_dStopFreq);
+		printf("  AttenuateGain = %.1f\n", this->m_dAttenuateGain);
+		printf("  CutoffFreq = %.1f\n", this->m_dCutoffFreq);
+		printf("  LowCutoffFreq = %.1f\n", this->m_dLowCutoffFreq);
+		printf("  HighCutoffFreq = %.1f\n", this->m_dHighCutoffFreq);
+	}
+
+	/**
 	 * @brief	ブロックダイアグラム.
 	 */
 	CBlockDiagram* m_pcBlockDiagram;
@@ -165,6 +201,30 @@ protected:
 	 * @note	バンドパスフィルタのみで使用する.
 	 */
 	double m_dHighCutoffFreq;
+
+	/**
+	 * @brief	パスバンドの周波数[Hz].
+	 * @note	decisionPrototype()での引数.
+	 */
+	double m_dPassFreq;
+
+	/**
+	 * @brief	偏差の量[dB].
+	 * @note	decisionPrototype()での引数.
+	 */
+	double m_dRippleGain;
+
+	/**
+	 * @brief	ストップバンドの周波数[Hz].
+	 * @note	decisionPrototype()での引数.
+	 */
+	double m_dStopFreq;
+
+	/**
+	 * @brief	減衰量[dB].
+	 * @note	decisionPrototype()での引数.
+	 */
+	double m_dAttenuateGain;
 
 	/**
 	 * @brief	プロトタイプローパスフィルタのカットオフ周波数.
