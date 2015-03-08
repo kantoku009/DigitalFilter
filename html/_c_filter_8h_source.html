@@ -61,58 +61,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00006"></a>00006 <span class="preprocessor">#ifndef __CFILTER_H__</span>
 <a name="l00007"></a>00007 <span class="preprocessor"></span><span class="preprocessor">#define __CFILTER_H__</span>
 <a name="l00008"></a>00008 <span class="preprocessor"></span>
-<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;string&gt;</span>
-<a name="l00010"></a>00010 <span class="keyword">using namespace </span>std;
-<a name="l00011"></a>00011 
-<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;<a class="code" href="_i_filter_design_8h.html" title="デジタルフィルタ設計部のインタフェース.">./FilterDesign/IFilterDesign.h</a>&quot;</span>
-<a name="l00013"></a>00013 
-<a name="l00017"></a><a class="code" href="class_c_filter.html">00017</a> <span class="keyword">class </span><a class="code" href="class_c_filter.html" title="デジタルフィルタのクラス.">CFilter</a>
-<a name="l00018"></a>00018 {
-<a name="l00019"></a>00019 <span class="keyword">public</span>:
-<a name="l00020"></a>00020 
-<a name="l00024"></a><a class="code" href="class_c_filter.html#aa4859f603a610307be3b004262213e41">00024</a>         <a class="code" href="class_c_filter.html" title="デジタルフィルタのクラス.">CFilter</a>()
-<a name="l00025"></a>00025         {
-<a name="l00026"></a>00026         }
-<a name="l00027"></a>00027 
-<a name="l00031"></a><a class="code" href="class_c_filter.html#a308792dc5b1279c6b2208d66e17ad8c9">00031</a>         <span class="keyword">virtual</span> ~<a class="code" href="class_c_filter.html" title="デジタルフィルタのクラス.">CFilter</a>()
-<a name="l00032"></a>00032         {
-<a name="l00033"></a>00033                 <span class="keyword">delete</span> m_piFilterDesign;
-<a name="l00034"></a>00034         }
-<a name="l00035"></a>00035     
-<a name="l00039"></a><a class="code" href="class_c_filter.html#a5a1714c284a390056d3fc946797f9c44">00039</a>         <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* description()<span class="keyword"> const</span>
-<a name="l00040"></a>00040 <span class="keyword">        </span>{
-<a name="l00041"></a>00041                 <span class="comment">//デジタルフィルタ設計部名を取得.</span>
-<a name="l00042"></a>00042                 <span class="keywordtype">string</span> a_strFilterDesignName = string(m_piFilterDesign-&gt;description());
-<a name="l00043"></a>00043                 <span class="keywordflow">return</span> a_strFilterDesignName.c_str();
-<a name="l00044"></a>00044         }
-<a name="l00045"></a>00045 
-<a name="l00049"></a><a class="code" href="class_c_filter.html#a841f129b28a0fa783c6c55796389818d">00049</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> init(<a class="code" href="class_i_filter_design.html" title="デジタルフィルタ設計部のインタフェース.">IFilterDesign</a>* i_piFilterDesign)
-<a name="l00050"></a>00050         {
-<a name="l00051"></a>00051                 this-&gt;setFilterDesign(i_piFilterDesign);
-<a name="l00052"></a>00052         }
-<a name="l00053"></a>00053 
-<a name="l00059"></a><a class="code" href="class_c_filter.html#ae03ba97d6da75a3422967929a81b062f">00059</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> passFilter(<span class="keywordtype">double</span> i_dSample)<span class="keyword"> const</span>
-<a name="l00060"></a>00060 <span class="keyword">        </span>{
-<a name="l00061"></a>00061                 <span class="keywordflow">return</span> m_piFilterDesign-&gt;passFilter(i_dSample);
-<a name="l00062"></a>00062         }
-<a name="l00063"></a>00063 
-<a name="l00069"></a><a class="code" href="class_c_filter.html#a69706e245bc15ba23bd05c348e01ebdb">00069</a>         <span class="keyword">virtual</span> <a class="code" href="class_i_filter_design.html" title="デジタルフィルタ設計部のインタフェース.">IFilterDesign</a>* getFilterDesign()<span class="keyword"> const</span>
-<a name="l00070"></a>00070 <span class="keyword">        </span>{
-<a name="l00071"></a>00071                 <span class="keywordflow">return</span> m_piFilterDesign;
-<a name="l00072"></a>00072         }
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 <span class="keyword">protected</span>:
-<a name="l00080"></a><a class="code" href="class_c_filter.html#ad5cbc4392335f63a61407092ccde01ed">00080</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> setFilterDesign(<a class="code" href="class_i_filter_design.html" title="デジタルフィルタ設計部のインタフェース.">IFilterDesign</a>* i_piFilterDesign)
-<a name="l00081"></a>00081         {
-<a name="l00082"></a>00082                 m_piFilterDesign = i_piFilterDesign;
-<a name="l00083"></a>00083         }
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085 <span class="keyword">private</span>:
-<a name="l00089"></a><a class="code" href="class_c_filter.html#a35671fc6e44559113fd3e53b359e1848">00089</a>         <a class="code" href="class_i_filter_design.html" title="デジタルフィルタ設計部のインタフェース.">IFilterDesign</a>* <a class="code" href="class_c_filter.html#a35671fc6e44559113fd3e53b359e1848" title="デジタルフィルタ設計部.">m_piFilterDesign</a>;
-<a name="l00090"></a>00090 };
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 <span class="preprocessor">#endif  //__CFILTER_H__</span>
-<a name="l00093"></a>00093 <span class="preprocessor"></span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &quot;<a class="code" href="_i_filter_design_8h.html" title="デジタルフィルタ設計部のインタフェース.">./FilterDesign/IFilterDesign.h</a>&quot;</span>
+<a name="l00010"></a>00010 
+<a name="l00014"></a><a class="code" href="class_c_filter.html">00014</a> <span class="keyword">class </span><a class="code" href="class_c_filter.html" title="デジタルフィルタのクラス.">CFilter</a>
+<a name="l00015"></a>00015 {
+<a name="l00016"></a>00016 <span class="keyword">public</span>:
+<a name="l00017"></a>00017 
+<a name="l00021"></a><a class="code" href="class_c_filter.html#aa4859f603a610307be3b004262213e41">00021</a>         <a class="code" href="class_c_filter.html#aa4859f603a610307be3b004262213e41" title="コンストラクタ.">CFilter</a>()
+<a name="l00022"></a>00022         {
+<a name="l00023"></a>00023         }
+<a name="l00024"></a>00024 
+<a name="l00028"></a><a class="code" href="class_c_filter.html#a308792dc5b1279c6b2208d66e17ad8c9">00028</a>         <span class="keyword">virtual</span> <a class="code" href="class_c_filter.html#a308792dc5b1279c6b2208d66e17ad8c9" title="デストラクタ.">~CFilter</a>()
+<a name="l00029"></a>00029         {
+<a name="l00030"></a>00030                 <span class="keyword">delete</span> <a class="code" href="class_c_filter.html#a35671fc6e44559113fd3e53b359e1848" title="デジタルフィルタ設計部.">m_piFilterDesign</a>;
+<a name="l00031"></a>00031         }
+<a name="l00032"></a>00032     
+<a name="l00036"></a><a class="code" href="class_c_filter.html#a5a1714c284a390056d3fc946797f9c44">00036</a>         <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_c_filter.html#a5a1714c284a390056d3fc946797f9c44" title="デジタルフィルタ名を取得.">description</a>()<span class="keyword"> const</span>
+<a name="l00037"></a>00037 <span class="keyword">        </span>{
+<a name="l00038"></a>00038                 <span class="comment">//デジタルフィルタ設計部名を取得.</span>
+<a name="l00039"></a>00039                 <span class="keywordflow">return</span> <a class="code" href="class_c_filter.html#a35671fc6e44559113fd3e53b359e1848" title="デジタルフィルタ設計部.">m_piFilterDesign</a>-&gt;<a class="code" href="class_i_filter_design.html#a1fb38c467ada6629ca11966b48067090" title="デジタルフィルタ設計部名を取得.">description</a>();
+<a name="l00040"></a>00040         }
+<a name="l00041"></a>00041 
+<a name="l00045"></a><a class="code" href="class_c_filter.html#a841f129b28a0fa783c6c55796389818d">00045</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_filter.html#a841f129b28a0fa783c6c55796389818d" title="初期化.">init</a>(<a class="code" href="class_i_filter_design.html" title="デジタルフィルタ設計部のインタフェース.">IFilterDesign</a>* i_piFilterDesign)
+<a name="l00046"></a>00046         {
+<a name="l00047"></a>00047                 this-&gt;<a class="code" href="class_c_filter.html#ad5cbc4392335f63a61407092ccde01ed" title="デジタルフィルタ設計部を設定.">setFilterDesign</a>(i_piFilterDesign);
+<a name="l00048"></a>00048         }
+<a name="l00049"></a>00049 
+<a name="l00055"></a><a class="code" href="class_c_filter.html#ae03ba97d6da75a3422967929a81b062f">00055</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> <a class="code" href="class_c_filter.html#ae03ba97d6da75a3422967929a81b062f" title="デジタルフィルタにサンプル値を通す.">passFilter</a>(<span class="keywordtype">double</span> i_dSample)<span class="keyword"> const</span>
+<a name="l00056"></a>00056 <span class="keyword">        </span>{
+<a name="l00057"></a>00057                 <span class="keywordflow">return</span> <a class="code" href="class_c_filter.html#a35671fc6e44559113fd3e53b359e1848" title="デジタルフィルタ設計部.">m_piFilterDesign</a>-&gt;<a class="code" href="class_i_filter_design.html#a32f6cfb1996fca6674148351a8720adc" title="デジタルフィルタにサンプル値を通す.">passFilter</a>(i_dSample);
+<a name="l00058"></a>00058         }
+<a name="l00059"></a>00059 
+<a name="l00065"></a><a class="code" href="class_c_filter.html#a69706e245bc15ba23bd05c348e01ebdb">00065</a>         <span class="keyword">virtual</span> <a class="code" href="class_i_filter_design.html" title="デジタルフィルタ設計部のインタフェース.">IFilterDesign</a>* <a class="code" href="class_c_filter.html#a69706e245bc15ba23bd05c348e01ebdb" title="デジタルフィルタ設計部を取得.">getFilterDesign</a>()<span class="keyword"> const</span>
+<a name="l00066"></a>00066 <span class="keyword">        </span>{
+<a name="l00067"></a>00067                 <span class="keywordflow">return</span> <a class="code" href="class_c_filter.html#a35671fc6e44559113fd3e53b359e1848" title="デジタルフィルタ設計部.">m_piFilterDesign</a>;
+<a name="l00068"></a>00068         }
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 <span class="keyword">protected</span>:
+<a name="l00076"></a><a class="code" href="class_c_filter.html#ad5cbc4392335f63a61407092ccde01ed">00076</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_filter.html#ad5cbc4392335f63a61407092ccde01ed" title="デジタルフィルタ設計部を設定.">setFilterDesign</a>(<a class="code" href="class_i_filter_design.html" title="デジタルフィルタ設計部のインタフェース.">IFilterDesign</a>* i_piFilterDesign)
+<a name="l00077"></a>00077         {
+<a name="l00078"></a>00078                 <a class="code" href="class_c_filter.html#a35671fc6e44559113fd3e53b359e1848" title="デジタルフィルタ設計部.">m_piFilterDesign</a> = i_piFilterDesign;
+<a name="l00079"></a>00079         }
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 <span class="keyword">private</span>:
+<a name="l00085"></a><a class="code" href="class_c_filter.html#a35671fc6e44559113fd3e53b359e1848">00085</a>         <a class="code" href="class_i_filter_design.html" title="デジタルフィルタ設計部のインタフェース.">IFilterDesign</a>* <a class="code" href="class_c_filter.html#a35671fc6e44559113fd3e53b359e1848" title="デジタルフィルタ設計部.">m_piFilterDesign</a>;
+<a name="l00086"></a>00086 };
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 <span class="preprocessor">#endif  //__CFILTER_H__</span>
+<a name="l00089"></a>00089 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -120,7 +116,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -132,7 +128,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 6 2015 23:09:27 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 9 2015 00:52:48 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

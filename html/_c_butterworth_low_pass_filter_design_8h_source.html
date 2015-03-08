@@ -61,82 +61,103 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00005"></a>00005 <span class="preprocessor">#ifndef __CBUTTERWORTH_LOWPASSFILTER_DESIGN_H__</span>
 <a name="l00006"></a>00006 <span class="preprocessor"></span><span class="preprocessor">#define __CBUTTERWORTH_LOWPASSFILTER_DESIGN_H__</span>
 <a name="l00007"></a>00007 <span class="preprocessor"></span>
-<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;../../ILowPassFilterDesign.h&quot;</span>
-<a name="l00009"></a>00009 <span class="preprocessor">#include &quot;<a class="code" href="_c_butterworth_common_8h.html" title="バターワース特性のデジタルフィルタ(処理実体).">./CButterworthCommon.h</a>&quot;</span>
-<a name="l00010"></a>00010 
-<a name="l00011"></a><a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a0bb0c7d5b2473deb2612fd6183ecc7fd">00011</a> <span class="preprocessor">#define BUTTERWORTH_LOWPASS_FILTER_DESIGN_NAME  &quot;ButterworthLowPass&quot;</span>
-<a name="l00012"></a>00012 <span class="preprocessor"></span>
-<a name="l00013"></a>00013 <span class="comment">//readConfig()でファイルから読み出したい変数.</span>
-<a name="l00014"></a>00014 <span class="comment">//static double m_dSampleRate;</span>
-<a name="l00015"></a><a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#ad70a12c97bd627d2d7a9b38a7058e5ca">00015</a> <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#ad70a12c97bd627d2d7a9b38a7058e5ca">m_dPassFreq_ButterworthLow</a>;
-<a name="l00016"></a><a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a82c691c1132a6a877750d5ff4ce57ee7">00016</a> <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a82c691c1132a6a877750d5ff4ce57ee7">m_dRippleGain_ButterworthLow</a>;
-<a name="l00017"></a><a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a902924bfe0052ae81cf508bda4a8027b">00017</a> <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a902924bfe0052ae81cf508bda4a8027b">m_dStopFreq_ButterworthLow</a>;
-<a name="l00018"></a><a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a5f8652c796a11904179d044b883d811c">00018</a> <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a5f8652c796a11904179d044b883d811c">m_dAttenuateGain_ButterworthLow</a>;
-<a name="l00019"></a>00019 <span class="comment">//static double m_dCutoffFreq;</span>
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021 
-<a name="l00025"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html">00025</a> <span class="keyword">class </span><a class="code" href="class_c_butterworth_low_pass_filter_design.html" title="バターワース特性 ローパスデジタルフィルタ設計部のクラス.">CButterworthLowPassFilterDesign</a> : <span class="keyword">public</span> <a class="code" href="class_i_low_pass_filter_design.html" title="ローパスフィルタ設計部のインタフェース.">ILowPassFilterDesign</a>, <span class="keyword">public</span> <a class="code" href="class_c_butterworth_common.html" title="バターワース特性のデジタルフィルタ(処理実体).">CButterworthCommon</a>
-<a name="l00026"></a>00026 {
-<a name="l00027"></a>00027 <span class="keyword">public</span>:
-<a name="l00031"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#a03486ec9b36f5ed0469d337891ec93f2">00031</a>         <a class="code" href="class_c_butterworth_low_pass_filter_design.html#a03486ec9b36f5ed0469d337891ec93f2" title="コンストラクタ.">CButterworthLowPassFilterDesign</a>(){ }
-<a name="l00032"></a>00032 
-<a name="l00036"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#a557d71272694ca79670d0904e9d74878">00036</a>         <span class="keyword">virtual</span> <a class="code" href="class_c_butterworth_low_pass_filter_design.html#a557d71272694ca79670d0904e9d74878" title="デストラクタ.">~CButterworthLowPassFilterDesign</a>(){ }
-<a name="l00037"></a>00037 
-<a name="l00041"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#ab7cc6023a7e1a31996e4bb4a4f9d51ff">00041</a>         <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_c_butterworth_low_pass_filter_design.html#ab7cc6023a7e1a31996e4bb4a4f9d51ff" title="デジタルフィルタ設計部名を取得.">description</a>()<span class="keyword"> const</span>
-<a name="l00042"></a>00042 <span class="keyword">        </span>{
-<a name="l00043"></a>00043                 <span class="keywordflow">return</span> <a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a0bb0c7d5b2473deb2612fd6183ecc7fd">BUTTERWORTH_LOWPASS_FILTER_DESIGN_NAME</a>;
-<a name="l00044"></a>00044         }
-<a name="l00045"></a>00045 
-<a name="l00049"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#a9f4a51953344f12c292713326ac5d7c1">00049</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_butterworth_low_pass_filter_design.html#a9f4a51953344f12c292713326ac5d7c1" title="初期化.">init</a>()
-<a name="l00050"></a>00050         {
-<a name="l00051"></a>00051                 this-&gt;<a class="code" href="class_c_butterworth_low_pass_filter_design.html#a7f8e643958f5d1b3dc8a2469d4c02cdf" title="デジタルフィルタの設定部を読み込む.">readConfig</a>();
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053                 this-&gt;<a class="code" href="class_b_i_i_r_filter.html#ac660eb4a1cbe8c3c3360dfb2b8c0f245" title="サンプリング周波数を設定.">setSampleRate</a>(<a class="code" href="class_b_i_i_r_filter.html#a8ee05520a4444ce94f528d010da300b7" title="サンプリング周波数[Hz].">m_dSampleRate</a>);
-<a name="l00054"></a>00054                 this-&gt;<a class="code" href="class_c_butterworth_common.html#afb7042b73af49825ea65b004a9a8d79b" title="プロトタイプローパスフィルタを決定.">decisionPrototype</a>(<a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#ad70a12c97bd627d2d7a9b38a7058e5ca">m_dPassFreq_ButterworthLow</a>, <a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a82c691c1132a6a877750d5ff4ce57ee7">m_dRippleGain_ButterworthLow</a>, <a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a902924bfe0052ae81cf508bda4a8027b">m_dStopFreq_ButterworthLow</a>, <a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a5f8652c796a11904179d044b883d811c">m_dAttenuateGain_ButterworthLow</a>);
-<a name="l00055"></a>00055                 this-&gt;<a class="code" href="class_c_butterworth_low_pass_filter_design.html#a62223f5e0d9519b5a1135d2354286920" title="カットオフ周波数を設定.">setCutoffFreq</a>(<a class="code" href="class_b_i_i_r_filter.html#abab4b5eac8d37f8555b2a57272467d4e" title="カットオフ周波数[Hz].">m_dCutoffFreq</a>);
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057                 <a class="code" href="class_b_i_i_r_filter.html#ae509fb25d02ebca2bb791b8cd107e410" title="ブロックダイアグラム.">m_pcBlockDiagram</a> = this-&gt;<a class="code" href="class_c_butterworth_common.html#ab0de07eff1000b7d02bb37e0e3a90554" title="ローパスフィルタの伝達関数の初期化と係数の決定.">initLowTransferFunction</a>(<a class="code" href="class_b_i_i_r_filter.html#abab4b5eac8d37f8555b2a57272467d4e" title="カットオフ周波数[Hz].">m_dCutoffFreq</a>);
-<a name="l00058"></a>00058         }
-<a name="l00059"></a>00059         
-<a name="l00064"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#a7f8e643958f5d1b3dc8a2469d4c02cdf">00064</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_butterworth_low_pass_filter_design.html#a7f8e643958f5d1b3dc8a2469d4c02cdf" title="デジタルフィルタの設定部を読み込む.">readConfig</a>()
-<a name="l00065"></a>00065         {
-<a name="l00066"></a>00066                 this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a8ee05520a4444ce94f528d010da300b7" title="サンプリング周波数[Hz].">m_dSampleRate</a> = 44.1*1000;
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068                 <a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#ad70a12c97bd627d2d7a9b38a7058e5ca">m_dPassFreq_ButterworthLow</a> = 400.0;
-<a name="l00069"></a>00069                 <a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a82c691c1132a6a877750d5ff4ce57ee7">m_dRippleGain_ButterworthLow</a> = -1.0;
-<a name="l00070"></a>00070                 <a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a902924bfe0052ae81cf508bda4a8027b">m_dStopFreq_ButterworthLow</a> = 800.0;
-<a name="l00071"></a>00071                 <a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a5f8652c796a11904179d044b883d811c">m_dAttenuateGain_ButterworthLow</a> = -48.0;
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073                 this-&gt;<a class="code" href="class_b_i_i_r_filter.html#abab4b5eac8d37f8555b2a57272467d4e" title="カットオフ周波数[Hz].">m_dCutoffFreq</a> = 400.0;
-<a name="l00074"></a>00074         }
-<a name="l00075"></a>00075 
-<a name="l00081"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#aeb0b78950f9a7ac06252d3f7e6efe015">00081</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> <a class="code" href="class_c_butterworth_low_pass_filter_design.html#aeb0b78950f9a7ac06252d3f7e6efe015" title="デジタルフィルタにサンプル値を通す.">passFilter</a>(<span class="keywordtype">double</span> i_dSample)<span class="keyword"> const</span>
-<a name="l00082"></a>00082 <span class="keyword">        </span>{
-<a name="l00083"></a>00083                 <span class="keywordtype">long</span> a_lOrderNumber = this-&gt;<a class="code" href="class_b_i_i_r_filter.html#ae4a6169ef4f53731e114d6c6e929a6fc" title="フィルタの次数を取得.">getOrderNumber</a>();
-<a name="l00084"></a>00084                 <span class="keywordtype">bool</span> a_bIsOrderNumberEven = (a_lOrderNumber%2 == 0)? <span class="keyword">true</span>:<span class="keyword">false</span>;
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086                 <span class="keywordtype">long</span> a_lNumSection = (a_bIsOrderNumberEven)? a_lOrderNumber/2 : (a_lOrderNumber-1)/2;
-<a name="l00087"></a>00087                 a_lNumSection++;
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089                 <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a28c44f406bb3905b41f6b2a994ef0ee6" title="伝達関数にサンプルを通す.">transferFunction</a>(a_lNumSection, i_dSample);
-<a name="l00090"></a>00090         }
-<a name="l00091"></a>00091 
-<a name="l00097"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#a6f12259c36153c33b1b84b9aaf333983">00097</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> <a class="code" href="class_c_butterworth_low_pass_filter_design.html#a6f12259c36153c33b1b84b9aaf333983" title="カットオフ周波数を取得.">getCutoffFreq</a>()<span class="keyword"> const</span>
-<a name="l00098"></a>00098 <span class="keyword">        </span>{
-<a name="l00099"></a>00099                 <span class="keywordflow">return</span> <a class="code" href="class_b_i_i_r_filter.html#abab4b5eac8d37f8555b2a57272467d4e" title="カットオフ周波数[Hz].">m_dCutoffFreq</a>;
-<a name="l00100"></a>00100         }
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102 <span class="keyword">protected</span>:
-<a name="l00108"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#a62223f5e0d9519b5a1135d2354286920">00108</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_butterworth_low_pass_filter_design.html#a62223f5e0d9519b5a1135d2354286920" title="カットオフ周波数を設定.">setCutoffFreq</a>(<span class="keywordtype">double</span> i_dCutoffFreq)
-<a name="l00109"></a>00109         {
-<a name="l00110"></a>00110                 <a class="code" href="class_b_i_i_r_filter.html#abab4b5eac8d37f8555b2a57272467d4e" title="カットオフ周波数[Hz].">m_dCutoffFreq</a> = i_dCutoffFreq;
-<a name="l00111"></a>00111         }
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113 
-<a name="l00114"></a>00114 };
-<a name="l00115"></a>00115 
-<a name="l00116"></a>00116 <span class="preprocessor">#endif //__CBUTTERWORTH_LOWPASSFILTER_DESIGN_H__</span>
-<a name="l00117"></a>00117 <span class="preprocessor"></span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;map&gt;</span>
+<a name="l00010"></a>00010 <span class="keyword">using namespace </span>std;
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;../../ILowPassFilterDesign.h&quot;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;<a class="code" href="_c_butterworth_common_8h.html" title="バターワース特性のデジタルフィルタ(処理実体).">./CButterworthCommon.h</a>&quot;</span>
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 <span class="preprocessor">#include &quot;../../CFilterConfig.h&quot;</span>
+<a name="l00016"></a>00016 
+<a name="l00017"></a><a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a0bb0c7d5b2473deb2612fd6183ecc7fd">00017</a> <span class="preprocessor">#define BUTTERWORTH_LOWPASS_FILTER_DESIGN_NAME          &quot;ButterworthLowPass&quot;</span>
+<a name="l00018"></a><a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#afa83ca813a6c01d2d0fb57f625aabfa5">00018</a> <span class="preprocessor"></span><span class="preprocessor">#define BUTTERWORTH_LOWPASS_FILTER_CONFIG_FILENAME      &quot;./config/ButterworthLowPassFilter.conf&quot;</span>
+<a name="l00019"></a>00019 <span class="preprocessor"></span>
+<a name="l00023"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html">00023</a> <span class="keyword">class </span><a class="code" href="class_c_butterworth_low_pass_filter_design.html" title="バターワース特性 ローパスデジタルフィルタ設計部のクラス.">CButterworthLowPassFilterDesign</a> : <span class="keyword">public</span> <a class="code" href="class_i_low_pass_filter_design.html" title="ローパスフィルタ設計部のインタフェース.">ILowPassFilterDesign</a>, <span class="keyword">public</span> <a class="code" href="class_c_butterworth_common.html" title="バターワース特性のデジタルフィルタ(処理実体).">CButterworthCommon</a>
+<a name="l00024"></a>00024 {
+<a name="l00025"></a>00025 <span class="keyword">public</span>:
+<a name="l00029"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#a03486ec9b36f5ed0469d337891ec93f2">00029</a>         <a class="code" href="class_c_butterworth_low_pass_filter_design.html" title="バターワース特性 ローパスデジタルフィルタ設計部のクラス.">CButterworthLowPassFilterDesign</a>()
+<a name="l00030"></a>00030         {
+<a name="l00031"></a>00031                 this-&gt;m_pbyFilterDesignName = <a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#a0bb0c7d5b2473deb2612fd6183ecc7fd">BUTTERWORTH_LOWPASS_FILTER_DESIGN_NAME</a>;
+<a name="l00032"></a>00032                 this-&gt;m_pbyConfigFileName = <a class="code" href="_c_butterworth_low_pass_filter_design_8h.html#afa83ca813a6c01d2d0fb57f625aabfa5">BUTTERWORTH_LOWPASS_FILTER_CONFIG_FILENAME</a>;
+<a name="l00033"></a>00033         }
+<a name="l00034"></a>00034 
+<a name="l00038"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#a557d71272694ca79670d0904e9d74878">00038</a>         <span class="keyword">virtual</span> <a class="code" href="class_c_butterworth_low_pass_filter_design.html#a557d71272694ca79670d0904e9d74878" title="デストラクタ.">~CButterworthLowPassFilterDesign</a>(){ }
+<a name="l00039"></a>00039 
+<a name="l00043"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#ab7cc6023a7e1a31996e4bb4a4f9d51ff">00043</a>         <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* description()<span class="keyword"> const</span>
+<a name="l00044"></a>00044 <span class="keyword">        </span>{
+<a name="l00045"></a>00045                 <span class="keywordflow">return</span> m_pbyFilterDesignName;
+<a name="l00046"></a>00046         }
+<a name="l00047"></a>00047 
+<a name="l00051"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#a9f4a51953344f12c292713326ac5d7c1">00051</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> init()
+<a name="l00052"></a>00052         {
+<a name="l00053"></a>00053                 this-&gt;readConfig();
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055                 this-&gt;setSampleRate(this-&gt;m_dSampleRate);
+<a name="l00056"></a>00056                 this-&gt;decisionPrototype(this-&gt;m_dPassFreq, this-&gt;m_dRippleGain, this-&gt;m_dStopFreq, this-&gt;m_dAttenuateGain);
+<a name="l00057"></a>00057                 this-&gt;setCutoffFreq(m_dCutoffFreq);
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059                 this-&gt;m_pcBlockDiagram = this-&gt;initLowTransferFunction(this-&gt;m_dCutoffFreq);
+<a name="l00060"></a>00060         }
+<a name="l00061"></a>00061         
+<a name="l00065"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#a7f8e643958f5d1b3dc8a2469d4c02cdf">00065</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> readConfig()
+<a name="l00066"></a>00066         {
+<a name="l00067"></a>00067                 <span class="comment">//configファイルを読み込み.</span>
+<a name="l00068"></a>00068                 <a class="code" href="class_c_filter_config.html" title="フィルタの設定値を読み込むクラス.">CFilterConfig</a> a_cConfig;
+<a name="l00069"></a>00069                 map&lt;string,string&gt; a_mapPairsTable = a_cConfig.<a class="code" href="class_c_filter_config.html#aa533de09d37d523bb3d04199cf68e980" title="フィルタの設定値を取得.">getConfig</a>(this-&gt;m_pbyConfigFileName);
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071                 <span class="comment">//mapを初期化するには コンパイル時に オプション -std=c++11 が必要.</span>
+<a name="l00072"></a>00072                 map&lt;string, double*&gt; a_mapConfigTable = 
+<a name="l00073"></a>00073                 {
+<a name="l00074"></a>00074                         {<span class="stringliteral">&quot;SampleRate&quot;</span>,          &amp;this-&gt;m_dSampleRate},
+<a name="l00075"></a>00075                         {<span class="stringliteral">&quot;PassFreq&quot;</span>,            &amp;this-&gt;m_dPassFreq},
+<a name="l00076"></a>00076                         {<span class="stringliteral">&quot;RippleGain&quot;</span>,          &amp;this-&gt;m_dRippleGain},
+<a name="l00077"></a>00077                         {<span class="stringliteral">&quot;StopFreq&quot;</span>,            &amp;this-&gt;m_dStopFreq},
+<a name="l00078"></a>00078                         {<span class="stringliteral">&quot;AttenuateGain&quot;</span>,       &amp;this-&gt;m_dAttenuateGain},
+<a name="l00079"></a>00079                         {<span class="stringliteral">&quot;CutoffFreq&quot;</span>,          &amp;this-&gt;m_dCutoffFreq},
+<a name="l00080"></a>00080                 };
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082                 <span class="comment">//コンフィグの設定.</span>
+<a name="l00083"></a>00083                 this-&gt;setConfig(a_mapPairsTable, a_mapConfigTable);
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085                 <span class="comment">//デバッグ用にコンフィグを出力.</span>
+<a name="l00086"></a>00086                 <span class="keywordflow">if</span>(this-&gt;m_bIsDebug) this-&gt;printConfig();
+<a name="l00087"></a>00087                 
+<a name="l00088"></a>00088                 <span class="comment">//this-&gt;m_dSampleRate = 44.1*1000;</span>
+<a name="l00089"></a>00089                 <span class="comment">//this-&gt;m_dPassFreq = 400.0;</span>
+<a name="l00090"></a>00090                 <span class="comment">//this-&gt;m_dRippleGain = -1.0;</span>
+<a name="l00091"></a>00091                 <span class="comment">//this-&gt;m_dStopFreq = 800.0;</span>
+<a name="l00092"></a>00092                 <span class="comment">//this-&gt;m_dAttenuateGain = -48.0;</span>
+<a name="l00093"></a>00093                 <span class="comment">//this-&gt;m_dCutoffFreq = 400.0;</span>
+<a name="l00094"></a>00094         }
+<a name="l00095"></a>00095 
+<a name="l00101"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#aeb0b78950f9a7ac06252d3f7e6efe015">00101</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> passFilter(<span class="keywordtype">double</span> i_dSample)<span class="keyword"> const</span>
+<a name="l00102"></a>00102 <span class="keyword">        </span>{
+<a name="l00103"></a>00103                 <span class="keywordtype">long</span> a_lOrderNumber = this-&gt;getOrderNumber();
+<a name="l00104"></a>00104                 <span class="keywordtype">bool</span> a_bIsOrderNumberEven = (a_lOrderNumber%2 == 0)? <span class="keyword">true</span>:<span class="keyword">false</span>;
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106                 <span class="keywordtype">long</span> a_lNumSection = (a_bIsOrderNumberEven)? a_lOrderNumber/2 : (a_lOrderNumber-1)/2;
+<a name="l00107"></a>00107                 a_lNumSection++;
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109                 <span class="keywordflow">return</span> this-&gt;transferFunction(a_lNumSection, i_dSample);
+<a name="l00110"></a>00110         }
+<a name="l00111"></a>00111 
+<a name="l00117"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#a6f12259c36153c33b1b84b9aaf333983">00117</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getCutoffFreq()<span class="keyword"> const</span>
+<a name="l00118"></a>00118 <span class="keyword">        </span>{
+<a name="l00119"></a>00119                 <span class="keywordflow">return</span> m_dCutoffFreq;
+<a name="l00120"></a>00120         }
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122 <span class="keyword">protected</span>:
+<a name="l00128"></a><a class="code" href="class_c_butterworth_low_pass_filter_design.html#a62223f5e0d9519b5a1135d2354286920">00128</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> setCutoffFreq(<span class="keywordtype">double</span> i_dCutoffFreq)
+<a name="l00129"></a>00129         {
+<a name="l00130"></a>00130                 m_dCutoffFreq = i_dCutoffFreq;
+<a name="l00131"></a>00131         }
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 };
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136 <span class="preprocessor">#endif //__CBUTTERWORTH_LOWPASSFILTER_DESIGN_H__</span>
+<a name="l00137"></a>00137 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -144,7 +165,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -156,7 +177,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 6 2015 23:09:27 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 9 2015 00:52:48 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

@@ -60,7 +60,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">source/main.cpp File Reference</div>  </div>
 </div>
 <div class="contents">
-<div class="textblock"><code>#include &lt;vector&gt;</code><br/>
+<div class="textblock"><code>#include &lt;cstring&gt;</code><br/>
 <code>#include &quot;<a class="el" href="_c_wave_format_operator_8h_source.html">./SoundInformation/CWaveFormatOperator.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_c_filter_8h_source.html">./Filter/CFilter.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_c_butterworth_low_pass_filter_builder_8h_source.html">./Filter/Builder/LowPassFilter/CButterworthLowPassFilterBuilder.h</a>&quot;</code><br/>
@@ -75,16 +75,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ade1edc07f44045a9fffd5d2b848e83b6">runFilter</a> (<a class="el" href="class_c_filter.html">CFilter</a> &amp;i_cFilter, <a class="el" href="class_b_sound_information.html">BSoundInformation</a> &amp;i_bSoundInformation, long i_lBegin, long i_lEnd, short i_shChannel)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_i_filter_builder.html">IFilterBuilder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ac5759ebcb56542c6368eb6891e59f76d">init_builder</a> (short i_shIndex)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_c_filter.html">CFilter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a54d110e4de2da34487f191eba96f3e0a">createFilter</a> (short i_shIndex)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ac5759ebcb56542c6368eb6891e59f76d"></a><!-- doxytag: member="main.cpp::init_builder" ref="ac5759ebcb56542c6368eb6891e59f76d" args="(short i_shIndex)" -->
+<a class="anchor" id="a54d110e4de2da34487f191eba96f3e0a"></a><!-- doxytag: member="main.cpp::createFilter" ref="a54d110e4de2da34487f191eba96f3e0a" args="(short i_shIndex)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_i_filter_builder.html">IFilterBuilder</a>* init_builder </td>
+          <td class="memname"><a class="el" href="class_c_filter.html">CFilter</a>* createFilter </td>
           <td>(</td>
           <td class="paramtype">short&#160;</td>
           <td class="paramname"><em>i_shIndex</em></td><td>)</td>
@@ -174,7 +174,7 @@ Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -186,7 +186,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 6 2015 23:09:27 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 9 2015 00:52:48 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

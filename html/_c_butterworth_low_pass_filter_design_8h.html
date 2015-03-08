@@ -56,8 +56,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#define-members">Defines</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#define-members">Defines</a>  </div>
   <div class="headertitle">
 <div class="title">source/Filter/FilterDesign/IIRFilter/Butterworth/CButterworthLowPassFilterDesign.h File Reference</div>  </div>
 </div>
@@ -65,8 +64,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>バターワース特性 ローパスデジタルフィルタ設計部のクラス.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;../../ILowPassFilterDesign.h&quot;</code><br/>
+<div class="textblock"><code>#include &lt;string&gt;</code><br/>
+<code>#include &lt;map&gt;</code><br/>
+<code>#include &quot;../../ILowPassFilterDesign.h&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_c_butterworth_common_8h_source.html">./CButterworthCommon.h</a>&quot;</code><br/>
+<code>#include &quot;../../CFilterConfig.h&quot;</code><br/>
 </div>
 <p><a href="_c_butterworth_low_pass_filter_design_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -77,16 +79,24 @@ Classes</h2></td></tr>
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_butterworth_low_pass_filter_design_8h.html#a0bb0c7d5b2473deb2612fd6183ecc7fd">BUTTERWORTH_LOWPASS_FILTER_DESIGN_NAME</a>&#160;&#160;&#160;&quot;ButterworthLowPass&quot;</td></tr>
-<tr><td colspan="2"><h2><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_butterworth_low_pass_filter_design_8h.html#ad70a12c97bd627d2d7a9b38a7058e5ca">m_dPassFreq_ButterworthLow</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_butterworth_low_pass_filter_design_8h.html#a82c691c1132a6a877750d5ff4ce57ee7">m_dRippleGain_ButterworthLow</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_butterworth_low_pass_filter_design_8h.html#a902924bfe0052ae81cf508bda4a8027b">m_dStopFreq_ButterworthLow</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_butterworth_low_pass_filter_design_8h.html#a5f8652c796a11904179d044b883d811c">m_dAttenuateGain_ButterworthLow</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_butterworth_low_pass_filter_design_8h.html#afa83ca813a6c01d2d0fb57f625aabfa5">BUTTERWORTH_LOWPASS_FILTER_CONFIG_FILENAME</a>&#160;&#160;&#160;&quot;./config/ButterworthLowPassFilter.conf&quot;</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>バターワース特性 ローパスデジタルフィルタ設計部のクラス. </p>
 </div><hr/><h2>Define Documentation</h2>
+<a class="anchor" id="afa83ca813a6c01d2d0fb57f625aabfa5"></a><!-- doxytag: member="CButterworthLowPassFilterDesign.h::BUTTERWORTH_LOWPASS_FILTER_CONFIG_FILENAME" ref="afa83ca813a6c01d2d0fb57f625aabfa5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BUTTERWORTH_LOWPASS_FILTER_CONFIG_FILENAME&#160;&#160;&#160;&quot;./config/ButterworthLowPassFilter.conf&quot;</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a0bb0c7d5b2473deb2612fd6183ecc7fd"></a><!-- doxytag: member="CButterworthLowPassFilterDesign.h::BUTTERWORTH_LOWPASS_FILTER_DESIGN_NAME" ref="a0bb0c7d5b2473deb2612fd6183ecc7fd" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -100,66 +110,13 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<hr/><h2>Variable Documentation</h2>
-<a class="anchor" id="a5f8652c796a11904179d044b883d811c"></a><!-- doxytag: member="CButterworthLowPassFilterDesign.h::m_dAttenuateGain_ButterworthLow" ref="a5f8652c796a11904179d044b883d811c" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double <a class="el" href="_c_butterworth_low_pass_filter_design_8h.html#a5f8652c796a11904179d044b883d811c">m_dAttenuateGain_ButterworthLow</a><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ad70a12c97bd627d2d7a9b38a7058e5ca"></a><!-- doxytag: member="CButterworthLowPassFilterDesign.h::m_dPassFreq_ButterworthLow" ref="ad70a12c97bd627d2d7a9b38a7058e5ca" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double <a class="el" href="_c_butterworth_low_pass_filter_design_8h.html#ad70a12c97bd627d2d7a9b38a7058e5ca">m_dPassFreq_ButterworthLow</a><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a82c691c1132a6a877750d5ff4ce57ee7"></a><!-- doxytag: member="CButterworthLowPassFilterDesign.h::m_dRippleGain_ButterworthLow" ref="a82c691c1132a6a877750d5ff4ce57ee7" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double <a class="el" href="_c_butterworth_low_pass_filter_design_8h.html#a82c691c1132a6a877750d5ff4ce57ee7">m_dRippleGain_ButterworthLow</a><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a902924bfe0052ae81cf508bda4a8027b"></a><!-- doxytag: member="CButterworthLowPassFilterDesign.h::m_dStopFreq_ButterworthLow" ref="a902924bfe0052ae81cf508bda4a8027b" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double <a class="el" href="_c_butterworth_low_pass_filter_design_8h.html#a902924bfe0052ae81cf508bda4a8027b">m_dStopFreq_ButterworthLow</a><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
 </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -171,7 +128,7 @@ Variables</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 6 2015 23:09:27 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 9 2015 00:52:48 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

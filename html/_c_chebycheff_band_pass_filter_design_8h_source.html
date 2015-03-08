@@ -64,93 +64,108 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00008"></a>00008 <span class="preprocessor">#include &quot;../../IBandPassFilterDesign.h&quot;</span>
 <a name="l00009"></a>00009 <span class="preprocessor">#include &quot;<a class="code" href="_c_chebycheff_common_8h.html" title="チェビシェフ特性のデジタルフィルタ(処理実体).">./CChebycheffCommon.h</a>&quot;</span>
 <a name="l00010"></a>00010 
-<a name="l00011"></a><a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a20d1f6034510a063b25b061bdea8406a">00011</a> <span class="preprocessor">#define CHEBYCHEFF_BANDPASS_FILTER_DESIGN_NAME  &quot;ChebycheffBandPass&quot;</span>
-<a name="l00012"></a>00012 <span class="preprocessor"></span>
-<a name="l00013"></a>00013 
-<a name="l00014"></a>00014 <span class="comment">//readConfig()でファイルから読み出したい変数.</span>
-<a name="l00015"></a>00015 <span class="comment">//static double m_dSampleRate;</span>
-<a name="l00016"></a><a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a94b181d838642e3d608b62d9968c742e">00016</a> <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a94b181d838642e3d608b62d9968c742e">m_dPassFreq_ChebycheffBand</a>;
-<a name="l00017"></a><a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a03cca43d9672ad532061ed4617118d8c">00017</a> <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a03cca43d9672ad532061ed4617118d8c">m_dRippleGain_ChebycheffBand</a>;
-<a name="l00018"></a><a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a044f85716bdc9ad537a08d7260cc661b">00018</a> <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a044f85716bdc9ad537a08d7260cc661b">m_dStopFreq_ChebycheffBand</a>;
-<a name="l00019"></a><a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a14395ce5377e076e35efc7b71cb8999b">00019</a> <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a14395ce5377e076e35efc7b71cb8999b">m_dAttenuateGain_ChebycheffBand</a>;
-<a name="l00020"></a>00020 <span class="comment">//static double m_dCutoffFreq;</span>
-<a name="l00021"></a>00021 
-<a name="l00022"></a>00022 
-<a name="l00023"></a>00023 
-<a name="l00027"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html">00027</a> <span class="keyword">class </span><a class="code" href="class_c_chebycheff_band_pass_filter_design.html" title="チェビシェフ特性 バンドパスデジタルフィルタ設計部のクラス.">CChebycheffBandPassFilterDesign</a> : <span class="keyword">public</span> <a class="code" href="class_i_band_pass_filter_design.html" title="バンドパスフィルタ設計部のインタフェース.">IBandPassFilterDesign</a>, <span class="keyword">public</span> <a class="code" href="class_c_chebycheff_common.html" title="チェビシェフ特性のデジタルフィルタ(処理実体).">CChebycheffCommon</a>
-<a name="l00028"></a>00028 {
-<a name="l00029"></a>00029 <span class="keyword">public</span>:
-<a name="l00033"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a64e157f76b0e6c4372b9aa62308504c3">00033</a>         <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a64e157f76b0e6c4372b9aa62308504c3" title="コンストラクタ.">CChebycheffBandPassFilterDesign</a>(){ }
+<a name="l00011"></a><a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a20d1f6034510a063b25b061bdea8406a">00011</a> <span class="preprocessor">#define CHEBYCHEFF_BANDPASS_FILTER_DESIGN_NAME          &quot;ChebycheffBandPass&quot;</span>
+<a name="l00012"></a><a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a90e0fed12a3d6cfe96af60a35bfba7a6">00012</a> <span class="preprocessor"></span><span class="preprocessor">#define CHEBYCHEFF_BANDWPASS_FILTER_CONFIG_FILENAME     &quot;./config/ChebycheffBandPassFilter.conf&quot;</span>
+<a name="l00013"></a>00013 <span class="preprocessor"></span>
+<a name="l00014"></a>00014 
+<a name="l00018"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html">00018</a> <span class="keyword">class </span><a class="code" href="class_c_chebycheff_band_pass_filter_design.html" title="チェビシェフ特性 バンドパスデジタルフィルタ設計部のクラス.">CChebycheffBandPassFilterDesign</a> : <span class="keyword">public</span> <a class="code" href="class_i_band_pass_filter_design.html" title="バンドパスフィルタ設計部のインタフェース.">IBandPassFilterDesign</a>, <span class="keyword">public</span> <a class="code" href="class_c_chebycheff_common.html" title="チェビシェフ特性のデジタルフィルタ(処理実体).">CChebycheffCommon</a>
+<a name="l00019"></a>00019 {
+<a name="l00020"></a>00020 <span class="keyword">public</span>:
+<a name="l00024"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a64e157f76b0e6c4372b9aa62308504c3">00024</a>         <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a64e157f76b0e6c4372b9aa62308504c3" title="コンストラクタ.">CChebycheffBandPassFilterDesign</a>()
+<a name="l00025"></a>00025         { 
+<a name="l00026"></a>00026                 this-&gt;<a class="code" href="class_i_filter_design.html#aef4f3c897f16b55a7ea51f4d39d8edeb" title="デジタルフィルタ設計名.">m_pbyFilterDesignName</a> = <a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a20d1f6034510a063b25b061bdea8406a">CHEBYCHEFF_BANDPASS_FILTER_DESIGN_NAME</a>;
+<a name="l00027"></a>00027                 this-&gt;<a class="code" href="class_i_filter_design.html#a0bfed38f993f98c1fa03077ffb5aa5e5" title="デジタルフィルタのコンフィグファイル名.">m_pbyConfigFileName</a> = <a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a90e0fed12a3d6cfe96af60a35bfba7a6">CHEBYCHEFF_BANDWPASS_FILTER_CONFIG_FILENAME</a>;
+<a name="l00028"></a>00028         }
+<a name="l00029"></a>00029 
+<a name="l00033"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a5610ef20caece2ab40088fcac8656d39">00033</a>         <span class="keyword">virtual</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a5610ef20caece2ab40088fcac8656d39" title="デストラクタ.">~CChebycheffBandPassFilterDesign</a>(){ }
 <a name="l00034"></a>00034 
-<a name="l00038"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a5610ef20caece2ab40088fcac8656d39">00038</a>         <span class="keyword">virtual</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a5610ef20caece2ab40088fcac8656d39" title="デストラクタ.">~CChebycheffBandPassFilterDesign</a>(){ }
-<a name="l00039"></a>00039 
-<a name="l00043"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a599b3ac46bc546ef1ed1703f935e27d8">00043</a>         <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a599b3ac46bc546ef1ed1703f935e27d8" title="デジタルフィルタ設計部名を取得.">description</a>()<span class="keyword"> const</span>
-<a name="l00044"></a>00044 <span class="keyword">        </span>{
-<a name="l00045"></a>00045                 <span class="keywordflow">return</span> <a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a20d1f6034510a063b25b061bdea8406a">CHEBYCHEFF_BANDPASS_FILTER_DESIGN_NAME</a>;
-<a name="l00046"></a>00046         }
-<a name="l00047"></a>00047 
-<a name="l00051"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a3ea7d01ab69dfce8e98d82cb1f54a706">00051</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a3ea7d01ab69dfce8e98d82cb1f54a706" title="初期化.">init</a>()
-<a name="l00052"></a>00052         {
-<a name="l00053"></a>00053                 this-&gt;<a class="code" href="class_c_chebycheff_band_pass_filter_design.html#ae8e90a1448c6548ff9a182cd73eb0377" title="デジタルフィルタの設定部を読み込む.">readConfig</a>();
+<a name="l00038"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a599b3ac46bc546ef1ed1703f935e27d8">00038</a>         <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a599b3ac46bc546ef1ed1703f935e27d8" title="デジタルフィルタ設計部名を取得.">description</a>()<span class="keyword"> const</span>
+<a name="l00039"></a>00039 <span class="keyword">        </span>{
+<a name="l00040"></a>00040                 <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_i_filter_design.html#aef4f3c897f16b55a7ea51f4d39d8edeb" title="デジタルフィルタ設計名.">m_pbyFilterDesignName</a>;
+<a name="l00041"></a>00041         }
+<a name="l00042"></a>00042 
+<a name="l00046"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a3ea7d01ab69dfce8e98d82cb1f54a706">00046</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a3ea7d01ab69dfce8e98d82cb1f54a706" title="初期化.">init</a>()
+<a name="l00047"></a>00047         {
+<a name="l00048"></a>00048                 this-&gt;<a class="code" href="class_c_chebycheff_band_pass_filter_design.html#ae8e90a1448c6548ff9a182cd73eb0377" title="デジタルフィルタの設定部を読み込む.">readConfig</a>();
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050                 this-&gt;<a class="code" href="class_b_i_i_r_filter.html#ac660eb4a1cbe8c3c3360dfb2b8c0f245" title="サンプリング周波数を設定.">setSampleRate</a>(this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a8ee05520a4444ce94f528d010da300b7" title="サンプリング周波数[Hz].">m_dSampleRate</a>);
+<a name="l00051"></a>00051                 this-&gt;<a class="code" href="class_c_chebycheff_common.html#a29c318597ab52cad29ed44be629f6234" title="プロトタイプローパスフィルタを決定.">decisionPrototype</a>(this-&gt;<a class="code" href="class_b_i_i_r_filter.html#aa62fcc08c4481f9283ddf9a7a40b591d" title="パスバンドの周波数[Hz].">m_dPassFreq</a>, this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a9d036fd557a08e45e39b39b547b71aef" title="偏差の量[dB].">m_dRippleGain</a>, this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a9321a1922420fb6e96c083fb36386aee" title="ストップバンドの周波数[Hz].">m_dStopFreq</a>, this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a0bd7ae28de8bf7bf636500c2fb80d12f" title="減衰量[dB].">m_dAttenuateGain</a>);
+<a name="l00052"></a>00052                 this-&gt;<a class="code" href="class_c_chebycheff_band_pass_filter_design.html#abf85efc2865fa37829df9b0ed7a9bed2" title="低い方のカットオフ周波数を設定.">setLowCutoffFreq</a>(this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a2ec5f02951afaf6792cbba1bad9c98bb" title="低い方のカットオフ周波数[Hz].">m_dLowCutoffFreq</a>);
+<a name="l00053"></a>00053                 this-&gt;<a class="code" href="class_c_chebycheff_band_pass_filter_design.html#ae74a83b0497555281f2edf9638e9e3bb" title="高い方のカットオフ周波数を設定.">setHighCutoffFreq</a>(this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a3cc4430f12b778538be6d1bc806e251c" title="高い方のカットオフ周波数[Hz].">m_dHighCutoffFreq</a>);
 <a name="l00054"></a>00054 
-<a name="l00055"></a>00055                 this-&gt;<a class="code" href="class_b_i_i_r_filter.html#ac660eb4a1cbe8c3c3360dfb2b8c0f245" title="サンプリング周波数を設定.">setSampleRate</a>(<a class="code" href="class_c_chebycheff_common.html#a3118a357b74cdf2ea2041198668ce19c" title="サンプリング周波数.">m_dSampleRate</a>);
-<a name="l00056"></a>00056                 this-&gt;<a class="code" href="class_c_chebycheff_common.html#a29c318597ab52cad29ed44be629f6234" title="プロトタイプローパスフィルタを決定.">decisionPrototype</a>(<a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a94b181d838642e3d608b62d9968c742e">m_dPassFreq_ChebycheffBand</a>, <a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a03cca43d9672ad532061ed4617118d8c">m_dRippleGain_ChebycheffBand</a>, <a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a044f85716bdc9ad537a08d7260cc661b">m_dStopFreq_ChebycheffBand</a>, <a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a14395ce5377e076e35efc7b71cb8999b">m_dAttenuateGain_ChebycheffBand</a>);
-<a name="l00057"></a>00057                 this-&gt;<a class="code" href="class_c_chebycheff_band_pass_filter_design.html#abf85efc2865fa37829df9b0ed7a9bed2" title="低い方のカットオフ周波数を設定.">setLowCutoffFreq</a>(<a class="code" href="class_b_i_i_r_filter.html#a2ec5f02951afaf6792cbba1bad9c98bb" title="低い方のカットオフ周波数[Hz].">m_dLowCutoffFreq</a>);
-<a name="l00058"></a>00058                 this-&gt;<a class="code" href="class_c_chebycheff_band_pass_filter_design.html#ae74a83b0497555281f2edf9638e9e3bb" title="高い方のカットオフ周波数を設定.">setHighCutoffFreq</a>(<a class="code" href="class_b_i_i_r_filter.html#a3cc4430f12b778538be6d1bc806e251c" title="高い方のカットオフ周波数[Hz].">m_dHighCutoffFreq</a>);
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060                 <a class="code" href="class_b_i_i_r_filter.html#ae509fb25d02ebca2bb791b8cd107e410" title="ブロックダイアグラム.">m_pcBlockDiagram</a> = this-&gt;<a class="code" href="class_c_chebycheff_common.html#ab4b176fadc5e1210a6a3eed86d56f0a6" title="バンドパスフィルタの伝達関数の初期化と係数の決定.">initBandTransferFunction</a>(<a class="code" href="class_b_i_i_r_filter.html#a2ec5f02951afaf6792cbba1bad9c98bb" title="低い方のカットオフ周波数[Hz].">m_dLowCutoffFreq</a>, <a class="code" href="class_b_i_i_r_filter.html#a3cc4430f12b778538be6d1bc806e251c" title="高い方のカットオフ周波数[Hz].">m_dHighCutoffFreq</a>);
-<a name="l00061"></a>00061         }
-<a name="l00062"></a>00062         
-<a name="l00063"></a>00063 
-<a name="l00068"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#ae8e90a1448c6548ff9a182cd73eb0377">00068</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#ae8e90a1448c6548ff9a182cd73eb0377" title="デジタルフィルタの設定部を読み込む.">readConfig</a>()
-<a name="l00069"></a>00069         {
-<a name="l00070"></a>00070                 this-&gt;<a class="code" href="class_c_chebycheff_common.html#a3118a357b74cdf2ea2041198668ce19c" title="サンプリング周波数.">m_dSampleRate</a> = 44.1*1000;
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072                 <a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a94b181d838642e3d608b62d9968c742e">m_dPassFreq_ChebycheffBand</a> = 400.0;
-<a name="l00073"></a>00073                 <a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a03cca43d9672ad532061ed4617118d8c">m_dRippleGain_ChebycheffBand</a> = -1.0;
-<a name="l00074"></a>00074                 <a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a044f85716bdc9ad537a08d7260cc661b">m_dStopFreq_ChebycheffBand</a> = 800.0;
-<a name="l00075"></a>00075                 <a class="code" href="_c_chebycheff_band_pass_filter_design_8h.html#a14395ce5377e076e35efc7b71cb8999b">m_dAttenuateGain_ChebycheffBand</a> = -48.0;
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077                 this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a2ec5f02951afaf6792cbba1bad9c98bb" title="低い方のカットオフ周波数[Hz].">m_dLowCutoffFreq</a> = 400.0;
-<a name="l00078"></a>00078                 this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a3cc4430f12b778538be6d1bc806e251c" title="高い方のカットオフ周波数[Hz].">m_dHighCutoffFreq</a> = 2000.0;
-<a name="l00079"></a>00079         }
-<a name="l00080"></a>00080 
-<a name="l00086"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a7e16c19c1979e55f23dcc412b7ae8b7d">00086</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a7e16c19c1979e55f23dcc412b7ae8b7d" title="デジタルフィルタにサンプル値を通す.">passFilter</a>(<span class="keywordtype">double</span> i_dSample)<span class="keyword"> const</span>
-<a name="l00087"></a>00087 <span class="keyword">        </span>{
-<a name="l00088"></a>00088                 <span class="keywordtype">long</span> a_lOrderNumber = this-&gt;<a class="code" href="class_b_i_i_r_filter.html#ae4a6169ef4f53731e114d6c6e929a6fc" title="フィルタの次数を取得.">getOrderNumber</a>();
-<a name="l00089"></a>00089                 <span class="keywordtype">bool</span> a_bIsOrderNumberEven = (a_lOrderNumber%2 == 0)? <span class="keyword">true</span>:<span class="keyword">false</span>;
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091                 <span class="keywordtype">long</span> a_lNumSection = (a_bIsOrderNumberEven)? a_lOrderNumber/2 : (a_lOrderNumber-1)/2;
-<a name="l00092"></a>00092                 a_lNumSection++;
-<a name="l00093"></a>00093                 a_lNumSection *= 2;
+<a name="l00055"></a>00055                 this-&gt;<a class="code" href="class_b_i_i_r_filter.html#ae509fb25d02ebca2bb791b8cd107e410" title="ブロックダイアグラム.">m_pcBlockDiagram</a> = this-&gt;<a class="code" href="class_c_chebycheff_common.html#ab4b176fadc5e1210a6a3eed86d56f0a6" title="バンドパスフィルタの伝達関数の初期化と係数の決定.">initBandTransferFunction</a>(this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a2ec5f02951afaf6792cbba1bad9c98bb" title="低い方のカットオフ周波数[Hz].">m_dLowCutoffFreq</a>, this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a3cc4430f12b778538be6d1bc806e251c" title="高い方のカットオフ周波数[Hz].">m_dHighCutoffFreq</a>);
+<a name="l00056"></a>00056         }
+<a name="l00057"></a>00057         
+<a name="l00058"></a>00058 
+<a name="l00062"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#ae8e90a1448c6548ff9a182cd73eb0377">00062</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#ae8e90a1448c6548ff9a182cd73eb0377" title="デジタルフィルタの設定部を読み込む.">readConfig</a>()
+<a name="l00063"></a>00063         {
+<a name="l00064"></a>00064                 <span class="comment">//configファイルを読み込み.</span>
+<a name="l00065"></a>00065                 <a class="code" href="class_c_filter_config.html" title="フィルタの設定値を読み込むクラス.">CFilterConfig</a> a_cConfig;
+<a name="l00066"></a>00066                 map&lt;string,string&gt; a_mapPairsTable = a_cConfig.<a class="code" href="class_c_filter_config.html#aa533de09d37d523bb3d04199cf68e980" title="フィルタの設定値を取得.">getConfig</a>(this-&gt;<a class="code" href="class_i_filter_design.html#a0bfed38f993f98c1fa03077ffb5aa5e5" title="デジタルフィルタのコンフィグファイル名.">m_pbyConfigFileName</a>);
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068                 <span class="comment">//mapを初期化するには コンパイル時に オプション -std=c++11 が必要.</span>
+<a name="l00069"></a>00069                 map&lt;string, double*&gt; a_mapConfigTable = 
+<a name="l00070"></a>00070                 {
+<a name="l00071"></a>00071                         {<span class="stringliteral">&quot;SampleRate&quot;</span>,          &amp;this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a8ee05520a4444ce94f528d010da300b7" title="サンプリング周波数[Hz].">m_dSampleRate</a>},
+<a name="l00072"></a>00072                         {<span class="stringliteral">&quot;PassFreq&quot;</span>,            &amp;this-&gt;<a class="code" href="class_b_i_i_r_filter.html#aa62fcc08c4481f9283ddf9a7a40b591d" title="パスバンドの周波数[Hz].">m_dPassFreq</a>},
+<a name="l00073"></a>00073                         {<span class="stringliteral">&quot;RippleGain&quot;</span>,          &amp;this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a9d036fd557a08e45e39b39b547b71aef" title="偏差の量[dB].">m_dRippleGain</a>},
+<a name="l00074"></a>00074                         {<span class="stringliteral">&quot;StopFreq&quot;</span>,            &amp;this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a9321a1922420fb6e96c083fb36386aee" title="ストップバンドの周波数[Hz].">m_dStopFreq</a>},
+<a name="l00075"></a>00075                         {<span class="stringliteral">&quot;AttenuateGain&quot;</span>,       &amp;this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a0bd7ae28de8bf7bf636500c2fb80d12f" title="減衰量[dB].">m_dAttenuateGain</a>},
+<a name="l00076"></a>00076                         {<span class="stringliteral">&quot;LowCutoffFreq&quot;</span>,       &amp;this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a2ec5f02951afaf6792cbba1bad9c98bb" title="低い方のカットオフ周波数[Hz].">m_dLowCutoffFreq</a>},
+<a name="l00077"></a>00077                         {<span class="stringliteral">&quot;HighCutoffFreq&quot;</span>,      &amp;this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a3cc4430f12b778538be6d1bc806e251c" title="高い方のカットオフ周波数[Hz].">m_dHighCutoffFreq</a>},
+<a name="l00078"></a>00078                 };
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080                 <span class="comment">//コンフィグの設定.</span>
+<a name="l00081"></a>00081                 this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a56ba6f0c22597e790a56f0d529863f7e" title="コンフィグを設定.">setConfig</a>(a_mapPairsTable, a_mapConfigTable);
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083                 <span class="comment">//デバッグ用にコンフィグを出力.</span>
+<a name="l00084"></a>00084                 <span class="keywordflow">if</span>(this-&gt;<a class="code" href="class_i_filter_design.html#a70b7bb25489e0480a1c7553323c3d01c" title="デバッグフラグ. True:デバッグモード.">m_bIsDebug</a>) this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a3c354a675f3e0a6fc05a6424ebd63edf" title="フィルタの設定値を出力.">printConfig</a>();
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086                 <span class="comment">//this-&gt;m_dSampleRate = 44.1*1000;</span>
+<a name="l00087"></a>00087                 <span class="comment">//this-&gt;m_dPassFreq = 400.0;</span>
+<a name="l00088"></a>00088                 <span class="comment">//this-&gt;m_dRippleGain = -1.0;</span>
+<a name="l00089"></a>00089                 <span class="comment">//this-&gt;m_dStopFreq = 800.0;</span>
+<a name="l00090"></a>00090                 <span class="comment">//this-&gt;m_dAttenuateGain = -48.0;</span>
+<a name="l00091"></a>00091                 <span class="comment">//this-&gt;m_dLowCutoffFreq = 400.0;</span>
+<a name="l00092"></a>00092                 <span class="comment">//this-&gt;m_dHighCutoffFreq = 2000.0;</span>
+<a name="l00093"></a>00093         }
 <a name="l00094"></a>00094 
-<a name="l00095"></a>00095                 <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a28c44f406bb3905b41f6b2a994ef0ee6" title="伝達関数にサンプルを通す.">transferFunction</a>(a_lNumSection, i_dSample);
-<a name="l00096"></a>00096         }
-<a name="l00097"></a>00097 
-<a name="l00103"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a1a4b7b21c0a4997ab3fe3bbba9755bc7">00103</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a1a4b7b21c0a4997ab3fe3bbba9755bc7" title="低い方のカットオフ周波数を取得.">getLowCutoffFreq</a>()<span class="keyword"> const</span>
-<a name="l00104"></a>00104 <span class="keyword">        </span>{
-<a name="l00105"></a>00105                 <span class="keywordflow">return</span> <a class="code" href="class_b_i_i_r_filter.html#a2ec5f02951afaf6792cbba1bad9c98bb" title="低い方のカットオフ周波数[Hz].">m_dLowCutoffFreq</a>;
-<a name="l00106"></a>00106         }
-<a name="l00107"></a>00107 
-<a name="l00113"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#aec9eb3a76de06d5c9f4fbe3e14f89739">00113</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#aec9eb3a76de06d5c9f4fbe3e14f89739" title="高い方のカットオフ周波数を取得.">getHighCutoffFreq</a>()<span class="keyword"> const</span>
-<a name="l00114"></a>00114 <span class="keyword">        </span>{
-<a name="l00115"></a>00115                 <span class="keywordflow">return</span> <a class="code" href="class_b_i_i_r_filter.html#a3cc4430f12b778538be6d1bc806e251c" title="高い方のカットオフ周波数[Hz].">m_dHighCutoffFreq</a>;
-<a name="l00116"></a>00116         }
-<a name="l00117"></a>00117 
-<a name="l00118"></a>00118 <span class="keyword">protected</span>:
-<a name="l00124"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#abf85efc2865fa37829df9b0ed7a9bed2">00124</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#abf85efc2865fa37829df9b0ed7a9bed2" title="低い方のカットオフ周波数を設定.">setLowCutoffFreq</a>(<span class="keywordtype">double</span> i_dCutoffFreq)
-<a name="l00125"></a>00125         {
-<a name="l00126"></a>00126                 <a class="code" href="class_b_i_i_r_filter.html#a2ec5f02951afaf6792cbba1bad9c98bb" title="低い方のカットオフ周波数[Hz].">m_dLowCutoffFreq</a> = i_dCutoffFreq;
-<a name="l00127"></a>00127         }
-<a name="l00128"></a>00128 
-<a name="l00134"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#ae74a83b0497555281f2edf9638e9e3bb">00134</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#ae74a83b0497555281f2edf9638e9e3bb" title="高い方のカットオフ周波数を設定.">setHighCutoffFreq</a>(<span class="keywordtype">double</span> i_dCutoffFreq)
-<a name="l00135"></a>00135         {
-<a name="l00136"></a>00136                 <a class="code" href="class_b_i_i_r_filter.html#a3cc4430f12b778538be6d1bc806e251c" title="高い方のカットオフ周波数[Hz].">m_dHighCutoffFreq</a> = i_dCutoffFreq;
-<a name="l00137"></a>00137         }
-<a name="l00138"></a>00138 };
-<a name="l00139"></a>00139 
-<a name="l00140"></a>00140 <span class="preprocessor">#endif //__CCHEBYCHEFF_BANDPASSFILTER_DESIGN_H__</span>
-<a name="l00141"></a>00141 <span class="preprocessor"></span>
+<a name="l00100"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a7e16c19c1979e55f23dcc412b7ae8b7d">00100</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a7e16c19c1979e55f23dcc412b7ae8b7d" title="デジタルフィルタにサンプル値を通す.">passFilter</a>(<span class="keywordtype">double</span> i_dSample)<span class="keyword"> const</span>
+<a name="l00101"></a>00101 <span class="keyword">        </span>{
+<a name="l00102"></a>00102                 <span class="keywordtype">long</span> a_lOrderNumber = this-&gt;<a class="code" href="class_b_i_i_r_filter.html#ae4a6169ef4f53731e114d6c6e929a6fc" title="フィルタの次数を取得.">getOrderNumber</a>();
+<a name="l00103"></a>00103                 <span class="keywordtype">bool</span> a_bIsOrderNumberEven = (a_lOrderNumber%2 == 0)? <span class="keyword">true</span>:<span class="keyword">false</span>;
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105                 <span class="keywordtype">long</span> a_lNumSection = (a_bIsOrderNumberEven)? a_lOrderNumber/2 : (a_lOrderNumber-1)/2;
+<a name="l00106"></a>00106                 a_lNumSection++;
+<a name="l00107"></a>00107                 a_lNumSection *= 2;
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109                 <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_b_i_i_r_filter.html#a28c44f406bb3905b41f6b2a994ef0ee6" title="伝達関数にサンプルを通す.">transferFunction</a>(a_lNumSection, i_dSample);
+<a name="l00110"></a>00110         }
+<a name="l00111"></a>00111 
+<a name="l00117"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a1a4b7b21c0a4997ab3fe3bbba9755bc7">00117</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#a1a4b7b21c0a4997ab3fe3bbba9755bc7" title="低い方のカットオフ周波数を取得.">getLowCutoffFreq</a>()<span class="keyword"> const</span>
+<a name="l00118"></a>00118 <span class="keyword">        </span>{
+<a name="l00119"></a>00119                 <span class="keywordflow">return</span> <a class="code" href="class_b_i_i_r_filter.html#a2ec5f02951afaf6792cbba1bad9c98bb" title="低い方のカットオフ周波数[Hz].">m_dLowCutoffFreq</a>;
+<a name="l00120"></a>00120         }
+<a name="l00121"></a>00121 
+<a name="l00127"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#aec9eb3a76de06d5c9f4fbe3e14f89739">00127</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#aec9eb3a76de06d5c9f4fbe3e14f89739" title="高い方のカットオフ周波数を取得.">getHighCutoffFreq</a>()<span class="keyword"> const</span>
+<a name="l00128"></a>00128 <span class="keyword">        </span>{
+<a name="l00129"></a>00129                 <span class="keywordflow">return</span> <a class="code" href="class_b_i_i_r_filter.html#a3cc4430f12b778538be6d1bc806e251c" title="高い方のカットオフ周波数[Hz].">m_dHighCutoffFreq</a>;
+<a name="l00130"></a>00130         }
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132 <span class="keyword">protected</span>:
+<a name="l00138"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#abf85efc2865fa37829df9b0ed7a9bed2">00138</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#abf85efc2865fa37829df9b0ed7a9bed2" title="低い方のカットオフ周波数を設定.">setLowCutoffFreq</a>(<span class="keywordtype">double</span> i_dCutoffFreq)
+<a name="l00139"></a>00139         {
+<a name="l00140"></a>00140                 <a class="code" href="class_b_i_i_r_filter.html#a2ec5f02951afaf6792cbba1bad9c98bb" title="低い方のカットオフ周波数[Hz].">m_dLowCutoffFreq</a> = i_dCutoffFreq;
+<a name="l00141"></a>00141         }
+<a name="l00142"></a>00142 
+<a name="l00148"></a><a class="code" href="class_c_chebycheff_band_pass_filter_design.html#ae74a83b0497555281f2edf9638e9e3bb">00148</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_chebycheff_band_pass_filter_design.html#ae74a83b0497555281f2edf9638e9e3bb" title="高い方のカットオフ周波数を設定.">setHighCutoffFreq</a>(<span class="keywordtype">double</span> i_dCutoffFreq)
+<a name="l00149"></a>00149         {
+<a name="l00150"></a>00150                 <a class="code" href="class_b_i_i_r_filter.html#a3cc4430f12b778538be6d1bc806e251c" title="高い方のカットオフ周波数[Hz].">m_dHighCutoffFreq</a> = i_dCutoffFreq;
+<a name="l00151"></a>00151         }
+<a name="l00152"></a>00152 };
+<a name="l00153"></a>00153 
+<a name="l00154"></a>00154 <span class="preprocessor">#endif //__CCHEBYCHEFF_BANDPASSFILTER_DESIGN_H__</span>
+<a name="l00155"></a>00155 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -158,7 +173,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -170,7 +185,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 6 2015 23:09:27 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 9 2015 00:52:48 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>
