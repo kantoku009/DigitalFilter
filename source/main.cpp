@@ -1,3 +1,5 @@
+#include <iostream>
+#include <string>
 #include <cstring>
 using namespace std;
 
@@ -11,10 +13,6 @@ using namespace std;
 #include "./Filter/Builder/BandPassFilter/CChebycheffBandPassFilterBuilder.h"
 #include "./Filter/Builder/HighPassFilter/CButterworthHighPassFilterBuilder.h"
 #include "./Filter/Builder/HighPassFilter/CChebycheffHighPassFilterBuilder.h"
-
-#include <iostream>
-#include <string>
-using namespace std;
 
 bool runFilter(CFilter& i_cFilter, BSoundInformation& i_bSoundInformation, long i_lBegin, long i_lEnd, short i_shChannel )
 {
@@ -109,9 +107,7 @@ int main(int argc, char* argv[])
 	}
 
 	//フィルタ名を取得.
-	char a_strFilterName[256];
-    const char* a_pbyTemp = a_pcFilter->description();
-	strcpy(a_strFilterName, a_pbyTemp);
+	const char* a_strFilterName = a_pcFilter->description();
 
 	//出力ファイル名を決定.
 	string outFileName(a_strFilterName);

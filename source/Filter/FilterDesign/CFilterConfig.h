@@ -46,6 +46,8 @@ public:
 		if(a_cInputStream.fail())
 		{
 			//ファイルが開けなかった場合どうする？
+            //とりあえず、リターンする.
+            return a_mapPairs;
 		}
 
 		while( getline(a_cInputStream, a_strLine) )
@@ -97,7 +99,6 @@ protected:
 		//文字列がコメントか否かをチェック.
 		a_bRet = this->checkCommentString(i_strLine);
 		if(a_bRet) return eComment;
-
 
 		//文字列がコンフィグか否かをチェック.
 		a_bRet = this->checkConfigString(i_strLine);
