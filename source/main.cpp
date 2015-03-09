@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <cstring>
+#include <cstring>		//atof(), atoi()を使用したい.
 using namespace std;
 
 #include "./SoundInformation/CWaveFormatOperator.h"
@@ -14,6 +14,15 @@ using namespace std;
 #include "./Filter/Builder/HighPassFilter/CButterworthHighPassFilterBuilder.h"
 #include "./Filter/Builder/HighPassFilter/CChebycheffHighPassFilterBuilder.h"
 
+/**
+ * @brief	サンプル値をフィルタへ通す.
+ * @param	CFilter& i_cFilter
+ * @param	BSoundInformation& i_bSoundInformation
+ * @param	long i_lBegin
+ * @param	long i_lEnd
+ * @param	short i_shChannel 
+ * @return	成功/失敗.
+ */
 bool runFilter(CFilter& i_cFilter, BSoundInformation& i_bSoundInformation, long i_lBegin, long i_lEnd, short i_shChannel )
 {
     double a_dCurrentSample;
@@ -31,72 +40,53 @@ bool runFilter(CFilter& i_cFilter, BSoundInformation& i_bSoundInformation, long 
 	return true;
 }
 
+/**
+ * @brief	フィルタを生成.
+ * @param	short i_shIndex	フィルタの種類.
+ * @return	生成したフィルタ.
+ */
 CFilter* createFilter(short i_shIndex)
 {
-
-	IFilterBuilder* a_piFilterBuilder=0;
-	CFilter* a_pcFilter=0;
-
-	switch (i_shIndex)
+	//フィルタビルダーの生成.
+	IFilterBuilder* a_piFilterBuilderTable[] = 
 	{
-		case 0:		//バターワース特性 ローパスフィルタ.
-		a_piFilterBuilder = new CButterworthLowPassFilterBuilder();
-		break;
+		new CButterworthLowPassFilterBuilder(),		//バターワース特性 ローパスフィルタ ビルダー.
+		new CButterworthBandPassFilterBuilder(),	//バターワース特性 バンドパスフィルタ ビルダー.
+		new CButterworthHighPassFilterBuilder(),	//バターワース特性 ハイパスフィルタ ビルダー.
+		new CChebycheffLowPassFilterBuilder(),		//チェビシェフ特性 ローパスフィルタ ビルダー.
+		new CChebycheffBandPassFilterBuilder(),		//チェビシェフ特性 バンドバスフィルタ ビルダー.
+		new CChebycheffHighPassFilterBuilder(),		//チェビシェフ特性 ハイパスフィルタ ビルダー.
+	};
+	
+	//添え字の範囲チェック.
+	short a_shMax = sizeof(a_piFilterBuilderTable) / sizeof(a_piFilterBuilderTable[0]);
+	if(i_shIndex >= a_shMax) return 0;
 
-		case 1:		//バターワース特性 バンドパスフィルタ.
-		a_piFilterBuilder = new CButterworthBandPassFilterBuilder();
-		break;
+	//フィルタビルダーを取得.
+	IFilterBuilder* a_piFilterBuilder = a_piFilterBuilderTable[i_shIndex];
 
-		case 2:		//バターワース特性 ハイパスフィルタ.
-		a_piFilterBuilder = new CButterworthHighPassFilterBuilder();
-		break;
-
-		case 3:		//チェビシェフ特性 ローパスフィルタ.
-		a_piFilterBuilder = new CChebycheffLowPassFilterBuilder();
-		break;
-
-		case 4:		//チェビシェフ特性 バンドパスフィルタ.
-		a_piFilterBuilder = new CChebycheffBandPassFilterBuilder();
-		break;
-
-		case 5:		//チェビシェフ特性 ハイパスフィルタ.
-		a_piFilterBuilder = new CChebycheffHighPassFilterBuilder();
-		break;
-
-		default:
-		a_piFilterBuilder = 0;
-		break;
-	}
-
+	//フィルタを生成.
+	CFilter* a_pcFilter=0;
 	if(0 != a_piFilterBuilder)
 	{
 		a_pcFilter = a_piFilterBuilder->build();	
-		delete a_piFilterBuilder;
 	}
 
+	//フィルタビルダーのメモリを解放.
+	for(short a_shIndex=0; a_shIndex<a_shMax; a_shIndex++)
+	{
+		delete a_piFilterBuilderTable[a_shIndex];
+	}
+
+	//生成したフィルタを返す.
 	return a_pcFilter;
 }
 
 int main(int argc, char* argv[])
 {
     string inFileName(argv[1]);
-    double dBPerOctDown=atof(argv[2]);
+	double dBPerOctDown=atof(argv[2]);
 	short a_shFilterIndex=atoi(argv[3]);
-
-	////フィルタ ビルダー
-	////バターワース特性 ローパスフィルタ.
-	//CButterworthLowPassFilterBuilder a_cBuilder;
-	////バターワース特性 バンドパスフィルタ.
-	//CButterworthBandPassFilterBuilder a_cBuilder;
-	////バターワース特性 ハイパスフィルタ.
-	//CButterworthHighPassFilterBuilder a_cBuilder;
-	////チェビシェフ特性 ローパスフィルタ.
-	//CChebycheffLowPassFilterBuilder a_cBuilder;
-	////チェビシェフ特性 バンドパスフィルタ.
-	//CChebycheffBandPassFilterBuilder a_cBuilder;
-	////チェビシェフ特性 ハイパスフィルタ.
-	//CChebycheffHighPassFilterBuilder a_cBuilder;
-	//CFilter* a_pcFilter = a_cBuilder.build();
 
 	//フィルタを生成.
 	CFilter* a_pcFilter = createFilter(a_shFilterIndex);
