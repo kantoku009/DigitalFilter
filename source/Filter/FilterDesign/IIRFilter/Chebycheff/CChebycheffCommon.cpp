@@ -45,47 +45,47 @@ void CChebycheffCommon::decisionPrototype( double inPassFreq,
                                     double inStopFreq,
                                     double inAttenuateGain)
 {
-    double passFreq,stopFreq;
-    double omega_dp,omega_ds;
-    double omega_ap,omega_as;
-    double n;
-    double fs;
+	double passFreq,stopFreq;
+	double omega_dp,omega_ds;
+	double omega_ap,omega_as;
+	double n;
+	double fs;
     
-    fs = getSampleRate();
+	fs = getSampleRate();
 
-    //サンプリング周波数で規格化
-    passFreq = inPassFreq / fs;
-    stopFreq = inStopFreq / fs;
+	//サンプリング周波数で規格化
+	passFreq = inPassFreq / fs;
+	stopFreq = inStopFreq / fs;
+
+	//周波数から角周波数へ変換
+	omega_dp = 2*M_PI * passFreq;
+	omega_ds = 2*M_PI * stopFreq;
+
+	//デジタルの周波数からアナログの周波数へ変換
+	omega_ap = digital2analog(omega_dp);
+	omega_as = digital2analog(omega_ds);
+
+	//ゲインの絶対値化
+	if(inRippleGain < 0.0) inRippleGain = -inRippleGain;
+	if(inAttenuateGain < 0.0) inAttenuateGain = -inAttenuateGain;
+
+	//epsilonの決定
+	this->m_dEpsilon = sqrt(pow(10,inRippleGain/10) - 1);
     
-    //周波数から角周波数へ変換
-    omega_dp = 2*M_PI * passFreq;
-    omega_ds = 2*M_PI * stopFreq;
-    
-    //デジタルの周波数からアナログの周波数へ変換
-    omega_ap = digital2analog(omega_dp);
-    omega_as = digital2analog(omega_ds);
+	//次数の決定
+	n = acosh((1/this->m_dEpsilon)*sqrt(pow(10,inAttenuateGain/10)-1)) 
+			/ acosh(omega_as/omega_ap);
+	setOrderNumber(static_cast<long>(n) + 1);
 
-    //ゲインの絶対値化
-    if(inRippleGain < 0.0) inRippleGain = -inRippleGain;
-    if(inAttenuateGain < 0.0) inAttenuateGain = -inAttenuateGain;
+	//alpha0の決定
+	this->m_dAlpha0 = sinh( 1/(static_cast<double>(getOrderNumber())) * asinh(1/this->m_dEpsilon) );
 
-    //epsilonの決定
-    this->m_dEpsilon = sqrt(pow(10,inRippleGain/10) - 1);
-    
-    //次数の決定
-    n = acosh((1/this->m_dEpsilon)*sqrt(pow(10,inAttenuateGain/10)-1)) 
-            / acosh(omega_as/omega_ap);
-    setOrderNumber(static_cast<long>(n) + 1);
+	//プロトタイプのカットオフ周波数の決定
+	this->m_dPrototypeCutFreq = omega_ap
+			*cosh( (1/(static_cast<double>(getOrderNumber()))) 
+			* acosh((1/this->m_dEpsilon)*sqrt(pow(10,0.3)-1)) );
 
-    //alpha0の決定
-    this->m_dAlpha0 = sinh( 1/(static_cast<double>(getOrderNumber())) * asinh(1/this->m_dEpsilon) );
-
-    //プロトタイプのカットオフ周波数の決定
-    this->m_dPrototypeCutFreq = omega_ap
-            *cosh( (1/(static_cast<double>(getOrderNumber()))) 
-            * acosh((1/this->m_dEpsilon)*sqrt(pow(10,0.3)-1)) );
-
-    this->m_dPrototypePassFreq = omega_ap;
+	this->m_dPrototypePassFreq = omega_ap;
 
 }
 
@@ -120,80 +120,81 @@ void CChebycheffCommon::decisionPrototype( double inPassFreq,
 *****************************************************************************/
 CBlockDiagram* CChebycheffCommon::initLowTransferFunction(double inCutFreq)
 {
-    double alpha,beta,gamma;
-    double a[3],b[3];
-    long   orderNumber,numSection;
-    bool isOrderNumberEven;
-    double omega_ap=getPrototypePassFreq();
-    CBlockDiagram *lowpassSection;
-    
-    //次数を取得
-    orderNumber = getOrderNumber();
-    isOrderNumberEven = (orderNumber%2 == 0)? true:false;
+	double alpha,beta,gamma;
+	double a[3],b[3];
+	double omega_ap=getPrototypePassFreq();
+	CBlockDiagram *lowpassSection;
 
-    if(isOrderNumberEven)
-        numSection = orderNumber / 2;
-    else{
-        numSection = (orderNumber-1) / 2;
-    }
-    numSection++;
-    
-    try{
-        lowpassSection = new CBlockDiagram [numSection];
-    }catch(bad_alloc err){
-        cerr << err.what() << endl;
-        return 0;
-    }
+	//フィルタの次数を取得.
+	long a_lOrderNumber = this->getOrderNumber();
+	bool a_IsOrderNumberEven = (0==a_lOrderNumber%2)? true:false;
+	long a_lNumSection = (a_IsOrderNumberEven)? (a_lOrderNumber/2) : ((a_lOrderNumber-1)/2);
+	a_lNumSection++;
 
-    //係数を決定
-    gamma = getLowGamma(inCutFreq);
-    //1次の伝達関数の初期化
-    if(isOrderNumberEven){
-        a[0] = 1;
-        a[1] = 0;
-        a[2] = 0;
-        b[0] = 1;
-        b[1] = 0;
-        b[2] = 0;
-    }else{
-        a[0] = 1;
-        a[1] = 1;
-        a[2] = 0;
-        b[0] = this->m_dAlpha0*omega_ap*(1-gamma) 
-                / ( (this->m_dAlpha0*omega_ap+2) - (this->m_dAlpha0*omega_ap-2)*gamma );
-        b[1] = -( (this->m_dAlpha0*omega_ap-2) - (this->m_dAlpha0*omega_ap+2)*gamma )
-                 / ( (this->m_dAlpha0*omega_ap+2) - (this->m_dAlpha0*omega_ap-2)*gamma );
-        b[2] = 0;
-    }
-    lowpassSection[0].init(2,a,b);
+	try
+	{
+		lowpassSection = new CBlockDiagram [a_lNumSection];
+	}
+	catch(bad_alloc err)
+	{
+		cerr << err.what() << endl;
+		return 0;
+	}
+
+	//係数を決定
+	gamma = getLowGamma(inCutFreq);
+
+	//1次の伝達関数の初期化
+	if(a_IsOrderNumberEven)
+	{
+		a[0] = 1;
+		a[1] = 0;
+		a[2] = 0;
+		b[0] = 1;
+		b[1] = 0;
+		b[2] = 0;
+	}
+	else
+	{
+		a[0] = 1;
+		a[1] = 1;
+		a[2] = 0;
+		b[0] = this->m_dAlpha0*omega_ap*(1-gamma) 
+				/ ( (this->m_dAlpha0*omega_ap+2) - (this->m_dAlpha0*omega_ap-2)*gamma );
+		b[1] = -( (this->m_dAlpha0*omega_ap-2) - (this->m_dAlpha0*omega_ap+2)*gamma )
+				/ ( (this->m_dAlpha0*omega_ap+2) - (this->m_dAlpha0*omega_ap-2)*gamma );
+		b[2] = 0;
+	}
+	lowpassSection[0].init(2,a,b);
+
+	//2次の伝達関数の初期化
+	for(long i=1;i<a_lNumSection;i++)
+	{
+		alpha = getAlpha(i);
+		beta = getBeta(i);
+		a[0] = 1;
+		a[1] = 2;
+		a[2] = 1;
+		b[0] = beta*omega_ap*omega_ap*(1-gamma)*(1-gamma) 
+				/ ( (4+2*alpha*omega_ap+beta*omega_ap*omega_ap) 
+				- 2*(beta*omega_ap*omega_ap-4)*gamma 
+				+ (4-2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma );
+		b[1] = -2*( (beta*omega_ap*omega_ap-4) 
+				- 2*(beta*omega_ap*omega_ap+4)*gamma 
+				+ (beta*omega_ap*omega_ap-4)*gamma*gamma ) 
+			/ ( (4+2*alpha*omega_ap+beta*omega_ap*omega_ap) 
+				- 2*(beta*omega_ap*omega_ap-4)*gamma 
+				+ (4-2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma );
+		b[2] = -( (4-2*alpha*omega_ap+beta*omega_ap*omega_ap) 
+				- 2*(beta*omega_ap*omega_ap-4)*gamma 
+				+ (4+2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma ) 
+			/ ( (4+2*alpha*omega_ap+beta*omega_ap*omega_ap) 
+				- 2*(beta*omega_ap*omega_ap-4)*gamma 
+				+ (4-2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma );
+		lowpassSection[i].init(2,a,b);
+	}
     
-    //2次の伝達関数の初期化
-    for(long i=1;i<numSection;i++){
-        alpha = getAlpha(i);
-        beta = getBeta(i);
-        a[0] = 1;
-        a[1] = 2;
-        a[2] = 1;
-        b[0] = beta*omega_ap*omega_ap*(1-gamma)*(1-gamma) 
-                / ( (4+2*alpha*omega_ap+beta*omega_ap*omega_ap) 
-                    - 2*(beta*omega_ap*omega_ap-4)*gamma 
-                    + (4-2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma );
-        b[1] = -2*( (beta*omega_ap*omega_ap-4) 
-                - 2*(beta*omega_ap*omega_ap+4)*gamma 
-                + (beta*omega_ap*omega_ap-4)*gamma*gamma ) 
-            / ( (4+2*alpha*omega_ap+beta*omega_ap*omega_ap) 
-                - 2*(beta*omega_ap*omega_ap-4)*gamma 
-                + (4-2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma );
-        b[2] = -( (4-2*alpha*omega_ap+beta*omega_ap*omega_ap) 
-                - 2*(beta*omega_ap*omega_ap-4)*gamma 
-                + (4+2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma ) 
-            / ( (4+2*alpha*omega_ap+beta*omega_ap*omega_ap) 
-                - 2*(beta*omega_ap*omega_ap-4)*gamma 
-                + (4-2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma );
-        lowpassSection[i].init(2,a,b);
-    }
-    
-    return lowpassSection;
+	return lowpassSection;
 }
 
 /******************************************************************************
@@ -231,118 +232,106 @@ CBlockDiagram* CChebycheffCommon::initLowTransferFunction(double inCutFreq)
 *****************************************************************************/
 CBlockDiagram* CChebycheffCommon::initHighTransferFunction(double inCutFreq)
 {
-    double alpha,beta,gamma;
-    double a[3],b[3];
-    long   orderNumber,numSection;
-    bool   isOrderNumberEven;
-    double omega_ap=getPrototypePassFreq();
-    CBlockDiagram *highpassSection;
-    
-    //次数を取得
-    orderNumber = getOrderNumber();
-    isOrderNumberEven = (orderNumber%2 == 0)? true:false;
-    if(isOrderNumberEven)
-        numSection = orderNumber / 2;
-    else{
-        numSection = (orderNumber-1) / 2;
-    }
-    numSection++;
-    
-    try{
-        highpassSection = new CBlockDiagram [numSection];
-    }catch(bad_alloc err){
-        cerr << err.what() << endl;
-        return 0;
-    }
+	double alpha,beta,gamma;
+	double a[3],b[3];
+	double omega_ap=getPrototypePassFreq();
+	CBlockDiagram *highpassSection;
 
-    //係数を決定
-    gamma = getHighGamma(inCutFreq);
+	//フィルタの次数を取得.
+	long a_lOrderNumber = this->getOrderNumber();
+	bool a_IsOrderNumberEven = (0==a_lOrderNumber%2)? true:false;
+	long a_lNumSection = (a_IsOrderNumberEven)? (a_lOrderNumber/2) : ((a_lOrderNumber-1)/2);
+	a_lNumSection++;
+
+	try
+	{
+		highpassSection = new CBlockDiagram [a_lNumSection];
+	}
+	catch(bad_alloc err)
+	{
+		cerr << err.what() << endl;
+		return 0;
+	}
+
+	//係数を決定
+	gamma = getHighGamma(inCutFreq);
     
-    //1次の伝達関数の初期化
-    if(isOrderNumberEven){
-        a[0] = 1;
-        a[1] = 0;
-        a[2] = 0;
-        b[0] = 1;
-        b[1] = 0;
-        b[2] = 0;
-    }else{
-        a[0] = 1;
-        a[1] = -1;
-        a[2] = 0;
-        b[0] = this->m_dAlpha0*omega_ap*(1-gamma) 
-                / ( (this->m_dAlpha0*omega_ap+2) - (this->m_dAlpha0*omega_ap-2)*gamma );
-        b[1] = ( (this->m_dAlpha0*omega_ap-2) - (this->m_dAlpha0*omega_ap+2)*gamma ) 
-                / ( (this->m_dAlpha0*omega_ap+2) - (this->m_dAlpha0*omega_ap-2)*gamma );
-        b[2] = 0;
-    }
-    highpassSection[0].init(2,a,b);
-    
-    for(long i=1;i<numSection;i++){
-        //２次の伝達関数の初期化
-        alpha = getAlpha(i);
-        beta = getBeta(i);
-        a[0] = 1;
-        a[1] = -2;
-        a[2] = 1;
-        b[0] = beta*omega_ap*omega_ap*(1-gamma)*(1-gamma) 
-                / ( (4+2*alpha*omega_ap+beta*omega_ap*omega_ap)
-                     - 2*(beta*omega_ap*omega_ap-4)*gamma 
-                     + (4-2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma );
-        b[1] = 2*( (beta*omega_ap*omega_ap-4) 
-                - 2*(beta*omega_ap*omega_ap+4)*gamma 
-                + (beta*omega_ap*omega_ap-4)*gamma*gamma ) 
-            / ( (4+2*alpha*omega_ap+beta*omega_ap*omega_ap) 
-                - 2*(beta*omega_ap*omega_ap-4)*gamma 
-                + (4-2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma );
-        b[2] = -( (4-2*alpha*omega_ap+beta*omega_ap*omega_ap) 
-                    - 2*(beta*omega_ap*omega_ap-4)*gamma 
-                    + (4+2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma ) 
-                / ( (4+2*alpha*omega_ap+beta*omega_ap*omega_ap) 
-                    - 2*(beta*omega_ap*omega_ap-4)*gamma 
-                    + (4-2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma );
-        highpassSection[i].init(2,a,b);
-    }
-    
-    return highpassSection;
+	//1次の伝達関数の初期化
+	if(a_IsOrderNumberEven)
+	{
+		a[0] = 1;
+		a[1] = 0;
+		a[2] = 0;
+		b[0] = 1;
+		b[1] = 0;
+		b[2] = 0;
+	}
+	else
+	{
+		a[0] = 1;
+		a[1] = -1;
+		a[2] = 0;
+		b[0] = this->m_dAlpha0*omega_ap*(1-gamma) 
+				/ ( (this->m_dAlpha0*omega_ap+2) - (this->m_dAlpha0*omega_ap-2)*gamma );
+		b[1] = ( (this->m_dAlpha0*omega_ap-2) - (this->m_dAlpha0*omega_ap+2)*gamma ) 
+				/ ( (this->m_dAlpha0*omega_ap+2) - (this->m_dAlpha0*omega_ap-2)*gamma );
+		b[2] = 0;
+	}
+	highpassSection[0].init(2,a,b);
+
+	for(long i=1;i<a_lNumSection;i++){
+		//２次の伝達関数の初期化
+		alpha = getAlpha(i);
+		beta = getBeta(i);
+		a[0] = 1;
+		a[1] = -2;
+		a[2] = 1;
+		b[0] = beta*omega_ap*omega_ap*(1-gamma)*(1-gamma) 
+				/ ( (4+2*alpha*omega_ap+beta*omega_ap*omega_ap)
+					- 2*(beta*omega_ap*omega_ap-4)*gamma 
+					+ (4-2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma );
+		b[1] = 2*( (beta*omega_ap*omega_ap-4) 
+					- 2*(beta*omega_ap*omega_ap+4)*gamma 
+				+ (beta*omega_ap*omega_ap-4)*gamma*gamma ) 
+			/ ( (4+2*alpha*omega_ap+beta*omega_ap*omega_ap) 
+				- 2*(beta*omega_ap*omega_ap-4)*gamma 
+				+ (4-2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma );
+		b[2] = -( (4-2*alpha*omega_ap+beta*omega_ap*omega_ap) 
+				- 2*(beta*omega_ap*omega_ap-4)*gamma 
+					+ (4+2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma ) 
+				/ ( (4+2*alpha*omega_ap+beta*omega_ap*omega_ap) 
+					- 2*(beta*omega_ap*omega_ap-4)*gamma 
+					+ (4-2*alpha*omega_ap+beta*omega_ap*omega_ap)*gamma*gamma );
+		highpassSection[i].init(2,a,b);
+	}
+
+	return highpassSection;
 }
 
-
-
-
+/*********************************************************
+ * バンドパスフィルタの伝達関数の初期化と係数の決定.
+ *********************************************************/
 CBlockDiagram* CChebycheffCommon::initBandTransferFunction(double inLowCutFreq, double inHighCutFreq)
 {
-    CBlockDiagram *lowpassSection,*highpassSection,*bandpassSection;
-    long orderNumber,numSection;
-    bool isOrderNumberEven;
-    
-    //lowpassSection = 0;
-    //highpassSection = 0;
-    //bandpassSection = 0;
-    
-    lowpassSection = initLowTransferFunction(inHighCutFreq);
-    
-    highpassSection = initHighTransferFunction(inLowCutFreq);
-    
-    orderNumber = getOrderNumber();
-    isOrderNumberEven = (orderNumber%2 == 0)? true:false;
-    if(isOrderNumberEven)
-        numSection = orderNumber / 2;
-    else
-        numSection = (orderNumber-1) / 2;
-    
-    numSection++;
-    
-    bandpassSection = new CBlockDiagram [numSection*2];
-    for(long i=0;i<numSection;i++){
-        bandpassSection[i] = lowpassSection[i];
-        bandpassSection[i+numSection] = highpassSection[i];
-    }
-    
-    delete [] lowpassSection;
-    delete [] highpassSection;
-    
-    return bandpassSection;
+	//フィルタの次数を取得.
+	long a_lOrderNumber = this->getOrderNumber();
+	bool a_IsOrderNumberEven = (0==a_lOrderNumber%2)? true:false;
+	long a_lNumSection = (a_IsOrderNumberEven)? (a_lOrderNumber/2) : ((a_lOrderNumber-1)/2);
+	a_lNumSection++;
+
+	CBlockDiagram* lowpassSection = initLowTransferFunction(inHighCutFreq);
+	CBlockDiagram* highpassSection = initHighTransferFunction(inLowCutFreq);
+	CBlockDiagram* bandpassSection = new CBlockDiagram [a_lNumSection*2];
+	for(long a_lIndex=0;a_lIndex<a_lNumSection;a_lIndex++)
+	{
+		bandpassSection[a_lIndex] = lowpassSection[a_lIndex];
+		bandpassSection[a_lIndex+a_lNumSection] = highpassSection[a_lIndex];
+	}
+
+	delete [] lowpassSection;
+	delete [] highpassSection;
+
+	return bandpassSection;
 }
 
 
@@ -350,37 +339,40 @@ CBlockDiagram* CChebycheffCommon::initBandTransferFunction(double inLowCutFreq, 
 *getAlpha : 係数αの取得
 *
 *引数
-*   i : 伝達関数の$¥prod_i$
+*	i : 伝達関数の$¥prod_i$
 *
 *ローカル変数
-*   n : 伝達関数の次数
-*   v : 係数
+*	n : 伝達関数の次数
+*	v : 係数
 *
 *返り値
-*   係数αを返す
+* 係数αを返す
 *
 *備考
 ¥end{verbatim}
 
-   ¥[ ¥alpha_{i} = 2¥cos(¥frac{¥pi}{n}v) ¥]
+	¥[ ¥alpha_{i} = 2¥cos(¥frac{¥pi}{n}v) ¥]
 
 ¥begin{verbatim}
-*   v = i - (1/2) (nが偶数のとき)
-*   v = i         (nが奇数のとき)
+*	v = i - (1/2) (nが偶数のとき)
+*	v = i (nが奇数のとき)
 *
 ***********************************************************************/
-double CChebycheffCommon::getAlpha(long i)
+double CChebycheffCommon::getAlpha(long i_lProd)
 {
-    long n;
-    double v;
+    long a_lOrderNumber = this->getOrderNumber();
+    double a_dCoeff;
     
-    n = getOrderNumber();
-    if(n%2 == 0)
-        v = i - 0.5;
+    if(0 == a_lOrderNumber%2)
+	{
+        a_dCoeff = i_lProd - 0.5;
+	}
     else
-        v = i;
+	{
+        a_dCoeff = i_lProd;
+	}
     
-    return 2*this->m_dAlpha0*cos(M_PI*v/n);
+    return 2*this->m_dAlpha0*cos(M_PI*a_dCoeff/a_lOrderNumber);
 }
 
 
@@ -388,37 +380,40 @@ double CChebycheffCommon::getAlpha(long i)
 * getBeta : 係数βの取得
 *
 *引数
-*   i : 伝達関数の$¥prod_i$
+*	i : 伝達関数の$¥prod_i$
 *
 *ローカル変数
-*   n : 伝達関数の次数
-*   v : 係数
+*	n : 伝達関数の次数
+*	v : 係数
 *
 *返り値
-*   係数βを返す
+* 係数βを返す
 *
 *備考
 ¥end{verbatim}
 
-   ¥[ ¥beta_{i} = ¥alpha_{0}^{2} + sin(¥frac{¥pi}{n}v)^2 ¥]
+	¥[ ¥beta_{i} = ¥alpha_{0}^{2} + sin(¥frac{¥pi}{n}v)^2 ¥]
 
 ¥begin{verbatim}
-*   v = i - (1/2) (nが偶数のとき)
-*   v = i         (nが奇数のとき)
+*	v = i - (1/2) (nが偶数のとき)
+*	v = i (nが奇数のとき)
 *
 ***********************************************************************/
-double CChebycheffCommon::getBeta(long i)
+double CChebycheffCommon::getBeta(long i_lProd)
 {
-    long n;
-    double v;
+    long a_lOrderNumber = this->getOrderNumber();
+    double a_dCoeff;
     
-    n = getOrderNumber();
-    if(n%2 == 0)
-        v = i - 0.5;
+    if(0 == a_lOrderNumber%2)
+	{
+        a_dCoeff = i_lProd - 0.5;
+	}
     else
-        v = i;
+	{
+        a_dCoeff = i_lProd;
+	}
     
-    return this->m_dAlpha0*this->m_dAlpha0 + sin(M_PI*v/n)*sin(M_PI*v/n);
+    return this->m_dAlpha0*this->m_dAlpha0 + sin(M_PI*a_dCoeff/a_lOrderNumber)*sin(M_PI*a_dCoeff/a_lOrderNumber);
 }
 
 

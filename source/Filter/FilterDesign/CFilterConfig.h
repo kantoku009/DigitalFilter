@@ -46,8 +46,8 @@ public:
 		if(a_cInputStream.fail())
 		{
 			//ファイルが開けなかった場合どうする？
-            //とりあえず、リターンする.
-            return a_mapPairs;
+			//とりあえず、リターンする.
+			return a_mapPairs;
 		}
 
 		while( getline(a_cInputStream, a_strLine) )

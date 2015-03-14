@@ -146,8 +146,6 @@ protected:
 		m_dHighCutoffFreq = i_dCutoffFreq;
 	}
 
-protected:
-
 };
 
 #endif //__CBUTTERWORTH_HIGHPASSFILTER_DESIGN_H__

@@ -140,7 +140,6 @@ protected:
 		m_dLowCutoffFreq = i_dCutoffFreq;
 	}
 
-
 };
 
 #endif //__CBUTTERWORTH_LOWPASSFILTER_DESIGN_H__

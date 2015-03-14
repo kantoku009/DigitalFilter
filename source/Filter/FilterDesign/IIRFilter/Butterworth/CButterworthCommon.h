@@ -17,16 +17,12 @@ public:
 	/**
 	 * @brief	コンストラクタ.
 	 */
-	CButterworthCommon()
-	{
-	}
+	CButterworthCommon() { }
 
 	/**
 	 * @brief	デストラクタ.
 	 */
-	virtual ~CButterworthCommon()
-	{
-	}
+	virtual ~CButterworthCommon() { }
 
 	/**
 	 * @brief	ローパスフィルタの伝達関数の初期化と係数の決定.

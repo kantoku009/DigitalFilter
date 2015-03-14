@@ -18,16 +18,12 @@ public:
 	/**
 	 * @brief	コンストラクタ.
 	 */
-	CChebycheffCommon()
-	{
-	}
+	CChebycheffCommon() { }
 
 	/**
 	 * @brief	デストラクタ.
 	 */
-	virtual ~CChebycheffCommon()
-	{
-	}
+	virtual ~CChebycheffCommon() { }
 
 	/**
 	 * @brief	ローパスフィルタの伝達関数の初期化と係数の決定.

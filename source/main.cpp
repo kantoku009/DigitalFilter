@@ -25,16 +25,16 @@ using namespace std;
  */
 bool runFilter(CFilter& i_cFilter, BSoundInformation& i_bSoundInformation, long i_lBegin, long i_lEnd, short i_shChannel )
 {
-    double a_dCurrentSample;
-    
-    for(long a_lIndex=i_lBegin; a_lIndex<=i_lEnd; a_lIndex++)
+	double a_dCurrentSample;
+
+	for(long a_lIndex=i_lBegin; a_lIndex<=i_lEnd; a_lIndex++)
 	{
 		// サンプルを取得.
-        a_dCurrentSample = i_bSoundInformation.readSampleFromMemory(a_lIndex,i_shChannel);
+		a_dCurrentSample = i_bSoundInformation.readSampleFromMemory(a_lIndex,i_shChannel);
 		// フィルタにサンプルを通す.
-        a_dCurrentSample = i_cFilter.passFilter(a_dCurrentSample);
-        // フィルタに通したサンプルを保存.
-        i_bSoundInformation.writeSampleIntoMemory(a_dCurrentSample, a_lIndex, i_shChannel);
+		a_dCurrentSample = i_cFilter.passFilter(a_dCurrentSample);
+		// フィルタに通したサンプルを保存.
+		i_bSoundInformation.writeSampleIntoMemory(a_dCurrentSample, a_lIndex, i_shChannel);
     }
 
 	return true;
@@ -84,7 +84,7 @@ CFilter* createFilter(short i_shIndex)
 
 int main(int argc, char* argv[])
 {
-    string inFileName(argv[1]);
+	string inFileName(argv[1]);
 	double dBPerOctDown=atof(argv[2]);
 	short a_shFilterIndex=atoi(argv[3]);
 
@@ -106,40 +106,40 @@ int main(int argc, char* argv[])
 
 	//出力ファイル名を決定.
 	string outFileName(a_strFilterName);
-    char tempStr[32];
-    sprintf(tempStr,"%2.2f",dBPerOctDown);
-    outFileName += tempStr;
-    outFileName += "dB.wav";
+	char tempStr[32];
+	sprintf(tempStr,"%2.2f",dBPerOctDown);
+	outFileName += tempStr;
+	outFileName += "dB.wav";
 
-    cout << "load file now: " << inFileName << endl;
+	cout << "load file now: " << inFileName << endl;
 	CWaveFormatOperator a_cWaveFile;
-    if(true == a_cWaveFile.readWaveFile(inFileName))
+	if(true == a_cWaveFile.readWaveFile(inFileName))
 	{
 		// up sampling.
 		//a_cWaveFile.setSampleRate(a_cWaveFile.getSampleRate() * 2);
 
 		//フィルタ処理.
 		cout << "disposal: " << a_strFilterName << endl; 
-        for(short chan=0;chan<a_cWaveFile.getNumChannels();chan++)
+		for(short chan=0;chan<a_cWaveFile.getNumChannels();chan++)
 		{
-            cout << "  channnel " << chan << endl;
+			cout << "  channnel " << chan << endl;
 			runFilter(*a_pcFilter, a_cWaveFile, 0, a_cWaveFile.getSamplesPerChannel(), chan);
-        }
-        
+		}
+
 		// down sampling.
 		//a_cWaveFile.setSampleRate(a_cWaveFile.getSampleRate() / 2);
 
 		//フィルタ処理後の音声を書き出す.
-        cout << "write file now: " << outFileName << endl;
-        a_cWaveFile.writeWaveFile(outFileName);
-    }
+		cout << "write file now: " << outFileName << endl;
+		a_cWaveFile.writeWaveFile(outFileName);
+	}
 	else
 	{
-        cout << "error: load file" << endl;
-    }
-    cout << "finish" << endl;
+		cout << "error: load file" << endl;
+	}
+	cout << "finish" << endl;
 	delete a_pcFilter;
     
-    return 0;
+	return 0;
 }
 

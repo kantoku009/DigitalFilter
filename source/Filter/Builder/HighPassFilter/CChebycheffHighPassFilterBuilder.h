@@ -24,7 +24,7 @@ public:
 	 * @brief	デストラクタ.
 	 */
 	virtual ~CChebycheffHighPassFilterBuilder(){ }
-    
+
 protected:
 	/**
 	 * @brief	デジタルフィルタ設計：CButterworth を生成.

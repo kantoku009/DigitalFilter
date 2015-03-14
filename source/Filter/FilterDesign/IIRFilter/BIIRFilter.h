@@ -98,7 +98,6 @@ protected:
 		}
 	}
 
-
 	/**
 	 * @brief	伝達関数にサンプルを通す.
 	 * @param	long i_lNumSection	ブロックダイアグラムのセクション数.
@@ -227,22 +226,21 @@ protected:
 		//位相特性を書き込むファイルを開く.
 		ofstream a_streamPhaseFile(i_pbyPhaseFilename, ios::out);
 
-
-	    for(double omega=0.001; omega<M_PI; omega+=0.001)
+		for(double omega=0.001; omega<M_PI; omega+=0.001)
 		{
-	        complex<double> e1 = polar(1.0, -omega);
-	        complex<double> e2 = polar(1.0, -2.0*omega);
-	        complex<double> h = polar(1.0, 0.0);
-	        for(long a_lIndex=0; a_lIndex<i_lNumSection; a_lIndex++)
+			complex<double> e1 = polar(1.0, -omega);
+			complex<double> e2 = polar(1.0, -2.0*omega);
+			complex<double> h = polar(1.0, 0.0);
+			for(long a_lIndex=0; a_lIndex<i_lNumSection; a_lIndex++)
 			{
-	            const double* a = this->m_pcBlockDiagram[a_lIndex].getCoefficientA();
-	            const double* b = this->m_pcBlockDiagram[a_lIndex].getCoefficientB();
-	            
-	            h *= b[0] * (a[0] + a[1]*e1 + a[2]*e2) / (1.0 - b[1]*e1 - b[2]*e2);
-	        }
-	        
+				const double* a = this->m_pcBlockDiagram[a_lIndex].getCoefficientA();
+				const double* b = this->m_pcBlockDiagram[a_lIndex].getCoefficientB();
+
+				h *= b[0] * (a[0] + a[1]*e1 + a[2]*e2) / (1.0 - b[1]*e1 - b[2]*e2);
+			}
+
 			//周波数.
-	        double a_dFreq = omega * this->getSampleRate() / (2*M_PI);
+			double a_dFreq = omega * this->getSampleRate() / (2*M_PI);
 			//振幅.
 			double a_dAmplitude = this->getAmplitude(h);
 			//位相.
@@ -251,7 +249,7 @@ protected:
 			a_streamAmplitudeFile << a_dFreq << ',' << a_dAmplitude << endl;
 			//位相特性を出力.
 			a_streamPhaseFile << a_dFreq << ',' << a_dPhase << endl;
-	    }
+		}
 		//ファイルを閉じる.
 		a_streamAmplitudeFile.close();
 		a_streamPhaseFile.close();
