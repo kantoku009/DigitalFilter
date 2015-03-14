@@ -30,7 +30,6 @@ public:
 	{
 		this->m_pcBlockDiagram = 0;
 		this->m_dSampleRate = 0.0;
-		this->m_dCutoffFreq = 0.0;
 		this->m_dLowCutoffFreq = 0.0;
 		this->m_dHighCutoffFreq = 0.0;
 		this->m_dPassFreq = 0.0;
@@ -180,7 +179,6 @@ protected:
 		printf("  RippleGain = %.1f\n", this->m_dRippleGain);
 		printf("  StopFreq = %.1f\n", this->m_dStopFreq);
 		printf("  AttenuateGain = %.1f\n", this->m_dAttenuateGain);
-		printf("  CutoffFreq = %.1f\n", this->m_dCutoffFreq);
 		printf("  LowCutoffFreq = %.1f\n", this->m_dLowCutoffFreq);
 		printf("  HighCutoffFreq = %.1f\n", this->m_dHighCutoffFreq);
 	}
@@ -270,19 +268,12 @@ protected:
 	double m_dSampleRate;
 
 	/**
-	 * @brief	カットオフ周波数[Hz].
-	 */
-	double m_dCutoffFreq;
-
-	/**
-	 * @brief	低い方のカットオフ周波数[Hz].
-	 * @note	バンドパスフィルタのみで使用する.
+	 * @brief	ローパスフィルタのカットオフ周波数[Hz].
 	 */
 	double m_dLowCutoffFreq;
 
 	/**
-	 * @brief	高い方のカットオフ周波数[Hz].
-	 * @note	バンドパスフィルタのみで使用する.
+	 * @brief	ハイパスフィルタのカットオフ周波数[Hz].
 	 */
 	double m_dHighCutoffFreq;
 

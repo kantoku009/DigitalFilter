@@ -53,9 +53,9 @@ public:
 
 		this->setSampleRate(this->m_dSampleRate);
 		this->decisionPrototype(this->m_dPassFreq, this->m_dRippleGain, this->m_dStopFreq, this->m_dAttenuateGain);
-		this->setCutoffFreq(m_dCutoffFreq);
+		this->setCutoffFreq(m_dLowCutoffFreq);
 
-		this->m_pcBlockDiagram = this->initLowTransferFunction(this->m_dCutoffFreq);
+		this->m_pcBlockDiagram = this->initLowTransferFunction(this->m_dLowCutoffFreq);
 	}
 	
 	/**
@@ -75,7 +75,7 @@ public:
 			{"RippleGain",		&this->m_dRippleGain},
 			{"StopFreq",		&this->m_dStopFreq},
 			{"AttenuateGain",	&this->m_dAttenuateGain},
-			{"CutoffFreq",		&this->m_dCutoffFreq},
+			{"CutoffFreq",		&this->m_dLowCutoffFreq},
 		};
 
 		//コンフィグの設定.
@@ -108,7 +108,7 @@ public:
 	 */
 	virtual double getCutoffFreq() const
 	{
-		return m_dCutoffFreq;
+		return m_dLowCutoffFreq;
 	}
 
 	/**
@@ -137,7 +137,7 @@ protected:
 	 */
 	virtual void setCutoffFreq(double i_dCutoffFreq)
 	{
-		m_dCutoffFreq = i_dCutoffFreq;
+		m_dLowCutoffFreq = i_dCutoffFreq;
 	}
 
 

@@ -15,9 +15,9 @@ using namespace std;
 #define	BUTTERWORTH_BANDPASS_FILTER_DESIGN_NAME		"ButterworthBandPass"
 #define BUTTERWORTH_BANDPASS_FILTER_CONFIG_FILENAME	"./config/ButterworthBandPassFilter.conf"
 
-
 /**
  * @brief	バターワース特性 バンドパスデジタルフィルタ設計部のクラス.
+ * @note	バンドパスフィルタはローパスフィルタとハイパスフィルタを組み合わせて設計する.
  */
 class CButterworthBandPassFilterDesign : public IBandPassFilterDesign, public CButterworthCommon
 {
@@ -113,9 +113,9 @@ public:
 	}
 
 	/**
-	 * @brief	低い方のカットオフ周波数を取得.
+	 * @brief	ローパスフィルタのカットオフ周波数を取得.
 	 * @param	なし.
-	 * @return	低い方のカットオフ周波数.
+	 * @return	ローパスフィルタのカットオフ周波数.
 	 */
 	virtual double getLowCutoffFreq() const
 	{
@@ -123,9 +123,9 @@ public:
 	}
 
 	/**
-	 * @brief	高い方のカットオフ周波数を取得.
+	 * @brief	ハイパスフィルタのカットオフ周波数を取得.
 	 * @param	なし.
-	 * @return	高い方のカットオフ周波数.
+	 * @return	ハイパスフィルタのカットオフ周波数.
 	 */
 	virtual double getHighCutoffFreq() const
 	{
@@ -153,8 +153,8 @@ public:
 
 protected:
 	/**
-	 * @brief	低い方のカットオフ周波数を設定.
-	 * @param	double i_dCutoffFreq	低い方のカットオフ周波数.
+	 * @brief	ローパスフィルタのカットオフ周波数を設定.
+	 * @param	double i_dCutoffFreq	ローパスフィルタのカットオフ周波数.
 	 * @return	なし.
 	 */
 	virtual void setLowCutoffFreq(double i_dCutoffFreq)
@@ -163,8 +163,8 @@ protected:
 	}
 
 	/**
-	 * @brief	高い方のカットオフ周波数を設定.
-	 * @param	double i_dCutoffFreq	高い方のカットオフ周波数.
+	 * @brief	ハイパスフィルタのカットオフ周波数を設定.
+	 * @param	double i_dCutoffFreq	ハイパスフィルタのカットオフ周波数.
 	 * @return	なし.
 	 */
 	virtual void setHighCutoffFreq(double i_dCutoffFreq)
