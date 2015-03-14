@@ -16,7 +16,7 @@ using namespace std;
  */
 typedef struct TChunk
 {
-    char id[4];
+	char id[4];
 	char size[4];
 }TChunk;
 
@@ -31,12 +31,12 @@ typedef struct TFmtChunk
 //    long  nAvgBytesPerSec;
 //    short nBlockAlign;
 //    short wBitsPerSample;
-    char wFormatTag[2];
-    char nChannels[2];
-    char nSamplesPerSec[4];
-    char nAvgBytesPerSec[4];
-    char nBlockAlign[2];
-    char wBitsPerSample[2];
+	char wFormatTag[2];
+	char nChannels[2];
+	char nSamplesPerSec[4];
+	char nAvgBytesPerSec[4];
+	char nBlockAlign[2];
+	char wBitsPerSample[2];
 }TFmtChunk;
 
 
@@ -49,10 +49,11 @@ public:
 	/**
 	 * @brief	コンストラクタ.
 	 */
-	CWaveFormatOperator(long  sampleRate=44100,
-                       short bitsPerSample=8,
-                       short numChannels=1,
-                       long  numSamples=44100)
+	CWaveFormatOperator(
+						long  sampleRate=44100,
+						short bitsPerSample=8,
+						short numChannels=1,
+						long  numSamples=44100)
 			:BSoundInformation(
 							sampleRate, 
 							bitsPerSample, 
@@ -261,7 +262,6 @@ private:
 	 * @note	デバッグ用.
 	 */
 	void printFmtChunk(char* i_pbyMessage, TFmtChunk& i_stFmtChunk);
-
 };
 
 #endif	//__CWAVE_FORMAT_OPERATOR_H__

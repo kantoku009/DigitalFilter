@@ -33,45 +33,50 @@ private:
  **************************/
 bool CWaveFormatOperator::readWaveFile(const string i_strFileName)
 {
-    ifstream   fp(i_strFileName.c_str(),ios::binary);
-    TChunk     chunk;
+	ifstream   fp(i_strFileName.c_str(),ios::binary);
+	TChunk     chunk;
     
-    if(!fp){
-        cerr << "Can't Open " << i_strFileName << ".\n";
-        return false;
-    }
+	if(!fp)
+	{
+		cerr << "Can't Open " << i_strFileName << ".\n";
+		return false;
+	}
     
-    try{
+    try
+	{
 		//'RIFF'
 		this->readRIFFChunk(fp);
 
 		//'WAVE'
 		this->readWAVEChunk(fp);
 
-		while( fp.read((char*)&chunk,sizeof(chunk)) ){
-	        if(strncmp(chunk.id,"fmt ",4) == 0)
+		while( fp.read((char*)&chunk,sizeof(chunk)) )
+		{
+			if(strncmp(chunk.id,"fmt ",4) == 0)
 			{
 				// 'fmt ' read.
 				this->readFmtChunk(fp, chunk);
-	        }
+			}
 			else if(strncmp(chunk.id,"data",4) == 0)
 			{
 				// 'data' read.
 				this->readSample(fp, chunk);
-	        }
+			}
 			else
 			{
 				long lSize = this->convert4ByteDataToLong(chunk.size);
-	            fp.seekg(lSize,ios::cur);
+				fp.seekg(lSize,ios::cur);
 				if(g_bIsDEBUG) this->printChunk((char*)"Read Chunk", chunk);
-	        }
-	    }
-	}catch(WaveFormatError err){
-        cerr << err.what() << endl;
-        return false;
-    }
+			}
+		}
+	}
+	catch(WaveFormatError err)
+	{
+		cerr << err.what() << endl;
+		return false;
+	}
    
-    return true;
+	return true;
 }
 
 /**************************************
@@ -131,7 +136,7 @@ bool CWaveFormatOperator::readFmtChunk(ifstream& i_cFileStream, TChunk& i_stChun
 
 	if(g_bIsDEBUG) printChunk((char*)"Read Chunk", i_stChunk);
 	if(g_bIsDEBUG) printFmtChunk((char*)"Read fmt", fmt);
- 	return true;
+	return true;
 }
 
 /******************************************
@@ -172,21 +177,21 @@ bool CWaveFormatOperator::readSample(ifstream& i_cFileStream, TChunk& i_stChunk)
  ****************************************/
 bool CWaveFormatOperator::readSample8FromFile(ifstream& i_cFileStream)
 {
-    long max = this->bitShift(this->getBitsPerSample() - 1) - 1;
+	long max = this->bitShift(this->getBitsPerSample() - 1) - 1;
 
-    //sample read
-    for(long index=0;index<this->getSamplesPerChannel();index++)
+	//sample read
+	for(long index=0;index<this->getSamplesPerChannel();index++)
 	{
-        for(short channel=0;channel<this->getNumChannels();channel++)
+		for(short channel=0;channel<this->getNumChannels();channel++)
 		{
 			char data = 0;
-            i_cFileStream.read((char*)&data,sizeof(char));
-            data ^= 0x80;
-            this->writeSampleIntoMemory((double)data/max, index, channel);
-        }
-    }
+			i_cFileStream.read((char*)&data,sizeof(char));
+			data ^= 0x80;
+			this->writeSampleIntoMemory((double)data/max, index, channel);
+		}
+	}
 
-    return true;
+	return true;
 }
 
 /****************************************
@@ -194,22 +199,22 @@ bool CWaveFormatOperator::readSample8FromFile(ifstream& i_cFileStream)
  ****************************************/
 bool CWaveFormatOperator::readSample16FromFile(ifstream& i_cFileStream)
 {
-    long max = this->bitShift(this->getBitsPerSample() - 1) - 1;
-    bool bigEndian = this->isBigEndian();
+	long max = this->bitShift(this->getBitsPerSample() - 1) - 1;
+	bool bigEndian = this->isBigEndian();
 
-    //sample read
-    for(long index=0;index<this->getSamplesPerChannel();index++)
+	//sample read
+	for(long index=0;index<this->getSamplesPerChannel();index++)
 	{
-        for(short channel=0;channel<this->getNumChannels();channel++)
+		for(short channel=0;channel<this->getNumChannels();channel++)
 		{
 			short data = 0;
-            i_cFileStream.read((char*)&data, sizeof(short));
-            if(bigEndian) this->swapShort((char*)&data);
-            this->writeSampleIntoMemory((double)data/max, index, channel);
-        }
-    }
+			i_cFileStream.read((char*)&data, sizeof(short));
+			if(bigEndian) this->swapShort((char*)&data);
+			this->writeSampleIntoMemory((double)data/max, index, channel);
+		}
+	}
 
-    return true;
+	return true;
 }
 
 /**************************************************
@@ -217,23 +222,23 @@ bool CWaveFormatOperator::readSample16FromFile(ifstream& i_cFileStream)
  **************************************************/
 bool CWaveFormatOperator::readSampleOtherFromFile(ifstream& i_cFileStream)
 {   
-    long max = this->bitShift(getBitsPerSample() - 1) - 1;
-    short bytesPerSample = this->getBytesPerSample();
-    bool bigEndian = this->isBigEndian();
+	long max = this->bitShift(getBitsPerSample() - 1) - 1;
+	short bytesPerSample = this->getBytesPerSample();
+	bool bigEndian = this->isBigEndian();
     
-    //sample read
-    for(long index=0;index<this->getSamplesPerChannel();index++)
+	//sample read
+	for(long index=0;index<this->getSamplesPerChannel();index++)
 	{
-        for(short channel=0;channel<this->getNumChannels();channel++)
+		for(short channel=0;channel<this->getNumChannels();channel++)
 		{
-            long data = 0;
-            i_cFileStream.read((char*)&data,(long)bytesPerSample);
-            if(bigEndian) this->swapLong((char*)&data);
-            this->writeSampleIntoMemory((double)data/max, index, channel);
-        }
-    }
+			long data = 0;
+			i_cFileStream.read((char*)&data,(long)bytesPerSample);
+			if(bigEndian) this->swapLong((char*)&data);
+			this->writeSampleIntoMemory((double)data/max, index, channel);
+		}
+	}
 
-    return true;
+	return true;
 }
 
 /****************************************
@@ -241,35 +246,36 @@ bool CWaveFormatOperator::readSampleOtherFromFile(ifstream& i_cFileStream)
  ****************************************/
 bool CWaveFormatOperator::writeWaveFile(const string i_strFileName)
 {
-    ofstream      fp(i_strFileName.c_str(),ios::binary);
-    if(!fp){
+	ofstream      fp(i_strFileName.c_str(),ios::binary);
+	if(!fp)
+	{
 		cerr << "CWaveFormatOperator error: do not open" << i_strFileName << endl;
-        return false;
-    }
+		return false;
+	}
     
 	bool a_bIsWriteSuccess = false;
 
 	try
 	{
-	    //'RIFF' write
+		//'RIFF' write
 		a_bIsWriteSuccess = this->writeRIFFChunk(fp);
 	   
-	    //'WAVE' write
+		//'WAVE' write
 		a_bIsWriteSuccess = this->writeWAVEChunk(fp);
 	    
-	    //'fmt ' write
+		//'fmt ' write
 		a_bIsWriteSuccess = this->writeFmtChunk(fp);
 		
-	    //'data' write
+		//'data' write
 		a_bIsWriteSuccess = this->writeSample(fp);
 	}
 	catch(WaveFormatError err)
 	{
-        cerr << err.what() << endl;
-        return false;
-    }
+		cerr << err.what() << endl;
+		return false;
+	}
  
-    return true;
+	return true;
 }
 
 /***************************************************
@@ -282,20 +288,20 @@ bool CWaveFormatOperator::writeRIFFChunk(ofstream& i_cFileStream)
 
 	long dataSize = this->getSamplesPerChannel() * this->getBlockAlign();
 
-    strncpy(chunk.id,"RIFF",4);
+	strncpy(chunk.id,"RIFF",4);
 	long lRIFFSize = 0;
-    lRIFFSize = 4						//'WAVE'
-                + sizeof(TChunk)		//'fmt '
-                + sizeof(TFmtChunk)		//FMT Chunk
-                + sizeof(TChunk)		//'data'
-                + dataSize;				//全サンプルのサイズ.
+	lRIFFSize = 4						//'WAVE'
+				+ sizeof(TChunk)		//'fmt '
+				+ sizeof(TFmtChunk)		//FMT Chunk
+				+ sizeof(TChunk)		//'data'
+				+ dataSize;				//全サンプルのサイズ.
 	this->convertLongTo4ByteData(lRIFFSize, chunk.size);
 
 	// chunkをファイルへ書き込み.
-    i_cFileStream.write((char*)&chunk,sizeof(chunk));
+	i_cFileStream.write((char*)&chunk,sizeof(chunk));
 
 	if(g_bIsDEBUG) printChunk((char*)"Write Chunk", chunk);
- 	return true;
+	return true;
 }
 
 /************************************
@@ -307,7 +313,7 @@ bool CWaveFormatOperator::writeWAVEChunk(ofstream& i_cFileStream)
 	memset((char*)&chunk, 0x00, sizeof(chunk));
 
 	strncpy(chunk.id, "WAVE", 4);
-    i_cFileStream.write(chunk.id, 4);
+	i_cFileStream.write(chunk.id, 4);
 
 	if(g_bIsDEBUG) printChunk((char*)"Write Chunk", chunk);
 	return true;
@@ -323,13 +329,13 @@ bool CWaveFormatOperator::writeFmtChunk(ofstream& i_cFileStream)
 	TFmtChunk fmt;
 	memset((char*)&fmt, 0x00, sizeof(fmt));
 
-    strncpy(chunk.id,"fmt ",4);
+	strncpy(chunk.id,"fmt ",4);
 	long lFmtSize = sizeof(fmt);
 	this->convertLongTo4ByteData(lFmtSize, chunk.size);
 	// chunkをファイルへ書き込み.
-    i_cFileStream.write((char*)&chunk,sizeof(chunk));
+	i_cFileStream.write((char*)&chunk,sizeof(chunk));
 
-    short wFormatTag = 1;
+	short wFormatTag = 1;
 	this->convertShortTo2ByteData(wFormatTag, fmt.wFormatTag);
 
 	short nChannels = this->getNumChannels();
@@ -338,17 +344,17 @@ bool CWaveFormatOperator::writeFmtChunk(ofstream& i_cFileStream)
 	long nSamplesPerSec = this->getSampleRate();
 	this->convertLongTo4ByteData(nSamplesPerSec, fmt.nSamplesPerSec);
 
-    long nAvgBytesPerSec = this->getBlockAlign() * this->getSampleRate();
+	long nAvgBytesPerSec = this->getBlockAlign() * this->getSampleRate();
 	this->convertLongTo4ByteData(nAvgBytesPerSec, fmt.nAvgBytesPerSec);
 
-    short nBlockAlign = this->getBlockAlign();
+	short nBlockAlign = this->getBlockAlign();
 	this->convertShortTo2ByteData(nBlockAlign, fmt.nBlockAlign);
 
-    short wBitsPerSample = this->getBitsPerSample();
+	short wBitsPerSample = this->getBitsPerSample();
 	this->convertShortTo2ByteData(wBitsPerSample, fmt.wBitsPerSample);
 
-    // fmt chunkをファイルへ書き込み.
-    i_cFileStream.write((char*)&fmt,sizeof(fmt));
+	// fmt chunkをファイルへ書き込み.
+	i_cFileStream.write((char*)&fmt,sizeof(fmt));
 
 	if(g_bIsDEBUG) printChunk((char*)"Write Chunk", chunk);
 	if(g_bIsDEBUG) printFmtChunk((char*)"Write FMT Chunk", fmt);
@@ -363,13 +369,13 @@ bool CWaveFormatOperator::writeSample(ofstream& i_cFileStream)
 	TChunk chunk;
 	memset((char*)&chunk, 0x00, sizeof(chunk));
 
-    strncpy(chunk.id,"data",4);
-    long lDataSize = this->getSamplesPerChannel() * this->getBlockAlign();
+	strncpy(chunk.id,"data",4);
+	long lDataSize = this->getSamplesPerChannel() * this->getBlockAlign();
 	this->convertLongTo4ByteData(lDataSize, chunk.size);
 	// chunkをファイルへ書き込み.
-    i_cFileStream.write((char*)&chunk,sizeof(chunk));
+	i_cFileStream.write((char*)&chunk,sizeof(chunk));
     
-    //sample write
+	//sample write
 	bool a_bIsWriteSuccess;
 	if(this->getBitsPerSample() <= 8)
 	{
@@ -402,20 +408,20 @@ bool CWaveFormatOperator::writeSample(ofstream& i_cFileStream)
  **************************************************/
 bool CWaveFormatOperator::writeSample8IntoFile(ofstream& i_cFileStream)
 {
-    long max = this->bitShift(this->getBitsPerSample() - 1) - 1;
+	long max = this->bitShift(this->getBitsPerSample() - 1) - 1;
 
-    for(long index=0;index<this->getSamplesPerChannel();index++)
+	for(long index=0;index<this->getSamplesPerChannel();index++)
 	{
-        for(short channel=0;channel<this->getNumChannels();channel++)
+		for(short channel=0;channel<this->getNumChannels();channel++)
 		{
 			char data = 0;
-            data = max * readSampleFromMemory(index,channel);
-            data ^= 0x80;
-            i_cFileStream.write((char*)&data, sizeof(char));
-        }
-    }
+			data = max * readSampleFromMemory(index,channel);
+			data ^= 0x80;
+			i_cFileStream.write((char*)&data, sizeof(char));
+		}
+	}
 
-    return true;
+	return true;
 }
 
 
@@ -424,21 +430,21 @@ bool CWaveFormatOperator::writeSample8IntoFile(ofstream& i_cFileStream)
  **************************************************/
 bool CWaveFormatOperator::writeSample16IntoFile(ofstream& i_cFileStream)
 {
-    bool bigEndian = this->isBigEndian();
-    long max = this->bitShift(this->getBitsPerSample() - 1) - 1;
+	bool bigEndian = this->isBigEndian();
+	long max = this->bitShift(this->getBitsPerSample() - 1) - 1;
 
-    for(long index=0;index<this->getSamplesPerChannel();index++)
+	for(long index=0;index<this->getSamplesPerChannel();index++)
 	{
-        for(short channel=0;channel<this->getNumChannels();channel++)
+		for(short channel=0;channel<this->getNumChannels();channel++)
 		{
 			short data = 0;
-            data = max * this->readSampleFromMemory(index,channel);
-            if(bigEndian) data = this->swapShort((char*)&data);
-            i_cFileStream.write((char*)&data, sizeof(short));
-        }
-    }
+			data = max * this->readSampleFromMemory(index,channel);
+			if(bigEndian) data = this->swapShort((char*)&data);
+			i_cFileStream.write((char*)&data, sizeof(short));
+		}
+	}
 
-    return true;
+	return true;
 }
 
 /**************************************************
@@ -446,23 +452,23 @@ bool CWaveFormatOperator::writeSample16IntoFile(ofstream& i_cFileStream)
  **************************************************/
 bool CWaveFormatOperator::writeSampleOtherIntoFile(ofstream& i_cFileStream)
 {
-    bool bigEndian = this->isBigEndian();
-    long max = this->bitShift(this->getBitsPerSample() - 1) - 1;
-    short bytesPerSample = this->getBytesPerSample();
+	bool bigEndian = this->isBigEndian();
+	long max = this->bitShift(this->getBitsPerSample() - 1) - 1;
+	short bytesPerSample = this->getBytesPerSample();
 
-    //sample write
-    for(long index=0;index<this->getSamplesPerChannel();index++)
+	//sample write
+	for(long index=0;index<this->getSamplesPerChannel();index++)
 	{
-        for(short channel=0;channel<this->getNumChannels();channel++)
+		for(short channel=0;channel<this->getNumChannels();channel++)
 		{
-            long data = 0;
-            data = max * this->readSampleFromMemory(index,channel);
-            if(bigEndian) data = this->swapLong((char*)&data);
-            i_cFileStream.write((char*)&data, bytesPerSample);
-        }
-    }
+			long data = 0;
+			data = max * this->readSampleFromMemory(index,channel);
+			if(bigEndian) data = this->swapLong((char*)&data);
+			i_cFileStream.write((char*)&data, bytesPerSample);
+		}
+	}
 
-    return true;
+	return true;
 }
 
 
@@ -471,11 +477,11 @@ bool CWaveFormatOperator::writeSampleOtherIntoFile(ofstream& i_cFileStream)
  **************************************************/
 long CWaveFormatOperator::bitShift(short i_shBitShift)
 {
-    long a_lRet=1;
+	long a_lRet=1;
     
-    a_lRet <<= i_shBitShift;
+	a_lRet <<= i_shBitShift;
     
-    return a_lRet;
+	return a_lRet;
 }
 
 
@@ -484,14 +490,14 @@ long CWaveFormatOperator::bitShift(short i_shBitShift)
  **************************************************/
 bool CWaveFormatOperator::isBigEndian()
 {
-    short	a_shCheck = 1;
+	short	a_shCheck = 1;
 	bool	a_bIsBigEndian = false;
     
-    if(*((char*)&a_shCheck))
+	if(*((char*)&a_shCheck))
 	{
 		a_bIsBigEndian = false;
 	}
-    else
+	else
 	{
 		a_bIsBigEndian = true;
 	}
@@ -504,7 +510,7 @@ bool CWaveFormatOperator::isBigEndian()
  **************************************************/
 long CWaveFormatOperator::swapLong(char* i_pbyData)
 {
-    return (*i_pbyData<<24) | (*(i_pbyData+1)<<16) | (*(i_pbyData+2)<<8) | *(i_pbyData+3);
+	return (*i_pbyData<<24) | (*(i_pbyData+1)<<16) | (*(i_pbyData+2)<<8) | *(i_pbyData+3);
 }
 
 /**************************************************
@@ -512,7 +518,7 @@ long CWaveFormatOperator::swapLong(char* i_pbyData)
  **************************************************/
 short CWaveFormatOperator::swapShort(char* i_pbyData)
 {
-    return (*i_pbyData<<8) | *(i_pbyData+1);
+	return (*i_pbyData<<8) | *(i_pbyData+1);
 }
 
 
@@ -521,15 +527,16 @@ short CWaveFormatOperator::swapShort(char* i_pbyData)
  **************************************************/
 int CWaveFormatOperator::swapInt(char* i_pbyData)
 {
-    switch (sizeof(int)){
-        case 2:
-        return (int)this->swapShort(i_pbyData);
+	switch (sizeof(int))
+	{
+		case 2:
+		return (int)this->swapShort(i_pbyData);
         
-        case 4:
-        return (int)this->swapLong(i_pbyData);
-    }
+		case 4:
+		return (int)this->swapLong(i_pbyData);
+	}
     
-    return 0;
+	return 0;
 }
 
 /*********************************
@@ -596,12 +603,12 @@ void CWaveFormatOperator::printChunk(char* i_pbyMessage, TChunk& i_stChunk)
  **********************************/
 void CWaveFormatOperator::printFmtChunk(char* i_pbyMessage, TFmtChunk& i_stFmtChunk)
 {
-    short wFormatTag = this->convert2ByteDataToShort(i_stFmtChunk.wFormatTag);
-    short nChannels = this->convert2ByteDataToShort(i_stFmtChunk.nChannels);
-    long  nSamplesPerSec = this->convert4ByteDataToLong(i_stFmtChunk.nSamplesPerSec);
-    long  nAvgBytesPerSec = this->convert4ByteDataToLong(i_stFmtChunk.nAvgBytesPerSec);
-    short nBlockAlign = this->convert2ByteDataToShort(i_stFmtChunk.nBlockAlign);
-    short wBitsPerSample = this->convert2ByteDataToShort(i_stFmtChunk.wBitsPerSample);
+	short wFormatTag = this->convert2ByteDataToShort(i_stFmtChunk.wFormatTag);
+	short nChannels = this->convert2ByteDataToShort(i_stFmtChunk.nChannels);
+	long  nSamplesPerSec = this->convert4ByteDataToLong(i_stFmtChunk.nSamplesPerSec);
+	long  nAvgBytesPerSec = this->convert4ByteDataToLong(i_stFmtChunk.nAvgBytesPerSec);
+	short nBlockAlign = this->convert2ByteDataToShort(i_stFmtChunk.nBlockAlign);
+	short wBitsPerSample = this->convert2ByteDataToShort(i_stFmtChunk.wBitsPerSample);
 
 	printf("%s\n", i_pbyMessage);
 	printf("  wFormatTag = %X\n", wFormatTag);

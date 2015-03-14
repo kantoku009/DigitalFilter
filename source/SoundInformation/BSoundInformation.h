@@ -20,7 +20,8 @@ public:
 	 * @param	long  numSamples		サンプル数. [sample/channel].
 	 * @return	なし.
 	 */
-	BSoundInformation(long  sampleRate=44100,
+	BSoundInformation(
+					long  sampleRate=44100,
 					short bitsPerSample=8,
 					short numChannels=1,
 					long  numSamples=44100);

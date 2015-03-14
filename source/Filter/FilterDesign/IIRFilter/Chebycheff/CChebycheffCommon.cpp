@@ -86,7 +86,6 @@ void CChebycheffCommon::decisionPrototype( double inPassFreq,
 			* acosh((1/this->m_dEpsilon)*sqrt(pow(10,0.3)-1)) );
 
 	this->m_dPrototypePassFreq = omega_ap;
-
 }
 
 /******************************************************************************
@@ -360,19 +359,19 @@ CBlockDiagram* CChebycheffCommon::initBandTransferFunction(double inLowCutFreq, 
 ***********************************************************************/
 double CChebycheffCommon::getAlpha(long i_lProd)
 {
-    long a_lOrderNumber = this->getOrderNumber();
-    double a_dCoeff;
-    
-    if(0 == a_lOrderNumber%2)
+	long a_lOrderNumber = this->getOrderNumber();
+	double a_dCoeff;
+
+	if(0 == a_lOrderNumber%2)
 	{
-        a_dCoeff = i_lProd - 0.5;
+		a_dCoeff = i_lProd - 0.5;
 	}
-    else
+	else
 	{
-        a_dCoeff = i_lProd;
+		a_dCoeff = i_lProd;
 	}
-    
-    return 2*this->m_dAlpha0*cos(M_PI*a_dCoeff/a_lOrderNumber);
+
+	return 2*this->m_dAlpha0*cos(M_PI*a_dCoeff/a_lOrderNumber);
 }
 
 
@@ -401,19 +400,19 @@ double CChebycheffCommon::getAlpha(long i_lProd)
 ***********************************************************************/
 double CChebycheffCommon::getBeta(long i_lProd)
 {
-    long a_lOrderNumber = this->getOrderNumber();
-    double a_dCoeff;
-    
-    if(0 == a_lOrderNumber%2)
+	long a_lOrderNumber = this->getOrderNumber();
+	double a_dCoeff;
+
+	if(0 == a_lOrderNumber%2)
 	{
-        a_dCoeff = i_lProd - 0.5;
+		a_dCoeff = i_lProd - 0.5;
 	}
-    else
+	else
 	{
-        a_dCoeff = i_lProd;
+		a_dCoeff = i_lProd;
 	}
-    
-    return this->m_dAlpha0*this->m_dAlpha0 + sin(M_PI*a_dCoeff/a_lOrderNumber)*sin(M_PI*a_dCoeff/a_lOrderNumber);
+
+	return this->m_dAlpha0*this->m_dAlpha0 + sin(M_PI*a_dCoeff/a_lOrderNumber)*sin(M_PI*a_dCoeff/a_lOrderNumber);
 }
 
 
@@ -451,17 +450,17 @@ double CChebycheffCommon::getBeta(long i_lProd)
 **********************************************************************/
 double CChebycheffCommon::getLowGamma(double inCutFreq)
 {
-    double fs;
-    double omega_dc,omega_ac;
-    double theta;
-    
-    fs = getSampleRate();
-    omega_dc = 2*M_PI * inCutFreq / fs;
-    omega_ac = digital2analog(omega_dc);
-    
-    theta = getPrototypeCutFreq();
+	double fs;
+	double omega_dc,omega_ac;
+	double theta;
 
-    return sin(theta/2-omega_ac/2) / sin(theta/2+omega_ac/2);
+	fs = getSampleRate();
+	omega_dc = 2*M_PI * inCutFreq / fs;
+	omega_ac = digital2analog(omega_dc);
+
+	theta = getPrototypeCutFreq();
+
+	return sin(theta/2-omega_ac/2) / sin(theta/2+omega_ac/2);
 }
 
 
@@ -498,17 +497,17 @@ double CChebycheffCommon::getLowGamma(double inCutFreq)
 **********************************************************************/
 double CChebycheffCommon::getHighGamma(double inCutFreq)
 {
-    double fs;
-    double omega_dc,omega_ac;
-    double theta;
-    
-    fs = getSampleRate();
-    omega_dc = 2*M_PI * inCutFreq / fs;
-    omega_ac = digital2analog(omega_dc);
-    
-    theta = getPrototypeCutFreq();
+	double fs;
+	double omega_dc,omega_ac;
+	double theta;
 
-    return -cos(theta/2+omega_ac/2) / cos(theta/2-omega_ac/2);
+	fs = getSampleRate();
+	omega_dc = 2*M_PI * inCutFreq / fs;
+	omega_ac = digital2analog(omega_dc);
+
+	theta = getPrototypeCutFreq();
+
+	return -cos(theta/2+omega_ac/2) / cos(theta/2-omega_ac/2);
 }
 
 

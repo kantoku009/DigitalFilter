@@ -22,10 +22,11 @@ using namespace std;
 *	メンバ変数の初期化
 *
 ********************************************************************/
-BSoundInformation::BSoundInformation(long  sampleRate,
-                                   short bitsPerSample,
-                                   short numChannels,
-                                   long  samplesPerChannel)
+BSoundInformation::BSoundInformation(
+									long  sampleRate,
+									short bitsPerSample,
+									short numChannels,
+									long  samplesPerChannel)
 {
 	try
 	{
@@ -67,7 +68,6 @@ BSoundInformation::BSoundInformation(const BSoundInformation &ob)
 		}
 	}
 	memcpy(this->m_pdSample, ob.m_pdSample, this->getNumSamples()*sizeof(double));
-	
 }
 
 /*************************************************************************************************
@@ -559,12 +559,12 @@ const BSoundInformation &BSoundInformation::operator+=(BSoundInformation &ob)
 ******************************************/
 double BSoundInformation::sinc(double i_dSample)
 {
-    if(i_dSample < 0.0) i_dSample = -i_dSample;
+	if(i_dSample < 0.0) i_dSample = -i_dSample;
     
-    if(i_dSample < 1.0) return (1.0 - 2.0*i_dSample*i_dSample + i_dSample*i_dSample*i_dSample);
-    if(i_dSample < 2.0) return (4.0 - 8.0*i_dSample + 5.0*i_dSample*i_dSample - i_dSample*i_dSample*i_dSample);
+	if(i_dSample < 1.0) return (1.0 - 2.0*i_dSample*i_dSample + i_dSample*i_dSample*i_dSample);
+	if(i_dSample < 2.0) return (4.0 - 8.0*i_dSample + 5.0*i_dSample*i_dSample - i_dSample*i_dSample*i_dSample);
     
-    return 0.0;
+	return 0.0;
 }
 
 /********************************************
@@ -588,22 +588,22 @@ double BSoundInformation::sinc(double i_dSample)
 *********************************************/
 double BSoundInformation::interpolation(double i_dThreshold, short i_shChannel)
 {
-    long a_lThresholdInteger;
+	long a_lThresholdInteger;
     
-    a_lThresholdInteger = (long)i_dThreshold;
+	a_lThresholdInteger = (long)i_dThreshold;
 
-    double a_dInterpolation = 0.0;
-    for(int a_iIndex=-1;a_iIndex<=2;a_iIndex++)
+	double a_dInterpolation = 0.0;
+	for(int a_iIndex=-1;a_iIndex<=2;a_iIndex++)
 	{
-        if( ((i_dThreshold+a_iIndex) >= 0) && ((i_dThreshold+a_iIndex) < this->getSamplesPerChannel()) )
+		if( ((i_dThreshold+a_iIndex) >= 0) && ((i_dThreshold+a_iIndex) < this->getSamplesPerChannel()) )
 		{
-             a_dInterpolation+= this->readSampleFromMemory(a_lThresholdInteger+a_iIndex, i_shChannel)*sinc(i_dThreshold-(a_lThresholdInteger+a_iIndex));
+			a_dInterpolation+= this->readSampleFromMemory(a_lThresholdInteger+a_iIndex, i_shChannel)*sinc(i_dThreshold-(a_lThresholdInteger+a_iIndex));
 		}
-    }
+	}
 
-    if(a_dInterpolation > 1.0) a_dInterpolation = 1.0;
-    if(a_dInterpolation < -1.0) a_dInterpolation = -1.0;
+	if(a_dInterpolation > 1.0) a_dInterpolation = 1.0;
+	if(a_dInterpolation < -1.0) a_dInterpolation = -1.0;
 
-    return a_dInterpolation;
+	return a_dInterpolation;
 }
 

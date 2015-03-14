@@ -35,7 +35,7 @@ bool runFilter(CFilter& i_cFilter, BSoundInformation& i_bSoundInformation, long 
 		a_dCurrentSample = i_cFilter.passFilter(a_dCurrentSample);
 		// フィルタに通したサンプルを保存.
 		i_bSoundInformation.writeSampleIntoMemory(a_dCurrentSample, a_lIndex, i_shChannel);
-    }
+	}
 
 	return true;
 }
