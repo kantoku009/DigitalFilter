@@ -69,18 +69,18 @@ double CBlockDiagram::inject(double i_dSample)
 	data1 = this->m_pdCoefficientB[0] * i_dSample;
 	for(int i_iIndex=1; i_iIndex<=this->m_iOrder; i_iIndex++)
 	{
-		data1 += this->m_pdCoefficientB[i_iIndex] * getPreviousSample(i_iIndex);
+		data1 += this->m_pdCoefficientB[i_iIndex] * this->getPreviousSample(i_iIndex);
 	}
 
 	data2 = this->m_pdCoefficientA[0] * data1;
 	for(int i_iIndex=1; i_iIndex<=this->m_iOrder; i_iIndex++)
 	{
-		data2 += this->m_pdCoefficientA[i_iIndex] * getPreviousSample(i_iIndex);
+		data2 += this->m_pdCoefficientA[i_iIndex] * this->getPreviousSample(i_iIndex);
 	}
     
 	//サンプル値の保存
-	popPreviousSample();
-	pushPreviousSample(data1);
+	this->popPreviousSample();
+	this->pushPreviousSample(data1);
 
 	return data2;
 }
