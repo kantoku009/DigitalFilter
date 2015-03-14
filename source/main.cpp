@@ -95,9 +95,14 @@ int main(int argc, char* argv[])
 		cout << "error: CFilter create failed." << endl;
 		return -1;
 	}
-
 	//フィルタ名を取得.
 	const char* a_strFilterName = a_pcFilter->description();
+
+	//フィルタの振幅特性と位相特性を出力.
+	//cout << "Print AmplitudeProperty and PhaseProperty" << endl;
+	//const string a_strAmplitudeFilename = string(a_strFilterName) + string("_AmplitudeProperty.csv");
+	//const string a_strPhaseFilename = string(a_strFilterName) + string("_PhaseProperty.csv");
+	///a_pcFilter->printProperty(a_strAmplitudeFilename.c_str(),a_strPhaseFilename.c_str());
 
 	//出力ファイル名を決定.
 	string outFileName(a_strFilterName);
@@ -110,9 +115,6 @@ int main(int argc, char* argv[])
 	CWaveFormatOperator a_cWaveFile;
     if(true == a_cWaveFile.readWaveFile(inFileName))
 	{
-        //cout << "get outLowAmp and outLowPhase" << endl;
-        //a_pcFilter.printCharacteristic("outLowAmp.txt","outLowPhase.txt");
-
 		// up sampling.
 		//a_cWaveFile.setSampleRate(a_cWaveFile.getSampleRate() * 2);
 

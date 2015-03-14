@@ -5,6 +5,10 @@
 #ifndef __CBUTTERWORTH_BANDPASSFILTER_DESIGN_H__
 #define __CBUTTERWORTH_BANDPASSFILTER_DESIGN_H__
 
+#include <string>
+#include <map>
+using namespace std;
+
 #include "../../IBandPassFilterDesign.h"
 #include "./CButterworthCommon.h"
 
@@ -126,6 +130,25 @@ public:
 	virtual double getHighCutoffFreq() const
 	{
 		return m_dHighCutoffFreq;
+	}
+
+	/**
+	 * @brief	振幅特性と位相特性を出力.
+	 * @param	const char* i_pbyAmplitudeFilename	振幅特性を出力するファイル名.
+	 * @param	const char* i_pbyPhaseFilename		位相特性を出力するファイル名.
+	 * @return	なし.
+	 * @note	ローカル変数.
+	 *			a_lOrderNumber:伝達関数の次数.
+	 *			a_lNumSection:伝達関数を１次または２次に分けたときのセクションの個数.
+	 */
+	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const
+	{
+		long a_lOrderNumber = this->getOrderNumber();
+		long a_lNumSection = (0==a_lOrderNumber%2)? (a_lOrderNumber/2) : ((a_lOrderNumber-1)/2);
+		a_lNumSection++;
+		a_lNumSection *= 2;
+
+		this->printCharacteristic(i_pbyAmplitudeFilename, i_pbyPhaseFilename, a_lNumSection);
 	}
 
 protected:

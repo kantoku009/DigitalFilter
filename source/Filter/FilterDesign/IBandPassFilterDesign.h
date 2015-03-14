@@ -7,6 +7,7 @@
 #define __IBANDPASS_FILTER_DESIGN_H__
 
 #include "./IFilterDesign.h"
+
 /**
  * @brief	バンドパスフィルタ設計部のインタフェース.
  * @note	Inteface

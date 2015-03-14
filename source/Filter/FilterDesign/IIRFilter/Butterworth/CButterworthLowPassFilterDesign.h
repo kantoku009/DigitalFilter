@@ -11,7 +11,6 @@ using namespace std;
 
 #include "../../ILowPassFilterDesign.h"
 #include "./CButterworthCommon.h"
-
 #include "../../CFilterConfig.h"
 
 #define	BUTTERWORTH_LOWPASS_FILTER_DESIGN_NAME		"ButterworthLowPass"
@@ -84,13 +83,6 @@ public:
 
 		//デバッグ用にコンフィグを出力.
 		if(this->m_bIsDebug) this->printConfig();
-		
-		//this->m_dSampleRate = 44.1*1000;
-		//this->m_dPassFreq = 400.0;
-		//this->m_dRippleGain = -1.0;
-		//this->m_dStopFreq = 800.0;
-		//this->m_dAttenuateGain = -48.0;
-		//this->m_dCutoffFreq = 400.0;
 	}
 
 	/**
@@ -117,6 +109,24 @@ public:
 	virtual double getCutoffFreq() const
 	{
 		return m_dCutoffFreq;
+	}
+
+	/**
+	 * @brief	振幅特性と位相特性を出力.
+	 * @param	const char* i_pbyAmplitudeFilename
+	 * @param	const char* i_pbyPhaseFilename
+	 * @return	なし.
+	 * @note	ローカル変数.
+	 *			a_lOrderNumber:伝達関数の次数.
+	 *			a_lNumSection:伝達関数を１次または２次に分けたときのセクションの個数.
+	 */
+	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const
+	{
+		long a_lOrderNumber = this->getOrderNumber();
+		long a_lNumSection = (0==a_lOrderNumber%2)? (a_lOrderNumber/2) : ((a_lOrderNumber-1)/2);
+		a_lNumSection++;
+
+		this->printCharacteristic(i_pbyAmplitudeFilename, i_pbyPhaseFilename, a_lNumSection);
 	}
 
 protected:

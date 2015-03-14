@@ -62,21 +62,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00007"></a>00007 <span class="preprocessor"></span><span class="preprocessor">#define __ILOWPASS_FILTER_DESIGN_H__</span>
 <a name="l00008"></a>00008 <span class="preprocessor"></span>
 <a name="l00009"></a>00009 <span class="preprocessor">#include &quot;<a class="code" href="_i_filter_design_8h.html" title="デジタルフィルタ設計部のインタフェース.">./IFilterDesign.h</a>&quot;</span>
-<a name="l00014"></a><a class="code" href="class_i_low_pass_filter_design.html">00014</a> <span class="keyword">class </span><a class="code" href="class_i_low_pass_filter_design.html" title="ローパスフィルタ設計部のインタフェース.">ILowPassFilterDesign</a> : <span class="keyword">public</span> <a class="code" href="class_i_filter_design.html" title="デジタルフィルタ設計部のインタフェース.">IFilterDesign</a>
-<a name="l00015"></a>00015 {
-<a name="l00016"></a>00016 <span class="keyword">public</span>:
-<a name="l00020"></a><a class="code" href="class_i_low_pass_filter_design.html#abfe5e666de61b3ca6f45b68dccd3ea31">00020</a>         <a class="code" href="class_i_low_pass_filter_design.html#abfe5e666de61b3ca6f45b68dccd3ea31" title="コンストラクタ.">ILowPassFilterDesign</a>(){ }
-<a name="l00021"></a>00021 
-<a name="l00025"></a><a class="code" href="class_i_low_pass_filter_design.html#ab7cdc40bf6e1f249639d6d190dbe6391">00025</a>         <span class="keyword">virtual</span> <a class="code" href="class_i_low_pass_filter_design.html#ab7cdc40bf6e1f249639d6d190dbe6391" title="デストラクタ.">~ILowPassFilterDesign</a>(){ }
-<a name="l00026"></a>00026 
-<a name="l00032"></a>00032         <span class="keyword">virtual</span> <span class="keywordtype">double</span> <a class="code" href="class_i_low_pass_filter_design.html#a1bdb626567f27c9619306f00cc4baf34" title="カットオフ周波数を取得.">getCutoffFreq</a>() <span class="keyword">const</span> = 0;
-<a name="l00033"></a>00033 
-<a name="l00034"></a>00034 <span class="keyword">protected</span>:
-<a name="l00040"></a>00040         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_i_low_pass_filter_design.html#a4789d5a9e5ab1793957602b817aacf0a" title="カットオフ周波数を設定.">setCutoffFreq</a>(<span class="keywordtype">double</span> i_dCutoffFreq) = 0;
-<a name="l00041"></a>00041 };
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="preprocessor">#endif //__ILOWPASS_FILTER_DESIGN_H__</span>
-<a name="l00044"></a>00044 <span class="preprocessor"></span>
+<a name="l00010"></a>00010 
+<a name="l00015"></a><a class="code" href="class_i_low_pass_filter_design.html">00015</a> <span class="keyword">class </span><a class="code" href="class_i_low_pass_filter_design.html" title="ローパスフィルタ設計部のインタフェース.">ILowPassFilterDesign</a> : <span class="keyword">public</span> <a class="code" href="class_i_filter_design.html" title="デジタルフィルタ設計部のインタフェース.">IFilterDesign</a>
+<a name="l00016"></a>00016 {
+<a name="l00017"></a>00017 <span class="keyword">public</span>:
+<a name="l00021"></a><a class="code" href="class_i_low_pass_filter_design.html#abfe5e666de61b3ca6f45b68dccd3ea31">00021</a>         <a class="code" href="class_i_low_pass_filter_design.html#abfe5e666de61b3ca6f45b68dccd3ea31" title="コンストラクタ.">ILowPassFilterDesign</a>(){ }
+<a name="l00022"></a>00022 
+<a name="l00026"></a><a class="code" href="class_i_low_pass_filter_design.html#ab7cdc40bf6e1f249639d6d190dbe6391">00026</a>         <span class="keyword">virtual</span> <a class="code" href="class_i_low_pass_filter_design.html#ab7cdc40bf6e1f249639d6d190dbe6391" title="デストラクタ.">~ILowPassFilterDesign</a>(){ }
+<a name="l00027"></a>00027 
+<a name="l00033"></a>00033         <span class="keyword">virtual</span> <span class="keywordtype">double</span> <a class="code" href="class_i_low_pass_filter_design.html#a1bdb626567f27c9619306f00cc4baf34" title="カットオフ周波数を取得.">getCutoffFreq</a>() <span class="keyword">const</span> = 0;
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 <span class="keyword">protected</span>:
+<a name="l00041"></a>00041         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_i_low_pass_filter_design.html#a4789d5a9e5ab1793957602b817aacf0a" title="カットオフ周波数を設定.">setCutoffFreq</a>(<span class="keywordtype">double</span> i_dCutoffFreq) = 0;
+<a name="l00042"></a>00042 };
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 <span class="preprocessor">#endif //__ILOWPASS_FILTER_DESIGN_H__</span>
+<a name="l00045"></a>00045 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -96,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 9 2015 00:52:48 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 14 2015 20:48:18 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

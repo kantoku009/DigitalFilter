@@ -5,6 +5,10 @@
 #ifndef __CCHEBYCHEFF_LOWPASSFILTER_DESIGN_H__
 #define __CCHEBYCHEFF_LOWPASSFILTER_DESIGN_H__
 
+#include <string>
+#include <map>
+using namespace std;
+
 #include "../../ILowPassFilterDesign.h"
 #include "./CChebycheffCommon.h"
 
@@ -112,6 +116,24 @@ public:
 	virtual double getCutoffFreq() const
 	{
 		return m_dCutoffFreq;
+	}
+
+	/**
+	 * @brief	振幅特性を出力.
+	 * @param	const char* i_pbyAmplitudeFilename
+	 * @param	const char* i_pbyPhaseFilename
+	 * @return	なし.
+	 * @note	ローカル変数.
+	 *			a_lOrderNumber:伝達関数の次数.
+	 *			a_lNumSection:伝達関数を１次または２次に分けたときのセクションの個数.
+	 */
+	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const
+	{
+		long a_lOrderNumber = this->getOrderNumber();
+		long a_lNumSection = (0==a_lOrderNumber%2)? (a_lOrderNumber/2) : ((a_lOrderNumber-1)/2);
+		a_lNumSection++;
+
+		this->printCharacteristic(i_pbyAmplitudeFilename, i_pbyPhaseFilename, a_lNumSection);
 	}
 
 protected:

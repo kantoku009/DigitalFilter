@@ -62,134 +62,198 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00007"></a>00007 <span class="preprocessor"></span><span class="preprocessor">#define __CIIR_FILTER_H__</span>
 <a name="l00008"></a>00008 <span class="preprocessor"></span>
 <a name="l00009"></a>00009 <span class="preprocessor">#include &lt;cstdio&gt;</span>               <span class="comment">//デバッグ用. printf()を使用したい.</span>
-<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;cmath&gt;</span>
-<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;cstdlib&gt;</span>
-<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;string&gt;</span>
-<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;map&gt;</span>
-<a name="l00014"></a>00014 <span class="keyword">using namespace </span>std;
-<a name="l00015"></a>00015 
-<a name="l00016"></a>00016 <span class="preprocessor">#include &quot;../CBlockDiagram.h&quot;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;fstream&gt;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;cmath&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;complex&gt;</span>              <span class="comment">//振幅特性と位相特性を計算するのに複素数を使用する.</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;cstdlib&gt;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &lt;map&gt;</span>
+<a name="l00016"></a>00016 <span class="keyword">using namespace </span>std;
 <a name="l00017"></a>00017 
-<a name="l00021"></a><a class="code" href="class_b_i_i_r_filter.html">00021</a> <span class="keyword">class </span><a class="code" href="class_b_i_i_r_filter.html" title="IIRフィルタ共通処理を集めたクラス.">BIIRFilter</a>
-<a name="l00022"></a>00022 {
-<a name="l00023"></a>00023 <span class="keyword">public</span>:
-<a name="l00027"></a><a class="code" href="class_b_i_i_r_filter.html#ab3a96aeaef4a5779af4c25f65cb1952f">00027</a>         <a class="code" href="class_b_i_i_r_filter.html" title="IIRフィルタ共通処理を集めたクラス.">BIIRFilter</a>()
-<a name="l00028"></a>00028         {
-<a name="l00029"></a>00029                 this-&gt;m_pcBlockDiagram = 0;
-<a name="l00030"></a>00030                 this-&gt;m_dSampleRate = 0.0;
-<a name="l00031"></a>00031                 this-&gt;m_dPrototypeCutFreq = 0.0;
-<a name="l00032"></a>00032                 this-&gt;m_dPrototypePassFreq = 0.0;
-<a name="l00033"></a>00033         }
-<a name="l00034"></a>00034 
-<a name="l00038"></a><a class="code" href="class_b_i_i_r_filter.html#a84a6f2a81c42e6440248d422f62f3162">00038</a>         <span class="keyword">virtual</span> ~<a class="code" href="class_b_i_i_r_filter.html" title="IIRフィルタ共通処理を集めたクラス.">BIIRFilter</a>()
-<a name="l00039"></a>00039         {
-<a name="l00040"></a>00040                 <span class="keywordflow">if</span>(this-&gt;m_pcBlockDiagram !=0)
-<a name="l00041"></a>00041                 {
-<a name="l00042"></a>00042                         <span class="keyword">delete</span> [] this-&gt;m_pcBlockDiagram;
-<a name="l00043"></a>00043                 }
-<a name="l00044"></a>00044         }
-<a name="l00045"></a>00045 
-<a name="l00051"></a><a class="code" href="class_b_i_i_r_filter.html#ac660eb4a1cbe8c3c3360dfb2b8c0f245">00051</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> setSampleRate(<span class="keywordtype">double</span> i_dSampleRate)
-<a name="l00052"></a>00052         {
-<a name="l00053"></a>00053                 m_dSampleRate = i_dSampleRate;
+<a name="l00018"></a>00018 <span class="preprocessor">#include &quot;../CBlockDiagram.h&quot;</span>
+<a name="l00019"></a>00019 
+<a name="l00023"></a><a class="code" href="class_b_i_i_r_filter.html">00023</a> <span class="keyword">class </span><a class="code" href="class_b_i_i_r_filter.html" title="IIRフィルタ共通処理を集めたクラス.">BIIRFilter</a>
+<a name="l00024"></a>00024 {
+<a name="l00025"></a>00025 <span class="keyword">public</span>:
+<a name="l00029"></a><a class="code" href="class_b_i_i_r_filter.html#ab3a96aeaef4a5779af4c25f65cb1952f">00029</a>         <a class="code" href="class_b_i_i_r_filter.html" title="IIRフィルタ共通処理を集めたクラス.">BIIRFilter</a>()
+<a name="l00030"></a>00030         {
+<a name="l00031"></a>00031                 this-&gt;m_pcBlockDiagram = 0;
+<a name="l00032"></a>00032                 this-&gt;m_dSampleRate = 0.0;
+<a name="l00033"></a>00033                 this-&gt;m_dCutoffFreq = 0.0;
+<a name="l00034"></a>00034                 this-&gt;m_dLowCutoffFreq = 0.0;
+<a name="l00035"></a>00035                 this-&gt;m_dHighCutoffFreq = 0.0;
+<a name="l00036"></a>00036                 this-&gt;m_dPassFreq = 0.0;
+<a name="l00037"></a>00037                 this-&gt;m_dRippleGain = 0.0;
+<a name="l00038"></a>00038                 this-&gt;m_dStopFreq = 0.0;
+<a name="l00039"></a>00039                 this-&gt;m_dAttenuateGain = 0.0;
+<a name="l00040"></a>00040                 this-&gt;m_dPrototypeCutFreq = 0.0;
+<a name="l00041"></a>00041                 this-&gt;m_dPrototypePassFreq = 0.0;
+<a name="l00042"></a>00042                 this-&gt;m_lOrderNumber = 0;
+<a name="l00043"></a>00043         }
+<a name="l00044"></a>00044 
+<a name="l00048"></a><a class="code" href="class_b_i_i_r_filter.html#a84a6f2a81c42e6440248d422f62f3162">00048</a>         <span class="keyword">virtual</span> ~<a class="code" href="class_b_i_i_r_filter.html" title="IIRフィルタ共通処理を集めたクラス.">BIIRFilter</a>()
+<a name="l00049"></a>00049         {
+<a name="l00050"></a>00050                 <span class="keywordflow">if</span>(this-&gt;m_pcBlockDiagram !=0)
+<a name="l00051"></a>00051                 {
+<a name="l00052"></a>00052                         <span class="keyword">delete</span> [] this-&gt;m_pcBlockDiagram;
+<a name="l00053"></a>00053                 }
 <a name="l00054"></a>00054         }
 <a name="l00055"></a>00055 
-<a name="l00061"></a><a class="code" href="class_b_i_i_r_filter.html#a9fb92a0ad82aa060520a30aeb31006e0">00061</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getSampleRate()<span class="keyword"> const</span>
-<a name="l00062"></a>00062 <span class="keyword">        </span>{
-<a name="l00063"></a>00063                 <span class="keywordflow">return</span> this-&gt;m_dSampleRate;
+<a name="l00061"></a><a class="code" href="class_b_i_i_r_filter.html#ac660eb4a1cbe8c3c3360dfb2b8c0f245">00061</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> setSampleRate(<span class="keywordtype">double</span> i_dSampleRate)
+<a name="l00062"></a>00062         {
+<a name="l00063"></a>00063                 m_dSampleRate = i_dSampleRate;
 <a name="l00064"></a>00064         }
 <a name="l00065"></a>00065 
-<a name="l00071"></a><a class="code" href="class_b_i_i_r_filter.html#ae4a6169ef4f53731e114d6c6e929a6fc">00071</a>         <span class="keywordtype">long</span> <a class="code" href="class_b_i_i_r_filter.html#ae4a6169ef4f53731e114d6c6e929a6fc" title="フィルタの次数を取得.">getOrderNumber</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;m_lOrderNumber; }
-<a name="l00072"></a>00072 
-<a name="l00077"></a><a class="code" href="class_b_i_i_r_filter.html#a110662de999ff7fc5ef75f4405affe53">00077</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_b_i_i_r_filter.html#a110662de999ff7fc5ef75f4405affe53" title="伝達関数の振幅特性と位相特性をファイルに出力.">printCharacteristic</a>(<span class="keywordtype">char</span>* i_pbyNameAmp, <span class="keywordtype">char</span>* i_pbyNamePhase)<span class="keyword"> const </span>{ }
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079 <span class="keyword">protected</span>:
-<a name="l00080"></a>00080 
-<a name="l00084"></a><a class="code" href="class_b_i_i_r_filter.html#a56ba6f0c22597e790a56f0d529863f7e">00084</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> setConfig(map&lt;string,string&gt; i_mapPairsTable, map&lt;string,double*&gt; i_mapConfigTable)
-<a name="l00085"></a>00085         {
-<a name="l00086"></a>00086                 map&lt;string,double*&gt;::iterator a_piIterator;
-<a name="l00087"></a>00087                 <span class="keywordflow">for</span>(a_piIterator=i_mapConfigTable.begin(); a_piIterator!=i_mapConfigTable.end(); ++a_piIterator)
-<a name="l00088"></a>00088                 {
-<a name="l00089"></a>00089                         <span class="keywordtype">string</span> a_strKey = a_piIterator-&gt;first;
-<a name="l00090"></a>00090                         <span class="keywordtype">string</span> a_strValue = i_mapPairsTable[a_strKey];
-<a name="l00091"></a>00091                         *(a_piIterator-&gt;second) = atof(a_strValue.c_str());
-<a name="l00092"></a>00092                 }
-<a name="l00093"></a>00093         }
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 
-<a name="l00102"></a><a class="code" href="class_b_i_i_r_filter.html#a28c44f406bb3905b41f6b2a994ef0ee6">00102</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> transferFunction(<span class="keywordtype">long</span> i_lNumSection, <span class="keywordtype">double</span> i_dSample)<span class="keyword"> const</span>
-<a name="l00103"></a>00103 <span class="keyword">        </span>{
-<a name="l00104"></a>00104                 <span class="keywordtype">double</span> a_dData = i_dSample;
-<a name="l00105"></a>00105                 <span class="keywordflow">for</span>(<span class="keywordtype">long</span> a_lIndex=0;a_lIndex&lt;i_lNumSection;a_lIndex++)
-<a name="l00106"></a>00106                 {
-<a name="l00107"></a>00107                         a_dData = this-&gt;m_pcBlockDiagram[a_lIndex].inject(a_dData);
-<a name="l00108"></a>00108                 }
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110                 <span class="keywordflow">return</span> a_dData;
-<a name="l00111"></a>00111         }
-<a name="l00112"></a>00112 
-<a name="l00118"></a><a class="code" href="class_b_i_i_r_filter.html#aa694f38085fc794a6c2214838dc11806">00118</a>         <span class="keywordtype">void</span> <a class="code" href="class_b_i_i_r_filter.html#aa694f38085fc794a6c2214838dc11806" title="フィルタの次数を設定.">setOrderNumber</a>(<span class="keywordtype">long</span> i_lOrder){ this-&gt;m_lOrderNumber = i_lOrder; }
+<a name="l00071"></a><a class="code" href="class_b_i_i_r_filter.html#a9fb92a0ad82aa060520a30aeb31006e0">00071</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getSampleRate()<span class="keyword"> const</span>
+<a name="l00072"></a>00072 <span class="keyword">        </span>{
+<a name="l00073"></a>00073                 <span class="keywordflow">return</span> this-&gt;m_dSampleRate;
+<a name="l00074"></a>00074         }
+<a name="l00075"></a>00075 
+<a name="l00081"></a><a class="code" href="class_b_i_i_r_filter.html#ae4a6169ef4f53731e114d6c6e929a6fc">00081</a>         <span class="keywordtype">long</span> getOrderNumber()<span class="keyword"> const</span>
+<a name="l00082"></a>00082 <span class="keyword">        </span>{
+<a name="l00083"></a>00083                 <span class="keywordflow">return</span> this-&gt;m_lOrderNumber;
+<a name="l00084"></a>00084         }
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086 <span class="keyword">protected</span>:
+<a name="l00087"></a>00087 
+<a name="l00091"></a><a class="code" href="class_b_i_i_r_filter.html#a56ba6f0c22597e790a56f0d529863f7e">00091</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> setConfig(map&lt;string,string&gt; i_mapPairsTable, map&lt;string,double*&gt; i_mapConfigTable)
+<a name="l00092"></a>00092         {
+<a name="l00093"></a>00093                 map&lt;string,double*&gt;::iterator a_piIterator;
+<a name="l00094"></a>00094                 <span class="keywordflow">for</span>(a_piIterator=i_mapConfigTable.begin(); a_piIterator!=i_mapConfigTable.end(); ++a_piIterator)
+<a name="l00095"></a>00095                 {
+<a name="l00096"></a>00096                         <span class="keywordtype">string</span> a_strKey = a_piIterator-&gt;first;
+<a name="l00097"></a>00097                         <span class="keywordtype">string</span> a_strValue = i_mapPairsTable[a_strKey];
+<a name="l00098"></a>00098                         *(a_piIterator-&gt;second) = atof(a_strValue.c_str());
+<a name="l00099"></a>00099                 }
+<a name="l00100"></a>00100         }
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 
+<a name="l00109"></a><a class="code" href="class_b_i_i_r_filter.html#a28c44f406bb3905b41f6b2a994ef0ee6">00109</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> transferFunction(<span class="keywordtype">long</span> i_lNumSection, <span class="keywordtype">double</span> i_dSample)<span class="keyword"> const</span>
+<a name="l00110"></a>00110 <span class="keyword">        </span>{
+<a name="l00111"></a>00111                 <span class="keywordtype">double</span> a_dData = i_dSample;
+<a name="l00112"></a>00112                 <span class="keywordflow">for</span>(<span class="keywordtype">long</span> a_lIndex=0;a_lIndex&lt;i_lNumSection;a_lIndex++)
+<a name="l00113"></a>00113                 {
+<a name="l00114"></a>00114                         a_dData = this-&gt;m_pcBlockDiagram[a_lIndex].inject(a_dData);
+<a name="l00115"></a>00115                 }
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117                 <span class="keywordflow">return</span> a_dData;
+<a name="l00118"></a>00118         }
 <a name="l00119"></a>00119 
-<a name="l00128"></a><a class="code" href="class_b_i_i_r_filter.html#aaa8ba7e05181d75e1cbe1b15efd7cf90">00128</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> decisionPrototype(
-<a name="l00129"></a>00129                                                 <span class="keywordtype">double</span> i_dPassFreq,
-<a name="l00130"></a>00130                                                 <span class="keywordtype">double</span> i_dRippleGain,
-<a name="l00131"></a>00131                                                 <span class="keywordtype">double</span> i_dStopFreq,
-<a name="l00132"></a>00132                                                 <span class="keywordtype">double</span> i_dAttenuateGain){ }
-<a name="l00133"></a>00133     
-<a name="l00139"></a><a class="code" href="class_b_i_i_r_filter.html#a915db21693da82b94a4b79d349a25e88">00139</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getPrototypeCutFreq()<span class="keyword"> const</span>
-<a name="l00140"></a>00140 <span class="keyword">        </span>{
-<a name="l00141"></a>00141                 <span class="keywordflow">return</span> this-&gt;m_dPrototypeCutFreq;
-<a name="l00142"></a>00142         }
-<a name="l00143"></a>00143 
-<a name="l00147"></a><a class="code" href="class_b_i_i_r_filter.html#a98c4bee55fbe88b4a6ecb31ee1c5b540">00147</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getPrototypePassFreq()
-<a name="l00148"></a>00148         {
-<a name="l00149"></a>00149                 <span class="keywordflow">return</span> this-&gt;m_dPrototypePassFreq;
-<a name="l00150"></a>00150         }
-<a name="l00151"></a>00151 
-<a name="l00157"></a><a class="code" href="class_b_i_i_r_filter.html#adfd149a57afd5e158124dacbbab109f1">00157</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> digital2analog(<span class="keywordtype">double</span> i_dOmega)
-<a name="l00158"></a>00158         {
-<a name="l00159"></a>00159                 <span class="keywordflow">return</span> 2*tan(i_dOmega/2);
+<a name="l00125"></a><a class="code" href="class_b_i_i_r_filter.html#aa694f38085fc794a6c2214838dc11806">00125</a>         <span class="keywordtype">void</span> setOrderNumber(<span class="keywordtype">long</span> i_lOrder)
+<a name="l00126"></a>00126         {
+<a name="l00127"></a>00127                 this-&gt;m_lOrderNumber = i_lOrder;
+<a name="l00128"></a>00128         }
+<a name="l00129"></a>00129 
+<a name="l00138"></a><a class="code" href="class_b_i_i_r_filter.html#aaa8ba7e05181d75e1cbe1b15efd7cf90">00138</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> decisionPrototype(
+<a name="l00139"></a>00139                                                 <span class="keywordtype">double</span> i_dPassFreq,
+<a name="l00140"></a>00140                                                 <span class="keywordtype">double</span> i_dRippleGain,
+<a name="l00141"></a>00141                                                 <span class="keywordtype">double</span> i_dStopFreq,
+<a name="l00142"></a>00142                                                 <span class="keywordtype">double</span> i_dAttenuateGain){ }
+<a name="l00143"></a>00143     
+<a name="l00149"></a><a class="code" href="class_b_i_i_r_filter.html#a915db21693da82b94a4b79d349a25e88">00149</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getPrototypeCutFreq()<span class="keyword"> const</span>
+<a name="l00150"></a>00150 <span class="keyword">        </span>{
+<a name="l00151"></a>00151                 <span class="keywordflow">return</span> this-&gt;m_dPrototypeCutFreq;
+<a name="l00152"></a>00152         }
+<a name="l00153"></a>00153 
+<a name="l00157"></a><a class="code" href="class_b_i_i_r_filter.html#a082f8856bf6ceab11e4114664eaa2256">00157</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getPrototypePassFreq()<span class="keyword"> const</span>
+<a name="l00158"></a>00158 <span class="keyword">        </span>{
+<a name="l00159"></a>00159                 <span class="keywordflow">return</span> this-&gt;m_dPrototypePassFreq;
 <a name="l00160"></a>00160         }
 <a name="l00161"></a>00161 
-<a name="l00166"></a><a class="code" href="class_b_i_i_r_filter.html#a3c354a675f3e0a6fc05a6424ebd63edf">00166</a>         <span class="keywordtype">void</span> printConfig()<span class="keyword"> const</span>
-<a name="l00167"></a>00167 <span class="keyword">        </span>{
-<a name="l00168"></a>00168                 printf(<span class="stringliteral">&quot;  SampleRate = %.1f\n&quot;</span>, this-&gt;m_dSampleRate);
-<a name="l00169"></a>00169                 printf(<span class="stringliteral">&quot;  PassFreq = %.1f\n&quot;</span>, this-&gt;m_dPassFreq);
-<a name="l00170"></a>00170                 printf(<span class="stringliteral">&quot;  RippleGain = %.1f\n&quot;</span>, this-&gt;m_dRippleGain);
-<a name="l00171"></a>00171                 printf(<span class="stringliteral">&quot;  StopFreq = %.1f\n&quot;</span>, this-&gt;m_dStopFreq);
-<a name="l00172"></a>00172                 printf(<span class="stringliteral">&quot;  AttenuateGain = %.1f\n&quot;</span>, this-&gt;m_dAttenuateGain);
-<a name="l00173"></a>00173                 printf(<span class="stringliteral">&quot;  CutoffFreq = %.1f\n&quot;</span>, this-&gt;m_dCutoffFreq);
-<a name="l00174"></a>00174                 printf(<span class="stringliteral">&quot;  LowCutoffFreq = %.1f\n&quot;</span>, this-&gt;m_dLowCutoffFreq);
-<a name="l00175"></a>00175                 printf(<span class="stringliteral">&quot;  HighCutoffFreq = %.1f\n&quot;</span>, this-&gt;m_dHighCutoffFreq);
-<a name="l00176"></a>00176         }
-<a name="l00177"></a>00177 
-<a name="l00181"></a><a class="code" href="class_b_i_i_r_filter.html#ae509fb25d02ebca2bb791b8cd107e410">00181</a>         <a class="code" href="class_c_block_diagram.html" title="ブロックダイアグラムのクラス.">CBlockDiagram</a>* <a class="code" href="class_b_i_i_r_filter.html#ae509fb25d02ebca2bb791b8cd107e410" title="ブロックダイアグラム.">m_pcBlockDiagram</a>;
-<a name="l00182"></a>00182 
-<a name="l00186"></a><a class="code" href="class_b_i_i_r_filter.html#a8ee05520a4444ce94f528d010da300b7">00186</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#a8ee05520a4444ce94f528d010da300b7" title="サンプリング周波数[Hz].">m_dSampleRate</a>;
+<a name="l00167"></a><a class="code" href="class_b_i_i_r_filter.html#a21cecc5bda1a0941939e988f97e4ab1b">00167</a>         <span class="keyword">virtual</span> <span class="keywordtype">double</span> digital2analog(<span class="keywordtype">double</span> i_dOmega)<span class="keyword"> const</span>
+<a name="l00168"></a>00168 <span class="keyword">        </span>{
+<a name="l00169"></a>00169                 <span class="keywordflow">return</span> 2*tan(i_dOmega/2);
+<a name="l00170"></a>00170         }
+<a name="l00171"></a>00171 
+<a name="l00176"></a><a class="code" href="class_b_i_i_r_filter.html#a3c354a675f3e0a6fc05a6424ebd63edf">00176</a>         <span class="keywordtype">void</span> printConfig()<span class="keyword"> const</span>
+<a name="l00177"></a>00177 <span class="keyword">        </span>{
+<a name="l00178"></a>00178                 printf(<span class="stringliteral">&quot;  SampleRate = %.1f\n&quot;</span>, this-&gt;m_dSampleRate);
+<a name="l00179"></a>00179                 printf(<span class="stringliteral">&quot;  PassFreq = %.1f\n&quot;</span>, this-&gt;m_dPassFreq);
+<a name="l00180"></a>00180                 printf(<span class="stringliteral">&quot;  RippleGain = %.1f\n&quot;</span>, this-&gt;m_dRippleGain);
+<a name="l00181"></a>00181                 printf(<span class="stringliteral">&quot;  StopFreq = %.1f\n&quot;</span>, this-&gt;m_dStopFreq);
+<a name="l00182"></a>00182                 printf(<span class="stringliteral">&quot;  AttenuateGain = %.1f\n&quot;</span>, this-&gt;m_dAttenuateGain);
+<a name="l00183"></a>00183                 printf(<span class="stringliteral">&quot;  CutoffFreq = %.1f\n&quot;</span>, this-&gt;m_dCutoffFreq);
+<a name="l00184"></a>00184                 printf(<span class="stringliteral">&quot;  LowCutoffFreq = %.1f\n&quot;</span>, this-&gt;m_dLowCutoffFreq);
+<a name="l00185"></a>00185                 printf(<span class="stringliteral">&quot;  HighCutoffFreq = %.1f\n&quot;</span>, this-&gt;m_dHighCutoffFreq);
+<a name="l00186"></a>00186         }
 <a name="l00187"></a>00187 
-<a name="l00191"></a><a class="code" href="class_b_i_i_r_filter.html#abab4b5eac8d37f8555b2a57272467d4e">00191</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#abab4b5eac8d37f8555b2a57272467d4e" title="カットオフ周波数[Hz].">m_dCutoffFreq</a>;
-<a name="l00192"></a>00192 
-<a name="l00197"></a><a class="code" href="class_b_i_i_r_filter.html#a2ec5f02951afaf6792cbba1bad9c98bb">00197</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#a2ec5f02951afaf6792cbba1bad9c98bb" title="低い方のカットオフ周波数[Hz].">m_dLowCutoffFreq</a>;
-<a name="l00198"></a>00198 
-<a name="l00203"></a><a class="code" href="class_b_i_i_r_filter.html#a3cc4430f12b778538be6d1bc806e251c">00203</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#a3cc4430f12b778538be6d1bc806e251c" title="高い方のカットオフ周波数[Hz].">m_dHighCutoffFreq</a>;
-<a name="l00204"></a>00204 
-<a name="l00209"></a><a class="code" href="class_b_i_i_r_filter.html#aa62fcc08c4481f9283ddf9a7a40b591d">00209</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#aa62fcc08c4481f9283ddf9a7a40b591d" title="パスバンドの周波数[Hz].">m_dPassFreq</a>;
-<a name="l00210"></a>00210 
-<a name="l00215"></a><a class="code" href="class_b_i_i_r_filter.html#a9d036fd557a08e45e39b39b547b71aef">00215</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#a9d036fd557a08e45e39b39b547b71aef" title="偏差の量[dB].">m_dRippleGain</a>;
-<a name="l00216"></a>00216 
-<a name="l00221"></a><a class="code" href="class_b_i_i_r_filter.html#a9321a1922420fb6e96c083fb36386aee">00221</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#a9321a1922420fb6e96c083fb36386aee" title="ストップバンドの周波数[Hz].">m_dStopFreq</a>;
-<a name="l00222"></a>00222 
-<a name="l00227"></a><a class="code" href="class_b_i_i_r_filter.html#a0bd7ae28de8bf7bf636500c2fb80d12f">00227</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#a0bd7ae28de8bf7bf636500c2fb80d12f" title="減衰量[dB].">m_dAttenuateGain</a>;
-<a name="l00228"></a>00228 
-<a name="l00232"></a><a class="code" href="class_b_i_i_r_filter.html#aee0adbfad2811419535b7d89da70fe06">00232</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#aee0adbfad2811419535b7d89da70fe06" title="プロトタイプローパスフィルタのカットオフ周波数.">m_dPrototypeCutFreq</a>;
-<a name="l00233"></a>00233 
-<a name="l00237"></a><a class="code" href="class_b_i_i_r_filter.html#a9c3168ebe5f1ea951d0a0285faacf7dc">00237</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#a9c3168ebe5f1ea951d0a0285faacf7dc" title="プロトタイプローパスフィルタのパス周波数.">m_dPrototypePassFreq</a>;
-<a name="l00238"></a>00238 
-<a name="l00242"></a><a class="code" href="class_b_i_i_r_filter.html#af8a6ab6b763f47a4976e4f67448e4abd">00242</a>         <span class="keywordtype">long</span> <a class="code" href="class_b_i_i_r_filter.html#af8a6ab6b763f47a4976e4f67448e4abd" title="フィルタの次数.">m_lOrderNumber</a>;
-<a name="l00243"></a>00243 };
-<a name="l00244"></a>00244 
-<a name="l00245"></a>00245 <span class="preprocessor">#endif //__CIIR_FILTER_H__</span>
-<a name="l00246"></a>00246 <span class="preprocessor"></span>
+<a name="l00193"></a><a class="code" href="class_b_i_i_r_filter.html#a2482846ed49456a01fe9a6b17a406017">00193</a>         <span class="keywordtype">double</span> getAmplitude(complex&lt;double&gt; i_cComplexValue)<span class="keyword"> const</span>
+<a name="l00194"></a>00194 <span class="keyword">        </span>{
+<a name="l00195"></a>00195                 <span class="keywordflow">return</span> 20.0*log( abs(i_cComplexValue) );
+<a name="l00196"></a>00196         }
+<a name="l00197"></a>00197 
+<a name="l00203"></a><a class="code" href="class_b_i_i_r_filter.html#a86397df745cbb6d9da739133693185a7">00203</a>         <span class="keywordtype">double</span> getPhase(complex&lt;double&gt; i_cComplexValue)<span class="keyword"> const</span>
+<a name="l00204"></a>00204 <span class="keyword">        </span>{
+<a name="l00205"></a>00205                 <span class="keywordflow">return</span> arg(i_cComplexValue);
+<a name="l00206"></a>00206         }
+<a name="l00207"></a>00207 
+<a name="l00222"></a><a class="code" href="class_b_i_i_r_filter.html#a71731fcdd064ff04b3ceafc7620e455d">00222</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> printCharacteristic(
+<a name="l00223"></a>00223                                                         <span class="keyword">const</span> <span class="keywordtype">char</span>* i_pbyAmplitudeFilename, 
+<a name="l00224"></a>00224                                                         <span class="keyword">const</span> <span class="keywordtype">char</span>* i_pbyPhaseFilename,
+<a name="l00225"></a>00225                                                         <span class="keyword">const</span> <span class="keywordtype">long</span> i_lNumSection)<span class="keyword"> const</span>
+<a name="l00226"></a>00226 <span class="keyword">        </span>{
+<a name="l00227"></a>00227                 <span class="comment">//振幅特性を書き込むファイルを開く.</span>
+<a name="l00228"></a>00228                 ofstream a_streamAmplitudeFile(i_pbyAmplitudeFilename, ios::out);
+<a name="l00229"></a>00229                 <span class="comment">//位相特性を書き込むファイルを開く.</span>
+<a name="l00230"></a>00230                 ofstream a_streamPhaseFile(i_pbyPhaseFilename, ios::out);
+<a name="l00231"></a>00231 
+<a name="l00232"></a>00232 
+<a name="l00233"></a>00233             <span class="keywordflow">for</span>(<span class="keywordtype">double</span> omega=0.001; omega&lt;M_PI; omega+=0.001)
+<a name="l00234"></a>00234                 {
+<a name="l00235"></a>00235                 complex&lt;double&gt; e1 = polar(1.0, -omega);
+<a name="l00236"></a>00236                 complex&lt;double&gt; e2 = polar(1.0, -2.0*omega);
+<a name="l00237"></a>00237                 complex&lt;double&gt; h = polar(1.0, 0.0);
+<a name="l00238"></a>00238                 <span class="keywordflow">for</span>(<span class="keywordtype">long</span> a_lIndex=0; a_lIndex&lt;i_lNumSection; a_lIndex++)
+<a name="l00239"></a>00239                         {
+<a name="l00240"></a>00240                     <span class="keyword">const</span> <span class="keywordtype">double</span>* a = this-&gt;m_pcBlockDiagram[a_lIndex].getCoefficientA();
+<a name="l00241"></a>00241                     <span class="keyword">const</span> <span class="keywordtype">double</span>* b = this-&gt;m_pcBlockDiagram[a_lIndex].getCoefficientB();
+<a name="l00242"></a>00242                     
+<a name="l00243"></a>00243                     h *= b[0] * (a[0] + a[1]*e1 + a[2]*e2) / (1.0 - b[1]*e1 - b[2]*e2);
+<a name="l00244"></a>00244                 }
+<a name="l00245"></a>00245                 
+<a name="l00246"></a>00246                         <span class="comment">//周波数.</span>
+<a name="l00247"></a>00247                 <span class="keywordtype">double</span> a_dFreq = omega * this-&gt;getSampleRate() / (2*M_PI);
+<a name="l00248"></a>00248                         <span class="comment">//振幅.</span>
+<a name="l00249"></a>00249                         <span class="keywordtype">double</span> a_dAmplitude = this-&gt;getAmplitude(h);
+<a name="l00250"></a>00250                         <span class="comment">//位相.</span>
+<a name="l00251"></a>00251                         <span class="keywordtype">double</span> a_dPhase = this-&gt;getPhase(h);
+<a name="l00252"></a>00252                         <span class="comment">//振幅特性を出力.</span>
+<a name="l00253"></a>00253                         a_streamAmplitudeFile &lt;&lt; a_dFreq &lt;&lt; <span class="charliteral">&#39;,&#39;</span> &lt;&lt; a_dAmplitude &lt;&lt; endl;
+<a name="l00254"></a>00254                         <span class="comment">//位相特性を出力.</span>
+<a name="l00255"></a>00255                         a_streamPhaseFile &lt;&lt; a_dFreq &lt;&lt; <span class="charliteral">&#39;,&#39;</span> &lt;&lt; a_dPhase &lt;&lt; endl;
+<a name="l00256"></a>00256             }
+<a name="l00257"></a>00257                 <span class="comment">//ファイルを閉じる.</span>
+<a name="l00258"></a>00258                 a_streamAmplitudeFile.close();
+<a name="l00259"></a>00259                 a_streamPhaseFile.close();
+<a name="l00260"></a>00260         }
+<a name="l00261"></a>00261 
+<a name="l00265"></a><a class="code" href="class_b_i_i_r_filter.html#ae509fb25d02ebca2bb791b8cd107e410">00265</a>         <a class="code" href="class_c_block_diagram.html" title="ブロックダイアグラムのクラス.">CBlockDiagram</a>* <a class="code" href="class_b_i_i_r_filter.html#ae509fb25d02ebca2bb791b8cd107e410" title="ブロックダイアグラム.">m_pcBlockDiagram</a>;
+<a name="l00266"></a>00266 
+<a name="l00270"></a><a class="code" href="class_b_i_i_r_filter.html#a8ee05520a4444ce94f528d010da300b7">00270</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#a8ee05520a4444ce94f528d010da300b7" title="サンプリング周波数[Hz].">m_dSampleRate</a>;
+<a name="l00271"></a>00271 
+<a name="l00275"></a><a class="code" href="class_b_i_i_r_filter.html#abab4b5eac8d37f8555b2a57272467d4e">00275</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#abab4b5eac8d37f8555b2a57272467d4e" title="カットオフ周波数[Hz].">m_dCutoffFreq</a>;
+<a name="l00276"></a>00276 
+<a name="l00281"></a><a class="code" href="class_b_i_i_r_filter.html#a2ec5f02951afaf6792cbba1bad9c98bb">00281</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#a2ec5f02951afaf6792cbba1bad9c98bb" title="低い方のカットオフ周波数[Hz].">m_dLowCutoffFreq</a>;
+<a name="l00282"></a>00282 
+<a name="l00287"></a><a class="code" href="class_b_i_i_r_filter.html#a3cc4430f12b778538be6d1bc806e251c">00287</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#a3cc4430f12b778538be6d1bc806e251c" title="高い方のカットオフ周波数[Hz].">m_dHighCutoffFreq</a>;
+<a name="l00288"></a>00288 
+<a name="l00293"></a><a class="code" href="class_b_i_i_r_filter.html#aa62fcc08c4481f9283ddf9a7a40b591d">00293</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#aa62fcc08c4481f9283ddf9a7a40b591d" title="パスバンドの周波数[Hz].">m_dPassFreq</a>;
+<a name="l00294"></a>00294 
+<a name="l00299"></a><a class="code" href="class_b_i_i_r_filter.html#a9d036fd557a08e45e39b39b547b71aef">00299</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#a9d036fd557a08e45e39b39b547b71aef" title="偏差の量[dB].">m_dRippleGain</a>;
+<a name="l00300"></a>00300 
+<a name="l00305"></a><a class="code" href="class_b_i_i_r_filter.html#a9321a1922420fb6e96c083fb36386aee">00305</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#a9321a1922420fb6e96c083fb36386aee" title="ストップバンドの周波数[Hz].">m_dStopFreq</a>;
+<a name="l00306"></a>00306 
+<a name="l00311"></a><a class="code" href="class_b_i_i_r_filter.html#a0bd7ae28de8bf7bf636500c2fb80d12f">00311</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#a0bd7ae28de8bf7bf636500c2fb80d12f" title="減衰量[dB].">m_dAttenuateGain</a>;
+<a name="l00312"></a>00312 
+<a name="l00316"></a><a class="code" href="class_b_i_i_r_filter.html#aee0adbfad2811419535b7d89da70fe06">00316</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#aee0adbfad2811419535b7d89da70fe06" title="プロトタイプローパスフィルタのカットオフ周波数.">m_dPrototypeCutFreq</a>;
+<a name="l00317"></a>00317 
+<a name="l00321"></a><a class="code" href="class_b_i_i_r_filter.html#a9c3168ebe5f1ea951d0a0285faacf7dc">00321</a>         <span class="keywordtype">double</span> <a class="code" href="class_b_i_i_r_filter.html#a9c3168ebe5f1ea951d0a0285faacf7dc" title="プロトタイプローパスフィルタのパス周波数.">m_dPrototypePassFreq</a>;
+<a name="l00322"></a>00322 
+<a name="l00326"></a><a class="code" href="class_b_i_i_r_filter.html#af8a6ab6b763f47a4976e4f67448e4abd">00326</a>         <span class="keywordtype">long</span> <a class="code" href="class_b_i_i_r_filter.html#af8a6ab6b763f47a4976e4f67448e4abd" title="フィルタの次数.">m_lOrderNumber</a>;
+<a name="l00327"></a>00327 };
+<a name="l00328"></a>00328 
+<a name="l00329"></a>00329 <span class="preprocessor">#endif //__CIIR_FILTER_H__</span>
+<a name="l00330"></a>00330 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -209,7 +273,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 9 2015 00:52:48 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 14 2015 20:48:18 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

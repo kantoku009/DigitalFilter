@@ -7,6 +7,7 @@
 #define __ILOWPASS_FILTER_DESIGN_H__
 
 #include "./IFilterDesign.h"
+
 /**
  * @brief	ローパスフィルタ設計部のインタフェース.
  * @note	Inteface

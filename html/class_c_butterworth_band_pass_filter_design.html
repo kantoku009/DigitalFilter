@@ -101,6 +101,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">低い方のカットオフ周波数を取得.  <a href="#a15e3842865221d6fe6352e7f27c239d1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_butterworth_band_pass_filter_design.html#aadf7661dfa0ad1defd244260d45798d9">getHighCutoffFreq</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">高い方のカットオフ周波数を取得.  <a href="#aadf7661dfa0ad1defd244260d45798d9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_butterworth_band_pass_filter_design.html#ab3dc5dc9b07449fea95df1e9264f3b74">printProperty</a> (const char *i_pbyAmplitudeFilename, const char *i_pbyPhaseFilename) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">振幅特性と位相特性を出力.  <a href="#ab3dc5dc9b07449fea95df1e9264f3b74"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_butterworth_band_pass_filter_design.html#abb02a9bd4856cb192f500de879ab93a1">setLowCutoffFreq</a> (double i_dCutoffFreq)</td></tr>
@@ -270,6 +272,46 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ab3dc5dc9b07449fea95df1e9264f3b74"></a><!-- doxytag: member="CButterworthBandPassFilterDesign::printProperty" ref="ab3dc5dc9b07449fea95df1e9264f3b74" args="(const char *i_pbyAmplitudeFilename, const char *i_pbyPhaseFilename) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CButterworthBandPassFilterDesign::printProperty </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>i_pbyAmplitudeFilename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>i_pbyPhaseFilename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const<code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>振幅特性と位相特性を出力. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>char* i_pbyAmplitudeFilename 振幅特性を出力するファイル名. </td></tr>
+    <tr><td class="paramname">const</td><td>char* i_pbyPhaseFilename 位相特性を出力するファイル名. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>なし. </dd></dl>
+<dl class="note"><dt><b>Note:</b></dt><dd>ローカル変数. a_lOrderNumber:伝達関数の次数. a_lNumSection:伝達関数を１次または２次に分けたときのセクションの個数. </dd></dl>
+
+<p>Implements <a class="el" href="class_i_filter_design.html#a71b19b737f29275c9936464661bc9941">IFilterDesign</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a32adcc23a8645bad876cd86567e27e08"></a><!-- doxytag: member="CButterworthBandPassFilterDesign::readConfig" ref="a32adcc23a8645bad876cd86567e27e08" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -367,7 +409,7 @@ Protected Member Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 9 2015 00:52:48 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 14 2015 20:48:18 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

@@ -42,6 +42,13 @@ public:
 	 */
 	virtual double passFilter(double i_dSample) const = 0;
 
+	/**
+	 * @brief	振幅特性と位相特性を出力.
+	 * @param	なし.
+	 * @return	なし.
+	 */
+	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const = 0;
+
 protected:
 	/**
 	 * @brief	デジタルフィルタ設計名.

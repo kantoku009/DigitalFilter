@@ -63,10 +63,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 This is the complete list of members for <a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a>, including all inherited members.<table>
   <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#ab3a96aeaef4a5779af4c25f65cb1952f">BIIRFilter</a>()</td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#aaa8ba7e05181d75e1cbe1b15efd7cf90">decisionPrototype</a>(double i_dPassFreq, double i_dRippleGain, double i_dStopFreq, double i_dAttenuateGain)</td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline, protected, virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#adfd149a57afd5e158124dacbbab109f1">digital2analog</a>(double i_dOmega)</td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline, protected, virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#a21cecc5bda1a0941939e988f97e4ab1b">digital2analog</a>(double i_dOmega) const </td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline, protected, virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#a2482846ed49456a01fe9a6b17a406017">getAmplitude</a>(complex&lt; double &gt; i_cComplexValue) const </td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline, protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#ae4a6169ef4f53731e114d6c6e929a6fc">getOrderNumber</a>() const </td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#a86397df745cbb6d9da739133693185a7">getPhase</a>(complex&lt; double &gt; i_cComplexValue) const </td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline, protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#a915db21693da82b94a4b79d349a25e88">getPrototypeCutFreq</a>() const </td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline, protected, virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#a98c4bee55fbe88b4a6ecb31ee1c5b540">getPrototypePassFreq</a>()</td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline, protected, virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#a082f8856bf6ceab11e4114664eaa2256">getPrototypePassFreq</a>() const </td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline, protected, virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#a9fb92a0ad82aa060520a30aeb31006e0">getSampleRate</a>() const </td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#a0bd7ae28de8bf7bf636500c2fb80d12f">m_dAttenuateGain</a></td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#abab4b5eac8d37f8555b2a57272467d4e">m_dCutoffFreq</a></td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [protected]</code></td></tr>
@@ -80,7 +82,7 @@ This is the complete list of members for <a class="el" href="class_b_i_i_r_filte
   <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#a9321a1922420fb6e96c083fb36386aee">m_dStopFreq</a></td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#af8a6ab6b763f47a4976e4f67448e4abd">m_lOrderNumber</a></td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#ae509fb25d02ebca2bb791b8cd107e410">m_pcBlockDiagram</a></td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [protected]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#a110662de999ff7fc5ef75f4405affe53">printCharacteristic</a>(char *i_pbyNameAmp, char *i_pbyNamePhase) const </td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline, virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#a71731fcdd064ff04b3ceafc7620e455d">printCharacteristic</a>(const char *i_pbyAmplitudeFilename, const char *i_pbyPhaseFilename, const long i_lNumSection) const </td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline, protected, virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#a3c354a675f3e0a6fc05a6424ebd63edf">printConfig</a>() const </td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline, protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#a56ba6f0c22597e790a56f0d529863f7e">setConfig</a>(map&lt; string, string &gt; i_mapPairsTable, map&lt; string, double * &gt; i_mapConfigTable)</td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline, protected, virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_b_i_i_r_filter.html#aa694f38085fc794a6c2214838dc11806">setOrderNumber</a>(long i_lOrder)</td><td><a class="el" href="class_b_i_i_r_filter.html">BIIRFilter</a></td><td><code> [inline, protected]</code></td></tr>
@@ -105,7 +107,7 @@ This is the complete list of members for <a class="el" href="class_b_i_i_r_filte
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 9 2015 00:52:48 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 14 2015 20:48:18 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

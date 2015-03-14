@@ -86,6 +86,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">デジタルフィルタにサンプル値を通す.  <a href="#ae03ba97d6da75a3422967929a81b062f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_i_filter_design.html">IFilterDesign</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_filter.html#a69706e245bc15ba23bd05c348e01ebdb">getFilterDesign</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">デジタルフィルタ設計部を取得.  <a href="#a69706e245bc15ba23bd05c348e01ebdb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_filter.html#a79c58d86be02b10806c01a88805fd04c">printProperty</a> (const char *i_pbyAmplitudeFilename, const char *i_pbyPhaseFilename) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">振幅特性と位相特性を出力.  <a href="#a79c58d86be02b10806c01a88805fd04c"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_filter.html#ad5cbc4392335f63a61407092ccde01ed">setFilterDesign</a> (<a class="el" href="class_i_filter_design.html">IFilterDesign</a> *i_piFilterDesign)</td></tr>
@@ -223,6 +225,42 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a79c58d86be02b10806c01a88805fd04c"></a><!-- doxytag: member="CFilter::printProperty" ref="a79c58d86be02b10806c01a88805fd04c" args="(const char *i_pbyAmplitudeFilename, const char *i_pbyPhaseFilename) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CFilter::printProperty </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>i_pbyAmplitudeFilename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>i_pbyPhaseFilename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const<code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>振幅特性と位相特性を出力. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">なし.</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>なし. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ad5cbc4392335f63a61407092ccde01ed"></a><!-- doxytag: member="CFilter::setFilterDesign" ref="ad5cbc4392335f63a61407092ccde01ed" args="(IFilterDesign *i_piFilterDesign)" -->
 <div class="memitem">
 <div class="memproto">
@@ -286,7 +324,7 @@ Private Attributes</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 9 2015 00:52:48 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 14 2015 20:48:19 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

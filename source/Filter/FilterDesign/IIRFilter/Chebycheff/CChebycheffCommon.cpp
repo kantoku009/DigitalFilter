@@ -1,12 +1,8 @@
 #include "CChebycheffCommon.h"
 
 #include <iostream>
-#include <fstream>
-#include <new>
-#include <complex>
+#include <cmath>
 using namespace std;
-
-#define PI 3.1415926535897932384626433832795
 
 /***********************************************************
 * decisionPrototype : プロトタイプローパスフィルタを決定
@@ -62,8 +58,8 @@ void CChebycheffCommon::decisionPrototype( double inPassFreq,
     stopFreq = inStopFreq / fs;
     
     //周波数から角周波数へ変換
-    omega_dp = 2*PI * passFreq;
-    omega_ds = 2*PI * stopFreq;
+    omega_dp = 2*M_PI * passFreq;
+    omega_ds = 2*M_PI * stopFreq;
     
     //デジタルの周波数からアナログの周波数へ変換
     omega_ap = digital2analog(omega_dp);
@@ -384,7 +380,7 @@ double CChebycheffCommon::getAlpha(long i)
     else
         v = i;
     
-    return 2*this->m_dAlpha0*cos(PI*v/n);
+    return 2*this->m_dAlpha0*cos(M_PI*v/n);
 }
 
 
@@ -422,7 +418,7 @@ double CChebycheffCommon::getBeta(long i)
     else
         v = i;
     
-    return this->m_dAlpha0*this->m_dAlpha0 + sin(PI*v/n)*sin(PI*v/n);
+    return this->m_dAlpha0*this->m_dAlpha0 + sin(M_PI*v/n)*sin(M_PI*v/n);
 }
 
 
@@ -465,7 +461,7 @@ double CChebycheffCommon::getLowGamma(double inCutFreq)
     double theta;
     
     fs = getSampleRate();
-    omega_dc = 2*PI * inCutFreq / fs;
+    omega_dc = 2*M_PI * inCutFreq / fs;
     omega_ac = digital2analog(omega_dc);
     
     theta = getPrototypeCutFreq();
@@ -512,7 +508,7 @@ double CChebycheffCommon::getHighGamma(double inCutFreq)
     double theta;
     
     fs = getSampleRate();
-    omega_dc = 2*PI * inCutFreq / fs;
+    omega_dc = 2*M_PI * inCutFreq / fs;
     omega_ac = digital2analog(omega_dc);
     
     theta = getPrototypeCutFreq();
@@ -521,78 +517,4 @@ double CChebycheffCommon::getHighGamma(double inCutFreq)
 }
 
 
-/***********************************************************************
-*printCharacteristic : 伝達関数の振幅特性と位相特性をファイルに出力
-*
-*引数
-*   fNameAmp : 振幅特性を出力するファイル名
-*   fNamePhase : 位相特性を出力するファイル名
-*
-*ローカル変数
-*   fpAmp : 振幅特性を出力するファイルのファイルストリーム
-*   fpPhase : 位相特性を出力するファイルのファイルストリーム
-*   sectionOrder :  伝達関数のセクションの次数
-*   n : 伝達関数の次数
-*   m :  伝達関数を１次または２次に分けたときのセクションの個数
-*   isOrderEven :  伝達関数が偶数かどうか。偶数ならばtrue
-*   a : 伝達関数の1次または２次のセクションの係数
-*   b : 伝達関数の1次または２次のセクションの係数
-*   omega : 振幅特性、位相特性の角周波数[rad/sec]
-*   e1 : 絶対値が1で，位相角度-omegaの複素数
-*   e2 : 絶対値が1で，位相角度-2*omegaの複素数
-*   h : インパルス応答
-*   amp : 振幅の値
-*   phase : 位相の値
-*   freq : 周波数[Hz]
-*
-*返り値
-*   なし
-*
-***********************************************************************/
-void CChebycheffCommon::printCharacteristic(char *fNameAmp,char *fNamePhase) const
-{
-	//とりあえずコメントアウト.
-	/*
-    ofstream fpAmp(fNameAmp,ios::out),fpPhase(fNamePhase,ios::out);
-    long orderNumber,numSection;
-    bool isOrderEven;
-    const double *a,*b;
-    double omega;
-    complex<double> h;
-    
-    orderNumber = getOrderNumber();
-    isOrderEven = (orderNumber%2 == 0)? true:false;
-    if(isOrderEven){
-        numSection = orderNumber / 2;
-    }else{
-        numSection = (orderNumber-1) / 2;
-    }
-    numSection++;
-    
-    if(getFilterMode() == kBandpass)
-        numSection *= 2;
-    
-    for(omega=0.001;omega<PI;omega+=0.001){
-        complex<double> e1,e2,h;
-        double amp,phase,freq;
-        freq = omega *getSampleRate() / (2*PI);
-
-        e1 = polar(1.0,-omega);
-        e2 = polar(1.0,-2*omega);
-        h = polar(1.0,0.0);
-        for(long i=0;i<numSection;i++){
-            a = this->m_pcBlockDiagram[i].getCoefficientA();
-            b = this->m_pcBlockDiagram[i].getCoefficientB();
-            h *= b[0] * (a[0] + a[1]*e1 + a[2]*e2) / (1.0 - b[1]*e1 - b[2]*e2);
-        }
-
-        amp = abs(h);
-        phase = arg(h);
-        
-        fpAmp << freq << ',' << 20*log10(amp) << endl;
-        fpPhase << freq << ',' << phase << endl;
-
-    }
-	*/
-}
 

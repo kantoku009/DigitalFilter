@@ -18,4 +18,5 @@ make:
 clean:
 	rm $(OUTFILE)
 	rm *.wav
+	rm *.csv
 

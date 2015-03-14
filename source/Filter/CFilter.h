@@ -67,6 +67,16 @@ public:
 		return m_piFilterDesign;
 	}
 
+	/**
+	 * @brief	振幅特性と位相特性を出力.
+	 * @param	なし.
+	 * @return	なし.
+	 */
+	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const
+	{
+		m_piFilterDesign->printProperty(i_pbyAmplitudeFilename, i_pbyPhaseFilename);
+	}
+
 protected:
 	/**
 	 * @brief	デジタルフィルタ設計部を設定.

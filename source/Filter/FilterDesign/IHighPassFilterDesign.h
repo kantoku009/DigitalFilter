@@ -6,6 +6,7 @@
 #define __IHIGHPASS_FILTER_DESIGN_H__
 
 #include "./IFilterDesign.h"
+
 /**
  * @brief	ハイパスフィルタ設計のインタフェース.
  * @note	Inteface

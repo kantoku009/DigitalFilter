@@ -8,12 +8,6 @@
 #include "../BIIRFilter.h"
 #include "../../CBlockDiagram.h"
 
-#include <cmath>
-#include <complex>
-using namespace std;
-
-//#define PI 3.1415926535897932384626433832795
-
 /**
  * @brief	バターワース特性のデジタルフィルタ(処理実体).
  */
@@ -70,12 +64,6 @@ public:
 						double i_dStopFreq,
 						double i_dAttenuateGain);
     
-	/**
-	 * @brief	伝達関数の振幅特性と位相特性をファイルに出力.
-	 * @note	デバッグ用.
-	 */
-	virtual void printCharacteristic(char* i_pbyNameAmp, char* i_pbyNamePhase) const;
-
 protected:
 	/**
 	 * @brief	伝達関数の係数を取得.

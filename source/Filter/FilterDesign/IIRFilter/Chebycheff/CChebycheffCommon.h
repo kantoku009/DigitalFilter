@@ -9,12 +9,6 @@
 #include "../BIIRFilter.h"
 #include "../../CBlockDiagram.h"
 
-#include <cmath>
-#include <complex>
-using namespace std;
-
-//#define PI 3.1415926535897932384626433832795
-
 /**
  * @brief	チェビシェフ特性のデジタルフィルタ(処理実体).
  */
@@ -70,11 +64,6 @@ public:
 						double i_dRippleGain,
 						double i_dStopFreq,
 						double i_dAttenuateGain);
-	/**
-	 * @brief	振幅特性と位相特性をファイルへ出力.
-	 * @note	デバッグ用.
-	 */
-	void printCharacteristic(char *inAmpFileName,char *inPhaseFileName) const;
 
 protected:
 	double getAlpha(long i);

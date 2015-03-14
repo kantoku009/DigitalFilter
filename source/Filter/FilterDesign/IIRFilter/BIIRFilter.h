@@ -7,7 +7,9 @@
 #define __CIIR_FILTER_H__
 
 #include <cstdio>		//デバッグ用. printf()を使用したい.
+#include <fstream>
 #include <cmath>
+#include <complex>		//振幅特性と位相特性を計算するのに複素数を使用する.
 #include <cstdlib>
 #include <string>
 #include <map>
@@ -28,8 +30,16 @@ public:
 	{
 		this->m_pcBlockDiagram = 0;
 		this->m_dSampleRate = 0.0;
+		this->m_dCutoffFreq = 0.0;
+		this->m_dLowCutoffFreq = 0.0;
+		this->m_dHighCutoffFreq = 0.0;
+		this->m_dPassFreq = 0.0;
+		this->m_dRippleGain = 0.0;
+		this->m_dStopFreq = 0.0;
+		this->m_dAttenuateGain = 0.0;
 		this->m_dPrototypeCutFreq = 0.0;
 		this->m_dPrototypePassFreq = 0.0;
+		this->m_lOrderNumber = 0;
 	}
 
 	/**
@@ -68,13 +78,10 @@ public:
 	 * @param なし.
 	 * @return フィルタの次数.
 	 */
-	long getOrderNumber() const { return this->m_lOrderNumber; }
-
-	/**
-	 * @brief	伝達関数の振幅特性と位相特性をファイルに出力.
-	 * @note	デバッグ用.
-	 */
-	virtual void printCharacteristic(char* i_pbyNameAmp, char* i_pbyNamePhase) const { }
+	long getOrderNumber() const
+	{
+		return this->m_lOrderNumber;
+	}
 
 protected:
 
@@ -115,7 +122,10 @@ protected:
 	 * @param long inOrder フィルタの次数.
 	 * @return なし.
 	 */
-	void setOrderNumber(long i_lOrder){ this->m_lOrderNumber = i_lOrder; }
+	void setOrderNumber(long i_lOrder)
+	{
+		this->m_lOrderNumber = i_lOrder;
+	}
 
 	/**
 	 * @brief プロトタイプローパスフィルタを決定.
@@ -144,7 +154,7 @@ protected:
 	/**
 	 * @brief	プロトタイプローパスフィルタのパス周波数を取得.
 	 */
-	virtual double getPrototypePassFreq()
+	virtual double getPrototypePassFreq() const
 	{
 		return this->m_dPrototypePassFreq;
 	}
@@ -154,7 +164,7 @@ protected:
 	 * @param double i_dOmega デジタルの周波数.
 	 * @return アナログの周波数.
 	 */
-	virtual double digital2analog(double i_dOmega)
+	virtual double digital2analog(double i_dOmega) const
 	{
 		return 2*tan(i_dOmega/2);
 	}
@@ -173,6 +183,80 @@ protected:
 		printf("  CutoffFreq = %.1f\n", this->m_dCutoffFreq);
 		printf("  LowCutoffFreq = %.1f\n", this->m_dLowCutoffFreq);
 		printf("  HighCutoffFreq = %.1f\n", this->m_dHighCutoffFreq);
+	}
+
+	/**
+	 * @brief	振幅特性を取得.
+	 * @param	complex<double> i_cComplexValue
+	 * @return	振幅特性.
+	 */
+	double getAmplitude(complex<double> i_cComplexValue) const
+	{
+		return 20.0*log( abs(i_cComplexValue) );
+	}
+
+	/**
+	 * @brief	位相特性を取得.
+	 * @param	complex<double> i_cComplexValue
+	 * @return	位相特性.
+	 */
+	double getPhase(complex<double> i_cComplexValue) const
+	{
+		return arg(i_cComplexValue);
+	}
+
+	/**
+	 * @brief	フィルタ特性を出力する.
+	 * @param	const char* i_pbyAmplitudeFilename	振幅特性を出力するファイル名.
+	 * @param	const char* i_pbyPhaseFilename		位相特性を出力するファイル名.
+	 * @param	const long i_lNumSection			伝達関数を１次または２次に分けたときのセクションの個数
+	 * @return	なし.
+	 * @note	ローカル変数.
+	 *			a : 伝達関数の1次または２次のセクションの係数
+	 *			b : 伝達関数の1次または２次のセクションの係数
+	 *			omega : 振幅特性、位相特性の角周波数[rad/sec]
+	 *			e1 : 絶対値が1で，位相角度-omegaの複素数
+	 *			e2 : 絶対値が1で，位相角度-2*omegaの複素数
+	 *			h : インパルス応答
+	 */
+	virtual void printCharacteristic(
+							const char* i_pbyAmplitudeFilename, 
+							const char* i_pbyPhaseFilename,
+							const long i_lNumSection) const
+	{
+		//振幅特性を書き込むファイルを開く.
+		ofstream a_streamAmplitudeFile(i_pbyAmplitudeFilename, ios::out);
+		//位相特性を書き込むファイルを開く.
+		ofstream a_streamPhaseFile(i_pbyPhaseFilename, ios::out);
+
+
+	    for(double omega=0.001; omega<M_PI; omega+=0.001)
+		{
+	        complex<double> e1 = polar(1.0, -omega);
+	        complex<double> e2 = polar(1.0, -2.0*omega);
+	        complex<double> h = polar(1.0, 0.0);
+	        for(long a_lIndex=0; a_lIndex<i_lNumSection; a_lIndex++)
+			{
+	            const double* a = this->m_pcBlockDiagram[a_lIndex].getCoefficientA();
+	            const double* b = this->m_pcBlockDiagram[a_lIndex].getCoefficientB();
+	            
+	            h *= b[0] * (a[0] + a[1]*e1 + a[2]*e2) / (1.0 - b[1]*e1 - b[2]*e2);
+	        }
+	        
+			//周波数.
+	        double a_dFreq = omega * this->getSampleRate() / (2*M_PI);
+			//振幅.
+			double a_dAmplitude = this->getAmplitude(h);
+			//位相.
+			double a_dPhase = this->getPhase(h);
+			//振幅特性を出力.
+			a_streamAmplitudeFile << a_dFreq << ',' << a_dAmplitude << endl;
+			//位相特性を出力.
+			a_streamPhaseFile << a_dFreq << ',' << a_dPhase << endl;
+	    }
+		//ファイルを閉じる.
+		a_streamAmplitudeFile.close();
+		a_streamPhaseFile.close();
 	}
 
 	/**

@@ -64,48 +64,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00008"></a>00008 <span class="preprocessor">#include &quot;../BIIRFilter.h&quot;</span>
 <a name="l00009"></a>00009 <span class="preprocessor">#include &quot;../../CBlockDiagram.h&quot;</span>
 <a name="l00010"></a>00010 
-<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;cmath&gt;</span>
-<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;complex&gt;</span>
-<a name="l00013"></a>00013 <span class="keyword">using namespace </span>std;
-<a name="l00014"></a>00014 
-<a name="l00015"></a>00015 <span class="comment">//#define PI 3.1415926535897932384626433832795</span>
-<a name="l00016"></a>00016 
-<a name="l00020"></a><a class="code" href="class_c_butterworth_common.html">00020</a> <span class="keyword">class </span><a class="code" href="class_c_butterworth_common.html" title="バターワース特性のデジタルフィルタ(処理実体).">CButterworthCommon</a> : <span class="keyword">public</span> <a class="code" href="class_b_i_i_r_filter.html" title="IIRフィルタ共通処理を集めたクラス.">BIIRFilter</a>
-<a name="l00021"></a>00021 {
-<a name="l00022"></a>00022 <span class="keyword">public</span>:
-<a name="l00026"></a><a class="code" href="class_c_butterworth_common.html#abbbf343905efba69d0cbdb85efb404b0">00026</a>         <a class="code" href="class_c_butterworth_common.html" title="バターワース特性のデジタルフィルタ(処理実体).">CButterworthCommon</a>()
-<a name="l00027"></a>00027         {
-<a name="l00028"></a>00028         }
-<a name="l00029"></a>00029 
-<a name="l00033"></a><a class="code" href="class_c_butterworth_common.html#ab75e78a3ccd029a018acd9e102f87fce">00033</a>         <span class="keyword">virtual</span> ~<a class="code" href="class_c_butterworth_common.html" title="バターワース特性のデジタルフィルタ(処理実体).">CButterworthCommon</a>()
-<a name="l00034"></a>00034         {
-<a name="l00035"></a>00035         }
-<a name="l00036"></a>00036 
-<a name="l00042"></a>00042         <a class="code" href="class_c_block_diagram.html" title="ブロックダイアグラムのクラス.">CBlockDiagram</a>* initLowTransferFunction(<span class="keywordtype">double</span> i_dCutFreq);
-<a name="l00043"></a>00043 
-<a name="l00049"></a>00049         <a class="code" href="class_c_block_diagram.html" title="ブロックダイアグラムのクラス.">CBlockDiagram</a>* initHighTransferFunction(<span class="keywordtype">double</span> i_dCutFreq);
-<a name="l00050"></a>00050 
-<a name="l00057"></a>00057         <a class="code" href="class_c_block_diagram.html" title="ブロックダイアグラムのクラス.">CBlockDiagram</a>* initBandTransferFunction(<span class="keywordtype">double</span> i_dLowCutFreq, <span class="keywordtype">double</span> i_dHighCutFreq);
-<a name="l00058"></a>00058 
-<a name="l00067"></a>00067         <span class="keyword">virtual</span> <span class="keywordtype">void</span> decisionPrototype(
-<a name="l00068"></a>00068                                                 <span class="keywordtype">double</span> i_dPassFreq,
-<a name="l00069"></a>00069                                                 <span class="keywordtype">double</span> i_dRippleGain,
-<a name="l00070"></a>00070                                                 <span class="keywordtype">double</span> i_dStopFreq,
-<a name="l00071"></a>00071                                                 <span class="keywordtype">double</span> i_dAttenuateGain);
-<a name="l00072"></a>00072     
-<a name="l00077"></a>00077         <span class="keyword">virtual</span> <span class="keywordtype">void</span> printCharacteristic(<span class="keywordtype">char</span>* i_pbyNameAmp, <span class="keywordtype">char</span>* i_pbyNamePhase) <span class="keyword">const</span>;
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079 <span class="keyword">protected</span>:
-<a name="l00085"></a>00085         <span class="keywordtype">double</span> getAlpha(<span class="keywordtype">long</span> i);
-<a name="l00086"></a>00086 
-<a name="l00092"></a>00092         <span class="keywordtype">double</span> getLowBeta(<span class="keywordtype">double</span> i_dCutFreq);
-<a name="l00093"></a>00093 
-<a name="l00099"></a>00099         <span class="keywordtype">double</span> getHighBeta(<span class="keywordtype">double</span> i_dCutFreq);
-<a name="l00100"></a>00100     
-<a name="l00101"></a>00101 };
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103 <span class="preprocessor">#endif  //__CBUTTERWORTH_COMMON_H__</span>
-<a name="l00104"></a>00104 <span class="preprocessor"></span>
+<a name="l00014"></a><a class="code" href="class_c_butterworth_common.html">00014</a> <span class="keyword">class </span><a class="code" href="class_c_butterworth_common.html" title="バターワース特性のデジタルフィルタ(処理実体).">CButterworthCommon</a> : <span class="keyword">public</span> <a class="code" href="class_b_i_i_r_filter.html" title="IIRフィルタ共通処理を集めたクラス.">BIIRFilter</a>
+<a name="l00015"></a>00015 {
+<a name="l00016"></a>00016 <span class="keyword">public</span>:
+<a name="l00020"></a><a class="code" href="class_c_butterworth_common.html#abbbf343905efba69d0cbdb85efb404b0">00020</a>         <a class="code" href="class_c_butterworth_common.html#abbbf343905efba69d0cbdb85efb404b0" title="コンストラクタ.">CButterworthCommon</a>()
+<a name="l00021"></a>00021         {
+<a name="l00022"></a>00022         }
+<a name="l00023"></a>00023 
+<a name="l00027"></a><a class="code" href="class_c_butterworth_common.html#ab75e78a3ccd029a018acd9e102f87fce">00027</a>         <span class="keyword">virtual</span> <a class="code" href="class_c_butterworth_common.html#ab75e78a3ccd029a018acd9e102f87fce" title="デストラクタ.">~CButterworthCommon</a>()
+<a name="l00028"></a>00028         {
+<a name="l00029"></a>00029         }
+<a name="l00030"></a>00030 
+<a name="l00036"></a>00036         <a class="code" href="class_c_block_diagram.html" title="ブロックダイアグラムのクラス.">CBlockDiagram</a>* <a class="code" href="class_c_butterworth_common.html#ab0de07eff1000b7d02bb37e0e3a90554" title="ローパスフィルタの伝達関数の初期化と係数の決定.">initLowTransferFunction</a>(<span class="keywordtype">double</span> i_dCutFreq);
+<a name="l00037"></a>00037 
+<a name="l00043"></a>00043         <a class="code" href="class_c_block_diagram.html" title="ブロックダイアグラムのクラス.">CBlockDiagram</a>* <a class="code" href="class_c_butterworth_common.html#a14e064072f018c56f4b3d0daff90bd44" title="ハイパスフィルタの伝達関数の初期化と係数の決定.">initHighTransferFunction</a>(<span class="keywordtype">double</span> i_dCutFreq);
+<a name="l00044"></a>00044 
+<a name="l00051"></a>00051         <a class="code" href="class_c_block_diagram.html" title="ブロックダイアグラムのクラス.">CBlockDiagram</a>* <a class="code" href="class_c_butterworth_common.html#aa4b7fe3eeba1381b231edde3a3fe22de" title="バンドパスフィルタの伝達関数の初期化と係数の決定.">initBandTransferFunction</a>(<span class="keywordtype">double</span> i_dLowCutFreq, <span class="keywordtype">double</span> i_dHighCutFreq);
+<a name="l00052"></a>00052 
+<a name="l00061"></a>00061         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_butterworth_common.html#afb7042b73af49825ea65b004a9a8d79b" title="プロトタイプローパスフィルタを決定.">decisionPrototype</a>(
+<a name="l00062"></a>00062                                                 <span class="keywordtype">double</span> i_dPassFreq,
+<a name="l00063"></a>00063                                                 <span class="keywordtype">double</span> i_dRippleGain,
+<a name="l00064"></a>00064                                                 <span class="keywordtype">double</span> i_dStopFreq,
+<a name="l00065"></a>00065                                                 <span class="keywordtype">double</span> i_dAttenuateGain);
+<a name="l00066"></a>00066     
+<a name="l00067"></a>00067 <span class="keyword">protected</span>:
+<a name="l00073"></a>00073         <span class="keywordtype">double</span> <a class="code" href="class_c_butterworth_common.html#adc3be631a8993b1c5b544d736068f358" title="伝達関数の係数を取得.">getAlpha</a>(<span class="keywordtype">long</span> i);
+<a name="l00074"></a>00074 
+<a name="l00080"></a>00080         <span class="keywordtype">double</span> <a class="code" href="class_c_butterworth_common.html#a905a2f01a0aa940141190ebae9c13ce7" title="伝達関数の係数を取得.">getLowBeta</a>(<span class="keywordtype">double</span> i_dCutFreq);
+<a name="l00081"></a>00081 
+<a name="l00087"></a>00087         <span class="keywordtype">double</span> <a class="code" href="class_c_butterworth_common.html#aebcd1718c1da4312b573a063de19337b" title="伝達関数の係数を取得.">getHighBeta</a>(<span class="keywordtype">double</span> i_dCutFreq);
+<a name="l00088"></a>00088     
+<a name="l00089"></a>00089 };
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091 <span class="preprocessor">#endif  //__CBUTTERWORTH_COMMON_H__</span>
+<a name="l00092"></a>00092 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -125,7 +117,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 9 2015 00:52:48 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 14 2015 20:48:18 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>
