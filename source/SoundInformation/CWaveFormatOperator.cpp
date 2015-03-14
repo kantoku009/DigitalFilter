@@ -13,17 +13,17 @@ bool g_bIsDEBUG=false;
 class WaveFormatError
 {
 public:
-    WaveFormatError(char *message)
-    {
-        size_t len;
-        
-        len = strlen(message);
-        mMessage = new char [len+1];
-        strcpy(mMessage,message);
-    }
-    const char* what() const { return mMessage; }
+	WaveFormatError(char *message)
+	{
+		size_t len;
+
+		len = strlen(message);
+		mMessage = new char [len+1];
+		strcpy(mMessage,message);
+	}
+	const char* what() const { return mMessage; }
 private:
-    char* mMessage;
+	char* mMessage;
 };
 
 
@@ -42,7 +42,7 @@ bool CWaveFormatOperator::readWaveFile(const string i_strFileName)
 		return false;
 	}
     
-    try
+	try
 	{
 		//'RIFF'
 		this->readRIFFChunk(fp);
