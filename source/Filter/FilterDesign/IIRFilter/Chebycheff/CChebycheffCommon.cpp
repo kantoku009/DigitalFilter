@@ -318,8 +318,11 @@ CBlockDiagram* CChebycheffCommon::initBandTransferFunction(double inLowCutFreq, 
 	long a_lNumSection = (a_IsOrderNumberEven)? (a_lOrderNumber/2) : ((a_lOrderNumber-1)/2);
 	a_lNumSection++;
 
-	CBlockDiagram* lowpassSection = initLowTransferFunction(inHighCutFreq);
-	CBlockDiagram* highpassSection = initHighTransferFunction(inLowCutFreq);
+	//ローパスフィルタの伝達関数.
+	CBlockDiagram* lowpassSection = initLowTransferFunction(inLowCutFreq);
+	//ハイパスフィルタの伝達関数.
+	CBlockDiagram* highpassSection = initHighTransferFunction(inHighCutFreq);
+	//バンドパスフィルタの伝達関数.（ローパスとハイパスを組み合わせる）.
 	CBlockDiagram* bandpassSection = new CBlockDiagram [a_lNumSection*2];
 	for(long a_lIndex=0;a_lIndex<a_lNumSection;a_lIndex++)
 	{

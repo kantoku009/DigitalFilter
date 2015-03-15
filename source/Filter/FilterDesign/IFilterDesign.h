@@ -63,7 +63,7 @@ protected:
 	/**
 	 * @brief	デバッグフラグ. True:デバッグモード.
 	 */
-	bool m_bIsDebug=false;
+	bool m_bIsDebug=true;
 };
 
 #endif	//__IFILTER_DESIGN_H__

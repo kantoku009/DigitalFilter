@@ -75,7 +75,7 @@ public:
 			{"RippleGain",		&this->m_dRippleGain},
 			{"StopFreq",		&this->m_dStopFreq},
 			{"AttenuateGain",	&this->m_dAttenuateGain},
-			{"CutoffFreq",		&this->m_dLowCutoffFreq},
+			{"LowCutoffFreq",	&this->m_dLowCutoffFreq},
 		};
 
 		//コンフィグの設定.
