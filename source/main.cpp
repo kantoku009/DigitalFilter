@@ -85,8 +85,7 @@ CFilter* createFilter(short i_shIndex)
 int main(int argc, char* argv[])
 {
 	string inFileName(argv[1]);
-	double dBPerOctDown=atof(argv[2]);
-	short a_shFilterIndex=atoi(argv[3]);
+	short a_shFilterIndex=atoi(argv[2]);
 
 	//フィルタを生成.
 	CFilter* a_pcFilter = createFilter(a_shFilterIndex);
@@ -97,19 +96,15 @@ int main(int argc, char* argv[])
 	}
 	//フィルタ名を取得.
 	const char* a_strFilterName = a_pcFilter->description();
+	//出力ファイル名を決定.
+	string outFileName(a_strFilterName);
+	outFileName += ".wav";
 
 	//フィルタの振幅特性と位相特性を出力.
 	//cout << "Print AmplitudeProperty and PhaseProperty" << endl;
 	//const string a_strAmplitudeFilename = string(a_strFilterName) + string("_AmplitudeProperty.csv");
 	//const string a_strPhaseFilename = string(a_strFilterName) + string("_PhaseProperty.csv");
 	///a_pcFilter->printProperty(a_strAmplitudeFilename.c_str(),a_strPhaseFilename.c_str());
-
-	//出力ファイル名を決定.
-	string outFileName(a_strFilterName);
-	char tempStr[32];
-	sprintf(tempStr,"%2.2f",dBPerOctDown);
-	outFileName += tempStr;
-	outFileName += "dB.wav";
 
 	cout << "load file now: " << inFileName << endl;
 	CWaveFormatOperator a_cWaveFile;

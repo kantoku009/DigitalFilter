@@ -31,15 +31,29 @@ makeを実行する。
 
 以下の実行ファイルが出来上がる。
 
- - butterworth_filter
- - chebycheff_filter
+ - myfilter
 
 使い方は以下。  
 
- - %./butterworth_filter [WAVEファイル名] [dB/oct]  
- - %./chebycheff_filter [WAVEファイル名] [dB/oct]  
+ - %./myfilter [WAVEファイル名] [フィルタ種類]  
 
-dB/octは、1オクターブで何dB減衰させるかを指定する数値。
+フィルタ種類は以下数値を指定する。
+
+ - 0 : Butterworth ローパスフィルタ
+ - 1 : Butterworth バンドパスフィルタ
+ - 2 : Butterworth ハイパスフィルタ
+ - 3 : Chebycheff ローパスフィルタ
+ - 4 : Chebycheff バンドパスフィルタ
+ - 5 : Chebycheff ハイパスフィルタ
+
+各フィルタの設定値は以下のファイルに記載されている。  
+
+ - ./config/ButterworthLowPassFilter.conf
+ - ./config/ButterworthBandPassFilter.conf
+ - ./config/ButterworthHighPassFilter.conf
+ - ./config/ChebycheffLowPassFilter.conf
+ - ./config/ChebycheffBandPassFilter.conf
+ - ./config/ChebycheffHighPassFilter.conf
 
 ----
 
@@ -47,15 +61,39 @@ dB/octは、1オクターブで何dB減衰させるかを指定する数値。
 ホワイトノイズをButterworthフィルタに通した結果を周波数解析した。
 
 ##ローパスフィルタ
-フィルタの設定は以下のようにした。
+###設定
+Butterworthローパスフィルタの設定値は、以下のファイルに書かれている。  
+
+ - ./config/ButterworthLowPassFilter.conf
+
+フィルタの設定は、デフォルトでは以下のようにした。
 
 - カットオフ周波数： 400[Hz]
 - 1オクターブの減衰率： -48[db/oct]
 
 ![Butterworth Low-pass -48dB/oct](./img/Butterworth_lowpass_48dB.png)
 
+##バンドパスフィルタ
+###設定
+Butterworthバンドパスフィルタの設定値は、以下のファイルに書かれている。  
+
+ - ./config/ButterworthBandPassFilter.conf
+
+フィルタの設定は、デフォルトでは以下のようにした。
+
+- カットオフ周波数： 400[Hz]
+- カットオフ周波数： 2000[Hz]
+- 1オクターブの減衰率： -48[db/oct]
+
+![Butterworth Band-pass -48dB/oct](./img/Butterworth_bandpass_48dB.png)
+
 ##ハイパスフィルタ
-フィルタの設定は以下のようにした。
+###設定
+Butterworthハイパスフィルタの設定値は、以下のファイルに書かれている。  
+
+ - ./config/ButterworthHighPassFilter.conf
+
+フィルタの設定は、デフォルトでは以下のようにした。
 
 - カットオフ周波数： 2000[Hz]
 - 1オクターブの減衰率： -48[db/oct]
@@ -68,15 +106,39 @@ dB/octは、1オクターブで何dB減衰させるかを指定する数値。
 ホワイトノイズをButterworthフィルタに通した結果を周波数解析した。
 
 ##ローパスフィルタ
-フィルタの設定は以下のようにした。
+###設定
+Chebycheffローパスフィルタの設定値は、以下のファイルに書かれている。  
+
+ - ./config/ChebycheffLowPassFilter.conf
+
+フィルタの設定は、デフォルトでは以下のようにした。
 
 - カットオフ周波数： 400[Hz]
 - 1オクターブの減衰率： -48[db/oct]
 
 ![Chebycheff Low-pass -48dB/oct](./img/Chebycheff_lowpass_48dB.png)
 
+##バンドパスフィルタ
+###設定
+Chebycheffバンドパスフィルタの設定値は、以下のファイルに書かれている。  
+
+ - ./config/ChebycheffBandPassFilter.conf
+
+フィルタの設定は、デフォルトでは以下のようにした。
+
+- カットオフ周波数： 400[Hz]
+- カットオフ周波数： 2000[Hz]
+- 1オクターブの減衰率： -48[db/oct]
+
+![Chebycheff Band-pass -48dB/oct](./img/Chebycheff_bandpass_48dB.png)
+
 ##ハイパスフィルタ
-フィルタの設定は以下のようにした。
+###設定
+Chebycheffハイパスフィルタの設定値は、以下のファイルに書かれている。  
+
+ - ./config/ChebycheffHighPassFilter.conf
+
+フィルタの設定は、デフォルトでは以下のようにした。
 
 - カットオフ周波数： 2000[Hz]
 - 1オクターブの減衰率： -48[db/oct]
