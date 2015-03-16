@@ -2,15 +2,17 @@
 ====================
 #はじめに
 C++言語にてデジタルフィルタを作成した。  
+WAVEファイルを読み込んで、デジタルフィルタに通すようにした。  
 作成したフィルタは以下。
 
 - Butterworth
 - Chebycheff
 
-WAVEファイルを読み込んで、デジタルフィルタに通すようにした。  
-全ソースコードのダウンロードは以下から行える。
 
-- [DigitalFilter](https://github.com/kantoku009/DigitalFilter/archive/master.zip)
+GitHubのリポジトリと全ソースコードのダウンロードは以下URLから行える。
+
+- [Githubのリポジトリ](https://github.com/kantoku009/DigitalFilter)
+- [全ソースコードのダウンロード](https://github.com/kantoku009/DigitalFilter/archive/master.zip)
 
 ----
 
