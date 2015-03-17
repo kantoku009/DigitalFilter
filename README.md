@@ -26,7 +26,7 @@ UMLの作成には無償のUMLモデリングツール[astah community](http://a
 
 クラスやメソッドの説明はdoxygenで生成した。  
 
-- [クラスやメソッドの説明](./html/index.html)
+- [クラスやメソッドの説明](./html/index.html)
 
 ----
 
