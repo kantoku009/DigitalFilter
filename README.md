@@ -24,6 +24,10 @@ GitHubのリポジトリと全ソースコードのダウンロードは以下UR
 
 UMLの作成には無償のUMLモデリングツール[astah community](http://astah.change-vision.com/ja/)を使用している。  
 
+クラスやメソッドの説明はdoxygenで生成した。  
+
+- [クラスやメソッドの説明](./html/index.html)
+
 ----
 
 #ビルド
