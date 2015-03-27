@@ -13,8 +13,8 @@ using namespace std;
 *
 *引数
 *   i_iOrder : ダイアグラムの次数
-*   i_pdCoeffA : ダイアグラムの係数
-*   i_pdCoeffB : ダイアグラムの係数
+*   i_pdFeedForwardCoefficient : ダイアグラムの係数.(フィードフォーワード係数).
+*   i_pdFeedbackCoefficient : ダイアグラムの係数.(フィードバック係数).
 *
 *ローカル変数
 *   なし
@@ -23,15 +23,15 @@ using namespace std;
 *   なし
 *
 **************************************/
-void CBlockDiagram::init(int i_iOrder,const double* i_pdCoeffA, const double* i_pdCoeffB)
+void CBlockDiagram::init(int i_iOrder,const double* i_pdFeedForwardCoefficient, const double* i_pdFeedbackCoefficient)
 {
 	//次数の設定
 	this->setOrder(i_iOrder);
 
 	try
 	{
-		this->m_pdCoefficientA = new double [i_iOrder+1];
-		this->m_pdCoefficientB = new double [i_iOrder+1];
+		this->m_pdFeedforwardCoefficient = new double [i_iOrder+1];
+		this->m_pdFeedbackCoefficient = new double [i_iOrder+1];
 	}
 	catch(bad_alloc err)
 	{
@@ -40,8 +40,8 @@ void CBlockDiagram::init(int i_iOrder,const double* i_pdCoeffA, const double* i_
     
 	for(int i=0;i<=this->m_iOrder;i++)
 	{
-		this->m_pdCoefficientA[i] = i_pdCoeffA[i];
-		this->m_pdCoefficientB[i] = i_pdCoeffB[i];
+		this->m_pdFeedforwardCoefficient[i] = i_pdFeedForwardCoefficient[i];
+		this->m_pdFeedbackCoefficient[i] = i_pdFeedbackCoefficient[i];
 	}
 
 	this->initPreviousSample(this->m_iOrder);
@@ -54,9 +54,9 @@ void CBlockDiagram::init(int i_iOrder,const double* i_pdCoeffA, const double* i_
 *   i_dSample : サンプル値
 *
 * ローカル変数
-*   data1 : データの中間出力(FIR部)
-*   data2 : データの最終出力(IIR部)
-*   i : ループカウンタ
+*   a_dFeedbackValue : データの中間出力(FIR部)
+*   a_dFeedforwardValue : データの最終出力(IIR部)
+*   a_iIndex : ループカウンタ
 *
 * 返り値
 *   元のデータがダイアグラムを通り抜けた後のデータが出力される
@@ -64,39 +64,28 @@ void CBlockDiagram::init(int i_iOrder,const double* i_pdCoeffA, const double* i_
 **************************************/
 double CBlockDiagram::inject(double i_dSample)
 {
-	double data1,data2;
+	double a_dFeedbackValue=0.0;
+	double a_dFeedforwardValue=0.0;
+	int a_iIndex=0;
     
-	data1 = this->m_pdCoefficientB[0] * i_dSample;
-	for(int i_iIndex=1; i_iIndex<=this->m_iOrder; i_iIndex++)
+	// フィードバック(FIR部)
+	a_dFeedbackValue = this->m_pdFeedbackCoefficient[0] * i_dSample;
+	for(a_iIndex=1; a_iIndex<=this->m_iOrder; a_iIndex++)
 	{
-		data1 += this->m_pdCoefficientB[i_iIndex] * this->getPreviousSample(i_iIndex);
+		a_dFeedbackValue += this->m_pdFeedbackCoefficient[a_iIndex] * this->getPreviousSample(a_iIndex);
 	}
 
-	data2 = this->m_pdCoefficientA[0] * data1;
-	for(int i_iIndex=1; i_iIndex<=this->m_iOrder; i_iIndex++)
+	// フィードフォーワード(IIR部)
+	a_dFeedforwardValue = this->m_pdFeedforwardCoefficient[0] * a_dFeedbackValue;
+	for(a_iIndex=1; a_iIndex<=this->m_iOrder; a_iIndex++)
 	{
-		data2 += this->m_pdCoefficientA[i_iIndex] * this->getPreviousSample(i_iIndex);
+		a_dFeedforwardValue += this->m_pdFeedforwardCoefficient[a_iIndex] * this->getPreviousSample(a_iIndex);
 	}
     
 	//サンプル値の保存
 	this->popPreviousSample();
-	this->pushPreviousSample(data1);
+	this->pushPreviousSample(a_dFeedbackValue);
 
-	return data2;
-}
-
-
-/******************************
- * =演算子のオーバーロード.
- ******************************/
-const CBlockDiagram &CBlockDiagram::operator=(const CBlockDiagram& i_cBlockDiagram)
-{
-	if(this == &i_cBlockDiagram) return *this;
-
-	delete [] this->m_pdCoefficientA;
-	delete [] this->m_pdCoefficientB;
-	this->init(i_cBlockDiagram.getOrder(), i_cBlockDiagram.getCoefficientA(), i_cBlockDiagram.getCoefficientB());
-
-	return *this;
+	return a_dFeedforwardValue;
 }
 

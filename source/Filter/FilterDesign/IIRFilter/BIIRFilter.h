@@ -233,8 +233,8 @@ protected:
 			complex<double> h = polar(1.0, 0.0);
 			for(long a_lIndex=0; a_lIndex<i_lNumSection; a_lIndex++)
 			{
-				const double* a = this->m_pcBlockDiagram[a_lIndex].getCoefficientA();
-				const double* b = this->m_pcBlockDiagram[a_lIndex].getCoefficientB();
+				const double* a = this->m_pcBlockDiagram[a_lIndex].getFeedforwardCoefficient();
+				const double* b = this->m_pcBlockDiagram[a_lIndex].getFeedbackCoefficient();
 
 				h *= b[0] * (a[0] + a[1]*e1 + a[2]*e2) / (1.0 - b[1]*e1 - b[2]*e2);
 			}

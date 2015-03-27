@@ -21,16 +21,8 @@ public:
 	CBlockDiagram()
 	{
 		this->setOrder(0);
-		this->m_pdCoefficientA = 0;
-		this->m_pdCoefficientB = 0;
-	}
-
-	/**
-	 * @brief	コピーコンストラクタ.
-	 */
-	CBlockDiagram(const CBlockDiagram& i_cBlockDiagram)
-	{
-		this->init(i_cBlockDiagram.getOrder(), i_cBlockDiagram.getCoefficientA(), i_cBlockDiagram.getCoefficientB());
+		this->m_pdFeedforwardCoefficient = 0;
+		this->m_pdFeedbackCoefficient = 0;
 	}
 
 	/**
@@ -38,18 +30,18 @@ public:
 	 */
 	virtual ~CBlockDiagram()
 	{
-		delete [] this->m_pdCoefficientA;
-		delete [] this->m_pdCoefficientB;
+		delete [] this->m_pdFeedforwardCoefficient;
+		delete [] this->m_pdFeedbackCoefficient;
 	}
     
 	/**
 	 * @brief	ダイアグラムの初期化.
 	 * @param	int i_iOrder				ダイアグラムの次数.
-	 * @param	const double* i_pdCoeffA	ダイアグラムの係数.
-	 * @param	const double* i_pdCoeffB	ダイアグラムの係数.
+	 * @param	const double* i_pdFeedforwardCoefficient	ダイアグラムの係数.フィードフォーワード係数.
+	 * @param	const double* i_pdFeedbackCoefficient	ダイアグラムの係数.フィードバック係数.
 	 * @return	なし.
 	 */
-	void init(int i_iOrder, const double* i_pdCoeffA, const double* i_pdCoeffB);
+	void init(int i_iOrder, const double* i_pdFeedforwardCoefficient, const double* i_pdFeedbackCoefficient);
     
 	/**
 	 * @brief	データをダイアグラムに注入.
@@ -68,17 +60,13 @@ public:
 	/**
 	 * @brief	係数を取得.
 	 */
-	const double *getCoefficientA() const{ return this->m_pdCoefficientA; }
+	const double *getFeedforwardCoefficient() const{ return this->m_pdFeedforwardCoefficient; }
 
 	/**
 	 * @brief	係数を取得.
 	 */
-	const double *getCoefficientB() const{ return this->m_pdCoefficientB; }
+	const double *getFeedbackCoefficient() const{ return this->m_pdFeedbackCoefficient; }
 
-	/**
-	 * @brief	=演算子のオーバーロード.
-	 */
-	const CBlockDiagram &operator=(const CBlockDiagram& i_cBlockDiagram);
 private:
     
 	/**
@@ -120,17 +108,17 @@ private:
 	 * @brief	以前のサンプル値.
 	 * @note	キューで実現する.
 	 */
-	deque< double > m_quePreviousSample;
+	deque<double> m_quePreviousSample;
 
 	/**
-	 * @brief	係数.
+	 * @brief	フィードフォーワード係数.(IIR部).
 	 */
-	double *m_pdCoefficientA;
+	double *m_pdFeedforwardCoefficient;
 
 	/**
-	 * @brief	係数.
+	 * @brief	フィードバック係数.(FIR部).
 	 */
-	double *m_pdCoefficientB;
+	double *m_pdFeedbackCoefficient;
     
 	/**
 	 * @brief	次数を設定.
@@ -138,7 +126,7 @@ private:
 	void setOrder(int i_iOrder){ this->m_iOrder = i_iOrder; }
 
 	/**
-	 * @brief	次数.
+	 * @brief	ブロックダイアグラムの次数.
 	 */
 	int m_iOrder;
 };
