@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
 	//cout << "Print AmplitudeProperty and PhaseProperty" << endl;
 	//const string a_strAmplitudeFilename = string(a_strFilterName) + string("_AmplitudeProperty.csv");
 	//const string a_strPhaseFilename = string(a_strFilterName) + string("_PhaseProperty.csv");
-	///a_pcFilter->printProperty(a_strAmplitudeFilename.c_str(),a_strPhaseFilename.c_str());
+	//a_pcFilter->printProperty(a_strAmplitudeFilename.c_str(),a_strPhaseFilename.c_str());
 
 	cout << "load file now: " << inFileName << endl;
 	CWaveFormatOperator a_cWaveFile;
