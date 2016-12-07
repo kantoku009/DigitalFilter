@@ -6,6 +6,8 @@
 #ifndef __CIIR_FILTER_H__
 #define __CIIR_FILTER_H__
 
+#define _USE_MATH_DEFINES	//M_PIを使用するのに必要.
+
 #include <cstdio>		//デバッグ用. printf()を使用したい.
 #include <fstream>
 #include <cmath>

@@ -1,24 +1,25 @@
 #include "BSoundInformation.h"
 
 #include <iostream>
+#include <cstring>		//memsetを使用したい.
 using namespace std;
 
 /*******************************************************************
-*BSoundInformationのコンストラクタ
+* BSoundInformationのコンストラクタ
 *
-*引数
+* 引数
 *	sampleRate:サンプリング周波数
 *	bitsPerSample:1sampleにつきのbit数
 *	numChannels:チャンネル数
 *	samplesPerChannel:1channelにつきのサンプル数
 *
-*ローカル変数
+* ローカル変数
 *	なし
 *
-*返り値
+* 返り値
 *	なし
 *
-*処理の流れ
+* 処理の流れ
 *	メンバ変数の初期化
 *
 ********************************************************************/
@@ -290,7 +291,7 @@ short BSoundInformation::getBytesPerSample() const
 	short bytesPerSample;
 	
 	bytesPerSample = this->m_shBitsPerSample/8 + (this->m_shBitsPerSample%8 != 0);
-	bytesPerSample = (bytesPerSample < sizeof(long))? bytesPerSample:sizeof(long);
+	bytesPerSample = (bytesPerSample < static_cast<short>(sizeof(long)) )? bytesPerSample:sizeof(long);
 	
 	return bytesPerSample;
 }

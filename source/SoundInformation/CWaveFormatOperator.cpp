@@ -253,21 +253,19 @@ bool CWaveFormatOperator::writeWaveFile(const string i_strFileName)
 		return false;
 	}
     
-	bool a_bIsWriteSuccess = false;
-
 	try
 	{
 		//'RIFF' write
-		a_bIsWriteSuccess = this->writeRIFFChunk(fp);
+		this->writeRIFFChunk(fp);
 	   
 		//'WAVE' write
-		a_bIsWriteSuccess = this->writeWAVEChunk(fp);
+		this->writeWAVEChunk(fp);
 	    
 		//'fmt ' write
-		a_bIsWriteSuccess = this->writeFmtChunk(fp);
+		this->writeFmtChunk(fp);
 		
 		//'data' write
-		a_bIsWriteSuccess = this->writeSample(fp);
+		this->writeSample(fp);
 	}
 	catch(WaveFormatError err)
 	{
