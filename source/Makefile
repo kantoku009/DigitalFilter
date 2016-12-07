@@ -8,7 +8,7 @@ LDFLAGS = -Wall -O2 -std=c++11
 #メイン処理のソースファイル.
 SRCS_MAIN = ./main.cpp 
 #音声ファイルを扱う処理のソースファイル.
-SRCS_WAVEFILE = ./SoundInformation/BSoundInformation.cpp ./SoundInformation/CWaveFormatOperator.cpp 
+SRCS_WAVEFILE = ./SoundInformation/source/BSoundInformation.cpp ./SoundInformation/source/CWaveFormatOperator.cpp 
 #フィルタ処理に関する処理のソースファイル.
 SRCS_FILTERS = ./Filter/FilterDesign/CBlockDiagram.cpp 
 #バターワース特性フィルタに関する処理のソースファイル.

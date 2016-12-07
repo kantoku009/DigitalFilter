@@ -3,7 +3,7 @@
 #include <cstring>		//atof(), atoi()を使用したい.
 using namespace std;
 
-#include "./SoundInformation/CWaveFormatOperator.h"
+#include "./SoundInformation/source/CWaveFormatOperator.h"
 #include "./Filter/CFilter.h"
 
 //フィルタービルダー
