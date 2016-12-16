@@ -30,11 +30,11 @@ bool runFilter(CFilter& i_cFilter, BSoundInformation& i_bSoundInformation, long 
 	for(long a_lIndex=i_lBegin; a_lIndex<=i_lEnd; a_lIndex++)
 	{
 		// サンプルを取得.
-		a_dCurrentSample = i_bSoundInformation.readSampleFromMemory(a_lIndex,i_shChannel);
+		a_dCurrentSample = i_bSoundInformation.getSample(a_lIndex,i_shChannel);
 		// フィルタにサンプルを通す.
 		a_dCurrentSample = i_cFilter.passFilter(a_dCurrentSample);
 		// フィルタに通したサンプルを保存.
-		i_bSoundInformation.writeSampleIntoMemory(a_dCurrentSample, a_lIndex, i_shChannel);
+		i_bSoundInformation.setSample(a_dCurrentSample, a_lIndex, i_shChannel);
 	}
 
 	return true;
