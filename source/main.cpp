@@ -108,7 +108,7 @@ int main(int argc, char* argv[])
 
 	cout << "load file now: " << inFileName << endl;
 	CWaveFormatOperator a_cWaveFile;
-	if(true == a_cWaveFile.readWaveFile(inFileName))
+	if(true == a_cWaveFile.read(inFileName))
 	{
 		// up sampling.
 		//a_cWaveFile.setSampleRate(a_cWaveFile.getSampleRate() * 2);
@@ -126,7 +126,7 @@ int main(int argc, char* argv[])
 
 		//フィルタ処理後の音声を書き出す.
 		cout << "write file now: " << outFileName << endl;
-		a_cWaveFile.writeWaveFile(outFileName);
+		a_cWaveFile.write(outFileName);
 	}
 	else
 	{
