@@ -3,7 +3,7 @@
 #include <cstring>		//atof(), atoi()を使用したい.
 using namespace std;
 
-#include "./SoundInformation/source/CWaveFormatOperator.h"
+#include "./SoundInformation/source/CWaveFile.h"
 #include "./Filter/CFilter.h"
 
 //フィルタービルダー
@@ -107,7 +107,7 @@ int main(int argc, char* argv[])
 	//a_pcFilter->printProperty(a_strAmplitudeFilename.c_str(),a_strPhaseFilename.c_str());
 
 	cout << "load file now: " << inFileName << endl;
-	CWaveFormatOperator a_cWaveFile;
+	CWaveFile a_cWaveFile;
 	if(true == a_cWaveFile.read(inFileName))
 	{
 		// up sampling.
