@@ -8,7 +8,7 @@ LDFLAGS = -Wall -O2 -std=c++11
 #メイン処理のソースファイル.
 SRCS_MAIN = ./main.cpp 
 #音声ファイルを扱う処理のソースファイル.
-SRCS_WAVEFORMAT_OPERATOR_DIR := SoundInformation/source
+SRCS_WAVEFORMAT_OPERATOR_DIR := WaveFormOperator/source
 include $(SRCS_WAVEFORMAT_OPERATOR_DIR)/Makefile
 SRCS_WAVEFILE = $(SRCS_WAVEFORMAT_OPERATOR)
 #フィルタ処理に関する処理のソースファイル.

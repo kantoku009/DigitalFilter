@@ -1,3 +1,3 @@
-[submodule "source/SoundInformation"]
-	path = source/SoundInformation
-	url = https://github.com/kantoku009/SoundInformation
+[submodule "source/WaveFormOperator"]
+	path = source/WaveFormOperator
+	url = git@github.com:kantoku009/WaveFormOperator.git

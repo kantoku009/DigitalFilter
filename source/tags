@@ -1,335 +1,394 @@
+!_TAG_FILE_ENCODING	cp932	//
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
 !_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_JP_AUTHOR	HIGASHI Hirohito	/Twitter: @h_east/
+!_TAG_PROGRAM_JP_URL	http://hp.vector.co.jp/authors/VA025040/	//
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.8	//
-BIIRFilter	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	BIIRFilter()$/;"	f	class:BIIRFilter
-BIIRFilter	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^class BIIRFilter$/;"	c
-BSoundInformation	SoundInformation/BSoundInformation.cpp	/^BSoundInformation::BSoundInformation($/;"	f	class:BSoundInformation
-BSoundInformation	SoundInformation/BSoundInformation.cpp	/^BSoundInformation::BSoundInformation(const BSoundInformation &ob)$/;"	f	class:BSoundInformation
-BSoundInformation	SoundInformation/BSoundInformation.h	/^class BSoundInformation$/;"	c
-BUTTERWORTH_BANDPASS_FILTER_CONFIG_FILENAME	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^#define BUTTERWORTH_BANDPASS_FILTER_CONFIG_FILENAME	/;"	d
-BUTTERWORTH_BANDPASS_FILTER_DESIGN_NAME	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^#define	BUTTERWORTH_BANDPASS_FILTER_DESIGN_NAME	/;"	d
-BUTTERWORTH_HIGHPASS_FILTER_CONFIG_FILENAME	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthHighPassFilterDesign.h	/^#define BUTTERWORTH_HIGHPASS_FILTER_CONFIG_FILENAME	/;"	d
-BUTTERWORTH_HIGHPASS_FILTER_DESIGN_NAME	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthHighPassFilterDesign.h	/^#define	BUTTERWORTH_HIGHPASS_FILTER_DESIGN_NAME	/;"	d
-BUTTERWORTH_LOWPASS_FILTER_CONFIG_FILENAME	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthLowPassFilterDesign.h	/^#define BUTTERWORTH_LOWPASS_FILTER_CONFIG_FILENAME	/;"	d
-BUTTERWORTH_LOWPASS_FILTER_DESIGN_NAME	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthLowPassFilterDesign.h	/^#define	BUTTERWORTH_LOWPASS_FILTER_DESIGN_NAME	/;"	d
-CBlockDiagram	Filter/FilterDesign/CBlockDiagram.h	/^	CBlockDiagram()$/;"	f	class:CBlockDiagram
-CBlockDiagram	Filter/FilterDesign/CBlockDiagram.h	/^class CBlockDiagram$/;"	c
-CButterworthBandPassFilterBuilder	Filter/Builder/BandPassFilter/CButterworthBandPassFilterBuilder.h	/^	CButterworthBandPassFilterBuilder(){ }$/;"	f	class:CButterworthBandPassFilterBuilder
-CButterworthBandPassFilterBuilder	Filter/Builder/BandPassFilter/CButterworthBandPassFilterBuilder.h	/^class CButterworthBandPassFilterBuilder : public IFilterBuilder$/;"	c
-CButterworthBandPassFilterDesign	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^	CButterworthBandPassFilterDesign()$/;"	f	class:CButterworthBandPassFilterDesign
-CButterworthBandPassFilterDesign	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^class CButterworthBandPassFilterDesign : public IBandPassFilterDesign, public CButterworthCommon$/;"	c
-CButterworthCommon	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthCommon.h	/^	CButterworthCommon() { }$/;"	f	class:CButterworthCommon
-CButterworthCommon	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthCommon.h	/^class CButterworthCommon : public BIIRFilter$/;"	c
-CButterworthHighPassFilterBuilder	Filter/Builder/HighPassFilter/CButterworthHighPassFilterBuilder.h	/^	CButterworthHighPassFilterBuilder(){ }$/;"	f	class:CButterworthHighPassFilterBuilder
-CButterworthHighPassFilterBuilder	Filter/Builder/HighPassFilter/CButterworthHighPassFilterBuilder.h	/^class CButterworthHighPassFilterBuilder : public IFilterBuilder$/;"	c
-CButterworthHighPassFilterDesign	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthHighPassFilterDesign.h	/^	CButterworthHighPassFilterDesign()$/;"	f	class:CButterworthHighPassFilterDesign
-CButterworthHighPassFilterDesign	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthHighPassFilterDesign.h	/^class CButterworthHighPassFilterDesign : public IHighPassFilterDesign, public CButterworthCommon$/;"	c
-CButterworthLowPassFilterBuilder	Filter/Builder/LowPassFilter/CButterworthLowPassFilterBuilder.h	/^	CButterworthLowPassFilterBuilder(){ }$/;"	f	class:CButterworthLowPassFilterBuilder
-CButterworthLowPassFilterBuilder	Filter/Builder/LowPassFilter/CButterworthLowPassFilterBuilder.h	/^class CButterworthLowPassFilterBuilder : public IFilterBuilder$/;"	c
-CButterworthLowPassFilterDesign	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthLowPassFilterDesign.h	/^	CButterworthLowPassFilterDesign()$/;"	f	class:CButterworthLowPassFilterDesign
-CButterworthLowPassFilterDesign	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthLowPassFilterDesign.h	/^class CButterworthLowPassFilterDesign : public ILowPassFilterDesign, public CButterworthCommon$/;"	c
-CC	Makefile	/^CC = g++$/;"	m
-CC	test_source/Makefile	/^CC = g++$/;"	m
-CChebycheffBandPassFilterBuilder	Filter/Builder/BandPassFilter/CChebycheffBandPassFilterBuilder.h	/^	CChebycheffBandPassFilterBuilder(){ }$/;"	f	class:CChebycheffBandPassFilterBuilder
-CChebycheffBandPassFilterBuilder	Filter/Builder/BandPassFilter/CChebycheffBandPassFilterBuilder.h	/^class CChebycheffBandPassFilterBuilder : public IFilterBuilder$/;"	c
-CChebycheffBandPassFilterDesign	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^	CChebycheffBandPassFilterDesign()$/;"	f	class:CChebycheffBandPassFilterDesign
-CChebycheffBandPassFilterDesign	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^class CChebycheffBandPassFilterDesign : public IBandPassFilterDesign, public CChebycheffCommon$/;"	c
-CChebycheffCommon	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.h	/^	CChebycheffCommon() { }$/;"	f	class:CChebycheffCommon
-CChebycheffCommon	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.h	/^class CChebycheffCommon : public BIIRFilter$/;"	c
-CChebycheffHighPassFilterBuilder	Filter/Builder/HighPassFilter/CChebycheffHighPassFilterBuilder.h	/^	CChebycheffHighPassFilterBuilder(){ }$/;"	f	class:CChebycheffHighPassFilterBuilder
-CChebycheffHighPassFilterBuilder	Filter/Builder/HighPassFilter/CChebycheffHighPassFilterBuilder.h	/^class CChebycheffHighPassFilterBuilder : public IFilterBuilder$/;"	c
-CChebycheffHighPassFilterDesign	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffHighPassFilterDesign.h	/^	CChebycheffHighPassFilterDesign()$/;"	f	class:CChebycheffHighPassFilterDesign
-CChebycheffHighPassFilterDesign	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffHighPassFilterDesign.h	/^class CChebycheffHighPassFilterDesign : public IHighPassFilterDesign, public CChebycheffCommon$/;"	c
-CChebycheffLowPassFilterBuilder	Filter/Builder/LowPassFilter/CChebycheffLowPassFilterBuilder.h	/^	CChebycheffLowPassFilterBuilder(){ }$/;"	f	class:CChebycheffLowPassFilterBuilder
-CChebycheffLowPassFilterBuilder	Filter/Builder/LowPassFilter/CChebycheffLowPassFilterBuilder.h	/^class CChebycheffLowPassFilterBuilder : public IFilterBuilder$/;"	c
-CChebycheffLowPassFilterDesign	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffLowPassFilterDesign.h	/^	CChebycheffLowPassFilterDesign()$/;"	f	class:CChebycheffLowPassFilterDesign
-CChebycheffLowPassFilterDesign	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffLowPassFilterDesign.h	/^class CChebycheffLowPassFilterDesign : public ILowPassFilterDesign, public CChebycheffCommon$/;"	c
-CFilter	Filter/CFilter.h	/^	CFilter()$/;"	f	class:CFilter
-CFilter	Filter/CFilter.h	/^class CFilter$/;"	c
-CFilterConfig	Filter/FilterDesign/CFilterConfig.h	/^	CFilterConfig()$/;"	f	class:CFilterConfig
-CFilterConfig	Filter/FilterDesign/CFilterConfig.h	/^class CFilterConfig$/;"	c
-CHEBYCHEFF_BANDPASS_FILTER_DESIGN_NAME	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^#define	CHEBYCHEFF_BANDPASS_FILTER_DESIGN_NAME	/;"	d
-CHEBYCHEFF_BANDWPASS_FILTER_CONFIG_FILENAME	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^#define CHEBYCHEFF_BANDWPASS_FILTER_CONFIG_FILENAME	/;"	d
-CHEBYCHEFF_HIGHPASS_FILTER_CONFIG_FILENAME	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffHighPassFilterDesign.h	/^#define CHEBYCHEFF_HIGHPASS_FILTER_CONFIG_FILENAME	/;"	d
-CHEBYCHEFF_HIGHPASS_FILTER_DESIGN_NAME	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffHighPassFilterDesign.h	/^#define	CHEBYCHEFF_HIGHPASS_FILTER_DESIGN_NAME	/;"	d
-CHEBYCHEFF_LOWPASS_FILTER_CONFIG_FILENAME	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffLowPassFilterDesign.h	/^#define CHEBYCHEFF_LOWPASS_FILTER_CONFIG_FILENAME	/;"	d
-CHEBYCHEFF_LOWPASS_FILTER_DESIGN_NAME	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffLowPassFilterDesign.h	/^#define	CHEBYCHEFF_LOWPASS_FILTER_DESIGN_NAME	/;"	d
-CWaveFormatOperator	SoundInformation/CWaveFormatOperator.h	/^	CWaveFormatOperator($/;"	f	class:CWaveFormatOperator
-CWaveFormatOperator	SoundInformation/CWaveFormatOperator.h	/^class CWaveFormatOperator : public BSoundInformation$/;"	c
-E_CONFIG_KIND	Filter/FilterDesign/CFilterConfig.h	/^	typedef enum{ eUnknown, eComment, eConfig } E_CONFIG_KIND; $/;"	t	class:CFilterConfig	typeref:enum:CFilterConfig::__anon1
-IBandPassFilterDesign	Filter/FilterDesign/IBandPassFilterDesign.h	/^	IBandPassFilterDesign(){ }$/;"	f	class:IBandPassFilterDesign
-IBandPassFilterDesign	Filter/FilterDesign/IBandPassFilterDesign.h	/^class IBandPassFilterDesign : public IFilterDesign$/;"	c
-IFilterBuilder	Filter/Builder/IFilterBuilder.h	/^class IFilterBuilder$/;"	c
-IFilterDesign	Filter/FilterDesign/IFilterDesign.h	/^class IFilterDesign$/;"	c
-IHighPassFilterDesign	Filter/FilterDesign/IHighPassFilterDesign.h	/^	IHighPassFilterDesign(){ }$/;"	f	class:IHighPassFilterDesign
-IHighPassFilterDesign	Filter/FilterDesign/IHighPassFilterDesign.h	/^class IHighPassFilterDesign : public IFilterDesign$/;"	c
-ILowPassFilterDesign	Filter/FilterDesign/ILowPassFilterDesign.h	/^	ILowPassFilterDesign(){ }$/;"	f	class:ILowPassFilterDesign
-ILowPassFilterDesign	Filter/FilterDesign/ILowPassFilterDesign.h	/^class ILowPassFilterDesign : public IFilterDesign$/;"	c
-LDFLAGS	Makefile	/^LDFLAGS = -Wall -O2 -std=c++11$/;"	m
-LDFLAGS	test_source/Makefile	/^LDFLAGS = -Wall -O2$/;"	m
-LIBS	Makefile	/^LIBS = $/;"	m
-LIBS	test_source/Makefile	/^LIBS = $/;"	m
-OUTFILE	Makefile	/^OUTFILE = .\/myfilter$/;"	m
-OUTFILE_TEST_WAVEFORMAT_OPERATOR	test_source/Makefile	/^OUTFILE_TEST_WAVEFORMAT_OPERATOR = .\/test_WaveFormatOperator$/;"	m
-SRCS	Makefile	/^SRCS = $(SRCS_MAIN) $(SRCS_WAVEFILE) $(SRCS_FILTERS) $(SRCS_BUTTERWORTH) $(SRCS_CHEBYCHEFF)$/;"	m
-SRCS_BUTTERWORTH	Makefile	/^SRCS_BUTTERWORTH = .\/Filter\/FilterDesign\/IIRFilter\/Butterworth\/CButterworthCommon.cpp$/;"	m
-SRCS_CHEBYCHEFF	Makefile	/^SRCS_CHEBYCHEFF = .\/Filter\/FilterDesign\/IIRFilter\/Chebycheff\/CChebycheffCommon.cpp$/;"	m
-SRCS_FILTERS	Makefile	/^SRCS_FILTERS = .\/Filter\/FilterDesign\/CBlockDiagram.cpp $/;"	m
-SRCS_MAIN	Makefile	/^SRCS_MAIN = .\/main.cpp $/;"	m
-SRCS_TEST_WAVEFORMAT_OPERATOR	test_source/Makefile	/^SRCS_TEST_WAVEFORMAT_OPERATOR = .\/test_WaveFormatOperator.cpp ..\/SoundInformation\/BSoundInformation.cpp ..\/SoundInformation\/CWaveFormatOperator.cpp$/;"	m
-SRCS_WAVEFILE	Makefile	/^SRCS_WAVEFILE = .\/SoundInformation\/BSoundInformation.cpp .\/SoundInformation\/CWaveFormatOperator.cpp $/;"	m
-TChunk	SoundInformation/CWaveFormatOperator.h	/^typedef struct TChunk$/;"	s
-TChunk	SoundInformation/CWaveFormatOperator.h	/^}TChunk;$/;"	t	typeref:struct:TChunk
-TFmtChunk	SoundInformation/CWaveFormatOperator.h	/^typedef struct TFmtChunk$/;"	s
-TFmtChunk	SoundInformation/CWaveFormatOperator.h	/^}TFmtChunk;$/;"	t	typeref:struct:TFmtChunk
-WaveFormatError	SoundInformation/CWaveFormatOperator.cpp	/^	WaveFormatError(char *message)$/;"	f	class:WaveFormatError
-WaveFormatError	SoundInformation/CWaveFormatOperator.cpp	/^class WaveFormatError$/;"	c	file:
-__BSOUND_INFORMATION_H__	SoundInformation/BSoundInformation.h	/^#define __BSOUND_INFORMATION_H__$/;"	d
-__CBLOCK_DIAGRAM_H__	Filter/FilterDesign/CBlockDiagram.h	/^#define __CBLOCK_DIAGRAM_H__$/;"	d
-__CBUTTERWORTH_BANDPASSFILTER_DESIGN_H__	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^#define __CBUTTERWORTH_BANDPASSFILTER_DESIGN_H__$/;"	d
-__CBUTTERWORTH_BAND_PASS_FILTER_BUILDER_H__	Filter/Builder/BandPassFilter/CButterworthBandPassFilterBuilder.h	/^#define __CBUTTERWORTH_BAND_PASS_FILTER_BUILDER_H__$/;"	d
-__CBUTTERWORTH_COMMON_H__	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthCommon.h	/^#define __CBUTTERWORTH_COMMON_H__$/;"	d
-__CBUTTERWORTH_HIGHPASSFILTER_DESIGN_H__	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthHighPassFilterDesign.h	/^#define __CBUTTERWORTH_HIGHPASSFILTER_DESIGN_H__$/;"	d
-__CBUTTERWORTH_HIGH_PASS_FILTER_BUILDER_H__	Filter/Builder/HighPassFilter/CButterworthHighPassFilterBuilder.h	/^#define __CBUTTERWORTH_HIGH_PASS_FILTER_BUILDER_H__$/;"	d
-__CBUTTERWORTH_LOWPASSFILTER_DESIGN_H__	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthLowPassFilterDesign.h	/^#define __CBUTTERWORTH_LOWPASSFILTER_DESIGN_H__$/;"	d
-__CBUTTERWORTH_LOW_PASS_FILTER_BUILDER_H__	Filter/Builder/LowPassFilter/CButterworthLowPassFilterBuilder.h	/^#define __CBUTTERWORTH_LOW_PASS_FILTER_BUILDER_H__$/;"	d
-__CCHEBYCHEFF_BANDPASSFILTER_DESIGN_H__	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^#define __CCHEBYCHEFF_BANDPASSFILTER_DESIGN_H__$/;"	d
-__CCHEBYCHEFF_BAND_PASS_FILTER_BUILDER_H__	Filter/Builder/BandPassFilter/CChebycheffBandPassFilterBuilder.h	/^#define __CCHEBYCHEFF_BAND_PASS_FILTER_BUILDER_H__$/;"	d
-__CCHEBYCHEFF_COMMON_H__	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.h	/^#define __CCHEBYCHEFF_COMMON_H__$/;"	d
-__CCHEBYCHEFF_HIGHPASSFILTER_DESIGN_H__	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffHighPassFilterDesign.h	/^#define __CCHEBYCHEFF_HIGHPASSFILTER_DESIGN_H__$/;"	d
-__CCHEBYCHEFF_HIGH_PASS_FILTER_BUILDER_H__	Filter/Builder/HighPassFilter/CChebycheffHighPassFilterBuilder.h	/^#define __CCHEBYCHEFF_HIGH_PASS_FILTER_BUILDER_H__$/;"	d
-__CCHEBYCHEFF_LOWPASSFILTER_DESIGN_H__	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffLowPassFilterDesign.h	/^#define __CCHEBYCHEFF_LOWPASSFILTER_DESIGN_H__$/;"	d
-__CCHEBYCHEFF_LOW_PASS_FILTER_BUILDER_H__	Filter/Builder/LowPassFilter/CChebycheffLowPassFilterBuilder.h	/^#define __CCHEBYCHEFF_LOW_PASS_FILTER_BUILDER_H__$/;"	d
-__CFILTER_CONFIG_H__	Filter/FilterDesign/CFilterConfig.h	/^#define __CFILTER_CONFIG_H__$/;"	d
-__CFILTER_H__	Filter/CFilter.h	/^#define __CFILTER_H__$/;"	d
-__CIIR_FILTER_H__	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^#define __CIIR_FILTER_H__$/;"	d
-__CWAVE_FORMAT_OPERATOR_H__	SoundInformation/CWaveFormatOperator.h	/^#define __CWAVE_FORMAT_OPERATOR_H__$/;"	d
-__IBANDPASS_FILTER_DESIGN_H__	Filter/FilterDesign/IBandPassFilterDesign.h	/^#define __IBANDPASS_FILTER_DESIGN_H__$/;"	d
-__IFILTER_BUILDER_H__	Filter/Builder/IFilterBuilder.h	/^#define __IFILTER_BUILDER_H__$/;"	d
-__IFILTER_DESIGN_H__	Filter/FilterDesign/IFilterDesign.h	/^#define __IFILTER_DESIGN_H__$/;"	d
-__IHIGHPASS_FILTER_DESIGN_H__	Filter/FilterDesign/IHighPassFilterDesign.h	/^#define __IHIGHPASS_FILTER_DESIGN_H__$/;"	d
-__ILOWPASS_FILTER_DESIGN_H__	Filter/FilterDesign/ILowPassFilterDesign.h	/^#define __ILOWPASS_FILTER_DESIGN_H__$/;"	d
-acosh	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.h	/^	double acosh(double theta){ return log(theta+sqrt((theta+1)*(theta-1))); }$/;"	f	class:CChebycheffCommon
-bitShift	SoundInformation/CWaveFormatOperator.cpp	/^long CWaveFormatOperator::bitShift(short i_shBitShift)$/;"	f	class:CWaveFormatOperator
-build	Filter/Builder/IFilterBuilder.h	/^	virtual CFilter* build()$/;"	f	class:IFilterBuilder
-buildFilterDesign	Filter/Builder/BandPassFilter/CButterworthBandPassFilterBuilder.h	/^	virtual IFilterDesign* buildFilterDesign()$/;"	f	class:CButterworthBandPassFilterBuilder
-buildFilterDesign	Filter/Builder/BandPassFilter/CChebycheffBandPassFilterBuilder.h	/^	virtual IFilterDesign* buildFilterDesign()$/;"	f	class:CChebycheffBandPassFilterBuilder
-buildFilterDesign	Filter/Builder/HighPassFilter/CButterworthHighPassFilterBuilder.h	/^	virtual IFilterDesign* buildFilterDesign()$/;"	f	class:CButterworthHighPassFilterBuilder
-buildFilterDesign	Filter/Builder/HighPassFilter/CChebycheffHighPassFilterBuilder.h	/^	virtual IFilterDesign* buildFilterDesign()$/;"	f	class:CChebycheffHighPassFilterBuilder
-buildFilterDesign	Filter/Builder/LowPassFilter/CButterworthLowPassFilterBuilder.h	/^	virtual IFilterDesign* buildFilterDesign()$/;"	f	class:CButterworthLowPassFilterBuilder
-buildFilterDesign	Filter/Builder/LowPassFilter/CChebycheffLowPassFilterBuilder.h	/^	virtual IFilterDesign* buildFilterDesign()$/;"	f	class:CChebycheffLowPassFilterBuilder
-checkCommentString	Filter/FilterDesign/CFilterConfig.h	/^	bool checkCommentString(string& i_strLine)$/;"	f	class:CFilterConfig
-checkConfigString	Filter/FilterDesign/CFilterConfig.h	/^	bool checkConfigString(string& i_strLine)$/;"	f	class:CFilterConfig
-convert2ByteDataToShort	SoundInformation/CWaveFormatOperator.cpp	/^short CWaveFormatOperator::convert2ByteDataToShort(char* i_pbyData)$/;"	f	class:CWaveFormatOperator
-convert4ByteDataToLong	SoundInformation/CWaveFormatOperator.cpp	/^long CWaveFormatOperator::convert4ByteDataToLong(char* i_pbyData)$/;"	f	class:CWaveFormatOperator
-convertLongTo4ByteData	SoundInformation/CWaveFormatOperator.cpp	/^void CWaveFormatOperator::convertLongTo4ByteData(long i_lInteger, char* i_pbyData)$/;"	f	class:CWaveFormatOperator
-convertShortTo2ByteData	SoundInformation/CWaveFormatOperator.cpp	/^void CWaveFormatOperator::convertShortTo2ByteData(short i_shInteger, char* i_pbyData)$/;"	f	class:CWaveFormatOperator
-createFilter	main.cpp	/^CFilter* createFilter(short i_shIndex)$/;"	f
-decisionPrototype	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	virtual void decisionPrototype($/;"	f	class:BIIRFilter
-decisionPrototype	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthCommon.cpp	/^void CButterworthCommon::decisionPrototype($/;"	f	class:CButterworthCommon
-decisionPrototype	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.cpp	/^void CChebycheffCommon::decisionPrototype( double inPassFreq,$/;"	f	class:CChebycheffCommon
-description	Filter/CFilter.h	/^	virtual const char* description() const$/;"	f	class:CFilter
-description	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^	virtual const char* description() const$/;"	f	class:CButterworthBandPassFilterDesign
-description	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthHighPassFilterDesign.h	/^	virtual const char* description() const$/;"	f	class:CButterworthHighPassFilterDesign
-description	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthLowPassFilterDesign.h	/^	virtual const char* description() const$/;"	f	class:CButterworthLowPassFilterDesign
-description	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^	virtual const char* description() const$/;"	f	class:CChebycheffBandPassFilterDesign
-description	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffHighPassFilterDesign.h	/^	virtual const char* description() const$/;"	f	class:CChebycheffHighPassFilterDesign
-description	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffLowPassFilterDesign.h	/^	virtual const char* description() const$/;"	f	class:CChebycheffLowPassFilterDesign
-digital2analog	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	virtual double digital2analog(double i_dOmega) const$/;"	f	class:BIIRFilter
-eComment	Filter/FilterDesign/CFilterConfig.h	/^	typedef enum{ eUnknown, eComment, eConfig } E_CONFIG_KIND; $/;"	e	enum:CFilterConfig::__anon1
-eConfig	Filter/FilterDesign/CFilterConfig.h	/^	typedef enum{ eUnknown, eComment, eConfig } E_CONFIG_KIND; $/;"	e	enum:CFilterConfig::__anon1
-eUnknown	Filter/FilterDesign/CFilterConfig.h	/^	typedef enum{ eUnknown, eComment, eConfig } E_CONFIG_KIND; $/;"	e	enum:CFilterConfig::__anon1
-getAlpha	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthCommon.cpp	/^double CButterworthCommon::getAlpha(long i_lProd)$/;"	f	class:CButterworthCommon
-getAlpha	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.cpp	/^double CChebycheffCommon::getAlpha(long i_lProd)$/;"	f	class:CChebycheffCommon
-getAmplitude	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	double getAmplitude(complex<double> i_cComplexValue) const$/;"	f	class:BIIRFilter
-getBeta	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.cpp	/^double CChebycheffCommon::getBeta(long i_lProd)$/;"	f	class:CChebycheffCommon
-getBitsPerSample	SoundInformation/BSoundInformation.h	/^	short	getBitsPerSample() const { return this->m_shBitsPerSample; }$/;"	f	class:BSoundInformation
-getBlockAlign	SoundInformation/BSoundInformation.h	/^	short	getBlockAlign() const { return this->m_shNumChannels*this->getBytesPerSample(); }$/;"	f	class:BSoundInformation
-getBytesPerSample	SoundInformation/BSoundInformation.cpp	/^short BSoundInformation::getBytesPerSample() const $/;"	f	class:BSoundInformation
-getConfig	Filter/FilterDesign/CFilterConfig.h	/^	map<string,string> getConfig(string i_strFilename)$/;"	f	class:CFilterConfig
-getConfigKind	Filter/FilterDesign/CFilterConfig.h	/^	E_CONFIG_KIND getConfigKind(string& i_strLine)$/;"	f	class:CFilterConfig
-getCutoffFreq	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthHighPassFilterDesign.h	/^	virtual double getCutoffFreq() const$/;"	f	class:CButterworthHighPassFilterDesign
-getCutoffFreq	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthLowPassFilterDesign.h	/^	virtual double getCutoffFreq() const$/;"	f	class:CButterworthLowPassFilterDesign
-getCutoffFreq	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffHighPassFilterDesign.h	/^	virtual double getCutoffFreq() const$/;"	f	class:CChebycheffHighPassFilterDesign
-getCutoffFreq	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffLowPassFilterDesign.h	/^	virtual double getCutoffFreq() const$/;"	f	class:CChebycheffLowPassFilterDesign
-getFeedbackCoefficient	Filter/FilterDesign/CBlockDiagram.h	/^	const double *getFeedbackCoefficient() const{ return this->m_pdFeedbackCoefficient; }$/;"	f	class:CBlockDiagram
-getFeedforwardCoefficient	Filter/FilterDesign/CBlockDiagram.h	/^	const double *getFeedforwardCoefficient() const{ return this->m_pdFeedforwardCoefficient; }$/;"	f	class:CBlockDiagram
-getFilterDesign	Filter/CFilter.h	/^	virtual IFilterDesign* getFilterDesign() const$/;"	f	class:CFilter
-getHighBeta	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthCommon.cpp	/^double CButterworthCommon::getHighBeta(double i_dCutFreq)$/;"	f	class:CButterworthCommon
-getHighCutoffFreq	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^	virtual double getHighCutoffFreq() const$/;"	f	class:CButterworthBandPassFilterDesign
-getHighCutoffFreq	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^	virtual double getHighCutoffFreq() const$/;"	f	class:CChebycheffBandPassFilterDesign
-getHighGamma	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.cpp	/^double CChebycheffCommon::getHighGamma(double inCutFreq)$/;"	f	class:CChebycheffCommon
-getLowBeta	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthCommon.cpp	/^double CButterworthCommon::getLowBeta(double i_dCutFreq)$/;"	f	class:CButterworthCommon
-getLowCutoffFreq	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^	virtual double getLowCutoffFreq() const$/;"	f	class:CButterworthBandPassFilterDesign
-getLowCutoffFreq	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^	virtual double getLowCutoffFreq() const$/;"	f	class:CChebycheffBandPassFilterDesign
-getLowGamma	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.cpp	/^double CChebycheffCommon::getLowGamma(double inCutFreq)$/;"	f	class:CChebycheffCommon
-getNumChannels	SoundInformation/BSoundInformation.h	/^	short	getNumChannels() const { return this->m_shNumChannels; }$/;"	f	class:BSoundInformation
-getNumSamples	SoundInformation/BSoundInformation.h	/^	long	getNumSamples() const { return this->m_lSamplesPerChannel*this->m_shNumChannels; }$/;"	f	class:BSoundInformation
-getOrder	Filter/FilterDesign/CBlockDiagram.h	/^	int getOrder() const { return this->m_iOrder; }$/;"	f	class:CBlockDiagram
-getOrderNumber	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	long getOrderNumber() const$/;"	f	class:BIIRFilter
-getPhase	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	double getPhase(complex<double> i_cComplexValue) const$/;"	f	class:BIIRFilter
-getPreviousSample	Filter/FilterDesign/CBlockDiagram.h	/^	double getPreviousSample(int i_iIndex)$/;"	f	class:CBlockDiagram
-getPrototypeCutFreq	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	virtual double getPrototypeCutFreq() const$/;"	f	class:BIIRFilter
-getPrototypePassFreq	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	virtual double getPrototypePassFreq() const$/;"	f	class:BIIRFilter
-getSampleRate	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	virtual double getSampleRate() const$/;"	f	class:BIIRFilter
-getSampleRate	SoundInformation/BSoundInformation.h	/^	long	getSampleRate() const { return this->m_lSampleRate; }$/;"	f	class:BSoundInformation
-getSamplesPerChannel	SoundInformation/BSoundInformation.h	/^	long	getSamplesPerChannel() const { return this->m_lSamplesPerChannel; }$/;"	f	class:BSoundInformation
-id	SoundInformation/CWaveFormatOperator.h	/^	char id[4];$/;"	m	struct:TChunk
-init	Filter/CFilter.h	/^	virtual void init(IFilterDesign* i_piFilterDesign)$/;"	f	class:CFilter
-init	Filter/FilterDesign/CBlockDiagram.cpp	/^void CBlockDiagram::init(int i_iOrder,const double* i_pdFeedForwardCoefficient, const double* i_pdFeedbackCoefficient)$/;"	f	class:CBlockDiagram
-init	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^	virtual void init()$/;"	f	class:CButterworthBandPassFilterDesign
-init	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthHighPassFilterDesign.h	/^	virtual void init()$/;"	f	class:CButterworthHighPassFilterDesign
-init	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthLowPassFilterDesign.h	/^	virtual void init()$/;"	f	class:CButterworthLowPassFilterDesign
-init	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^	virtual void init()$/;"	f	class:CChebycheffBandPassFilterDesign
-init	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffHighPassFilterDesign.h	/^	virtual void init()$/;"	f	class:CChebycheffHighPassFilterDesign
-init	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffLowPassFilterDesign.h	/^	virtual void init()$/;"	f	class:CChebycheffLowPassFilterDesign
-initBandTransferFunction	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthCommon.cpp	/^CBlockDiagram* CButterworthCommon::initBandTransferFunction ($/;"	f	class:CButterworthCommon
-initBandTransferFunction	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.cpp	/^CBlockDiagram* CChebycheffCommon::initBandTransferFunction(double inLowCutFreq, double inHighCutFreq)$/;"	f	class:CChebycheffCommon
-initHighTransferFunction	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthCommon.cpp	/^CBlockDiagram* CButterworthCommon::initHighTransferFunction(double i_dCutFreq)$/;"	f	class:CButterworthCommon
-initHighTransferFunction	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.cpp	/^CBlockDiagram* CChebycheffCommon::initHighTransferFunction(double inCutFreq)$/;"	f	class:CChebycheffCommon
-initLowTransferFunction	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthCommon.cpp	/^CBlockDiagram* CButterworthCommon::initLowTransferFunction(double i_dCutFreq)$/;"	f	class:CButterworthCommon
-initLowTransferFunction	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.cpp	/^CBlockDiagram* CChebycheffCommon::initLowTransferFunction(double inCutFreq)$/;"	f	class:CChebycheffCommon
-initPreviousSample	Filter/FilterDesign/CBlockDiagram.h	/^	void initPreviousSample(int i_iNum)$/;"	f	class:CBlockDiagram
-inject	Filter/FilterDesign/CBlockDiagram.cpp	/^double CBlockDiagram::inject(double i_dSample)$/;"	f	class:CBlockDiagram
-interpolation	SoundInformation/BSoundInformation.cpp	/^double BSoundInformation::interpolation(double i_dThreshold, short i_shChannel)$/;"	f	class:BSoundInformation
-isBigEndian	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::isBigEndian()$/;"	f	class:CWaveFormatOperator
-mMessage	SoundInformation/CWaveFormatOperator.cpp	/^	char* mMessage;$/;"	m	class:WaveFormatError	file:
-m_bIsDebug	Filter/FilterDesign/IFilterDesign.h	/^	bool m_bIsDebug=false;$/;"	m	class:IFilterDesign
-m_dAlpha0	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.h	/^	double m_dAlpha0;$/;"	m	class:CChebycheffCommon
-m_dAttenuateGain	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	double m_dAttenuateGain;$/;"	m	class:BIIRFilter
-m_dEpsilon	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.h	/^	double m_dEpsilon;$/;"	m	class:CChebycheffCommon
-m_dHighCutoffFreq	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	double m_dHighCutoffFreq;$/;"	m	class:BIIRFilter
-m_dLowCutoffFreq	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	double m_dLowCutoffFreq;$/;"	m	class:BIIRFilter
-m_dPassFreq	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	double m_dPassFreq;$/;"	m	class:BIIRFilter
-m_dPrototypeCutFreq	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	double m_dPrototypeCutFreq;$/;"	m	class:BIIRFilter
-m_dPrototypePassFreq	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	double m_dPrototypePassFreq;$/;"	m	class:BIIRFilter
-m_dRippleGain	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	double m_dRippleGain;$/;"	m	class:BIIRFilter
-m_dSampleRate	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	double m_dSampleRate;$/;"	m	class:BIIRFilter
-m_dStopFreq	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	double m_dStopFreq;$/;"	m	class:BIIRFilter
-m_iOrder	Filter/FilterDesign/CBlockDiagram.h	/^	int m_iOrder;$/;"	m	class:CBlockDiagram
-m_lOrderNumber	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	long m_lOrderNumber;$/;"	m	class:BIIRFilter
-m_lSampleRate	SoundInformation/BSoundInformation.h	/^	long    m_lSampleRate;$/;"	m	class:BSoundInformation
-m_lSamplesPerChannel	SoundInformation/BSoundInformation.h	/^	long    m_lSamplesPerChannel;$/;"	m	class:BSoundInformation
-m_pbyConfigFileName	Filter/FilterDesign/IFilterDesign.h	/^	const char* m_pbyConfigFileName;$/;"	m	class:IFilterDesign
-m_pbyFilterDesignName	Filter/FilterDesign/IFilterDesign.h	/^	const char* m_pbyFilterDesignName;$/;"	m	class:IFilterDesign
-m_pcBlockDiagram	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	CBlockDiagram* m_pcBlockDiagram;$/;"	m	class:BIIRFilter
-m_pcFilter	Filter/Builder/IFilterBuilder.h	/^	CFilter*		m_pcFilter;$/;"	m	class:IFilterBuilder
-m_pdFeedbackCoefficient	Filter/FilterDesign/CBlockDiagram.h	/^	double *m_pdFeedbackCoefficient;$/;"	m	class:CBlockDiagram
-m_pdFeedforwardCoefficient	Filter/FilterDesign/CBlockDiagram.h	/^	double *m_pdFeedforwardCoefficient;$/;"	m	class:CBlockDiagram
-m_pdSample	SoundInformation/BSoundInformation.h	/^	double  *m_pdSample;$/;"	m	class:BSoundInformation
-m_piFilterDesign	Filter/Builder/IFilterBuilder.h	/^	IFilterDesign*	m_piFilterDesign;$/;"	m	class:IFilterBuilder
-m_piFilterDesign	Filter/CFilter.h	/^	IFilterDesign* m_piFilterDesign;$/;"	m	class:CFilter
-m_quePreviousSample	Filter/FilterDesign/CBlockDiagram.h	/^	deque<double> m_quePreviousSample;$/;"	m	class:CBlockDiagram
-m_shBitsPerSample	SoundInformation/BSoundInformation.h	/^	short   m_shBitsPerSample;$/;"	m	class:BSoundInformation
-m_shNumChannels	SoundInformation/BSoundInformation.h	/^	short   m_shNumChannels;$/;"	m	class:BSoundInformation
-main	main.cpp	/^int main(int argc, char* argv[])$/;"	f
-main	test_source/test_WaveFormatOperator.cpp	/^int main(int argc, char* argv[])$/;"	f
-nAvgBytesPerSec	SoundInformation/CWaveFormatOperator.h	/^	char nAvgBytesPerSec[4];$/;"	m	struct:TFmtChunk
-nBlockAlign	SoundInformation/CWaveFormatOperator.h	/^	char nBlockAlign[2];$/;"	m	struct:TFmtChunk
-nChannels	SoundInformation/CWaveFormatOperator.h	/^	char nChannels[2];$/;"	m	struct:TFmtChunk
-nSamplesPerSec	SoundInformation/CWaveFormatOperator.h	/^	char nSamplesPerSec[4];$/;"	m	struct:TFmtChunk
-nop	Filter/FilterDesign/CFilterConfig.h	/^	void nop()$/;"	f	class:CFilterConfig
-operator +	SoundInformation/BSoundInformation.cpp	/^BSoundInformation BSoundInformation::operator+(const BSoundInformation &ob)$/;"	f	class:BSoundInformation
-operator +=	SoundInformation/BSoundInformation.cpp	/^const BSoundInformation &BSoundInformation::operator+=(BSoundInformation &ob)$/;"	f	class:BSoundInformation
-operator =	SoundInformation/BSoundInformation.cpp	/^const BSoundInformation &BSoundInformation::operator=(const BSoundInformation &right)$/;"	f	class:BSoundInformation
-passFilter	Filter/CFilter.h	/^	virtual double passFilter(double i_dSample) const$/;"	f	class:CFilter
-passFilter	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^	virtual double passFilter(double i_dSample) const$/;"	f	class:CButterworthBandPassFilterDesign
-passFilter	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthHighPassFilterDesign.h	/^	virtual double passFilter(double i_dSample) const$/;"	f	class:CButterworthHighPassFilterDesign
-passFilter	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthLowPassFilterDesign.h	/^	virtual double passFilter(double i_dSample) const$/;"	f	class:CButterworthLowPassFilterDesign
-passFilter	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^	virtual double passFilter(double i_dSample) const$/;"	f	class:CChebycheffBandPassFilterDesign
-passFilter	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffHighPassFilterDesign.h	/^	virtual double passFilter(double i_dSample) const$/;"	f	class:CChebycheffHighPassFilterDesign
-passFilter	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffLowPassFilterDesign.h	/^	virtual double passFilter(double i_dSample) const$/;"	f	class:CChebycheffLowPassFilterDesign
-popPreviousSample	Filter/FilterDesign/CBlockDiagram.h	/^	void popPreviousSample()$/;"	f	class:CBlockDiagram
-printCharacteristic	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	virtual void printCharacteristic($/;"	f	class:BIIRFilter
-printChunk	SoundInformation/CWaveFormatOperator.cpp	/^void CWaveFormatOperator::printChunk(char* i_pbyMessage, TChunk& i_stChunk)$/;"	f	class:CWaveFormatOperator
-printConfig	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	void printConfig() const$/;"	f	class:BIIRFilter
-printFmtChunk	SoundInformation/CWaveFormatOperator.cpp	/^void CWaveFormatOperator::printFmtChunk(char* i_pbyMessage, TFmtChunk& i_stFmtChunk)$/;"	f	class:CWaveFormatOperator
-printProperty	Filter/CFilter.h	/^	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const$/;"	f	class:CFilter
-printProperty	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const$/;"	f	class:CButterworthBandPassFilterDesign
-printProperty	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthHighPassFilterDesign.h	/^	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const$/;"	f	class:CButterworthHighPassFilterDesign
-printProperty	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthLowPassFilterDesign.h	/^	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const$/;"	f	class:CButterworthLowPassFilterDesign
-printProperty	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const$/;"	f	class:CChebycheffBandPassFilterDesign
-printProperty	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffHighPassFilterDesign.h	/^	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const$/;"	f	class:CChebycheffHighPassFilterDesign
-printProperty	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffLowPassFilterDesign.h	/^	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const$/;"	f	class:CChebycheffLowPassFilterDesign
-pushPreviousSample	Filter/FilterDesign/CBlockDiagram.h	/^	void pushPreviousSample(double i_dSample)$/;"	f	class:CBlockDiagram
-readConfig	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^	virtual void readConfig()$/;"	f	class:CButterworthBandPassFilterDesign
-readConfig	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthHighPassFilterDesign.h	/^	virtual void readConfig()$/;"	f	class:CButterworthHighPassFilterDesign
-readConfig	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthLowPassFilterDesign.h	/^	virtual void readConfig()$/;"	f	class:CButterworthLowPassFilterDesign
-readConfig	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^	virtual void readConfig()$/;"	f	class:CChebycheffBandPassFilterDesign
-readConfig	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffHighPassFilterDesign.h	/^	virtual void readConfig()$/;"	f	class:CChebycheffHighPassFilterDesign
-readConfig	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffLowPassFilterDesign.h	/^	virtual void readConfig()$/;"	f	class:CChebycheffLowPassFilterDesign
-readFmtChunk	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::readFmtChunk(ifstream& i_cFileStream, TChunk& i_stChunk)$/;"	f	class:CWaveFormatOperator
-readRIFFChunk	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::readRIFFChunk(ifstream& i_cFileStream)$/;"	f	class:CWaveFormatOperator
-readSample	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::readSample(ifstream& i_cFileStream, TChunk& i_stChunk)$/;"	f	class:CWaveFormatOperator
-readSample16FromFile	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::readSample16FromFile(ifstream& i_cFileStream)$/;"	f	class:CWaveFormatOperator
-readSample8FromFile	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::readSample8FromFile(ifstream& i_cFileStream)$/;"	f	class:CWaveFormatOperator
-readSampleFromMemory	SoundInformation/BSoundInformation.cpp	/^double BSoundInformation::readSampleFromMemory(long num,short channel)  const$/;"	f	class:BSoundInformation
-readSampleOtherFromFile	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::readSampleOtherFromFile(ifstream& i_cFileStream)$/;"	f	class:CWaveFormatOperator
-readWAVEChunk	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::readWAVEChunk(ifstream& i_cFileStream)$/;"	f	class:CWaveFormatOperator
-readWaveFile	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::readWaveFile(const string i_strFileName)$/;"	f	class:CWaveFormatOperator
-runFilter	main.cpp	/^bool runFilter(CFilter& i_cFilter, BSoundInformation& i_bSoundInformation, long i_lBegin, long i_lEnd, short i_shChannel )$/;"	f
-setBitsPerSample	SoundInformation/BSoundInformation.cpp	/^void BSoundInformation::setBitsPerSample(short bitsPerSample)$/;"	f	class:BSoundInformation
-setConfig	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	virtual void setConfig(map<string,string> i_mapPairsTable, map<string,double*> i_mapConfigTable)$/;"	f	class:BIIRFilter
-setCutoffFreq	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthHighPassFilterDesign.h	/^	virtual void setCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CButterworthHighPassFilterDesign
-setCutoffFreq	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthLowPassFilterDesign.h	/^	virtual void setCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CButterworthLowPassFilterDesign
-setCutoffFreq	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffHighPassFilterDesign.h	/^	virtual void setCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CChebycheffHighPassFilterDesign
-setCutoffFreq	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffLowPassFilterDesign.h	/^	virtual void setCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CChebycheffLowPassFilterDesign
-setFilterDesign	Filter/CFilter.h	/^	virtual void setFilterDesign(IFilterDesign* i_piFilterDesign)$/;"	f	class:CFilter
-setHighCutoffFreq	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^	virtual void setHighCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CButterworthBandPassFilterDesign
-setHighCutoffFreq	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^	virtual void setHighCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CChebycheffBandPassFilterDesign
-setLowCutoffFreq	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^	virtual void setLowCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CButterworthBandPassFilterDesign
-setLowCutoffFreq	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^	virtual void setLowCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CChebycheffBandPassFilterDesign
-setNumChannels	SoundInformation/BSoundInformation.cpp	/^void BSoundInformation::setNumChannels(short numChannels)$/;"	f	class:BSoundInformation
-setOrder	Filter/FilterDesign/CBlockDiagram.h	/^	void setOrder(int i_iOrder){ this->m_iOrder = i_iOrder; }$/;"	f	class:CBlockDiagram
-setOrderNumber	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	void setOrderNumber(long i_lOrder)$/;"	f	class:BIIRFilter
-setSampleRate	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	virtual void setSampleRate(double i_dSampleRate)$/;"	f	class:BIIRFilter
-setSampleRate	SoundInformation/BSoundInformation.cpp	/^void BSoundInformation::setSampleRate(long sampleRate)$/;"	f	class:BSoundInformation
-setSamplesPerChannel	SoundInformation/BSoundInformation.cpp	/^void BSoundInformation::setSamplesPerChannel(long samplesPerChannel)$/;"	f	class:BSoundInformation
-setValue	Filter/FilterDesign/CFilterConfig.h	/^	void setValue(string& i_strLine, map<string,string>& i_mapPairs)$/;"	f	class:CFilterConfig
-sinc	SoundInformation/BSoundInformation.cpp	/^double BSoundInformation::sinc(double i_dSample)$/;"	f	class:BSoundInformation
-size	SoundInformation/CWaveFormatOperator.h	/^	char size[4];$/;"	m	struct:TChunk
-split	Filter/FilterDesign/CFilterConfig.h	/^	vector<string> split(string& i_strTarget, string& i_strDelim)$/;"	f	class:CFilterConfig
-swapInt	SoundInformation/CWaveFormatOperator.cpp	/^int CWaveFormatOperator::swapInt(char* i_pbyData)$/;"	f	class:CWaveFormatOperator
-swapLong	SoundInformation/CWaveFormatOperator.cpp	/^long CWaveFormatOperator::swapLong(char* i_pbyData)$/;"	f	class:CWaveFormatOperator
-swapShort	SoundInformation/CWaveFormatOperator.cpp	/^short CWaveFormatOperator::swapShort(char* i_pbyData)$/;"	f	class:CWaveFormatOperator
-transferFunction	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	virtual double transferFunction(long i_lNumSection, double i_dSample) const$/;"	f	class:BIIRFilter
-wBitsPerSample	SoundInformation/CWaveFormatOperator.h	/^	char wBitsPerSample[2];$/;"	m	struct:TFmtChunk
-wFormatTag	SoundInformation/CWaveFormatOperator.h	/^	char wFormatTag[2];$/;"	m	struct:TFmtChunk
-what	SoundInformation/CWaveFormatOperator.cpp	/^	const char* what() const { return mMessage; }$/;"	f	class:WaveFormatError
-writeFmtChunk	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::writeFmtChunk(ofstream& i_cFileStream)$/;"	f	class:CWaveFormatOperator
-writeRIFFChunk	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::writeRIFFChunk(ofstream& i_cFileStream)$/;"	f	class:CWaveFormatOperator
-writeSample	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::writeSample(ofstream& i_cFileStream)$/;"	f	class:CWaveFormatOperator
-writeSample16IntoFile	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::writeSample16IntoFile(ofstream& i_cFileStream)$/;"	f	class:CWaveFormatOperator
-writeSample8IntoFile	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::writeSample8IntoFile(ofstream& i_cFileStream)$/;"	f	class:CWaveFormatOperator
-writeSampleIntoMemory	SoundInformation/BSoundInformation.cpp	/^void BSoundInformation::writeSampleIntoMemory(double sample,long num,short channel)$/;"	f	class:BSoundInformation
-writeSampleOtherIntoFile	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::writeSampleOtherIntoFile(ofstream& i_cFileStream)$/;"	f	class:CWaveFormatOperator
-writeWAVEChunk	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::writeWAVEChunk(ofstream& i_cFileStream)$/;"	f	class:CWaveFormatOperator
-writeWaveFile	SoundInformation/CWaveFormatOperator.cpp	/^bool CWaveFormatOperator::writeWaveFile(const string i_strFileName)$/;"	f	class:CWaveFormatOperator
-~BIIRFilter	Filter/FilterDesign/IIRFilter/BIIRFilter.h	/^	virtual ~BIIRFilter()$/;"	f	class:BIIRFilter
-~BSoundInformation	SoundInformation/BSoundInformation.h	/^	virtual ~BSoundInformation()$/;"	f	class:BSoundInformation
-~CBlockDiagram	Filter/FilterDesign/CBlockDiagram.h	/^	virtual ~CBlockDiagram()$/;"	f	class:CBlockDiagram
-~CButterworthBandPassFilterBuilder	Filter/Builder/BandPassFilter/CButterworthBandPassFilterBuilder.h	/^	virtual ~CButterworthBandPassFilterBuilder(){ }$/;"	f	class:CButterworthBandPassFilterBuilder
-~CButterworthBandPassFilterDesign	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthBandPassFilterDesign.h	/^	virtual ~CButterworthBandPassFilterDesign(){ }$/;"	f	class:CButterworthBandPassFilterDesign
-~CButterworthCommon	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthCommon.h	/^	virtual ~CButterworthCommon() { }$/;"	f	class:CButterworthCommon
-~CButterworthHighPassFilterBuilder	Filter/Builder/HighPassFilter/CButterworthHighPassFilterBuilder.h	/^	virtual ~CButterworthHighPassFilterBuilder(){ }$/;"	f	class:CButterworthHighPassFilterBuilder
-~CButterworthHighPassFilterDesign	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthHighPassFilterDesign.h	/^	virtual ~CButterworthHighPassFilterDesign(){ }$/;"	f	class:CButterworthHighPassFilterDesign
-~CButterworthLowPassFilterBuilder	Filter/Builder/LowPassFilter/CButterworthLowPassFilterBuilder.h	/^	virtual ~CButterworthLowPassFilterBuilder(){ }$/;"	f	class:CButterworthLowPassFilterBuilder
-~CButterworthLowPassFilterDesign	Filter/FilterDesign/IIRFilter/Butterworth/CButterworthLowPassFilterDesign.h	/^	virtual ~CButterworthLowPassFilterDesign(){ }$/;"	f	class:CButterworthLowPassFilterDesign
-~CChebycheffBandPassFilterBuilder	Filter/Builder/BandPassFilter/CChebycheffBandPassFilterBuilder.h	/^	virtual ~CChebycheffBandPassFilterBuilder(){ }$/;"	f	class:CChebycheffBandPassFilterBuilder
-~CChebycheffBandPassFilterDesign	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffBandPassFilterDesign.h	/^	virtual ~CChebycheffBandPassFilterDesign(){ }$/;"	f	class:CChebycheffBandPassFilterDesign
-~CChebycheffCommon	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffCommon.h	/^	virtual ~CChebycheffCommon() { }$/;"	f	class:CChebycheffCommon
-~CChebycheffHighPassFilterBuilder	Filter/Builder/HighPassFilter/CChebycheffHighPassFilterBuilder.h	/^	virtual ~CChebycheffHighPassFilterBuilder(){ }$/;"	f	class:CChebycheffHighPassFilterBuilder
-~CChebycheffHighPassFilterDesign	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffHighPassFilterDesign.h	/^	virtual ~CChebycheffHighPassFilterDesign(){ }$/;"	f	class:CChebycheffHighPassFilterDesign
-~CChebycheffLowPassFilterBuilder	Filter/Builder/LowPassFilter/CChebycheffLowPassFilterBuilder.h	/^	virtual ~CChebycheffLowPassFilterBuilder(){ }$/;"	f	class:CChebycheffLowPassFilterBuilder
-~CChebycheffLowPassFilterDesign	Filter/FilterDesign/IIRFilter/Chebycheff/CChebycheffLowPassFilterDesign.h	/^	virtual ~CChebycheffLowPassFilterDesign(){ }$/;"	f	class:CChebycheffLowPassFilterDesign
-~CFilter	Filter/CFilter.h	/^	virtual ~CFilter()$/;"	f	class:CFilter
-~CFilterConfig	Filter/FilterDesign/CFilterConfig.h	/^	virtual ~CFilterConfig()$/;"	f	class:CFilterConfig
-~CWaveFormatOperator	SoundInformation/CWaveFormatOperator.h	/^	virtual ~CWaveFormatOperator(){ }$/;"	f	class:CWaveFormatOperator
-~IBandPassFilterDesign	Filter/FilterDesign/IBandPassFilterDesign.h	/^	virtual ~IBandPassFilterDesign(){ }$/;"	f	class:IBandPassFilterDesign
-~IFilterBuilder	Filter/Builder/IFilterBuilder.h	/^	virtual ~IFilterBuilder(){ }$/;"	f	class:IFilterBuilder
-~IFilterDesign	Filter/FilterDesign/IFilterDesign.h	/^	virtual ~IFilterDesign(){ }$/;"	f	class:IFilterDesign
-~IHighPassFilterDesign	Filter/FilterDesign/IHighPassFilterDesign.h	/^	virtual ~IHighPassFilterDesign(){ }$/;"	f	class:IHighPassFilterDesign
-~ILowPassFilterDesign	Filter/FilterDesign/ILowPassFilterDesign.h	/^	virtual ~ILowPassFilterDesign(){ }$/;"	f	class:ILowPassFilterDesign
+!_TAG_PROGRAM_VERSION	5.8J2	//
+BChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.cpp	/^BChunkOperator::BChunkOperator()$/;"	f	class:BChunkOperator
+BChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.h	/^class BChunkOperator$/;"	c
+BIIRFilter	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	BIIRFilter()$/;"	f	class:BIIRFilter
+BIIRFilter	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^class BIIRFilter$/;"	c
+BUTTERWORTH_BANDPASS_FILTER_CONFIG_FILENAME	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	16;"	d
+BUTTERWORTH_BANDPASS_FILTER_DESIGN_NAME	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	15;"	d
+BUTTERWORTH_HIGHPASS_FILTER_CONFIG_FILENAME	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthHighPassFilterDesign.h	16;"	d
+BUTTERWORTH_HIGHPASS_FILTER_DESIGN_NAME	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthHighPassFilterDesign.h	15;"	d
+BUTTERWORTH_LOWPASS_FILTER_CONFIG_FILENAME	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthLowPassFilterDesign.h	17;"	d
+BUTTERWORTH_LOWPASS_FILTER_DESIGN_NAME	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthLowPassFilterDesign.h	16;"	d
+BWaveForm	.\WaveFormOperator\source\BWaveForm.h	/^class BWaveForm$/;"	c
+BWaveForm	.\WaveFormOperator\source\BWaveForm\BWaveForm.cpp	/^BWaveForm::BWaveForm($/;"	f	class:BWaveForm
+BWaveForm	.\WaveFormOperator\source\BWaveForm\BWaveForm.cpp	/^BWaveForm::BWaveForm(const BWaveForm &ob)$/;"	f	class:BWaveForm
+CBlockDiagram	.\Filter\FilterDesign\CBlockDiagram.h	/^	CBlockDiagram()$/;"	f	class:CBlockDiagram
+CBlockDiagram	.\Filter\FilterDesign\CBlockDiagram.h	/^class CBlockDiagram$/;"	c
+CButterworthBandPassFilterBuilder	.\Filter\Builder\BandPassFilter\CButterworthBandPassFilterBuilder.h	/^	CButterworthBandPassFilterBuilder(){ }$/;"	f	class:CButterworthBandPassFilterBuilder
+CButterworthBandPassFilterBuilder	.\Filter\Builder\BandPassFilter\CButterworthBandPassFilterBuilder.h	/^class CButterworthBandPassFilterBuilder : public IFilterBuilder$/;"	c
+CButterworthBandPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	/^	CButterworthBandPassFilterDesign()$/;"	f	class:CButterworthBandPassFilterDesign
+CButterworthBandPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	/^class CButterworthBandPassFilterDesign : public IBandPassFilterDesign, public CButterworthCommon$/;"	c
+CButterworthCommon	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthCommon.h	/^	CButterworthCommon() { }$/;"	f	class:CButterworthCommon
+CButterworthCommon	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthCommon.h	/^class CButterworthCommon : public BIIRFilter$/;"	c
+CButterworthHighPassFilterBuilder	.\Filter\Builder\HighPassFilter\CButterworthHighPassFilterBuilder.h	/^	CButterworthHighPassFilterBuilder(){ }$/;"	f	class:CButterworthHighPassFilterBuilder
+CButterworthHighPassFilterBuilder	.\Filter\Builder\HighPassFilter\CButterworthHighPassFilterBuilder.h	/^class CButterworthHighPassFilterBuilder : public IFilterBuilder$/;"	c
+CButterworthHighPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthHighPassFilterDesign.h	/^	CButterworthHighPassFilterDesign()$/;"	f	class:CButterworthHighPassFilterDesign
+CButterworthHighPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthHighPassFilterDesign.h	/^class CButterworthHighPassFilterDesign : public IHighPassFilterDesign, public CButterworthCommon$/;"	c
+CButterworthLowPassFilterBuilder	.\Filter\Builder\LowPassFilter\CButterworthLowPassFilterBuilder.h	/^	CButterworthLowPassFilterBuilder(){ }$/;"	f	class:CButterworthLowPassFilterBuilder
+CButterworthLowPassFilterBuilder	.\Filter\Builder\LowPassFilter\CButterworthLowPassFilterBuilder.h	/^class CButterworthLowPassFilterBuilder : public IFilterBuilder$/;"	c
+CButterworthLowPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthLowPassFilterDesign.h	/^	CButterworthLowPassFilterDesign()$/;"	f	class:CButterworthLowPassFilterDesign
+CButterworthLowPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthLowPassFilterDesign.h	/^class CButterworthLowPassFilterDesign : public ILowPassFilterDesign, public CButterworthCommon$/;"	c
+CChebycheffBandPassFilterBuilder	.\Filter\Builder\BandPassFilter\CChebycheffBandPassFilterBuilder.h	/^	CChebycheffBandPassFilterBuilder(){ }$/;"	f	class:CChebycheffBandPassFilterBuilder
+CChebycheffBandPassFilterBuilder	.\Filter\Builder\BandPassFilter\CChebycheffBandPassFilterBuilder.h	/^class CChebycheffBandPassFilterBuilder : public IFilterBuilder$/;"	c
+CChebycheffBandPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	/^	CChebycheffBandPassFilterDesign()$/;"	f	class:CChebycheffBandPassFilterDesign
+CChebycheffBandPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	/^class CChebycheffBandPassFilterDesign : public IBandPassFilterDesign, public CChebycheffCommon$/;"	c
+CChebycheffCommon	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.h	/^	CChebycheffCommon() { }$/;"	f	class:CChebycheffCommon
+CChebycheffCommon	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.h	/^class CChebycheffCommon : public BIIRFilter$/;"	c
+CChebycheffHighPassFilterBuilder	.\Filter\Builder\HighPassFilter\CChebycheffHighPassFilterBuilder.h	/^	CChebycheffHighPassFilterBuilder(){ }$/;"	f	class:CChebycheffHighPassFilterBuilder
+CChebycheffHighPassFilterBuilder	.\Filter\Builder\HighPassFilter\CChebycheffHighPassFilterBuilder.h	/^class CChebycheffHighPassFilterBuilder : public IFilterBuilder$/;"	c
+CChebycheffHighPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffHighPassFilterDesign.h	/^	CChebycheffHighPassFilterDesign()$/;"	f	class:CChebycheffHighPassFilterDesign
+CChebycheffHighPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffHighPassFilterDesign.h	/^class CChebycheffHighPassFilterDesign : public IHighPassFilterDesign, public CChebycheffCommon$/;"	c
+CChebycheffLowPassFilterBuilder	.\Filter\Builder\LowPassFilter\CChebycheffLowPassFilterBuilder.h	/^	CChebycheffLowPassFilterBuilder(){ }$/;"	f	class:CChebycheffLowPassFilterBuilder
+CChebycheffLowPassFilterBuilder	.\Filter\Builder\LowPassFilter\CChebycheffLowPassFilterBuilder.h	/^class CChebycheffLowPassFilterBuilder : public IFilterBuilder$/;"	c
+CChebycheffLowPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffLowPassFilterDesign.h	/^	CChebycheffLowPassFilterDesign()$/;"	f	class:CChebycheffLowPassFilterDesign
+CChebycheffLowPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffLowPassFilterDesign.h	/^class CChebycheffLowPassFilterDesign : public ILowPassFilterDesign, public CChebycheffCommon$/;"	c
+CChunkFactory	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CChunkFactory.cpp	/^CChunkFactory::CChunkFactory()$/;"	f	class:CChunkFactory
+CChunkFactory	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CChunkFactory.h	/^class CChunkFactory$/;"	c
+CDataChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CDataChunkOperator.cpp	/^CDataChunkOperator::CDataChunkOperator()$/;"	f	class:CDataChunkOperator
+CDataChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CDataChunkOperator.h	/^class CDataChunkOperator : public BChunkOperator$/;"	c
+CFactorySampleOperator	.\WaveFormOperator\source\CWaveFile\SampleOperator\CFactorySampleOperator.h	/^	CFactorySampleOperator(){ }$/;"	f	class:CFactorySampleOperator
+CFactorySampleOperator	.\WaveFormOperator\source\CWaveFile\SampleOperator\CFactorySampleOperator.h	/^class CFactorySampleOperator$/;"	c
+CFilter	.\Filter\CFilter.h	/^	CFilter()$/;"	f	class:CFilter
+CFilter	.\Filter\CFilter.h	/^class CFilter$/;"	c
+CFilterConfig	.\Filter\FilterDesign\CFilterConfig.h	/^	CFilterConfig()$/;"	f	class:CFilterConfig
+CFilterConfig	.\Filter\FilterDesign\CFilterConfig.h	/^class CFilterConfig$/;"	c
+CFmtChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.cpp	/^CFmtChunkOperator::CFmtChunkOperator()$/;"	f	class:CFmtChunkOperator
+CFmtChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.h	/^class CFmtChunkOperator : public BChunkOperator$/;"	c
+CHEBYCHEFF_BANDPASS_FILTER_DESIGN_NAME	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	15;"	d
+CHEBYCHEFF_BANDWPASS_FILTER_CONFIG_FILENAME	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	16;"	d
+CHEBYCHEFF_HIGHPASS_FILTER_CONFIG_FILENAME	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffHighPassFilterDesign.h	16;"	d
+CHEBYCHEFF_HIGHPASS_FILTER_DESIGN_NAME	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffHighPassFilterDesign.h	15;"	d
+CHEBYCHEFF_LOWPASS_FILTER_CONFIG_FILENAME	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffLowPassFilterDesign.h	16;"	d
+CHEBYCHEFF_LOWPASS_FILTER_DESIGN_NAME	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffLowPassFilterDesign.h	15;"	d
+COtherChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\COtherChunkOperator.cpp	/^COtherChunkOperator::COtherChunkOperator()$/;"	f	class:COtherChunkOperator
+COtherChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\COtherChunkOperator.h	/^class COtherChunkOperator : public BChunkOperator$/;"	c
+CRIFFChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CRIFFChunkOperator.cpp	/^CRIFFChunkOperator::CRIFFChunkOperator()$/;"	f	class:CRIFFChunkOperator
+CRIFFChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CRIFFChunkOperator.h	/^class CRIFFChunkOperator : public BChunkOperator$/;"	c
+CSampleOperator16	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperator16.cpp	/^CSampleOperator16::CSampleOperator16()$/;"	f	class:CSampleOperator16
+CSampleOperator16	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperator16.h	/^class CSampleOperator16 : public ISampleOperator$/;"	c
+CSampleOperator8	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperator8.cpp	/^CSampleOperator8::CSampleOperator8()$/;"	f	class:CSampleOperator8
+CSampleOperator8	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperator8.h	/^class CSampleOperator8 : public ISampleOperator$/;"	c
+CSampleOperatorOther	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperatorOther.cpp	/^CSampleOperatorOther::CSampleOperatorOther()$/;"	f	class:CSampleOperatorOther
+CSampleOperatorOther	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperatorOther.h	/^class CSampleOperatorOther : public ISampleOperator$/;"	c
+CWAVEChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CWAVEChunkOperator.cpp	/^CWAVEChunkOperator::CWAVEChunkOperator()$/;"	f	class:CWAVEChunkOperator
+CWAVEChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CWAVEChunkOperator.h	/^class CWAVEChunkOperator : public BChunkOperator$/;"	c
+CWaveFile	.\WaveFormOperator\source\CWaveFile.h	/^	CWaveFile($/;"	f	class:CWaveFile
+CWaveFile	.\WaveFormOperator\source\CWaveFile.h	/^class CWaveFile : public BWaveForm$/;"	c
+CWaveFileUtility	.\WaveFormOperator\source\CWaveFile\Utility\CWaveFileUtility.h	/^class CWaveFileUtility$/;"	c
+E_CONFIG_KIND	.\Filter\FilterDesign\CFilterConfig.h	/^	typedef enum{ eUnknown, eComment, eConfig } E_CONFIG_KIND; $/;"	t	class:CFilterConfig	typeref:enum:CFilterConfig::__anon1
+IBandPassFilterDesign	.\Filter\FilterDesign\IBandPassFilterDesign.h	/^	IBandPassFilterDesign(){ }$/;"	f	class:IBandPassFilterDesign
+IBandPassFilterDesign	.\Filter\FilterDesign\IBandPassFilterDesign.h	/^class IBandPassFilterDesign : public IFilterDesign$/;"	c
+IFilterBuilder	.\Filter\Builder\IFilterBuilder.h	/^class IFilterBuilder$/;"	c
+IFilterDesign	.\Filter\FilterDesign\IFilterDesign.h	/^class IFilterDesign$/;"	c
+IHighPassFilterDesign	.\Filter\FilterDesign\IHighPassFilterDesign.h	/^	IHighPassFilterDesign(){ }$/;"	f	class:IHighPassFilterDesign
+IHighPassFilterDesign	.\Filter\FilterDesign\IHighPassFilterDesign.h	/^class IHighPassFilterDesign : public IFilterDesign$/;"	c
+ILowPassFilterDesign	.\Filter\FilterDesign\ILowPassFilterDesign.h	/^	ILowPassFilterDesign(){ }$/;"	f	class:ILowPassFilterDesign
+ILowPassFilterDesign	.\Filter\FilterDesign\ILowPassFilterDesign.h	/^class ILowPassFilterDesign : public IFilterDesign$/;"	c
+ISampleOperator	.\WaveFormOperator\source\CWaveFile\SampleOperator\ISampleOperator.h	/^	ISampleOperator(){ }$/;"	f	class:ISampleOperator
+ISampleOperator	.\WaveFormOperator\source\CWaveFile\SampleOperator\ISampleOperator.h	/^class ISampleOperator$/;"	c
+T_CHUNK	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.h	/^typedef struct T_CHUNK$/;"	s
+T_CHUNK	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.h	/^}T_CHUNK;$/;"	t	typeref:struct:T_CHUNK
+T_FMT_CHUNK	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.h	/^typedef struct T_FMT_CHUNK$/;"	s
+T_FMT_CHUNK	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.h	/^}T_FMT_CHUNK;$/;"	t	typeref:struct:T_FMT_CHUNK
+WaveFormatError	.\WaveFormOperator\source\CWaveFile\CWaveFile.cpp	/^	WaveFormatError(char *message)$/;"	f	class:WaveFormatError
+WaveFormatError	.\WaveFormOperator\source\CWaveFile\CWaveFile.cpp	/^class WaveFormatError$/;"	c	file:
+_USE_MATH_DEFINES	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	9;"	d
+__BCHUNKOPERATOR_H__	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.h	7;"	d
+__BWAVEFORM_H__	.\WaveFormOperator\source\BWaveForm.h	7;"	d
+__CBLOCK_DIAGRAM_H__	.\Filter\FilterDesign\CBlockDiagram.h	7;"	d
+__CBUTTERWORTH_BANDPASSFILTER_DESIGN_H__	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	6;"	d
+__CBUTTERWORTH_BAND_PASS_FILTER_BUILDER_H__	.\Filter\Builder\BandPassFilter\CButterworthBandPassFilterBuilder.h	6;"	d
+__CBUTTERWORTH_COMMON_H__	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthCommon.h	6;"	d
+__CBUTTERWORTH_HIGHPASSFILTER_DESIGN_H__	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthHighPassFilterDesign.h	6;"	d
+__CBUTTERWORTH_HIGH_PASS_FILTER_BUILDER_H__	.\Filter\Builder\HighPassFilter\CButterworthHighPassFilterBuilder.h	6;"	d
+__CBUTTERWORTH_LOWPASSFILTER_DESIGN_H__	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthLowPassFilterDesign.h	6;"	d
+__CBUTTERWORTH_LOW_PASS_FILTER_BUILDER_H__	.\Filter\Builder\LowPassFilter\CButterworthLowPassFilterBuilder.h	6;"	d
+__CCHEBYCHEFF_BANDPASSFILTER_DESIGN_H__	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	6;"	d
+__CCHEBYCHEFF_BAND_PASS_FILTER_BUILDER_H__	.\Filter\Builder\BandPassFilter\CChebycheffBandPassFilterBuilder.h	6;"	d
+__CCHEBYCHEFF_COMMON_H__	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.h	7;"	d
+__CCHEBYCHEFF_HIGHPASSFILTER_DESIGN_H__	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffHighPassFilterDesign.h	6;"	d
+__CCHEBYCHEFF_HIGH_PASS_FILTER_BUILDER_H__	.\Filter\Builder\HighPassFilter\CChebycheffHighPassFilterBuilder.h	6;"	d
+__CCHEBYCHEFF_LOWPASSFILTER_DESIGN_H__	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffLowPassFilterDesign.h	6;"	d
+__CCHEBYCHEFF_LOW_PASS_FILTER_BUILDER_H__	.\Filter\Builder\LowPassFilter\CChebycheffLowPassFilterBuilder.h	6;"	d
+__CCHUNKFACTORY_H__	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CChunkFactory.h	7;"	d
+__CDATACHUNKOPERATOR_H__	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CDataChunkOperator.h	7;"	d
+__CFACTORYSAMPLEOPERATOR_H__	.\WaveFormOperator\source\CWaveFile\SampleOperator\CFactorySampleOperator.h	7;"	d
+__CFILTER_CONFIG_H__	.\Filter\FilterDesign\CFilterConfig.h	7;"	d
+__CFILTER_H__	.\Filter\CFilter.h	7;"	d
+__CFMTCHUNKOPERATOR_H__	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.h	7;"	d
+__CIIR_FILTER_H__	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	7;"	d
+__COTHERCHUNKOPERATOR_H__	.\WaveFormOperator\source\CWaveFile\ChunkOperator\COtherChunkOperator.h	7;"	d
+__CRIFFCHUNKOPERATOR_H__	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CRIFFChunkOperator.h	7;"	d
+__CSAMPLEOPERATOR16_H__	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperator16.h	7;"	d
+__CSAMPLEOPERATOR8_H__	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperator8.h	7;"	d
+__CSAMPLEOPERATOROTHER_H__	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperatorOther.h	7;"	d
+__CWAVECHUNKOPERATOR_H__	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CWAVEChunkOperator.h	7;"	d
+__CWAVEFILEUTILITY_H__	.\WaveFormOperator\source\CWaveFile\Utility\CWaveFileUtility.h	7;"	d
+__CWAVEFILE_H__	.\WaveFormOperator\source\CWaveFile.h	7;"	d
+__IBANDPASS_FILTER_DESIGN_H__	.\Filter\FilterDesign\IBandPassFilterDesign.h	7;"	d
+__IFILTER_BUILDER_H__	.\Filter\Builder\IFilterBuilder.h	6;"	d
+__IFILTER_DESIGN_H__	.\Filter\FilterDesign\IFilterDesign.h	6;"	d
+__IHIGHPASS_FILTER_DESIGN_H__	.\Filter\FilterDesign\IHighPassFilterDesign.h	6;"	d
+__ILOWPASS_FILTER_DESIGN_H__	.\Filter\FilterDesign\ILowPassFilterDesign.h	7;"	d
+__ISAMPLEOPERATOR_H__	.\WaveFormOperator\source\CWaveFile\SampleOperator\ISampleOperator.h	8;"	d
+acosh	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.h	/^	double acosh(double theta){ return log(theta+sqrt((theta+1)*(theta-1))); }$/;"	f	class:CChebycheffCommon
+bitShift	.\WaveFormOperator\source\CWaveFile\Utility\CWaveFileUtility.cpp	/^long CWaveFileUtility::bitShift(short i_shBitShift)$/;"	f	class:CWaveFileUtility
+build	.\Filter\Builder\IFilterBuilder.h	/^	virtual CFilter* build()$/;"	f	class:IFilterBuilder
+buildFilterDesign	.\Filter\Builder\BandPassFilter\CButterworthBandPassFilterBuilder.h	/^	virtual IFilterDesign* buildFilterDesign()$/;"	f	class:CButterworthBandPassFilterBuilder
+buildFilterDesign	.\Filter\Builder\BandPassFilter\CChebycheffBandPassFilterBuilder.h	/^	virtual IFilterDesign* buildFilterDesign()$/;"	f	class:CChebycheffBandPassFilterBuilder
+buildFilterDesign	.\Filter\Builder\HighPassFilter\CButterworthHighPassFilterBuilder.h	/^	virtual IFilterDesign* buildFilterDesign()$/;"	f	class:CButterworthHighPassFilterBuilder
+buildFilterDesign	.\Filter\Builder\HighPassFilter\CChebycheffHighPassFilterBuilder.h	/^	virtual IFilterDesign* buildFilterDesign()$/;"	f	class:CChebycheffHighPassFilterBuilder
+buildFilterDesign	.\Filter\Builder\LowPassFilter\CButterworthLowPassFilterBuilder.h	/^	virtual IFilterDesign* buildFilterDesign()$/;"	f	class:CButterworthLowPassFilterBuilder
+buildFilterDesign	.\Filter\Builder\LowPassFilter\CChebycheffLowPassFilterBuilder.h	/^	virtual IFilterDesign* buildFilterDesign()$/;"	f	class:CChebycheffLowPassFilterBuilder
+checkCommentString	.\Filter\FilterDesign\CFilterConfig.h	/^	bool checkCommentString(string& i_strLine)$/;"	f	class:CFilterConfig
+checkConfigString	.\Filter\FilterDesign\CFilterConfig.h	/^	bool checkConfigString(string& i_strLine)$/;"	f	class:CFilterConfig
+convert2ByteDataToShort	.\WaveFormOperator\source\CWaveFile\Utility\CWaveFileUtility.cpp	/^short CWaveFileUtility::convert2ByteDataToShort(char* i_pbyData)$/;"	f	class:CWaveFileUtility
+convert4ByteDataToLong	.\WaveFormOperator\source\CWaveFile\Utility\CWaveFileUtility.cpp	/^long CWaveFileUtility::convert4ByteDataToLong(char* i_pbyData)$/;"	f	class:CWaveFileUtility
+convertLongTo4ByteData	.\WaveFormOperator\source\CWaveFile\Utility\CWaveFileUtility.cpp	/^void CWaveFileUtility::convertLongTo4ByteData(long i_lInteger, char* i_pbyData)$/;"	f	class:CWaveFileUtility
+convertShortTo2ByteData	.\WaveFormOperator\source\CWaveFile\Utility\CWaveFileUtility.cpp	/^void CWaveFileUtility::convertShortTo2ByteData(short i_shInteger, char* i_pbyData)$/;"	f	class:CWaveFileUtility
+create	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CChunkFactory.cpp	/^BChunkOperator*  CChunkFactory::create(const char* i_szID)$/;"	f	class:CChunkFactory
+create	.\WaveFormOperator\source\CWaveFile\SampleOperator\CFactorySampleOperator.h	/^	ISampleOperator* create(short i_shBitPerSample)$/;"	f	class:CFactorySampleOperator
+createFilter	.\main.cpp	/^CFilter* createFilter(short i_shIndex)$/;"	f
+decisionPrototype	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	virtual void decisionPrototype($/;"	f	class:BIIRFilter
+decisionPrototype	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthCommon.cpp	/^void CButterworthCommon::decisionPrototype($/;"	f	class:CButterworthCommon
+decisionPrototype	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.cpp	/^void CChebycheffCommon::decisionPrototype( double inPassFreq,$/;"	f	class:CChebycheffCommon
+description	.\Filter\CFilter.h	/^	virtual const char* description() const$/;"	f	class:CFilter
+description	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	/^	virtual const char* description() const$/;"	f	class:CButterworthBandPassFilterDesign
+description	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthHighPassFilterDesign.h	/^	virtual const char* description() const$/;"	f	class:CButterworthHighPassFilterDesign
+description	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthLowPassFilterDesign.h	/^	virtual const char* description() const$/;"	f	class:CButterworthLowPassFilterDesign
+description	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	/^	virtual const char* description() const$/;"	f	class:CChebycheffBandPassFilterDesign
+description	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffHighPassFilterDesign.h	/^	virtual const char* description() const$/;"	f	class:CChebycheffHighPassFilterDesign
+description	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffLowPassFilterDesign.h	/^	virtual const char* description() const$/;"	f	class:CChebycheffLowPassFilterDesign
+digital2analog	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	virtual double digital2analog(double i_dOmega) const$/;"	f	class:BIIRFilter
+eComment	.\Filter\FilterDesign\CFilterConfig.h	/^	typedef enum{ eUnknown, eComment, eConfig } E_CONFIG_KIND; $/;"	e	enum:CFilterConfig::__anon1
+eConfig	.\Filter\FilterDesign\CFilterConfig.h	/^	typedef enum{ eUnknown, eComment, eConfig } E_CONFIG_KIND; $/;"	e	enum:CFilterConfig::__anon1
+eUnknown	.\Filter\FilterDesign\CFilterConfig.h	/^	typedef enum{ eUnknown, eComment, eConfig } E_CONFIG_KIND; $/;"	e	enum:CFilterConfig::__anon1
+getAlpha	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthCommon.cpp	/^double CButterworthCommon::getAlpha(long i_lProd)$/;"	f	class:CButterworthCommon
+getAlpha	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.cpp	/^double CChebycheffCommon::getAlpha(long i_lProd)$/;"	f	class:CChebycheffCommon
+getAmplitude	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	double getAmplitude(complex<double> i_cComplexValue) const$/;"	f	class:BIIRFilter
+getBeta	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.cpp	/^double CChebycheffCommon::getBeta(long i_lProd)$/;"	f	class:CChebycheffCommon
+getBitsPerSample	.\WaveFormOperator\source\BWaveForm.h	/^	short	getBitsPerSample() const { return this->m_shBitsPerSample; }$/;"	f	class:BWaveForm
+getBlockAlign	.\WaveFormOperator\source\BWaveForm.h	/^	short	getBlockAlign() const { return this->m_shNumChannels*this->getBytesPerSample(); }$/;"	f	class:BWaveForm
+getBytesPerSample	.\WaveFormOperator\source\BWaveForm\BWaveForm.cpp	/^short BWaveForm::getBytesPerSample() const $/;"	f	class:BWaveForm
+getChunkID	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.h	/^	virtual const char* getChunkID() const$/;"	f	class:BChunkOperator
+getChunkSize	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.h	/^	virtual long getChunkSize() const$/;"	f	class:BChunkOperator
+getConfig	.\Filter\FilterDesign\CFilterConfig.h	/^	map<string,string> getConfig(string i_strFilename)$/;"	f	class:CFilterConfig
+getConfigKind	.\Filter\FilterDesign\CFilterConfig.h	/^	E_CONFIG_KIND getConfigKind(string& i_strLine)$/;"	f	class:CFilterConfig
+getCutoffFreq	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthHighPassFilterDesign.h	/^	virtual double getCutoffFreq() const$/;"	f	class:CButterworthHighPassFilterDesign
+getCutoffFreq	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthLowPassFilterDesign.h	/^	virtual double getCutoffFreq() const$/;"	f	class:CButterworthLowPassFilterDesign
+getCutoffFreq	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffHighPassFilterDesign.h	/^	virtual double getCutoffFreq() const$/;"	f	class:CChebycheffHighPassFilterDesign
+getCutoffFreq	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffLowPassFilterDesign.h	/^	virtual double getCutoffFreq() const$/;"	f	class:CChebycheffLowPassFilterDesign
+getFeedbackCoefficient	.\Filter\FilterDesign\CBlockDiagram.h	/^	const double *getFeedbackCoefficient() const{ return this->m_pdFeedbackCoefficient; }$/;"	f	class:CBlockDiagram
+getFeedforwardCoefficient	.\Filter\FilterDesign\CBlockDiagram.h	/^	const double *getFeedforwardCoefficient() const{ return this->m_pdFeedforwardCoefficient; }$/;"	f	class:CBlockDiagram
+getFilterDesign	.\Filter\CFilter.h	/^	virtual IFilterDesign* getFilterDesign() const$/;"	f	class:CFilter
+getHighBeta	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthCommon.cpp	/^double CButterworthCommon::getHighBeta(double i_dCutFreq)$/;"	f	class:CButterworthCommon
+getHighCutoffFreq	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	/^	virtual double getHighCutoffFreq() const$/;"	f	class:CButterworthBandPassFilterDesign
+getHighCutoffFreq	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	/^	virtual double getHighCutoffFreq() const$/;"	f	class:CChebycheffBandPassFilterDesign
+getHighGamma	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.cpp	/^double CChebycheffCommon::getHighGamma(double inCutFreq)$/;"	f	class:CChebycheffCommon
+getLowBeta	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthCommon.cpp	/^double CButterworthCommon::getLowBeta(double i_dCutFreq)$/;"	f	class:CButterworthCommon
+getLowCutoffFreq	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	/^	virtual double getLowCutoffFreq() const$/;"	f	class:CButterworthBandPassFilterDesign
+getLowCutoffFreq	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	/^	virtual double getLowCutoffFreq() const$/;"	f	class:CChebycheffBandPassFilterDesign
+getLowGamma	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.cpp	/^double CChebycheffCommon::getLowGamma(double inCutFreq)$/;"	f	class:CChebycheffCommon
+getNumChannels	.\WaveFormOperator\source\BWaveForm.h	/^	short	getNumChannels() const { return this->m_shNumChannels; }$/;"	f	class:BWaveForm
+getNumSamples	.\WaveFormOperator\source\BWaveForm.h	/^	long	getNumSamples() const { return this->m_lSamplesPerChannel*this->m_shNumChannels; }$/;"	f	class:BWaveForm
+getOrder	.\Filter\FilterDesign\CBlockDiagram.h	/^	int getOrder() const { return this->m_iOrder; }$/;"	f	class:CBlockDiagram
+getOrderNumber	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	long getOrderNumber() const$/;"	f	class:BIIRFilter
+getPhase	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	double getPhase(complex<double> i_cComplexValue) const$/;"	f	class:BIIRFilter
+getPreviousSample	.\Filter\FilterDesign\CBlockDiagram.h	/^	double getPreviousSample(int i_iIndex)$/;"	f	class:CBlockDiagram
+getPrototypeCutFreq	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	virtual double getPrototypeCutFreq() const$/;"	f	class:BIIRFilter
+getPrototypePassFreq	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	virtual double getPrototypePassFreq() const$/;"	f	class:BIIRFilter
+getSample	.\WaveFormOperator\source\BWaveForm\BWaveForm.cpp	/^double BWaveForm::getSample(long num,short channel)  const$/;"	f	class:BWaveForm
+getSampleRate	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	virtual double getSampleRate() const$/;"	f	class:BIIRFilter
+getSampleRate	.\WaveFormOperator\source\BWaveForm.h	/^	long	getSampleRate() const { return this->m_lSampleRate; }$/;"	f	class:BWaveForm
+getSamplesPerChannel	.\WaveFormOperator\source\BWaveForm.h	/^	long	getSamplesPerChannel() const { return this->m_lSamplesPerChannel; }$/;"	f	class:BWaveForm
+init	.\Filter\CFilter.h	/^	virtual void init(IFilterDesign* i_piFilterDesign)$/;"	f	class:CFilter
+init	.\Filter\FilterDesign\CBlockDiagram.cpp	/^void CBlockDiagram::init(int i_iOrder,const double* i_pdFeedForwardCoefficient, const double* i_pdFeedbackCoefficient)$/;"	f	class:CBlockDiagram
+init	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	/^	virtual void init()$/;"	f	class:CButterworthBandPassFilterDesign
+init	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthHighPassFilterDesign.h	/^	virtual void init()$/;"	f	class:CButterworthHighPassFilterDesign
+init	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthLowPassFilterDesign.h	/^	virtual void init()$/;"	f	class:CButterworthLowPassFilterDesign
+init	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	/^	virtual void init()$/;"	f	class:CChebycheffBandPassFilterDesign
+init	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffHighPassFilterDesign.h	/^	virtual void init()$/;"	f	class:CChebycheffHighPassFilterDesign
+init	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffLowPassFilterDesign.h	/^	virtual void init()$/;"	f	class:CChebycheffLowPassFilterDesign
+initBandTransferFunction	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthCommon.cpp	/^CBlockDiagram* CButterworthCommon::initBandTransferFunction ($/;"	f	class:CButterworthCommon
+initBandTransferFunction	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.cpp	/^CBlockDiagram* CChebycheffCommon::initBandTransferFunction(double inLowCutFreq, double inHighCutFreq)$/;"	f	class:CChebycheffCommon
+initHighTransferFunction	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthCommon.cpp	/^CBlockDiagram* CButterworthCommon::initHighTransferFunction(double i_dCutFreq)$/;"	f	class:CButterworthCommon
+initHighTransferFunction	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.cpp	/^CBlockDiagram* CChebycheffCommon::initHighTransferFunction(double inCutFreq)$/;"	f	class:CChebycheffCommon
+initLowTransferFunction	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthCommon.cpp	/^CBlockDiagram* CButterworthCommon::initLowTransferFunction(double i_dCutFreq)$/;"	f	class:CButterworthCommon
+initLowTransferFunction	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.cpp	/^CBlockDiagram* CChebycheffCommon::initLowTransferFunction(double inCutFreq)$/;"	f	class:CChebycheffCommon
+initPreviousSample	.\Filter\FilterDesign\CBlockDiagram.h	/^	void initPreviousSample(int i_iNum)$/;"	f	class:CBlockDiagram
+inject	.\Filter\FilterDesign\CBlockDiagram.cpp	/^double CBlockDiagram::inject(double i_dSample)$/;"	f	class:CBlockDiagram
+interpolation	.\WaveFormOperator\source\BWaveForm\BWaveForm.cpp	/^double BWaveForm::interpolation(double i_dThreshold, short i_shChannel)$/;"	f	class:BWaveForm
+isBigEndian	.\WaveFormOperator\source\CWaveFile\Utility\CWaveFileUtility.cpp	/^bool CWaveFileUtility::isBigEndian()$/;"	f	class:CWaveFileUtility
+mMessage	.\WaveFormOperator\source\CWaveFile\CWaveFile.cpp	/^	char* mMessage;$/;"	m	class:WaveFormatError	file:
+m_bIsDEBUG	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.h	/^	bool m_bIsDEBUG;$/;"	m	class:BChunkOperator
+m_bIsDebug	.\Filter\FilterDesign\IFilterDesign.h	/^	bool m_bIsDebug=false;$/;"	m	class:IFilterDesign
+m_cDataChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CChunkFactory.h	/^	CDataChunkOperator			m_cDataChunkOperator;$/;"	m	class:CChunkFactory
+m_cFmtChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CChunkFactory.h	/^	CFmtChunkOperator			m_cFmtChunkOperator;$/;"	m	class:CChunkFactory
+m_cOtherChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CChunkFactory.h	/^	COtherChunkOperator			m_cOtherChunkOperator;$/;"	m	class:CChunkFactory
+m_cRIFFChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CChunkFactory.h	/^	CRIFFChunkOperator			m_cRIFFChunkOperator;$/;"	m	class:CChunkFactory
+m_cSampleOperator16	.\WaveFormOperator\source\CWaveFile\SampleOperator\CFactorySampleOperator.h	/^	CSampleOperator16		m_cSampleOperator16;$/;"	m	class:CFactorySampleOperator
+m_cSampleOperator8	.\WaveFormOperator\source\CWaveFile\SampleOperator\CFactorySampleOperator.h	/^	CSampleOperator8		m_cSampleOperator8;$/;"	m	class:CFactorySampleOperator
+m_cSampleOperatorOther	.\WaveFormOperator\source\CWaveFile\SampleOperator\CFactorySampleOperator.h	/^	CSampleOperatorOther	m_cSampleOperatorOther;$/;"	m	class:CFactorySampleOperator
+m_cWAVEChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CChunkFactory.h	/^	CWAVEChunkOperator			m_cWAVEChunkOperator;$/;"	m	class:CChunkFactory
+m_dAlpha0	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.h	/^	double m_dAlpha0;$/;"	m	class:CChebycheffCommon
+m_dAttenuateGain	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	double m_dAttenuateGain;$/;"	m	class:BIIRFilter
+m_dEpsilon	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.h	/^	double m_dEpsilon;$/;"	m	class:CChebycheffCommon
+m_dHighCutoffFreq	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	double m_dHighCutoffFreq;$/;"	m	class:BIIRFilter
+m_dLowCutoffFreq	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	double m_dLowCutoffFreq;$/;"	m	class:BIIRFilter
+m_dPassFreq	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	double m_dPassFreq;$/;"	m	class:BIIRFilter
+m_dPrototypeCutFreq	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	double m_dPrototypeCutFreq;$/;"	m	class:BIIRFilter
+m_dPrototypePassFreq	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	double m_dPrototypePassFreq;$/;"	m	class:BIIRFilter
+m_dRippleGain	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	double m_dRippleGain;$/;"	m	class:BIIRFilter
+m_dSampleRate	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	double m_dSampleRate;$/;"	m	class:BIIRFilter
+m_dStopFreq	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	double m_dStopFreq;$/;"	m	class:BIIRFilter
+m_iOrder	.\Filter\FilterDesign\CBlockDiagram.h	/^	int m_iOrder;$/;"	m	class:CBlockDiagram
+m_lOrderNumber	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	long m_lOrderNumber;$/;"	m	class:BIIRFilter
+m_lSampleRate	.\WaveFormOperator\source\BWaveForm.h	/^	long    m_lSampleRate;$/;"	m	class:BWaveForm
+m_lSamplesPerChannel	.\WaveFormOperator\source\BWaveForm.h	/^	long    m_lSamplesPerChannel;$/;"	m	class:BWaveForm
+m_lSize	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.h	/^	long m_lSize;$/;"	m	class:BChunkOperator
+m_nAvgBytesPerSec	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.h	/^	char m_nAvgBytesPerSec[4];$/;"	m	struct:T_FMT_CHUNK
+m_nBlockAlign	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.h	/^	char m_nBlockAlign[2];$/;"	m	struct:T_FMT_CHUNK
+m_nChannels	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.h	/^	char m_nChannels[2];$/;"	m	struct:T_FMT_CHUNK
+m_nSamplesPerSec	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.h	/^	char m_nSamplesPerSec[4];$/;"	m	struct:T_FMT_CHUNK
+m_pbyConfigFileName	.\Filter\FilterDesign\IFilterDesign.h	/^	const char* m_pbyConfigFileName;$/;"	m	class:IFilterDesign
+m_pbyFilterDesignName	.\Filter\FilterDesign\IFilterDesign.h	/^	const char* m_pbyFilterDesignName;$/;"	m	class:IFilterDesign
+m_pcBlockDiagram	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	CBlockDiagram* m_pcBlockDiagram;$/;"	m	class:BIIRFilter
+m_pcFilter	.\Filter\Builder\IFilterBuilder.h	/^	CFilter*		m_pcFilter;$/;"	m	class:IFilterBuilder
+m_pdFeedbackCoefficient	.\Filter\FilterDesign\CBlockDiagram.h	/^	double *m_pdFeedbackCoefficient;$/;"	m	class:CBlockDiagram
+m_pdFeedforwardCoefficient	.\Filter\FilterDesign\CBlockDiagram.h	/^	double *m_pdFeedforwardCoefficient;$/;"	m	class:CBlockDiagram
+m_pdSample	.\WaveFormOperator\source\BWaveForm.h	/^	double  *m_pdSample;$/;"	m	class:BWaveForm
+m_piFilterDesign	.\Filter\Builder\IFilterBuilder.h	/^	IFilterDesign*	m_piFilterDesign;$/;"	m	class:IFilterBuilder
+m_piFilterDesign	.\Filter\CFilter.h	/^	IFilterDesign* m_piFilterDesign;$/;"	m	class:CFilter
+m_quePreviousSample	.\Filter\FilterDesign\CBlockDiagram.h	/^	deque<double> m_quePreviousSample;$/;"	m	class:CBlockDiagram
+m_shBitsPerSample	.\WaveFormOperator\source\BWaveForm.h	/^	short   m_shBitsPerSample;$/;"	m	class:BWaveForm
+m_shBitsPerSample	.\WaveFormOperator\source\CWaveFile\SampleOperator\ISampleOperator.h	/^	short   m_shBitsPerSample;$/;"	m	class:ISampleOperator
+m_shNumChannels	.\WaveFormOperator\source\BWaveForm.h	/^	short   m_shNumChannels;$/;"	m	class:BWaveForm
+m_szID	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.h	/^	char m_szID[4];$/;"	m	class:BChunkOperator
+m_szID	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.h	/^	char m_szID[4];$/;"	m	struct:T_CHUNK
+m_szSize	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.h	/^	char m_szSize[4];$/;"	m	struct:T_CHUNK
+m_wBitsPerSample	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.h	/^	char m_wBitsPerSample[2];$/;"	m	struct:T_FMT_CHUNK
+m_wFormatTag	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.h	/^	char m_wFormatTag[2];$/;"	m	struct:T_FMT_CHUNK
+main	.\WaveFormOperator\test_source\test_CWaveFile.cpp	/^int main(int argc, char* argv[])$/;"	f
+main	.\main.cpp	/^int main(int argc, char* argv[])$/;"	f
+nop	.\Filter\FilterDesign\CFilterConfig.h	/^	void nop()$/;"	f	class:CFilterConfig
+operator +	.\WaveFormOperator\source\BWaveForm\BWaveForm.cpp	/^BWaveForm BWaveForm::operator+(const BWaveForm& ob)$/;"	f	class:BWaveForm
+operator +=	.\WaveFormOperator\source\BWaveForm\BWaveForm.cpp	/^const BWaveForm& BWaveForm::operator+=(BWaveForm& ob)$/;"	f	class:BWaveForm
+operator =	.\WaveFormOperator\source\BWaveForm\BWaveForm.cpp	/^const BWaveForm& BWaveForm::operator=(const BWaveForm& right)$/;"	f	class:BWaveForm
+passFilter	.\Filter\CFilter.h	/^	virtual double passFilter(double i_dSample) const$/;"	f	class:CFilter
+passFilter	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	/^	virtual double passFilter(double i_dSample) const$/;"	f	class:CButterworthBandPassFilterDesign
+passFilter	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthHighPassFilterDesign.h	/^	virtual double passFilter(double i_dSample) const$/;"	f	class:CButterworthHighPassFilterDesign
+passFilter	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthLowPassFilterDesign.h	/^	virtual double passFilter(double i_dSample) const$/;"	f	class:CButterworthLowPassFilterDesign
+passFilter	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	/^	virtual double passFilter(double i_dSample) const$/;"	f	class:CChebycheffBandPassFilterDesign
+passFilter	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffHighPassFilterDesign.h	/^	virtual double passFilter(double i_dSample) const$/;"	f	class:CChebycheffHighPassFilterDesign
+passFilter	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffLowPassFilterDesign.h	/^	virtual double passFilter(double i_dSample) const$/;"	f	class:CChebycheffLowPassFilterDesign
+popPreviousSample	.\Filter\FilterDesign\CBlockDiagram.h	/^	void popPreviousSample()$/;"	f	class:CBlockDiagram
+printCharacteristic	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	virtual void printCharacteristic($/;"	f	class:BIIRFilter
+printChunk	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.cpp	/^void BChunkOperator::printChunk(char* i_pbyMessage, T_CHUNK& i_stChunk)$/;"	f	class:BChunkOperator
+printConfig	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	void printConfig() const$/;"	f	class:BIIRFilter
+printFmtChunk	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.cpp	/^void CFmtChunkOperator::printFmtChunk(char* i_pbyMessage, T_FMT_CHUNK& i_stFmtChunk)$/;"	f	class:CFmtChunkOperator
+printProperty	.\Filter\CFilter.h	/^	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const$/;"	f	class:CFilter
+printProperty	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	/^	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const$/;"	f	class:CButterworthBandPassFilterDesign
+printProperty	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthHighPassFilterDesign.h	/^	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const$/;"	f	class:CButterworthHighPassFilterDesign
+printProperty	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthLowPassFilterDesign.h	/^	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const$/;"	f	class:CButterworthLowPassFilterDesign
+printProperty	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	/^	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const$/;"	f	class:CChebycheffBandPassFilterDesign
+printProperty	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffHighPassFilterDesign.h	/^	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const$/;"	f	class:CChebycheffHighPassFilterDesign
+printProperty	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffLowPassFilterDesign.h	/^	virtual void printProperty(const char* i_pbyAmplitudeFilename, const char* i_pbyPhaseFilename) const$/;"	f	class:CChebycheffLowPassFilterDesign
+pushPreviousSample	.\Filter\FilterDesign\CBlockDiagram.h	/^	void pushPreviousSample(double i_dSample)$/;"	f	class:CBlockDiagram
+read	.\WaveFormOperator\source\CWaveFile\CWaveFile.cpp	/^bool CWaveFile::read(const string i_strFileName)$/;"	f	class:CWaveFile
+read	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.cpp	/^bool  BChunkOperator::read(ifstream& i_cFileStream, CWaveFile& i_pcWaveFile, T_CHUNK& i_stChunk)$/;"	f	class:BChunkOperator
+read	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CDataChunkOperator.cpp	/^bool  CDataChunkOperator::read(ifstream& i_cFileStream, CWaveFile& i_pcWaveFile, T_CHUNK& i_stChunk)$/;"	f	class:CDataChunkOperator
+read	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.cpp	/^bool  CFmtChunkOperator::read(ifstream& i_cFileStream, CWaveFile& i_pcWaveFile, T_CHUNK& i_stChunk)$/;"	f	class:CFmtChunkOperator
+read	.\WaveFormOperator\source\CWaveFile\ChunkOperator\COtherChunkOperator.cpp	/^bool  COtherChunkOperator::read(ifstream& i_cFileStream, CWaveFile& i_pcWaveFile, T_CHUNK& i_stChunk)$/;"	f	class:COtherChunkOperator
+read	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CRIFFChunkOperator.cpp	/^bool  CRIFFChunkOperator::read(ifstream& i_cFileStream, CWaveFile& i_pcWaveFile, T_CHUNK& i_stChunk)$/;"	f	class:CRIFFChunkOperator
+read	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CWAVEChunkOperator.cpp	/^bool  CWAVEChunkOperator::read(ifstream& i_cFileStream, CWaveFile& i_pcWaveFile, T_CHUNK& i_stChunk)$/;"	f	class:CWAVEChunkOperator
+read	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperator16.cpp	/^double CSampleOperator16::read(ifstream& i_cFileStream)$/;"	f	class:CSampleOperator16
+read	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperator8.cpp	/^double CSampleOperator8::read(ifstream& i_cFileStream)$/;"	f	class:CSampleOperator8
+read	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperatorOther.cpp	/^double CSampleOperatorOther::read(ifstream& i_cFileStream)$/;"	f	class:CSampleOperatorOther
+readConfig	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	/^	virtual void readConfig()$/;"	f	class:CButterworthBandPassFilterDesign
+readConfig	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthHighPassFilterDesign.h	/^	virtual void readConfig()$/;"	f	class:CButterworthHighPassFilterDesign
+readConfig	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthLowPassFilterDesign.h	/^	virtual void readConfig()$/;"	f	class:CButterworthLowPassFilterDesign
+readConfig	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	/^	virtual void readConfig()$/;"	f	class:CChebycheffBandPassFilterDesign
+readConfig	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffHighPassFilterDesign.h	/^	virtual void readConfig()$/;"	f	class:CChebycheffHighPassFilterDesign
+readConfig	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffLowPassFilterDesign.h	/^	virtual void readConfig()$/;"	f	class:CChebycheffLowPassFilterDesign
+runFilter	.\main.cpp	/^bool runFilter(CFilter& i_cFilter, BWaveForm& i_bWaveForm, long i_lBegin, long i_lEnd, short i_shChannel )$/;"	f
+setBitsPerSample	.\WaveFormOperator\source\BWaveForm\BWaveForm.cpp	/^void BWaveForm::setBitsPerSample(short bitsPerSample)$/;"	f	class:BWaveForm
+setConfig	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	virtual void setConfig(map<string,string> i_mapPairsTable, map<string,double*> i_mapConfigTable)$/;"	f	class:BIIRFilter
+setCutoffFreq	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthHighPassFilterDesign.h	/^	virtual void setCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CButterworthHighPassFilterDesign
+setCutoffFreq	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthLowPassFilterDesign.h	/^	virtual void setCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CButterworthLowPassFilterDesign
+setCutoffFreq	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffHighPassFilterDesign.h	/^	virtual void setCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CChebycheffHighPassFilterDesign
+setCutoffFreq	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffLowPassFilterDesign.h	/^	virtual void setCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CChebycheffLowPassFilterDesign
+setFilterDesign	.\Filter\CFilter.h	/^	virtual void setFilterDesign(IFilterDesign* i_piFilterDesign)$/;"	f	class:CFilter
+setHighCutoffFreq	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	/^	virtual void setHighCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CButterworthBandPassFilterDesign
+setHighCutoffFreq	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	/^	virtual void setHighCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CChebycheffBandPassFilterDesign
+setLowCutoffFreq	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	/^	virtual void setLowCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CButterworthBandPassFilterDesign
+setLowCutoffFreq	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	/^	virtual void setLowCutoffFreq(double i_dCutoffFreq)$/;"	f	class:CChebycheffBandPassFilterDesign
+setNumChannels	.\WaveFormOperator\source\BWaveForm\BWaveForm.cpp	/^void BWaveForm::setNumChannels(short numChannels)$/;"	f	class:BWaveForm
+setOrder	.\Filter\FilterDesign\CBlockDiagram.h	/^	void setOrder(int i_iOrder){ this->m_iOrder = i_iOrder; }$/;"	f	class:CBlockDiagram
+setOrderNumber	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	void setOrderNumber(long i_lOrder)$/;"	f	class:BIIRFilter
+setSample	.\WaveFormOperator\source\BWaveForm\BWaveForm.cpp	/^void BWaveForm::setSample(double sample,long num,short channel)$/;"	f	class:BWaveForm
+setSampleRate	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	virtual void setSampleRate(double i_dSampleRate)$/;"	f	class:BIIRFilter
+setSampleRate	.\WaveFormOperator\source\BWaveForm\BWaveForm.cpp	/^void BWaveForm::setSampleRate(long sampleRate)$/;"	f	class:BWaveForm
+setSamplesPerChannel	.\WaveFormOperator\source\BWaveForm\BWaveForm.cpp	/^void BWaveForm::setSamplesPerChannel(long samplesPerChannel)$/;"	f	class:BWaveForm
+setValue	.\Filter\FilterDesign\CFilterConfig.h	/^	void setValue(string& i_strLine, map<string,string>& i_mapPairs)$/;"	f	class:CFilterConfig
+sinc	.\WaveFormOperator\source\BWaveForm\BWaveForm.cpp	/^double BWaveForm::sinc(double i_dSample)$/;"	f	class:BWaveForm
+split	.\Filter\FilterDesign\CFilterConfig.h	/^	vector<string> split(string& i_strTarget, string& i_strDelim)$/;"	f	class:CFilterConfig
+swapInt	.\WaveFormOperator\source\CWaveFile\Utility\CWaveFileUtility.cpp	/^int CWaveFileUtility::swapInt(char* i_pbyData)$/;"	f	class:CWaveFileUtility
+swapLong	.\WaveFormOperator\source\CWaveFile\Utility\CWaveFileUtility.cpp	/^long CWaveFileUtility::swapLong(char* i_pbyData)$/;"	f	class:CWaveFileUtility
+swapShort	.\WaveFormOperator\source\CWaveFile\Utility\CWaveFileUtility.cpp	/^short CWaveFileUtility::swapShort(char* i_pbyData)$/;"	f	class:CWaveFileUtility
+transferFunction	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	virtual double transferFunction(long i_lNumSection, double i_dSample) const$/;"	f	class:BIIRFilter
+what	.\WaveFormOperator\source\CWaveFile\CWaveFile.cpp	/^	const char* what() const { return mMessage; }$/;"	f	class:WaveFormatError
+write	.\WaveFormOperator\source\CWaveFile\CWaveFile.cpp	/^bool CWaveFile::write(const string i_strFileName)$/;"	f	class:CWaveFile
+write	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.cpp	/^bool BChunkOperator::write(ofstream& i_cFileStream, CWaveFile& i_pcWaveFile)$/;"	f	class:BChunkOperator
+write	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CDataChunkOperator.cpp	/^bool CDataChunkOperator::write(ofstream& i_cFileStream, CWaveFile& i_pcWaveFile)$/;"	f	class:CDataChunkOperator
+write	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.cpp	/^bool CFmtChunkOperator::write(ofstream& i_cFileStream, CWaveFile& i_pcWaveFile)$/;"	f	class:CFmtChunkOperator
+write	.\WaveFormOperator\source\CWaveFile\ChunkOperator\COtherChunkOperator.cpp	/^bool COtherChunkOperator::write(ofstream& i_cFileStream, CWaveFile& i_pcWaveFile)$/;"	f	class:COtherChunkOperator
+write	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CRIFFChunkOperator.cpp	/^bool CRIFFChunkOperator::write(ofstream& i_cFileStream, CWaveFile& i_pcWaveFile)$/;"	f	class:CRIFFChunkOperator
+write	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CWAVEChunkOperator.cpp	/^bool CWAVEChunkOperator::write(ofstream& i_cFileStream, CWaveFile& i_pcWaveFile)$/;"	f	class:CWAVEChunkOperator
+write	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperator16.cpp	/^bool CSampleOperator16::write(double i_dSample, ofstream& i_cFileStream)$/;"	f	class:CSampleOperator16
+write	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperator8.cpp	/^bool CSampleOperator8::write(double i_dSample, ofstream& i_cFileStream)$/;"	f	class:CSampleOperator8
+write	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperatorOther.cpp	/^bool CSampleOperatorOther::write(double i_dSample, ofstream& i_cFileStream)$/;"	f	class:CSampleOperatorOther
+~BChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\BChunkOperator.h	/^	virtual ~BChunkOperator(){ }$/;"	f	class:BChunkOperator
+~BIIRFilter	.\Filter\FilterDesign\IIRFilter\BIIRFilter.h	/^	virtual ~BIIRFilter()$/;"	f	class:BIIRFilter
+~BWaveForm	.\WaveFormOperator\source\BWaveForm.h	/^	virtual ~BWaveForm()$/;"	f	class:BWaveForm
+~CBlockDiagram	.\Filter\FilterDesign\CBlockDiagram.h	/^	virtual ~CBlockDiagram()$/;"	f	class:CBlockDiagram
+~CButterworthBandPassFilterBuilder	.\Filter\Builder\BandPassFilter\CButterworthBandPassFilterBuilder.h	/^	virtual ~CButterworthBandPassFilterBuilder(){ }$/;"	f	class:CButterworthBandPassFilterBuilder
+~CButterworthBandPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthBandPassFilterDesign.h	/^	virtual ~CButterworthBandPassFilterDesign(){ }$/;"	f	class:CButterworthBandPassFilterDesign
+~CButterworthCommon	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthCommon.h	/^	virtual ~CButterworthCommon() { }$/;"	f	class:CButterworthCommon
+~CButterworthHighPassFilterBuilder	.\Filter\Builder\HighPassFilter\CButterworthHighPassFilterBuilder.h	/^	virtual ~CButterworthHighPassFilterBuilder(){ }$/;"	f	class:CButterworthHighPassFilterBuilder
+~CButterworthHighPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthHighPassFilterDesign.h	/^	virtual ~CButterworthHighPassFilterDesign(){ }$/;"	f	class:CButterworthHighPassFilterDesign
+~CButterworthLowPassFilterBuilder	.\Filter\Builder\LowPassFilter\CButterworthLowPassFilterBuilder.h	/^	virtual ~CButterworthLowPassFilterBuilder(){ }$/;"	f	class:CButterworthLowPassFilterBuilder
+~CButterworthLowPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Butterworth\CButterworthLowPassFilterDesign.h	/^	virtual ~CButterworthLowPassFilterDesign(){ }$/;"	f	class:CButterworthLowPassFilterDesign
+~CChebycheffBandPassFilterBuilder	.\Filter\Builder\BandPassFilter\CChebycheffBandPassFilterBuilder.h	/^	virtual ~CChebycheffBandPassFilterBuilder(){ }$/;"	f	class:CChebycheffBandPassFilterBuilder
+~CChebycheffBandPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffBandPassFilterDesign.h	/^	virtual ~CChebycheffBandPassFilterDesign(){ }$/;"	f	class:CChebycheffBandPassFilterDesign
+~CChebycheffCommon	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffCommon.h	/^	virtual ~CChebycheffCommon() { }$/;"	f	class:CChebycheffCommon
+~CChebycheffHighPassFilterBuilder	.\Filter\Builder\HighPassFilter\CChebycheffHighPassFilterBuilder.h	/^	virtual ~CChebycheffHighPassFilterBuilder(){ }$/;"	f	class:CChebycheffHighPassFilterBuilder
+~CChebycheffHighPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffHighPassFilterDesign.h	/^	virtual ~CChebycheffHighPassFilterDesign(){ }$/;"	f	class:CChebycheffHighPassFilterDesign
+~CChebycheffLowPassFilterBuilder	.\Filter\Builder\LowPassFilter\CChebycheffLowPassFilterBuilder.h	/^	virtual ~CChebycheffLowPassFilterBuilder(){ }$/;"	f	class:CChebycheffLowPassFilterBuilder
+~CChebycheffLowPassFilterDesign	.\Filter\FilterDesign\IIRFilter\Chebycheff\CChebycheffLowPassFilterDesign.h	/^	virtual ~CChebycheffLowPassFilterDesign(){ }$/;"	f	class:CChebycheffLowPassFilterDesign
+~CChunkFactory	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CChunkFactory.h	/^	virtual ~CChunkFactory(){ }$/;"	f	class:CChunkFactory
+~CDataChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CDataChunkOperator.h	/^	virtual ~CDataChunkOperator(){ }$/;"	f	class:CDataChunkOperator
+~CFactorySampleOperator	.\WaveFormOperator\source\CWaveFile\SampleOperator\CFactorySampleOperator.h	/^	virtual ~CFactorySampleOperator(){ }$/;"	f	class:CFactorySampleOperator
+~CFilter	.\Filter\CFilter.h	/^	virtual ~CFilter()$/;"	f	class:CFilter
+~CFilterConfig	.\Filter\FilterDesign\CFilterConfig.h	/^	virtual ~CFilterConfig()$/;"	f	class:CFilterConfig
+~CFmtChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CFmtChunkOperator.h	/^	virtual ~CFmtChunkOperator(){ }$/;"	f	class:CFmtChunkOperator
+~COtherChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\COtherChunkOperator.h	/^	virtual ~COtherChunkOperator(){ }$/;"	f	class:COtherChunkOperator
+~CRIFFChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CRIFFChunkOperator.h	/^	virtual ~CRIFFChunkOperator(){ }$/;"	f	class:CRIFFChunkOperator
+~CSampleOperator16	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperator16.h	/^	virtual ~CSampleOperator16(){ }$/;"	f	class:CSampleOperator16
+~CSampleOperator8	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperator8.h	/^	virtual ~CSampleOperator8(){ }$/;"	f	class:CSampleOperator8
+~CSampleOperatorOther	.\WaveFormOperator\source\CWaveFile\SampleOperator\CSampleOperatorOther.h	/^	virtual ~CSampleOperatorOther(){ }$/;"	f	class:CSampleOperatorOther
+~CWAVEChunkOperator	.\WaveFormOperator\source\CWaveFile\ChunkOperator\CWAVEChunkOperator.h	/^	virtual ~CWAVEChunkOperator(){ }$/;"	f	class:CWAVEChunkOperator
+~CWaveFile	.\WaveFormOperator\source\CWaveFile.h	/^	virtual ~CWaveFile(){ }$/;"	f	class:CWaveFile
+~IBandPassFilterDesign	.\Filter\FilterDesign\IBandPassFilterDesign.h	/^	virtual ~IBandPassFilterDesign(){ }$/;"	f	class:IBandPassFilterDesign
+~IFilterBuilder	.\Filter\Builder\IFilterBuilder.h	/^	virtual ~IFilterBuilder(){ }$/;"	f	class:IFilterBuilder
+~IFilterDesign	.\Filter\FilterDesign\IFilterDesign.h	/^	virtual ~IFilterDesign(){ }$/;"	f	class:IFilterDesign
+~IHighPassFilterDesign	.\Filter\FilterDesign\IHighPassFilterDesign.h	/^	virtual ~IHighPassFilterDesign(){ }$/;"	f	class:IHighPassFilterDesign
+~ILowPassFilterDesign	.\Filter\FilterDesign\ILowPassFilterDesign.h	/^	virtual ~ILowPassFilterDesign(){ }$/;"	f	class:ILowPassFilterDesign
+~ISampleOperator	.\WaveFormOperator\source\CWaveFile\SampleOperator\ISampleOperator.h	/^	virtual ~ISampleOperator(){ }$/;"	f	class:ISampleOperator

@@ -3,7 +3,7 @@
 #include <cstring>		//atof(), atoi()を使用したい.
 using namespace std;
 
-#include "./SoundInformation/source/CWaveFile.h"
+#include "./WaveFormOperator/source/CWaveFile.h"
 #include "./Filter/CFilter.h"
 
 //フィルタービルダー
@@ -17,24 +17,24 @@ using namespace std;
 /**
  * @brief	サンプル値をフィルタへ通す.
  * @param	CFilter& i_cFilter
- * @param	BSoundInformation& i_bSoundInformation
+ * @param	BWaveForm& i_bWaveForm
  * @param	long i_lBegin
  * @param	long i_lEnd
  * @param	short i_shChannel 
  * @return	成功/失敗.
  */
-bool runFilter(CFilter& i_cFilter, BSoundInformation& i_bSoundInformation, long i_lBegin, long i_lEnd, short i_shChannel )
+bool runFilter(CFilter& i_cFilter, BWaveForm& i_bWaveForm, long i_lBegin, long i_lEnd, short i_shChannel )
 {
 	double a_dCurrentSample;
 
 	for(long a_lIndex=i_lBegin; a_lIndex<=i_lEnd; a_lIndex++)
 	{
 		// サンプルを取得.
-		a_dCurrentSample = i_bSoundInformation.getSample(a_lIndex,i_shChannel);
+		a_dCurrentSample = i_bWaveForm.getSample(a_lIndex,i_shChannel);
 		// フィルタにサンプルを通す.
 		a_dCurrentSample = i_cFilter.passFilter(a_dCurrentSample);
 		// フィルタに通したサンプルを保存.
-		i_bSoundInformation.setSample(a_dCurrentSample, a_lIndex, i_shChannel);
+		i_bWaveForm.setSample(a_dCurrentSample, a_lIndex, i_shChannel);
 	}
 
 	return true;
